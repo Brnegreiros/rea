@@ -1,0 +1,144 @@
+{
+  "logs": {
+    "frida-unit.log": "\n RUN  v5.0.3 /vercel/evaluation/rea\n\n ✓  services  src/application/frida/FridaInstrumentationService.test.ts (16 tests) 26ms\n ✓  services  src/application/frida/FridaInstrumentationManager.test.ts (38 tests) 3748ms\n   ✓ does not carry earlier script truncation into a complete later load 841ms\n   ✓ reports truncation when that script loses its own message 830ms\n   ✓ retains the newest contiguous messages across repeated budget evictions 2034ms\n\n Test Files  2 passed (2)\n      Tests  54 passed (54)\n   Start at  13:37:26\n   Duration  4.17s (tests 89%, transform 8%, import 2%, worker 1%)\n\n",
+    "frida-boundary.log": "\n RUN  v5.0.3 /vercel/evaluation/rea\n\n ✓  boundary  tests/boundary/filesystem/fridaScriptSource.test.ts (14 tests) 91ms\n ✓  boundary  tests/boundary/filesystem/boundedFileBytes.test.ts (3 tests) 239ms\n\n Test Files  2 passed (2)\n      Tests  17 passed (17)\n   Start at  13:37:30\n   Duration  536ms (tests 63%, transform 21%, worker 10%, import 6%)\n\n",
+    "typecheck.log": "\n> rea-agents@6.5.0 typecheck\n> tsc --noEmit\n\n",
+    "build.log": "\n> rea-agents@6.5.0 build:cached\n> node scripts/check-dependency-install.mjs && node scripts/run-exclusive.mjs artifacts turbo run artifacts:skills\n\n\n   • Running artifacts:skills\n   • Remote caching disabled\n\nmetadata:check: cache hit, replaying logs 32f5da12514f2ac6\nmetadata:check: \nmetadata:check: > rea-agents@6.5.0 metadata:check\nmetadata:check: > node scripts/generate-package-metadata.mjs --check\nmetadata:check: \ncompile: cache miss, executing f9858fdd97cffd81\ncompile: \ncompile: > rea-agents@6.5.0 compile\ncompile: > node scripts/clean-build-output.mjs && tsc -p tsconfig.build.json && node scripts/bundle-runtime.mjs\ncompile: \ncompile: [INEFFECTIVE_DYNAMIC_IMPORT] dist/composition/binary.js is dynamically imported by dist/composition/directAnalysis.js but also statically imported by dist/main.js, dynamic import will not move module into another chunk.\ncompile: \ncompile: [INEFFECTIVE_DYNAMIC_IMPORT] dist/dotnet/ManagedStaticProvider.js is dynamically imported by dist/composition/auxiliaryAnalysisProviders.js but also statically imported by dist/composition/binary.js, dynamic import will not move module into another chunk.\ncompile: \nartifacts:skills: cache miss, executing c9a6400923ed6dc8\nartifacts:skills: \nartifacts:skills: > rea-agents@6.5.0 artifacts:skills\nartifacts:skills: > node scripts/generate-skill-metadata.mjs\nartifacts:skills: \n\n Tasks:    3 successful, 3 total\nCached:    1 cached, 3 total\n  Time:    52.933s \n\n",
+    "frida-adapters.log": "\n> rea-agents@6.5.0 test:focused\n> node scripts/run-development-tests.mjs focused tests/boundary/cli/fridaCli.test.ts tests/boundary/mcp/fridaMcp.test.ts tests/boundary/mcp/fridaLifecycleMcp.test.ts\n\nFocused tests: tests/boundary/cli/fridaCli.test.ts, tests/boundary/mcp/fridaMcp.test.ts, tests/boundary/mcp/fridaLifecycleMcp.test.ts\n\n   • Running artifacts:skills\n   • Remote caching disabled\n\nmetadata:check: cache hit, replaying logs 32f5da12514f2ac6\nmetadata:check: \nmetadata:check: > rea-agents@6.5.0 metadata:check\nmetadata:check: > node scripts/generate-package-metadata.mjs --check\nmetadata:check: \ncompile: cache hit, replaying logs f9858fdd97cffd81\ncompile: \ncompile: > rea-agents@6.5.0 compile\ncompile: > node scripts/clean-build-output.mjs && tsc -p tsconfig.build.json && node scripts/bundle-runtime.mjs\ncompile: \ncompile: [INEFFECTIVE_DYNAMIC_IMPORT] dist/composition/binary.js is dynamically imported by dist/composition/directAnalysis.js but also statically imported by dist/main.js, dynamic import will not move module into another chunk.\ncompile: \ncompile: [INEFFECTIVE_DYNAMIC_IMPORT] dist/dotnet/ManagedStaticProvider.js is dynamically imported by dist/composition/auxiliaryAnalysisProviders.js but also statically imported by dist/composition/binary.js, dynamic import will not move module into another chunk.\ncompile: \nartifacts:skills: cache hit, replaying logs c9a6400923ed6dc8\nartifacts:skills: \nartifacts:skills: > rea-agents@6.5.0 artifacts:skills\nartifacts:skills: > node scripts/generate-skill-metadata.mjs\nartifacts:skills: \n\n Tasks:    3 successful, 3 total\nCached:    3 cached, 3 total\n  Time:    33ms >>> FULL TURBO\n\n\n RUN  v5.0.3 /vercel/evaluation/rea\n\n ✓  cli-boundary  tests/boundary/cli/fridaCli.test.ts (5 tests) 216ms\n ✓  mcp-boundary  tests/boundary/mcp/fridaLifecycleMcp.test.ts (20 tests) 691ms\n ✓  mcp-boundary  tests/boundary/mcp/fridaMcp.test.ts (3 tests) 6573ms\n   ✓ advertises Frida MCP schemas and keeps remote credentials out of results 6514ms\n\n Test Files  3 passed (3)\n      Tests  28 passed (28)\n   Start at  13:39:49\n   Duration  12.05s (transform 38%, tests 38%, import 23%)\n\n",
+    "lint.log": "  ⚠ eslint(max-params): Function has too many parameters (5). Maximum allowed is 4.\n    ╭─[src/application/frida/FridaInstrumentationManager.test.ts:45:14]\n  ⚠ eslint(max-lines): File has too many lines (1423).\n      ╭─[src/frida/FridaInstrumentationManager.ts:1499:2]\n  ⚠ eslint(complexity): private async method `closeSession` has a complexity of 26. Maximum allowed is 20.\n     ╭─[src/frida/FridaInstrumentationManager.ts:640:22]\n  ⚠ unicorn(no-useless-spread): Using a spread operator here creates a new array unnecessarily.\n     ╭─[src/frida/FridaInstrumentationManager.ts:657:26]\n  ⚠ unicorn(no-useless-spread): Using a spread operator here creates a new array unnecessarily.\n     ╭─[src/frida/FridaInstrumentationManager.ts:677:28]\n  ⚠ eslint(complexity): private method `recordMessage` has a complexity of 43. Maximum allowed is 20.\n      ╭─[src/frida/FridaInstrumentationManager.ts:893:17]\n  ⚠ eslint(max-lines-per-function): The private method `recordMessage` has too many lines (153). Maximum allowed is 100.\n      ╭─[src/frida/FridaInstrumentationManager.ts:893:17]\n  ⚠ eslint(max-lines-per-function): The function has too many lines (111). Maximum allowed is 100.\n      ╭─[src/frida/FridaInstrumentationManager.ts:1223:26]\n  ⚠ eslint(complexity): function has a complexity of 30. Maximum allowed is 20.\n      ╭─[src/frida/FridaInstrumentationManager.ts:1234:17]\nFound 9 warnings and 0 errors.\nFinished in 46ms on 4 files with 107 rules using 2 threads.\n",
+    "lint-baseline.log": "  ⚠ eslint(max-lines): File has too many lines (1225).\n      ╭─[/vercel/lint-baseline/src/application/frida/FridaInstrumentationManager.test.ts:1347:4]\n  ⚠ eslint(max-params): Function has too many parameters (5). Maximum allowed is 4.\n    ╭─[/vercel/lint-baseline/src/application/frida/FridaInstrumentationManager.test.ts:39:14]\n  ⚠ eslint(max-lines): File has too many lines (1431).\n      ╭─[/vercel/lint-baseline/src/frida/FridaInstrumentationManager.ts:1507:2]\n  ⚠ eslint(complexity): private async method `loadScript` has a complexity of 26. Maximum allowed is 20.\n     ╭─[/vercel/lint-baseline/src/frida/FridaInstrumentationManager.ts:376:20]\n  ⚠ eslint(max-lines-per-function): The private async method `loadScript` has too many lines (105). Maximum allowed is 100.\n     ╭─[/vercel/lint-baseline/src/frida/FridaInstrumentationManager.ts:376:20]\n  ⚠ eslint(complexity): private async method `closeSession` has a complexity of 26. Maximum allowed is 20.\n     ╭─[/vercel/lint-baseline/src/frida/FridaInstrumentationManager.ts:653:22]\n  ⚠ unicorn(no-useless-spread): Using a spread operator here creates a new array unnecessarily.\n     ╭─[/vercel/lint-baseline/src/frida/FridaInstrumentationManager.ts:670:26]\n  ⚠ unicorn(no-useless-spread): Using a spread operator here creates a new array unnecessarily.\n     ╭─[/vercel/lint-baseline/src/frida/FridaInstrumentationManager.ts:690:28]\n  ⚠ eslint(complexity): private method `recordMessage` has a complexity of 43. Maximum allowed is 20.\n      ╭─[/vercel/lint-baseline/src/frida/FridaInstrumentationManager.ts:901:17]\n  ⚠ eslint(max-lines-per-function): The private method `recordMessage` has too many lines (153). Maximum allowed is 100.\n      ╭─[/vercel/lint-baseline/src/frida/FridaInstrumentationManager.ts:901:17]\n  ⚠ eslint(max-lines-per-function): The function has too many lines (111). Maximum allowed is 100.\n      ╭─[/vercel/lint-baseline/src/frida/FridaInstrumentationManager.ts:1231:26]\n  ⚠ eslint(complexity): function has a complexity of 30. Maximum allowed is 20.\n      ╭─[/vercel/lint-baseline/src/frida/FridaInstrumentationManager.ts:1242:17]\nFound 12 warnings and 0 errors.\nFinished in 20ms on 2 files with 107 rules using 2 threads.\n",
+    "format.log": "Checking formatting...\n\nAll matched files use the correct format.\nFinished in 5ms on 5 files using 2 threads.\n",
+    "fifo-baseline.log": "BASELINE_READFILE_FIFO_EXIT=124\n"
+  },
+  "exits": {
+    "frida-unit": 0,
+    "frida-boundary": 0,
+    "typecheck": 0,
+    "build": 0,
+    "frida-adapters": 0,
+    "lint": 0,
+    "format": 0
+  },
+  "sourceHashes": {
+    "src/frida/FridaScriptSource.ts": "a7ed7240e2ada53d09fe7014d1034a8d5c1b5963d4e952119e41bd16659f28b6",
+    "src/frida/FridaInstrumentationManager.ts": "1ef4a6ca28e8d3e50b2a1b001d55addf02e9ac867f8989ebc97cf2d11c1ba76d",
+    "src/application/frida/FridaInstrumentationManager.test.ts": "945c62dd00c75adb2227e97e0f35d037cecb5dd9655de742421084a429263113",
+    "tests/boundary/filesystem/fridaScriptSource.test.ts": "547284d3ad8d3c98e102b61100ffa1bd3d4ba43b085a9b57a6734fb994820a7f",
+    "docs/frida-instrumentation.md": "84f8060f61ce9ae098c131cdede9cba5b8ec4e218a56c2268f8425f6fd1e81b1"
+  },
+  "workerMetrics": {
+    "memory.peak": "4163096576\n",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+    "cpu.stat": "usage_usec 452395213\nuser_usec 431957678\nsystem_usec 20437534\nnice_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0\n",
+    "pids.max": "512\n",
+    "memory.max": "4294967296\n"
+  },
+  "logCapture": {
+    "lint.log": {
+      "scope": "diagnostic headings and summary",
+      "fullLogBytes": 33459,
+      "fullLogSha256": "5be04a5937785915a05d5f854a383cda9849b455ac258fe7636153b375232975"
+    },
+    "lint-baseline.log": {
+      "scope": "diagnostic headings and summary",
+      "fullLogBytes": 44936,
+      "fullLogSha256": "6a68f69004361b60afa124d5d17ce13ca533b3962e3b1bd12a08aa2f452ea377"
+    }
+  },
+  "baseline": "2b7d59c0f1c4e291d177b4e3d29792e02ecbe247",
+  "workerSession": {
+    "id": "sbx_RCrkNZpARV2uqzdcqRlAhTtmmTpa",
+    "runtime": "node22",
+    "architecture": "amd64",
+    "requestedAt": 1792070353752,
+    "startedAt": 1792070353778,
+    "requestedStopAt": 1792071863987,
+    "stoppedAt": 1792071864367,
+    "status": "stopped",
+    "duration": 1510589,
+    "vcpus": 2,
+    "memory": 4096,
+    "timeout": 1800000,
+    "region": "iad1",
+    "cwd": "/vercel",
+    "createdAt": 1792070353752,
+    "updatedAt": 1792070353789,
+    "interactivePort": 26661,
+    "networkPolicy": {
+      "mode": "deny-all"
+    },
+    "activeCpuDurationMs": 478799,
+    "networkTransfer": {
+      "ingress": 223578723,
+      "egress": 1268331
+    },
+    "sourceSandboxName": "rea-frida-read-20261015",
+    "projectId": "prj_IfkICTa4T38SCOgQXOe2jQpCT6Tl"
+  },
+  "preflight": {
+    "items": [
+      {
+        "command": {
+          "id": "cmd_8e6890aa411846b79fc54c43ebf8",
+          "name": "bash",
+          "args": [
+            "-euc",
+            "useradd --create-home --shell /bin/bash rea\nchmod 700 /home/ubuntu\nprintf '512\\n' > /sys/fs/cgroup/pids.max\nmkdir -p /vercel/evaluation /vercel/toolchain /vercel/output\nchown rea:rea /vercel/evaluation /vercel/toolchain /vercel/output\nchmod 700 /vercel/evaluation /vercel/toolchain /vercel/output\nsetpriv --reuid=rea --regid=rea --clear-groups --no-new-privs env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/rea bash -c 'id; grep -E \"NoNewPrivs|CapEff\" /proc/self/status; test ! -r /home/ubuntu/.bashrc; test ! -w /sys/fs/cgroup/pids.max; if sudo -n true >/dev/null 2>&1; then exit 1; fi; node -e '\\''fetch(\"https://example.com\",{signal:AbortSignal.timeout(4000)}).then(()=>{console.log(\"UNEXPECTED_EGRESS\");process.exitCode=1},e=>console.log(\"OFFLINE_GATE_PASS\",e.name))'\\'''\ncat /sys/fs/cgroup/pids.max /sys/fs/cgroup/memory.max /sys/devices/system/cpu/online\n"
+          ],
+          "cwd": "/vercel",
+          "sessionId": "sbx_RCrkNZpARV2uqzdcqRlAhTtmmTpa",
+          "startedAt": 1792070396894,
+          "exitCode": null
+        }
+      },
+      {
+        "data": "uid=1001(rea) gid=1001(rea) groups=1001(rea)\n",
+        "stream": "stdout"
+      },
+      {
+        "data": "CapEff:\t0000000000000000\nNoNewPrivs:\t1\n",
+        "stream": "stdout"
+      },
+      {
+        "data": "OFFLINE_GATE_PASS TypeError\n",
+        "stream": "stdout"
+      },
+      {
+        "data": "512\n4294967296\n0-1\n",
+        "stream": "stdout"
+      },
+      {
+        "command": {
+          "id": "cmd_8e6890aa411846b79fc54c43ebf8",
+          "name": "bash",
+          "args": [
+            "-euc",
+            "useradd --create-home --shell /bin/bash rea\nchmod 700 /home/ubuntu\nprintf '512\\n' > /sys/fs/cgroup/pids.max\nmkdir -p /vercel/evaluation /vercel/toolchain /vercel/output\nchown rea:rea /vercel/evaluation /vercel/toolchain /vercel/output\nchmod 700 /vercel/evaluation /vercel/toolchain /vercel/output\nsetpriv --reuid=rea --regid=rea --clear-groups --no-new-privs env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/rea bash -c 'id; grep -E \"NoNewPrivs|CapEff\" /proc/self/status; test ! -r /home/ubuntu/.bashrc; test ! -w /sys/fs/cgroup/pids.max; if sudo -n true >/dev/null 2>&1; then exit 1; fi; node -e '\\''fetch(\"https://example.com\",{signal:AbortSignal.timeout(4000)}).then(()=>{console.log(\"UNEXPECTED_EGRESS\");process.exitCode=1},e=>console.log(\"OFFLINE_GATE_PASS\",e.name))'\\'''\ncat /sys/fs/cgroup/pids.max /sys/fs/cgroup/memory.max /sys/devices/system/cpu/online\n"
+          ],
+          "cwd": "/vercel",
+          "sessionId": "sbx_RCrkNZpARV2uqzdcqRlAhTtmmTpa",
+          "startedAt": 1792070396894,
+          "exitCode": 0,
+          "durationMs": 212
+        }
+      }
+    ],
+    "context": {
+      "totalItems": 6,
+      "returnedItems": 6,
+      "truncated": false
+    }
+  },
+  "validationScript": "cd /vercel/evaluation/rea\nnode_modules/.bin/oxfmt src/frida/FridaScriptSource.ts src/frida/FridaInstrumentationManager.ts src/application/frida/FridaInstrumentationManager.test.ts tests/boundary/filesystem/fridaScriptSource.test.ts docs/frida-instrumentation.md || exit 1\nnode node_modules/vitest/vitest.mjs run --project services src/application/frida/FridaInstrumentationManager.test.ts src/application/frida/FridaInstrumentationService.test.ts > /vercel/output/frida-unit.log 2>&1\necho $? > /vercel/output/frida-unit.exit\nnode node_modules/vitest/vitest.mjs run --project boundary tests/boundary/filesystem/fridaScriptSource.test.ts tests/boundary/filesystem/boundedFileBytes.test.ts > /vercel/output/frida-boundary.log 2>&1\necho $? > /vercel/output/frida-boundary.exit\nnpm run typecheck > /vercel/output/typecheck.log 2>&1\necho $? > /vercel/output/typecheck.exit\nnpm run build:cached > /vercel/output/build.log 2>&1\necho $? > /vercel/output/build.exit\nnpm run test:focused -- tests/boundary/cli/fridaCli.test.ts tests/boundary/mcp/fridaMcp.test.ts tests/boundary/mcp/fridaLifecycleMcp.test.ts > /vercel/output/frida-adapters.log 2>&1\necho $? > /vercel/output/frida-adapters.exit\nnode_modules/.bin/oxlint src/frida/FridaScriptSource.ts src/frida/FridaInstrumentationManager.ts src/application/frida/FridaInstrumentationManager.test.ts tests/boundary/filesystem/fridaScriptSource.test.ts > /vercel/output/lint.log 2>&1\necho $? > /vercel/output/lint.exit\nnode_modules/.bin/oxfmt --check src/frida/FridaScriptSource.ts src/frida/FridaInstrumentationManager.ts src/application/frida/FridaInstrumentationManager.test.ts tests/boundary/filesystem/fridaScriptSource.test.ts docs/frida-instrumentation.md > /vercel/output/format.log 2>&1\necho $? > /vercel/output/format.exit\n",
+  "scope": "Linux filesystem and fake Frida bindings; no real Frida injection",
+  "fixtureReproduction": "Original fs.promises.readFile on writer-less FIFO terminated by timeout: exit 124",
+  "sourceHashValidation": "All five source/document hashes matched the local files after formatting transfer",
+  "testTotals": {
+    "services": 54,
+    "filesystem": 17,
+    "cli_mcp": 28,
+    "total": 99,
+    "skipped": 0
+  },
+  "resourceNotes": "Metrics include acquisition and all iterations in this single VM; not a per-test or production sizing benchmark. Token usage not measured."
+}

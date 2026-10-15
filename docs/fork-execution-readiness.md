@@ -90,10 +90,13 @@ OS smoke, full suite, MCP end-to-end flow and remaining provider coverage are
 still required; the report distinguishes PASS from NOT_TESTED.
 
 The generic provider environment inheritance, capability authorization,
-classification/retention policy, and external-provider SCA remain open. Frida
-source-file admission and read bounds need their own focused change and
-regular-file, size, cancellation and cleanup tests; these workflow/browser
-changes do not close that finding.
+classification/retention policy, and external-provider SCA remain open. The
+[Frida source-admission correction](verification/frida-source-read-2026-10-15.md)
+records regular-file checks, a 4 MiB file/inline budget, cooperative cancellation
+and retained descriptor cleanup. Its selected 99 tests passed in an isolated
+Linux worker; native Frida instrumentation and other operating systems remain
+unverified. These controls apply to the evaluation branch until an authorized
+merge.
 
 REA-1.1 remains partial until the prepared controls are reviewed and the
 necessary runtime evidence is available. No merge, publication, deployment, or

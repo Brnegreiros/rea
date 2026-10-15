@@ -1,5 +1,29 @@
 # Frida instrumentation
 
+## Script source admission
+
+Inline scripts and file inputs have a 4 MiB UTF-8 byte acquisition budget. This
+is a REA resource policy, not a Frida format limit. Inline payloads have already
+arrived at the application boundary; this check bounds subsequent hashing and
+native loading rather than transport allocation.
+
+File input must resolve to a regular file. Selected symlinks to regular files
+remain supported; pipes, directories and devices are rejected. REA opens the
+descriptor without waiting for a FIFO writer, checks size before reading, and
+reads in bounded chunks with at most one overflow byte. A final identity and
+metadata check rejects observed replacement or modification during acquisition.
+UTF-8 decoding and source hashing retain their previous semantics; source text
+is not written to Evidence.
+
+Cancellation is checked before opening, between chunks and before native script
+creation. An in-flight OS read must settle before its descriptor can be closed;
+this is cooperative cancellation, not a guarantee of immediate cancellation on
+every filesystem. Failed descriptor cleanup remains owned, blocks subsequent
+source acquisition and is retried during manager shutdown. These controls do
+not authorize the script or sandbox its execution inside a target.
+
+## Sessions and execution
+
 REA exposes Frida device and process discovery, attach or spawn sessions, and caller-authored JavaScript instrumentation through the CLI and MCP. The Node bindings are an optional package dependency and load only when a Frida operation runs. REA does not install Frida server on a target.
 
 For remote devices, pass a host with an optional port (`host[:port]`; bracket IPv6 addresses) and any token, certificate, origin, or keepalive options on that operation. The keepalive interval is measured in seconds, matching Frida Core 17.23.2. Authentication values are held only for the active call or session and are excluded from Evidence. Do not embed credentials in the endpoint address.

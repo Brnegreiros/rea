@@ -1,4 +1,6 @@
-import { describe, expect, it } from "vitest";
+import { writeFile } from "node:fs/promises";
+import { join } from "node:path";
+import { describe, expect, it, vi } from "vitest";
 
 import type {
   Device,
@@ -11,6 +13,10 @@ import type {
 } from "frida";
 import { AnalysisInputError } from "../../domain/analysisErrorCore.js";
 import { FridaInstrumentationManager } from "../../frida/FridaInstrumentationManager.js";
+import { OwnedFileHandle } from "../../filesystem/OwnedFileHandle.js";
+import { MAX_FRIDA_SCRIPT_BYTES } from "../../frida/FridaScriptSource.js";
+import { createTestTempDirectory } from "../../../tests/fixtures/temporaryDirectory.js";
+import { holdFirstFileRead } from "../../../tests/support/holdFirstFileRead.js";
 
 const signal = <Handler extends (...args: never[]) => void>() => {
   let connected: Handler | undefined;
@@ -70,6 +76,7 @@ class FakeScript implements Script {
 }
 
 class FakeSession implements Session {
+  readonly createdSources: string[] = [];
   readonly detached = signal<() => void>();
   readonly scripts: FakeScript[] = [];
   nextPayload: unknown = { event: "loaded" };
@@ -88,7 +95,8 @@ class FakeSession implements Session {
     return this.detachedState;
   }
 
-  async createScript(): Promise<Script> {
+  async createScript(source: string): Promise<Script> {
+    this.createdSources.push(source);
     const script = new FakeScript(
       this.nextPayload,
       async () => {
@@ -1344,4 +1352,139 @@ it("names the unknown session or script ID it rejects", async () => {
     },
   });
   await manager.closeAll();
+});
+
+describe("Frida source admission before native effects", () => {
+  it("rejects oversized inline input before createScript", async () => {
+    const bindings = new FakeDeviceManager();
+    const manager = new FridaInstrumentationManager({
+      deviceManager: bindings,
+    });
+    try {
+      const started = await manager.startSession({
+        mode: "attach",
+        deviceId: "local",
+        pid: 512,
+      });
+      if (!started.ok) throw new Error("fixture session failed");
+      const loaded = await manager.loadScript(started.value.sessionId, {
+        sourceKind: "inline",
+        source: "a".repeat(MAX_FRIDA_SCRIPT_BYTES + 1),
+      });
+      expect(loaded).toMatchObject({
+        ok: false,
+        error: { issues: [{ path: ["source"] }] },
+      });
+      expect(bindings.device.session.createdSources).toEqual([]);
+    } finally {
+      await manager.closeAll();
+    }
+  });
+
+  it("cancels a real source read without registering a native script, then permits another load", async () => {
+    const root = await createTestTempDirectory("rea-frida-manager-read-");
+    const path = join(root, "script.js");
+    await writeFile(path, Buffer.alloc(128 * 1024, 0x61));
+    const gate = await holdFirstFileRead(path);
+    const bindings = new FakeDeviceManager();
+    const manager = new FridaInstrumentationManager({
+      deviceManager: bindings,
+    });
+    const controller = new AbortController();
+    try {
+      const started = await manager.startSession({
+        mode: "attach",
+        deviceId: "local",
+        pid: 512,
+      });
+      if (!started.ok) throw new Error("fixture session failed");
+      const reading = manager.loadScript(
+        started.value.sessionId,
+        { sourceKind: "file", path },
+        controller.signal,
+      );
+      await gate.firstRead;
+      controller.abort(new Error("fixture read cancelled"));
+      gate.release();
+      expect(await reading).toMatchObject({
+        ok: false,
+        error: { _tag: "AnalysisCancelledError", cleanupIncomplete: false },
+      });
+      expect(bindings.device.session.createdSources).toEqual([]);
+      expect(manager.status(started.value.sessionId)?.scripts).toEqual([]);
+      const next = await manager.loadScript(started.value.sessionId, {
+        sourceKind: "inline",
+        source: "send('next');",
+      });
+      expect(next.ok).toBe(true);
+      expect(bindings.device.session.createdSources).toEqual(["send('next');"]);
+    } finally {
+      gate.release();
+      await manager.closeAll();
+      vi.restoreAllMocks();
+    }
+  });
+});
+
+it("retains cancelled Frida source descriptors through manager shutdown retries", async () => {
+  const root = await createTestTempDirectory("rea-frida-manager-close-");
+  const path = join(root, "script.js");
+  await writeFile(path, Buffer.alloc(128 * 1024, 0x61));
+  const gate = await holdFirstFileRead(path);
+  const originalClose = OwnedFileHandle.prototype.close;
+  let denied = true;
+  let handle: OwnedFileHandle["handle"] | undefined;
+  vi.spyOn(OwnedFileHandle.prototype, "close").mockImplementation(
+    async function (this: OwnedFileHandle) {
+      handle = this.handle;
+      if (denied) throw new Error("fixture retained descriptor");
+      await originalClose.call(this);
+    },
+  );
+  const bindings = new FakeDeviceManager();
+  const manager = new FridaInstrumentationManager({ deviceManager: bindings });
+  const controller = new AbortController();
+  try {
+    const started = await manager.startSession({
+      mode: "attach",
+      deviceId: "local",
+      pid: 512,
+    });
+    if (!started.ok) throw new Error("fixture session failed");
+    const reading = manager.loadScript(
+      started.value.sessionId,
+      { sourceKind: "file", path },
+      controller.signal,
+    );
+    await gate.firstRead;
+    controller.abort(new Error("fixture cancellation during read"));
+    gate.release();
+    expect(await reading).toMatchObject({
+      ok: false,
+      error: {
+        _tag: "AnalysisCancelledError",
+        cleanupIncomplete: true,
+        cleanupResources: [path],
+      },
+    });
+    expect(handle?.fd).toBeGreaterThanOrEqual(0);
+    const blocked = await manager.loadScript(started.value.sessionId, {
+      sourceKind: "inline",
+      source: "send('blocked');",
+    });
+    expect(blocked).toMatchObject({
+      ok: false,
+      error: { cleanupIncomplete: true },
+    });
+    expect(bindings.device.session.createdSources).toEqual([]);
+    await expect(manager.closeAll()).rejects.toThrow("cleanup was incomplete");
+    denied = false;
+    await manager.closeAll();
+    expect(handle?.fd).toBe(-1);
+  } finally {
+    gate.release();
+    denied = false;
+    await manager.closeAll();
+    vi.restoreAllMocks();
+  }
 });

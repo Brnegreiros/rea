@@ -1,5 +1,4 @@
 import { createHash, randomUUID } from "node:crypto";
-import { readFile } from "node:fs/promises";
 
 import type {
   Device,
@@ -25,7 +24,6 @@ import type {
 import { FridaScriptLoadCancelledError } from "../application/frida/FridaInstrumentationPort.js";
 import type { OptionalProviderLoadFailure } from "../application/OptionalObservationProviders.js";
 import {
-  AnalysisAccessDeniedError,
   AnalysisCancelledError,
   AnalysisCapabilityUnavailableError,
   AnalysisInputError,
@@ -37,6 +35,11 @@ import {
   unknownFridaScript,
   unknownFridaSession,
 } from "../application/frida/fridaInputErrors.js";
+import { ArtifactResourceScope } from "../artifacts/ArtifactResourceScope.js";
+import {
+  readFridaScriptSource,
+  fridaScriptSourceError,
+} from "./FridaScriptSource.js";
 
 const MAX_SESSION_CAPTURE_BYTES = 16 * 1024 * 1024;
 const MAX_MESSAGE_METADATA_BYTES = 128 * 1024;
@@ -102,6 +105,7 @@ export interface FridaInstrumentationManagerOptions {
 
 /** Owns Frida sessions and their scripts without owning target process lifetime. */
 export class FridaInstrumentationManager implements FridaInstrumentationPort {
+  readonly #scriptSourceResources = new ArtifactResourceScope();
   readonly #sessions = new Map<string, ManagedSession>();
   readonly #pendingStartups = new Set<PendingStartupCleanup>();
   readonly #sessionQueues = new Map<string, Promise<void>>();
@@ -386,30 +390,13 @@ export class FridaInstrumentationManager implements FridaInstrumentationPort {
 
     let scriptSource: string;
     try {
-      scriptSource =
-        source.sourceKind === "inline"
-          ? source.source
-          : await readFile(source.path, "utf8");
-    } catch (cause: unknown) {
-      const sourcePath = source.sourceKind === "file" ? source.path : undefined;
-      return err(
-        cause instanceof Error &&
-          "code" in cause &&
-          (cause.code === "EACCES" || cause.code === "EPERM")
-          ? new AnalysisAccessDeniedError(
-              "load_frida_script",
-              sourcePath ?? "<inline>",
-              cause.code,
-              { cause },
-            )
-          : new AnalysisInputError("load_frida_script", { cause }, [
-              {
-                path: ["path"],
-                reason: "invalid_value",
-                message: `Cannot read Frida script file ${sourcePath ?? "<inline>"}.`,
-              },
-            ]),
+      scriptSource = await readFridaScriptSource(
+        source,
+        this.#scriptSourceResources,
+        signal,
       );
+    } catch (cause: unknown) {
+      return err(fridaScriptSourceError(source, cause, signal));
     }
 
     if (signal?.aborted)
@@ -763,6 +750,11 @@ export class FridaInstrumentationManager implements FridaInstrumentationPort {
       ...startupFailures,
       ...results.flatMap((result) => (result.ok ? [] : [result.error.message])),
     ];
+    try {
+      await this.#scriptSourceResources.close();
+    } catch (cause: unknown) {
+      failures.push(errorMessage(cause));
+    }
     const manager = this.#deviceManager;
     if (manager !== undefined) {
       for (const [address, reference] of this.#remoteDevices) {
