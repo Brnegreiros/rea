@@ -107,3 +107,20 @@ merge.
 REA-1.1 remains partial until the prepared controls are reviewed and the
 necessary runtime evidence is available. No merge, publication, deployment, or
 production integration is authorized by successful static checks.
+
+## External authorization specification
+
+The [minimum external contract](external-execution-authorization.md) binds a
+one-use operator decision to a concrete execution plan and its environment,
+worker, limits and evidence policy. The initial proposed profile admits only
+curated synthetic Linux process-capture fixtures; raw output stays private and
+raw export is disabled. Existing ambient-name filtering is not an authorization
+decision and recognized configuration is not automatically safe.
+
+The [acceptance catalogue](verification/execution-authorization-acceptance-2026-10-15.json)
+contains 28 cases for admission, substitution, replay, cancellation, bypass and
+retention. All external-controller runtime cases remain NOT_TESTED. The
+[definition verification record](verification/execution-authorization-2026-10-15.md)
+records only the checks actually performed for this documentation revision.
+No controller, IAM service, retention engine or new runtime enforcement is
+implemented here. Production and unrestricted-agent use remain NO-GO.

@@ -114,3 +114,10 @@ patch. A checkbox or model-supplied approval flag would not supply that authorit
 
 See the [direct-route and authority verification](verification/direct-environment-2026-10-15.md)
 for the route matrix, observed limitations and readiness decision.
+
+The [external execution authorization contract](external-execution-authorization.md)
+defines a narrow synthetic-evaluation profile, independent operator decisions,
+exact intent/environment binding and private evidence retention. Its
+[acceptance catalogue](verification/execution-authorization-acceptance-2026-10-15.json)
+is specified but NOT_TESTED against an external controller. This documentation
+does not enforce authorization, enable a provider or change canonical Evidence.

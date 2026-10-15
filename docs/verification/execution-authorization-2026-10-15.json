@@ -1,0 +1,146 @@
+{
+  "timestamp": "2026-10-15T20:23:24.575022+00:00",
+  "scope": "DOCUMENTATION_ONLY",
+  "baseline": "1f4dc6996d452b62c3870ac1d3a7559461e698fd",
+  "main": "6060de329de9f3636f63e24a2419847fd9d3f889",
+  "branch": "fix/bcode-rea-1-1-containment",
+  "contractVersion": "rea-evaluation-authorization/1",
+  "checks": [
+    {
+      "name": "baseline_and_main",
+      "status": "PASS",
+      "scope": "DOCUMENTATION_ONLY",
+      "observation": "Evaluation HEAD and local/fetched main match the recorded revisions; no main write."
+    },
+    {
+      "name": "catalogue_identity",
+      "status": "PASS",
+      "scope": "DOCUMENTATION_ONLY",
+      "observation": "Valid JSON; one version/baseline; 12 unique requirements and 28 unique ordered case IDs."
+    },
+    {
+      "name": "acceptance_traceability",
+      "status": "PASS",
+      "scope": "DOCUMENTATION_ONLY",
+      "observation": "All 12 requirements map to cases with setup/action/oracle; positive, denial, concurrency, cleanup, private-output and deletion outcomes are specified."
+    },
+    {
+      "name": "runtime_status_truthfulness",
+      "status": "PASS",
+      "scope": "DOCUMENTATION_ONLY",
+      "observation": "All 28 controller cases remain NOT_TESTED with no runtime evidence; no authorization PASS is inferred from this check."
+    },
+    {
+      "name": "source_anchor_integrity",
+      "status": "PASS",
+      "scope": "DOCUMENTATION_ONLY",
+      "observation": "8 current source/test anchors exist; file hashes and locations retained without executing those files."
+    },
+    {
+      "name": "historical_evidence_scope",
+      "status": "PASS",
+      "scope": "DOCUMENTATION_ONLY",
+      "observation": "Prior saved 445-pass/8-skip record is unchanged and explicitly historical; its authorization status remains OPEN."
+    },
+    {
+      "name": "scope_preservation",
+      "status": "PASS",
+      "scope": "DOCUMENTATION_ONLY",
+      "observation": "Only the six declared document/data paths can differ; source, tests, workflows, package/lock and license are unchanged."
+    },
+    {
+      "name": "local_document_links",
+      "status": "PASS",
+      "scope": "DOCUMENTATION_ONLY",
+      "observation": "19 relative document links resolve, including the evidence record produced by this command."
+    },
+    {
+      "name": "document_whitespace",
+      "status": "PASS",
+      "scope": "DOCUMENTATION_ONLY",
+      "observation": "Tracked diff and all five authored input artifacts have no trailing whitespace or extra EOF blank lines."
+    }
+  ],
+  "sourceAnchors": [
+    {
+      "path": "src/process/providerProcessEnvironment.ts",
+      "needle": "Explicit overrides require authority at their caller; this merge grants none.",
+      "firstLine": 103,
+      "sha256": "56bcaf9b97de40e78351a8d053e9dcf7ef6cf17cacb9df10eeff58a05f1c054e"
+    },
+    {
+      "path": "src/domain/process/processScenario.ts",
+      "needle": "environment: scenario.environment,",
+      "firstLine": 119,
+      "sha256": "340e00f1ecec6af80cf9b868f2d2559fc53ac6fd6fe2ba2682c702cd8ada506e"
+    },
+    {
+      "path": "src/process/capture/ProcessCaptureEnvironment.ts",
+      "needle": "...options.scenario.environment,",
+      "firstLine": 15,
+      "sha256": "925e05cb49ec5efb8767674776604fb27960fcc3017b34bc72238e549d0f9507"
+    },
+    {
+      "path": "src/process/capture/ProcessScenarioRuntimeValidation.ts",
+      "needle": "const executable = await resolveExecutable(",
+      "firstLine": 42,
+      "sha256": "03f11df067c0cad9e7779472ae1682d41c58c7a543e357b6bed8c8b1ef234ee7"
+    },
+    {
+      "path": "src/application/process/ProcessEvidence.ts",
+      "needle": "result: jsonValueSchema.parse(capture),",
+      "firstLine": 34,
+      "sha256": "a329efae1bf09e2be9d235a86b688bfa3f477f8bd939b98b439cd4064ace55b4"
+    },
+    {
+      "path": "src/application/EvidenceBundleFiles.ts",
+      "needle": "export const writeEvidenceBundle = async (",
+      "firstLine": 115,
+      "sha256": "88dcc9cc033aeb9398d32c5108675329374a8dad59bbc26ab984b5a8594a6708"
+    },
+    {
+      "path": "src/process/snapshotEnvironment.ts",
+      "needle": "const canonicalKey = key.toUpperCase();",
+      "firstLine": 11,
+      "sha256": "51d9e3b21c662ca830609c6d533b1fe26394c9dc984dcf2ff137f7ea5e6dacfd"
+    },
+    {
+      "path": "tests/boundary/process/explicitEnvironmentAuthority.test.ts",
+      "needle": "expect(evidence).toContain(\"SYNTHETIC_SCENARIO_CANARY\");",
+      "firstLine": 53,
+      "sha256": "9c6af661242f8b8082a5680fb9e004895d257d4fa2be4ebce3458a09f859f39d"
+    }
+  ],
+  "artifactSha256": {
+    "docs/external-execution-authorization.md": "039dd93d26515c0c0c5b650c6e9d0d08dccba9c641f781128275a5864badfcd7",
+    "docs/verification/execution-authorization-acceptance-2026-10-15.json": "64b0e454aa7391fa5078b01a13c9613c43bb8b079c4816c15587a65de530c036",
+    "docs/verification/execution-authorization-2026-10-15.md": "701571602e643fa2aecaf0d2772e813aaf6a501d374c22e4054d704ec5ac3c21",
+    "docs/fork-execution-readiness.md": "034dba6eb8084c65fc63bde5af26e83ad1d73dd9f8139c59ced627bc9e708616",
+    "docs/provider-process-environment.md": "58841746be179c45c600fc7c8f10e039a5d167a9d16f298282946f9fcae447e0"
+  },
+  "recordHashScope": "This output record cannot hash itself; the containing Git commit identifies its complete bytes.",
+  "previousRuntimeEvidence": {
+    "path": "docs/verification/direct-environment-2026-10-15.json",
+    "sha256": "5f5f00fae278082fb378f7899e2ba746f87e5ecdff22b78870b5fb54a83b5c3a",
+    "rerun": false
+  },
+  "runtimeAcceptance": {
+    "casesSpecified": 28,
+    "passed": 0,
+    "failed": 0,
+    "notTested": 28,
+    "externalControllerImplemented": false,
+    "newProjectTestsExecuted": 0,
+    "newCloudWorkersStarted": 0
+  },
+  "verdict": {
+    "definition": "SPECIFIED_AND_STATICALLY_CHECKED",
+    "externalEnforcement": "NOT_IMPLEMENTED",
+    "runtimeAuthorization": "NOT_TESTED",
+    "REA_1_1": "PARTIAL",
+    "productionAndUnrestrictedAgents": "NO_GO"
+  },
+  "verificationCommand": "python /workspace/scratch/15bc3c358b41/verify-authorization-definition.py",
+  "verificationScript": "from pathlib import Path\nimport datetime\nimport hashlib\nimport json\nimport re\nimport subprocess\n\nROOT = Path('/workspace/scratch/15bc3c358b41/rea-audit')\nOUTPUT = ROOT / 'docs/verification/execution-authorization-2026-10-15.json'\nSPEC = ROOT / 'docs/external-execution-authorization.md'\nCATALOGUE = ROOT / 'docs/verification/execution-authorization-acceptance-2026-10-15.json'\nDOCS = [\n    SPEC, CATALOGUE,\n    ROOT / 'docs/verification/execution-authorization-2026-10-15.md',\n    ROOT / 'docs/fork-execution-readiness.md',\n    ROOT / 'docs/provider-process-environment.md',\n]\nBASELINE = '1f4dc6996d452b62c3870ac1d3a7559461e698fd'\nMAIN = '6060de329de9f3636f63e24a2419847fd9d3f889'\n\ndef git(*args):\n    return subprocess.check_output(['git', *args], cwd=ROOT, text=True).strip()\n\nchecks = []\ndef passed(name, observation):\n    checks.append({'name': name, 'status': 'PASS', 'scope': 'DOCUMENTATION_ONLY', 'observation': observation})\n\nassert git('branch', '--show-current') == 'fix/bcode-rea-1-1-containment'\nassert git('rev-parse', 'HEAD') == BASELINE\nassert git('rev-parse', 'main') == git('rev-parse', 'origin/main') == MAIN\npassed('baseline_and_main', 'Evaluation HEAD and local/fetched main match the recorded revisions; no main write.')\n\ncatalogue = json.loads(CATALOGUE.read_text())\nassert catalogue['baseline'] == BASELINE\nassert catalogue['contractVersion'] == 'rea-evaluation-authorization/1'\nassert catalogue['contractVersion'] in SPEC.read_text()\nrequirements = re.findall(r'\\*\\*(EA-R\\d{2}) —', SPEC.read_text())\nassert len(requirements) == len(set(requirements)) == 12\nassert requirements == catalogue['requirements']\ncases = catalogue['cases']\nassert len(cases) == 28\nassert [c['id'] for c in cases] == [f'EA-{i:02}' for i in range(1, 29)]\npassed('catalogue_identity', 'Valid JSON; one version/baseline; 12 unique requirements and 28 unique ordered case IDs.')\n\ncovered = set()\nfor case in cases:\n    assert set(case) == {'id', 'requirementIds', 'setup', 'action', 'expectedOutcome', 'oracle', 'currentStatus', 'runtimeEvidence'}\n    assert case['requirementIds'] and set(case['requirementIds']) <= set(requirements)\n    covered.update(case['requirementIds'])\n    for field in ['setup', 'action', 'expectedOutcome', 'oracle']:\n        assert isinstance(case[field], str) and case[field].strip()\n    assert case['currentStatus'] == 'NOT_TESTED' and case['runtimeEvidence'] == []\nassert covered == set(requirements)\nassert {c['expectedOutcome'] for c in cases} >= {'ALLOW', 'DENY', 'AT_MOST_ONE', 'STOP_AND_DISPOSE', 'RESTRICTED_OUTPUT', 'DELETE_ACCESSIBLE_COPIES', 'BLOCK_PROFILE'}\npassed('acceptance_traceability', 'All 12 requirements map to cases with setup/action/oracle; positive, denial, concurrency, cleanup, private-output and deletion outcomes are specified.')\npassed('runtime_status_truthfulness', 'All 28 controller cases remain NOT_TESTED with no runtime evidence; no authorization PASS is inferred from this check.')\n\nanchors = []\nfor anchor in catalogue['sourceAnchors']:\n    source = ROOT / anchor['path']\n    content = source.read_text()\n    assert anchor['needle'] in content, anchor\n    anchors.append({**anchor, 'firstLine': content[:content.index(anchor['needle'])].count('\\n') + 1, 'sha256': hashlib.sha256(source.read_bytes()).hexdigest()})\npassed('source_anchor_integrity', f'{len(anchors)} current source/test anchors exist; file hashes and locations retained without executing those files.')\n\nprior_path = ROOT / 'docs/verification/direct-environment-2026-10-15.json'\nprior = json.loads(prior_path.read_text())\nassert prior['validation']['totalDistinctPassed'] == 445\nassert prior['validation']['testSkipped'] == 8\nassert prior['validation']['authorization'].startswith('OPEN:')\nassert git('diff', '--name-only', 'HEAD', '--', str(prior_path.relative_to(ROOT))) == ''\npassed('historical_evidence_scope', 'Prior saved 445-pass/8-skip record is unchanged and explicitly historical; its authorization status remains OPEN.')\n\nallowed = {str(p.relative_to(ROOT)) for p in DOCS + [OUTPUT]}\ntracked_changes = set(git('diff', '--name-only', 'HEAD').splitlines())\nuntracked = set(git('ls-files', '--others', '--exclude-standard').splitlines())\nassert tracked_changes | untracked <= allowed, (tracked_changes, untracked)\nassert all(p.startswith('docs/') for p in allowed)\nsubprocess.run(['git', 'diff', '--exit-code', 'HEAD', '--', 'src', 'tests', '.github', 'package.json', 'package-lock.json', 'LICENSE'], cwd=ROOT, check=True)\npassed('scope_preservation', 'Only the six declared document/data paths can differ; source, tests, workflows, package/lock and license are unchanged.')\n\nlinks = 0\nfor path in DOCS:\n    if path.suffix != '.md':\n        continue\n    for target in re.findall(r'\\[[^\\]]+\\]\\(([^)]+)\\)', path.read_text()):\n        if '://' in target or target.startswith('#'):\n            continue\n        dest = (path.parent / target.split('#', 1)[0]).resolve()\n        assert dest.is_relative_to(ROOT)\n        assert dest.exists() or dest == OUTPUT.resolve(), (path, target)\n        links += 1\npassed('local_document_links', f'{links} relative document links resolve, including the evidence record produced by this command.')\n\nsubprocess.run(['git', 'diff', '--check'], cwd=ROOT, check=True)\nfor path in DOCS:\n    raw = path.read_bytes()\n    assert raw.endswith(b'\\n') and not raw.endswith(b'\\n\\n'), path\n    assert all(line.rstrip() == line for line in raw.splitlines()), path\npassed('document_whitespace', 'Tracked diff and all five authored input artifacts have no trailing whitespace or extra EOF blank lines.')\n\nrecord = {\n    'timestamp': datetime.datetime.now(datetime.timezone.utc).isoformat(),\n    'scope': 'DOCUMENTATION_ONLY',\n    'baseline': BASELINE,\n    'main': MAIN,\n    'branch': git('branch', '--show-current'),\n    'contractVersion': catalogue['contractVersion'],\n    'checks': checks,\n    'sourceAnchors': anchors,\n    'artifactSha256': {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in DOCS},\n    'recordHashScope': 'This output record cannot hash itself; the containing Git commit identifies its complete bytes.',\n    'previousRuntimeEvidence': {'path': str(prior_path.relative_to(ROOT)), 'sha256': hashlib.sha256(prior_path.read_bytes()).hexdigest(), 'rerun': False},\n    'runtimeAcceptance': {'casesSpecified': len(cases), 'passed': 0, 'failed': 0, 'notTested': len(cases), 'externalControllerImplemented': False, 'newProjectTestsExecuted': 0, 'newCloudWorkersStarted': 0},\n    'verdict': {'definition': 'SPECIFIED_AND_STATICALLY_CHECKED', 'externalEnforcement': 'NOT_IMPLEMENTED', 'runtimeAuthorization': 'NOT_TESTED', 'REA_1_1': 'PARTIAL', 'productionAndUnrestrictedAgents': 'NO_GO'},\n    'verificationCommand': 'python /workspace/scratch/15bc3c358b41/verify-authorization-definition.py',\n    'verificationScript': Path(__file__).read_text(),\n    'reproductionNote': 'Extract verificationScript into a .py file outside the repository and run it with Python, adjusting ROOT to the checkout. Use a worktree of the stated baseline with these six documentation changes applied. It intentionally rejects a different baseline or extra changes. No REA code is imported or executed.',\n}\nOUTPUT.write_text(json.dumps(record, indent=2, ensure_ascii=False) + '\\n')\nassert json.loads(OUTPUT.read_text())['runtimeAcceptance']['notTested'] == 28\nprint(json.dumps({'definitionChecks': [{'name': c['name'], 'status': c['status']} for c in checks], 'sourceAnchors': len(anchors), 'runtimeCases': {'PASS': 0, 'FAIL': 0, 'NOT_TESTED': len(cases)}, 'output': str(OUTPUT)}, indent=2))\n",
+  "reproductionNote": "Extract verificationScript into a .py file outside the repository and run it with Python, adjusting ROOT to the checkout. Use a worktree of the stated baseline with these six documentation changes applied. It intentionally rejects a different baseline or extra changes. No REA code is imported or executed."
+}
