@@ -1,0 +1,1254 @@
+{
+  "timestamp": "2026-10-15T23:11:12.633159+00:00",
+  "baseline": "fd886f8c9e16f50385dbbab57edf1f147f913d05",
+  "caseResults": {
+    "baseline": "fd886f8c9e16f50385dbbab57edf1f147f913d05",
+    "cases": [
+      {
+        "id": "EA-01",
+        "status": "PASS",
+        "observation": {
+          "rawSha256": "c290dc1a937fef64748b6d8b6792967059d0eae447315025e65eccc521d51a33",
+          "rawBytes": 7023,
+          "agentRawReadDenied": true,
+          "canonicalEvidence": true,
+          "explicitRetained": true,
+          "ambientAbsent": true,
+          "targetFlags": {
+            "allExpectedBooleans": true,
+            "syntheticExplicitValueMatched": true
+          },
+          "fixtureProbe": null,
+          "markedPlaceholder": false,
+          "markedEchoRetained": false,
+          "privateDiagnostic": false,
+          "probe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "resources": {
+            "cgroup": {
+              "cpu.stat": "usage_usec 2063686\nuser_usec 1777175\nsystem_usec 286511\nnice_usec 0\nnr_periods 24\nnr_throttled 19\nthrottled_usec 2441628\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.peak": "411774976\n",
+              "pids.events": "max 0\n"
+            },
+            "cleanup": true,
+            "exitCode": 0,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            }
+          },
+          "rawDisposed": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 3.378,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-02",
+        "status": "PASS",
+        "observation": [
+          {
+            "strictRequestFieldsRejected": [
+              "approved",
+              "approvalId",
+              "approval"
+            ]
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "NO_APPROVAL",
+            "requestId": "d62ae8af39a74dac8f832e104f9838c6",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "POLICY_DENIED",
+            "requestId": "b30ff13148af4883b28eaeb0bf805a7b",
+            "runId": null,
+            "status": "DENIED"
+          }
+        ],
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.078,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-03",
+        "status": "PASS",
+        "observation": {
+          "strictRequestFieldsRejected": [
+            "requesterId",
+            "operatorUid",
+            "supervisorApproval",
+            "targetInstructions"
+          ]
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.074,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-04",
+        "status": "PASS",
+        "observation": {
+          "mutationsRejected": [
+            "command.executable",
+            "command.argv",
+            "command.cwd",
+            "target.sha256",
+            "operation.scenario.arguments",
+            "operation.scenario.events",
+            "operation.scenario.terminal",
+            "operation.scenario.filesystem_observation_paths",
+            "operation.scenario.timeout_ms",
+            "operation.scenario.normalization"
+          ],
+          "method": "privileged stored-intent fault injection; independent peer isolation tested separately"
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 1.632,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-05",
+        "status": "PASS",
+        "observation": {
+          "mutationsRejected": [
+            "environment.base",
+            "environment.internal",
+            "environment.explicit",
+            "environment.parentProbe"
+          ],
+          "method": "privileged stored-intent fault injection; independent peer isolation tested separately"
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.761,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-06",
+        "status": "PASS",
+        "observation": {
+          "mutationsRejected": [
+            "source.reaCommit",
+            "source.image",
+            "source.files",
+            "source.controllerBoot",
+            "worker.id",
+            "worker.platform",
+            "evidencePolicy.rawUntil",
+            "limits.memoryBytes"
+          ],
+          "method": "privileged stored-intent fault injection; independent peer isolation tested separately"
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 1.293,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-07",
+        "status": "PASS",
+        "observation": {
+          "changedFixtureAndSymlinkDenied": true,
+          "immutableNamespace": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "targetWriteImportAndNetworkProbes": {
+            "denied": [
+              true,
+              true,
+              true
+            ],
+            "writeDenied": true,
+            "importWriteDenied": true,
+            "networkDenied": true
+          }
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 3.585,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-08",
+        "status": "PASS",
+        "observation": {
+          "strictRequestFieldsRejected": [
+            "environment",
+            "platform",
+            "envOverrides",
+            "REA_PROCESS_RUN_ID",
+            "",
+            "\u0000",
+            "="
+          ]
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.166,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-09",
+        "status": "PASS",
+        "observation": {
+          "rawSha256": "66e97b48354f3e9b6cbc653d06fb5ec8c37bb9a43d3277be4658b4c98586bd17",
+          "rawBytes": 7023,
+          "agentRawReadDenied": true,
+          "canonicalEvidence": true,
+          "explicitRetained": true,
+          "ambientAbsent": true,
+          "targetFlags": {
+            "allExpectedBooleans": true,
+            "syntheticExplicitValueMatched": true
+          },
+          "fixtureProbe": null,
+          "markedPlaceholder": false,
+          "markedEchoRetained": false,
+          "privateDiagnostic": false,
+          "probe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "resources": {
+            "cgroup": {
+              "cpu.stat": "usage_usec 1960529\nuser_usec 1731829\nsystem_usec 228699\nnice_usec 0\nnr_periods 23\nnr_throttled 18\nthrottled_usec 2099081\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.peak": "392851456\n",
+              "pids.events": "max 0\n"
+            },
+            "cleanup": true,
+            "exitCode": 0,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            }
+          },
+          "rawDisposed": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 3.278,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-10",
+        "status": "PASS",
+        "observation": {
+          "strictRequestFieldsRejected": [
+            "envOverrides",
+            "config.env",
+            "SDKROOT",
+            "DEVELOPER_DIR",
+            "TOOLCHAINS",
+            "CLANG_MODULE_CACHE_PATH",
+            "REA_PROCESS_RUN_ID"
+          ]
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.11,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-11",
+        "status": "PASS",
+        "observation": {
+          "strictRequestFieldsRejected": [
+            "NODE_OPTIONS",
+            "LD_PRELOAD",
+            "PYTHONPATH",
+            "JAVA_TOOL_OPTIONS",
+            "PATH",
+            "HOME",
+            "LD_LIBRARY_PATH",
+            "DISPLAY"
+          ]
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.12,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-12",
+        "status": "PASS",
+        "observation": {
+          "strictRequestFieldsRejected": [
+            "environment",
+            "arguments",
+            "stdin",
+            "script",
+            "file",
+            "providerConfig",
+            "url",
+            "classification"
+          ]
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.126,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-13",
+        "status": "PASS",
+        "observation": [
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "c5a61be90e7045a9825e774b58a8f9a6",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "b5d3c9162b1b4a40a9b8de6bdf8d3a44",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "5a215693332d4c32842abb3434ddd522",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "0cb49d68be7444fa9f476bafc20c1603",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "50260a48558848fe81b9dac7bf97f553",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "47a13683b3a34e77a8569453ba04c3d7",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "81a1221db0a64e29ab3a86bae041a0d2",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "01b1255a7c514ca5a855b137314868ce",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "612ab2890f50421eab29ef5b8af8381d",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "0a4f69c4b1394d5f8e3026562e02dfc6",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "8b795c9c5ce04cb29d43641b09df947e",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "045fbb4bea174c5996da0e56119d63f3",
+            "runId": null,
+            "status": "DENIED"
+          }
+        ],
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 1.534,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-14",
+        "status": "NOT_TESTED",
+        "observation": {
+          "expiredRevokedFutureDenied": true
+        },
+        "remaining": "Restart/crash evidence is collected by EA-24; ambiguous consumed retry is covered by EA-15. Trusted-clock uncertainty is not injected here.",
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 1.251,
+        "scopeQualification": "PARTIAL_RUNTIME_OBSERVATIONS_ONLY"
+      },
+      {
+        "id": "EA-15",
+        "status": "PASS",
+        "observation": {
+          "launches": 1,
+          "responses": [
+            "COMPLETED",
+            "DENIED"
+          ],
+          "retryDenied": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 3.417,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-16",
+        "status": "NOT_TESTED",
+        "observation": {
+          "revoke": "REVOKED",
+          "cancel": "REVOKED",
+          "expiry": "EXPIRED"
+        },
+        "remaining": "Controller death is separately measured by EA-24; forced cleanup-failure retention/ownership branch is not dynamically certified.",
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 2.34,
+        "scopeQualification": "PARTIAL_RUNTIME_OBSERVATIONS_ONLY"
+      },
+      {
+        "id": "EA-17",
+        "status": "NOT_TESTED",
+        "observation": {
+          "writableInputRootDenied": true
+        },
+        "remaining": "Actual worker non-root/capability/filesystem/network probes run on positive captures; each missing CPU/memory/PID/disk/network enforcement is not independently fault-injected.",
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.366,
+        "scopeQualification": "PARTIAL_RUNTIME_OBSERVATIONS_ONLY"
+      },
+      {
+        "id": "EA-18",
+        "status": "NOT_TESTED",
+        "observation": {
+          "disk": {
+            "rawSha256": "d01717e23bd82801568f580df00e476a00f9c6ff0e9352ab8fc550290eebdafa",
+            "rawBytes": 6761,
+            "agentRawReadDenied": true,
+            "canonicalEvidence": true,
+            "explicitRetained": true,
+            "ambientAbsent": true,
+            "targetFlags": null,
+            "fixtureProbe": null,
+            "markedPlaceholder": false,
+            "markedEchoRetained": false,
+            "privateDiagnostic": false,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "resources": {
+              "cgroup": {
+                "cpu.stat": "usage_usec 2032626\nuser_usec 1803697\nsystem_usec 228929\nnice_usec 0\nnr_periods 23\nnr_throttled 18\nthrottled_usec 1861825\nnr_bursts 0\nburst_usec 0\n",
+                "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+                "memory.peak": "392282112\n",
+                "pids.events": "max 0\n"
+              },
+              "cleanup": true,
+              "exitCode": 0,
+              "limits": {
+                "cpuMax": "100000 100000",
+                "diskBytes": 16777216,
+                "fileBytes": 2097152,
+                "memoryBytes": 536870912,
+                "network": "deny-all",
+                "pids": 64,
+                "wallSeconds": 10
+              },
+              "probe": {
+                "appWritable": false,
+                "capEffZero": true,
+                "controllerVisible": false,
+                "gid": 1001,
+                "networkDenied": true,
+                "noNewPrivs": true,
+                "rootWritable": false,
+                "scenarioReadable": true,
+                "uid": 1001,
+                "workWritable": true
+              }
+            },
+            "rawDisposed": true
+          },
+          "cpu": {
+            "rawSha256": "f40863930a8212495d10b33e04f20d6593b7e872689dc94cf694c02dcb5ea6ef",
+            "rawBytes": 6746,
+            "agentRawReadDenied": true,
+            "canonicalEvidence": true,
+            "explicitRetained": true,
+            "ambientAbsent": true,
+            "targetFlags": null,
+            "fixtureProbe": null,
+            "markedPlaceholder": false,
+            "markedEchoRetained": false,
+            "privateDiagnostic": false,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "resources": {
+              "cgroup": {
+                "cpu.stat": "usage_usec 2687780\nuser_usec 2398220\nsystem_usec 289559\nnice_usec 0\nnr_periods 30\nnr_throttled 25\nthrottled_usec 3404416\nnr_bursts 0\nburst_usec 0\n",
+                "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+                "memory.peak": "428994560\n",
+                "pids.events": "max 0\n"
+              },
+              "cleanup": true,
+              "exitCode": 0,
+              "limits": {
+                "cpuMax": "100000 100000",
+                "diskBytes": 16777216,
+                "fileBytes": 2097152,
+                "memoryBytes": 536870912,
+                "network": "deny-all",
+                "pids": 64,
+                "wallSeconds": 10
+              },
+              "probe": {
+                "appWritable": false,
+                "capEffZero": true,
+                "controllerVisible": false,
+                "gid": 1001,
+                "networkDenied": true,
+                "noNewPrivs": true,
+                "rootWritable": false,
+                "scenarioReadable": true,
+                "uid": 1001,
+                "workWritable": true
+              }
+            },
+            "rawDisposed": true
+          }
+        },
+        "remaining": "Finite disk/file and CPU fixtures executed; memory/PID exhaustion and global evidence-quota failure are not stress-tested. Complete resource case remains NOT_TESTED.",
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 7.382,
+        "scopeQualification": "PARTIAL_RUNTIME_OBSERVATIONS_ONLY"
+      },
+      {
+        "id": "EA-19",
+        "status": "PASS",
+        "observation": {
+          "unsupportedRoutesDenied": true,
+          "agentCannotReadOrInvokeCheckout": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.123,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-20",
+        "status": "PASS",
+        "observation": {
+          "auditAndAgentResponseExcludeRawCanaries": true,
+          "rawObservedThenDisposed": {
+            "rawSha256": "5ebaf49a21f8939aeaec313326cf279d6193139c2765ade79b0aad882381dceb",
+            "rawBytes": 8720,
+            "agentRawReadDenied": true,
+            "canonicalEvidence": true,
+            "explicitRetained": true,
+            "ambientAbsent": true,
+            "targetFlags": null,
+            "fixtureProbe": null,
+            "markedPlaceholder": false,
+            "markedEchoRetained": false,
+            "privateDiagnostic": true,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "resources": {
+              "cgroup": {
+                "cpu.stat": "usage_usec 2140163\nuser_usec 1838947\nsystem_usec 301215\nnice_usec 0\nnr_periods 26\nnr_throttled 19\nthrottled_usec 2310667\nnr_bursts 0\nburst_usec 0\n",
+                "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+                "memory.peak": "389677056\n",
+                "pids.events": "max 0\n"
+              },
+              "cleanup": true,
+              "exitCode": 0,
+              "limits": {
+                "cpuMax": "100000 100000",
+                "diskBytes": 16777216,
+                "fileBytes": 2097152,
+                "memoryBytes": 536870912,
+                "network": "deny-all",
+                "pids": 64,
+                "wallSeconds": 10
+              },
+              "probe": {
+                "appWritable": false,
+                "capEffZero": true,
+                "controllerVisible": false,
+                "gid": 1001,
+                "networkDenied": true,
+                "noNewPrivs": true,
+                "rootWritable": false,
+                "scenarioReadable": true,
+                "uid": 1001,
+                "workWritable": true
+              }
+            },
+            "rawDisposed": true
+          }
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 3.508,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-21",
+        "status": "PASS",
+        "observation": {
+          "rawSha256": "172849b87727e318e37ac1a19d9be1928c80d7bba332ee58a74c72a1d186b02d",
+          "rawBytes": 7879,
+          "agentRawReadDenied": true,
+          "canonicalEvidence": true,
+          "explicitRetained": true,
+          "ambientAbsent": true,
+          "targetFlags": null,
+          "fixtureProbe": null,
+          "markedPlaceholder": true,
+          "markedEchoRetained": true,
+          "privateDiagnostic": false,
+          "probe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "resources": {
+            "cgroup": {
+              "cpu.stat": "usage_usec 3562510\nuser_usec 3211866\nsystem_usec 350643\nnice_usec 0\nnr_periods 73\nnr_throttled 29\nthrottled_usec 3869187\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.peak": "388526080\n",
+              "pids.events": "max 0\n"
+            },
+            "cleanup": true,
+            "exitCode": 0,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            }
+          },
+          "rawDisposed": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 8.418,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-22",
+        "status": "PASS",
+        "observation": {
+          "exportAndReportApiAbsent": true,
+          "noCallerDestinationAccepted": true,
+          "liveRawReadDeniedByUid": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 3.469,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-23",
+        "status": "NOT_TESTED",
+        "observation": {
+          "implemented": false
+        },
+        "remaining": "Separate approved derived-report workflow and transformation ledger are not implemented; raw Evidence is not rewritten.",
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.0,
+        "scopeQualification": "NO_RUNTIME_CONTROL_EXERCISED"
+      },
+      {
+        "id": "EA-24",
+        "status": "PASS",
+        "observation": {
+          "controllerSigkill": true,
+          "independentJanitorStoppedFamily": true,
+          "rawHandleRemoved": true,
+          "auditAndDecisionExpired": true,
+          "restartDidNotRestoreApproval": true,
+          "scope": "controlled logical copies only; no physical erasure claim"
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 30.875,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-25",
+        "status": "NOT_TESTED",
+        "observation": {
+          "operatorInjectedBlockedProfileDenies": true
+        },
+        "remaining": "Blocked-profile denial is real; unknown provider backups, failed deletion receipts and cleanup failures are not fully injected.",
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.015,
+        "scopeQualification": "PARTIAL_RUNTIME_OBSERVATIONS_ONLY"
+      },
+      {
+        "id": "EA-26",
+        "status": "NOT_TESTED",
+        "observation": {
+          "missingDatabaseDeniedBeforeLaunch": true
+        },
+        "remaining": "Prelaunch audit unavailability exercised. Midrun full/disconnected audit and evidence sinks are not certified; NOT_TESTED for the complete case.",
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.456,
+        "scopeQualification": "PARTIAL_RUNTIME_OBSERVATIONS_ONLY"
+      },
+      {
+        "id": "EA-27",
+        "status": "PASS",
+        "observation": {
+          "peerCredentialRoleEnforced": true,
+          "privateStateUnreadableToAgentUid": true,
+          "workerProbe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          }
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 3.467,
+        "scopeQualification": "ACTUAL_SELECTED_PROFILE_ORACLE"
+      },
+      {
+        "id": "EA-28",
+        "status": "NOT_TESTED",
+        "observation": {
+          "productionAndUnrestrictedAgents": "NO_GO",
+          "acceptanceReportIsNotAnApprovalCapability": true
+        },
+        "remaining": "No independent release/human-attestation gate is implemented. Partial catalogue and automated operator tests cannot establish readiness.",
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.0,
+        "scopeQualification": "NO_RUNTIME_CONTROL_EXERCISED"
+      }
+    ],
+    "summary": {
+      "PASS": 20,
+      "FAIL": 0,
+      "NOT_TESTED": 8
+    },
+    "productionAndUnrestrictedAgents": "NO_GO",
+    "operatorReview": "AUTOMATED_UID_0_TEST_ORCHESTRATION_NOT_HUMAN_REVIEW",
+    "statePath": "/var/lib/rea-controller/test-e47aaa2929ca40898773660e2973bf0c",
+    "newRealCredentials": false
+  },
+  "sourceSha256": {
+    "experiments/execution-controller/README.md": "836ca339b17e748777c96f40f9be42398889ad5dd6683ea94e688b94d732dfb7",
+    "experiments/execution-controller/acceptance.py": "ceb0a6b719e08e980a561d390074c37136357f6762b7c52301166219bb4032c1",
+    "experiments/execution-controller/controller.py": "f9aa03291f35a6018cbd62cbed728ffc140fbe438292cd69a9c8fa968b6e7db4",
+    "experiments/execution-controller/fixture.mjs": "55f8bca182ec7494a3a38a995901863fdc557a7014077344cbd5c8cae0db36a0",
+    "experiments/execution-controller/prepare.mjs": "10d54992511b365a5df84591abfd6ab3c4b81bc7f7bde810e17b608a4dbf6204",
+    "experiments/execution-controller/worker.py": "78f8466f6073fb2119efc8c6755c3d9ec0abd89105742534dbee9470c07ac0ab",
+    "package.json": "a500302319c1214a8bb6c9a8b4a4a090806e95eef884204a9d9fbb4003050a6c",
+    "package-lock.json": "0482085372c563c99b32519f51339eb280adc2bd83efdba6a8efd7cd4a49e9f0",
+    "LICENSE": "798f9e4d18e49b30bf2f12696c8ced73dc4e1413da375a333d01281543a1ea8b"
+  },
+  "registrySha256": "a39d41ec4e290e8f3cdafbf625be4c5cabad17642785b52c9721c67d87ee37d2",
+  "checks": {
+    "buildExit": "0",
+    "pythonCompile": "PASS (three Python source files, before acceptance)",
+    "formatLog": "Checking formatting...\n\nAll matched files use the correct format.\nFinished in 1ms on 2 files using 4 threads.\n",
+    "lintLog": "Found 0 warnings and 0 errors.\nFinished in 23ms on 2 files with 107 rules using 4 threads.\n",
+    "acceptanceExit": 0,
+    "negativeDriverGate": {
+      "expectedExit": 1,
+      "actualExit": 1,
+      "launches": 0,
+      "reason": "Operator-provisioned registry with disallowed HOME; FAIL record must produce nonzero exit."
+    }
+  },
+  "acceptanceLog": "EA-01 PASS\nEA-02 PASS\nEA-03 PASS\nEA-04 PASS\nEA-05 PASS\nEA-06 PASS\nEA-07 PASS\nEA-08 PASS\nEA-09 PASS\nEA-10 PASS\nEA-11 PASS\nEA-12 PASS\nEA-13 PASS\nEA-14 NOT_TESTED\nEA-15 PASS\nEA-16 NOT_TESTED\nEA-17 NOT_TESTED\nEA-18 NOT_TESTED\nEA-19 PASS\nEA-20 PASS\nEA-21 PASS\nEA-22 PASS\nEA-23 NOT_TESTED\nEA-24 PASS\nEA-25 NOT_TESTED\nEA-26 NOT_TESTED\nEA-27 PASS\nEA-28 NOT_TESTED\n",
+  "acceptanceTiming": {
+    "realSeconds": 81.75,
+    "userSeconds": 33.2,
+    "sysSeconds": 5.52,
+    "source": "bash time output of final acceptance command; includes its child workload, not an equivalent before/after benchmark"
+  },
+  "parentBuildLog": "\n> rea-agents@6.5.0 build:cached\n> node scripts/check-dependency-install.mjs && node scripts/run-exclusive.mjs artifacts turbo run artifacts:skills\n\n\nAttention:\nTurborepo now collects completely anonymous telemetry regarding usage.\nThis information is used to shape the Turborepo roadmap and prioritize features.\nYou can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:\nhttps://turborepo.dev/docs/telemetry\n\n\n   \u2022 turbo 2.11.7\n   \u2022 Running artifacts:skills\n   \u2022 Remote caching disabled\n\nmetadata:check: cache miss, executing 32f5da12514f2ac6\nmetadata:check: \nmetadata:check: > rea-agents@6.5.0 metadata:check\nmetadata:check: > node scripts/generate-package-metadata.mjs --check\nmetadata:check: \ncompile: cache miss, executing 4769f1c0a6e90f21\ncompile: \ncompile: > rea-agents@6.5.0 compile\ncompile: > node scripts/clean-build-output.mjs && tsc -p tsconfig.build.json && node scripts/bundle-runtime.mjs\ncompile: \ncompile: \u001b[33m[INEFFECTIVE_DYNAMIC_IMPORT] \u001b[0mdist/composition/binary.js is dynamically imported by dist/composition/directAnalysis.js but also statically imported by dist/main.js, dynamic import will not move module into another chunk.\ncompile: \ncompile: \u001b[33m[INEFFECTIVE_DYNAMIC_IMPORT] \u001b[0mdist/dotnet/ManagedStaticProvider.js is dynamically imported by dist/composition/auxiliaryAnalysisProviders.js but also statically imported by dist/composition/binary.js, dynamic import will not move module into another chunk.\ncompile: \nartifacts:skills: cache miss, executing f840124e2c7cab41\nartifacts:skills: \nartifacts:skills: > rea-agents@6.5.0 artifacts:skills\nartifacts:skills: > node scripts/generate-skill-metadata.mjs\nartifacts:skills: \n\n Tasks:    3 successful, 3 total\nCached:    0 cached, 3 total\n  Time:    17.358s \n\n",
+  "disposal": {
+    "controllerWorkerJanitorProcesses": [],
+    "ownedCgroups": [],
+    "privateStoresBeforeRemoval": [
+      {
+        "state": "/var/lib/rea-controller/test-2eedaaa547c74c81af663e2d0d07b17f",
+        "rowsAfterExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0
+      },
+      {
+        "state": "/var/lib/rea-controller/test-6c38290724e142ce952496dad3db504c",
+        "rowsAfterExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0
+      },
+      {
+        "state": "/var/lib/rea-controller/test-7203dd367eac4886af34ad0076f05cea",
+        "rowsAfterExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0
+      },
+      {
+        "state": "/var/lib/rea-controller/test-84c661bcc4294cafa8b10ec7ef10596e",
+        "rowsAfterExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0
+      },
+      {
+        "state": "/var/lib/rea-controller/test-872955e5b0b94d64b4ee46ad7747853e",
+        "rowsAfterExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0
+      },
+      {
+        "state": "/var/lib/rea-controller/test-ceb3e6fcb35e49f7bef5032f8287b709",
+        "rowsAfterExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0
+      },
+      {
+        "state": "/var/lib/rea-controller/test-d3e70c4eaa32493183822a65d06f0ea2",
+        "rowsAfterExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0
+      },
+      {
+        "state": "/var/lib/rea-controller/test-e47aaa2929ca40898773660e2973bf0c",
+        "rowsAfterExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0
+      },
+      {
+        "state": "/var/lib/rea-controller/test-f5457fb21e564c27bc4ee037ab7ca4a1",
+        "rowsAfterExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0
+      }
+    ],
+    "privateRootRemoved": true,
+    "rawDiagnosticCopyWasPresent": true,
+    "rawDiagnosticCopyRemoved": true,
+    "socketRemoved": true,
+    "scope": "Controlled logical copies and worker lifetime only. No physical erasure or unknown provider-backup proof."
+  },
+  "outerCgroupMetrics": {
+    "memory.max": "8589934592\n",
+    "memory.peak": "4467425280\n",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+    "pids.max": "512\n",
+    "pids.peak": "84\n",
+    "cpu.stat": "usage_usec 536121055\nuser_usec 443135151\nsystem_usec 92985903\nnice_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0\n"
+  },
+  "developmentSmokes": [
+    {
+      "name": "controller-smoke-trial-1.json",
+      "summary": {
+        "PASS": 0,
+        "FAIL": 1,
+        "NOT_TESTED": 0
+      },
+      "errors": [
+        {
+          "id": "EA-01",
+          "errorType": "JSONDecodeError",
+          "diagnostic": "Expecting value: line 1 column 1 (char 0)"
+        }
+      ]
+    },
+    {
+      "name": "controller-smoke-trial-2.json",
+      "summary": {
+        "PASS": 0,
+        "FAIL": 1,
+        "NOT_TESTED": 0
+      },
+      "errors": [
+        {
+          "id": "EA-01",
+          "errorType": "AssertionError",
+          "diagnostic": "CLI did not produce JSON; private stderr saved for operator diagnosis"
+        }
+      ]
+    },
+    {
+      "name": "controller-smoke-trial-3.json",
+      "summary": {
+        "PASS": 0,
+        "FAIL": 1,
+        "NOT_TESTED": 0
+      },
+      "errors": [
+        {
+          "id": "EA-01",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'VERIFIED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'INCOMPLETE', 'reasonCode': 'NONE', 'requestId': '91e914f22ad9473093f2a36615627987', 'runId': 'c12b32500ea34816b9a1607f04a87994', 'status': 'FAILED'}"
+        }
+      ]
+    },
+    {
+      "name": "controller-smoke-trial-4.json",
+      "summary": {
+        "PASS": 0,
+        "FAIL": 1,
+        "NOT_TESTED": 0
+      },
+      "errors": [
+        {
+          "id": "EA-01",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'VERIFIED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'INCOMPLETE', 'reasonCode': 'NONE', 'requestId': 'b52bc7140cf9422bb9a124ca601e874c', 'runId': '594a0f9c141b4c178826ad2416f9ac64', 'status': 'FAILED'}"
+        }
+      ]
+    },
+    {
+      "name": "controller-smoke-trial-5.json",
+      "summary": {
+        "PASS": 1,
+        "FAIL": 0,
+        "NOT_TESTED": 0
+      },
+      "errors": []
+    }
+  ],
+  "verdict": {
+    "prototype": "PARTIAL",
+    "REA_1_1": "PARTIAL",
+    "productionAndUnrestrictedAgents": "NO_GO",
+    "realCredentials": "NOT_COLLECTED",
+    "humanReview": "NOT_ATTESTED",
+    "platformIntegration": false,
+    "mainChanged": false,
+    "nativeProviders": "NOT_TESTED",
+    "fullSCA": "NOT_TESTED"
+  },
+  "environmentLifecycle": {
+    "creation": {
+      "sandbox": {
+        "name": "rea-controller-prototype-20261015",
+        "currentSessionId": "sbx_K15U3lAdq8ccCI8IV6tycc7kPo4t",
+        "status": "running",
+        "statusUpdatedAt": 1792103319668,
+        "persistent": false,
+        "region": "iad1",
+        "failoverRegions": [],
+        "vcpus": 4,
+        "memory": 8192,
+        "runtime": "node22",
+        "architecture": "amd64",
+        "image": "vercel/sandbox/node@sha256:6ad1291a9fe7d243ee9f23626e6b08614a596431801c55e14cc5ee9d525f28d1",
+        "timeout": 3600000,
+        "snapshotExpiration": 604800000,
+        "networkPolicy": {
+          "mode": "deny-all"
+        },
+        "cwd": "/vercel",
+        "tags": {
+          "purpose": "rea-controller",
+          "baseline": "fd886f8c"
+        },
+        "createdAt": 1792103319668,
+        "updatedAt": 1792103319668
+      },
+      "session": {
+        "id": "sbx_K15U3lAdq8ccCI8IV6tycc7kPo4t",
+        "runtime": "node22",
+        "architecture": "amd64",
+        "requestedAt": 1792103319605,
+        "startedAt": 1792103319634,
+        "status": "running",
+        "vcpus": 4,
+        "memory": 8192,
+        "timeout": 3600000,
+        "region": "iad1",
+        "cwd": "/vercel",
+        "createdAt": 1792103319605,
+        "updatedAt": 1792103319642,
+        "interactivePort": 26661,
+        "networkPolicy": {
+          "mode": "deny-all"
+        },
+        "sourceSandboxName": "rea-controller-prototype-20261015",
+        "projectId": "prj_IfkICTa4T38SCOgQXOe2jQpCT6Tl"
+      },
+      "routes": []
+    },
+    "stopped": {
+      "session": {
+        "id": "sbx_K15U3lAdq8ccCI8IV6tycc7kPo4t",
+        "runtime": "node22",
+        "architecture": "amd64",
+        "requestedAt": 1792103319605,
+        "startedAt": 1792103319634,
+        "requestedStopAt": 1792106002840,
+        "stoppedAt": 1792106003315,
+        "status": "stopped",
+        "duration": 2683681,
+        "vcpus": 4,
+        "memory": 8192,
+        "timeout": 3600000,
+        "region": "iad1",
+        "cwd": "/vercel",
+        "createdAt": 1792103319605,
+        "updatedAt": 1792103319642,
+        "interactivePort": 26661,
+        "networkPolicy": {
+          "mode": "deny-all"
+        },
+        "activeCpuDurationMs": 590640,
+        "networkTransfer": {
+          "ingress": 259082014,
+          "egress": 1712594
+        },
+        "sourceSandboxName": "rea-controller-prototype-20261015",
+        "projectId": "prj_IfkICTa4T38SCOgQXOe2jQpCT6Tl"
+      },
+      "routes": []
+    },
+    "commands": {
+      "provision": "set -eu\nuseradd --create-home --shell /bin/bash rea\nuseradd --create-home --shell /bin/bash agent\nchmod 700 /home/ubuntu\nprintf '512\\n' > /sys/fs/cgroup/pids.max\nmkdir -p /vercel/evaluation /vercel/toolchain /vercel/output\nchown rea:rea /vercel/evaluation /vercel/toolchain /vercel/output\nchmod 700 /vercel/evaluation /vercel/toolchain /vercel/output\nsed -i 's|http://archive.ubuntu.com|https://archive.ubuntu.com|g; s|http://security.ubuntu.com|https://security.ubuntu.com|g' /etc/apt/sources.list.d/ubuntu.sources\napt-get update -qq\nDEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends python3\npython3 -c 'import ctypes,select,socket,sqlite3;print(\"PYTHON_STDLIB_PASS\")'\n",
+      "bootstrap": "set -e\ncd /vercel/toolchain\nnode -e 'const fs=require('\\''fs'\\''),c=require('\\''crypto'\\''),z=require('\\''zlib'\\'');(async()=>{const base='\\''https://nodejs.org/dist/v24.18.0/'\\'',name='\\''node-v24.18.0-linux-x64.tar.gz'\\'';const sums=await fetch(base+'\\''SHASUMS256.txt'\\'').then(r=>{if(!r.ok)throw Error('\\''checksum HTTP '\\''+r.status);return r.text()});const expected=sums.split('\\''\\n'\\'').find(l=>l.endsWith('\\''  '\\''+name))?.split('\\'' '\\'')[0];if(!expected)throw Error('\\''missing checksum'\\'');const r=await fetch(base+name);if(!r.ok)throw Error('\\''archive HTTP '\\''+r.status);const b=Buffer.from(await r.arrayBuffer());if(c.createHash('\\''sha256'\\'').update(b).digest('\\''hex'\\'')!==expected)throw Error('\\''checksum mismatch'\\'');fs.writeFileSync(name.slice(0,-3),z.gunzipSync(b));console.log('\\''NODE_ARCHIVE_CHECKSUM_PASS'\\'',expected)})().catch(e=>{console.error(e);process.exitCode=1});'\ntar -xf node-v24.18.0-linux-x64.tar\nexport PATH=/vercel/toolchain/node-v24.18.0-linux-x64/bin:/usr/local/bin:/usr/bin:/bin\nnpm install --prefix /vercel/toolchain/npm-pinned --ignore-scripts --no-audit --no-fund npm@11.16.0\nexport PATH=/vercel/toolchain/npm-pinned/node_modules/.bin:$PATH\ncd /vercel/evaluation\ngit clone --depth=1 --branch fix/bcode-rea-1-1-containment https://github.com/Brnegreiros/rea.git rea\ncd rea\ntest \"$(git rev-parse HEAD)\" = \"fd886f8c9e16f50385dbbab57edf1f147f913d05\"\nnode --version\nnpm --version\nsha256sum package-lock.json\nnpm ci --ignore-scripts --no-audit --no-fund\nprintf '0\\n' > /vercel/output/bootstrap.exit\n\ncd /vercel/evaluation/rea\nnpm run build:cached > /vercel/output/build.log 2>&1\nprintf \"0\\n\" > /vercel/output/build.exit\n\n",
+      "acceptance": "set -eu\ncd /vercel/evaluation/rea\nexport PATH=/vercel/toolchain/node-v24.18.0-linux-x64/bin:/usr/bin:/bin\nchown -R root:root experiments/execution-controller\nchmod -R a-w experiments/execution-controller\npython3 -m py_compile experiments/execution-controller/*.py\nnode_modules/.bin/oxfmt --check experiments/execution-controller/fixture.mjs experiments/execution-controller/prepare.mjs > /vercel/output/controller-format-check.log\nnode_modules/.bin/oxlint experiments/execution-controller/fixture.mjs experiments/execution-controller/prepare.mjs > /vercel/output/controller-lint.log 2>&1\nset +e\ntime -p python3 experiments/execution-controller/acceptance.py > /vercel/output/controller-acceptance-final.log 2>&1\ncase_exit=$?\nprintf '%s\\n' \"$case_exit\" > /vercel/output/controller-acceptance.exit\ncat /vercel/output/controller-acceptance-final.log\nexit \"$case_exit\"\n",
+      "negativeDriverGate": "set -eu\ncd /vercel/evaluation/rea\ncp /vercel/output/controller-acceptance.json /vercel/output/controller-accepted-final.json\npython3 - <<'PY'\nfrom pathlib import Path\nimport json\np=Path('/var/lib/rea-controller/registry.json')\nraw=p.read_bytes();Path('/vercel/output/registry-before-negative.json').write_bytes(raw)\nr=json.loads(raw);r['base']['HOME']='/not-admitted';p.write_text(json.dumps(r))\nPY\nset +e\npython3 experiments/execution-controller/acceptance.py --smoke > /vercel/output/controller-negative-gate.log 2>&1\nnegative_exit=$?\nprintf '%s\\n' \"$negative_exit\" > /vercel/output/controller-negative-gate.exit\nset -e\ncp /vercel/output/controller-acceptance.json /vercel/output/controller-negative-gate.json\npython3 - <<'PY'\nfrom pathlib import Path\np=Path('/var/lib/rea-controller/registry.json');p.write_bytes(Path('/vercel/output/registry-before-negative.json').read_bytes())\nPath('/vercel/output/registry-before-negative.json').unlink()\nPY\ntest \"$negative_exit\" = 1\nprintf 'EXPECTED_NEGATIVE_EXIT_1\\n'\n",
+      "collection": "from pathlib import Path\nimport base64\nimport datetime\nimport gzip\nimport hashlib\nimport json\nimport os\nimport shutil\nimport sqlite3\nimport subprocess\nimport time\n\napp=Path('/vercel/evaluation/rea')\noutput=Path('/vercel/output')\naccepted=json.loads((output/'controller-accepted-final.json').read_text())\nassert accepted['summary']=={'PASS':20,'FAIL':0,'NOT_TESTED':8},accepted['summary']\nassert len(accepted['cases'])==28\nassert (output/'controller-acceptance.exit').read_text().strip()=='0'\nassert (output/'controller-negative-gate.exit').read_text().strip()=='1'\nnegative=json.loads((output/'controller-negative-gate.json').read_text())\nnegative_state=Path(negative['statePath'])\nassert (negative_state/'launch-counter').read_text()=='0'\n\ndef processes():\n    found=[]\n    for path in Path('/proc').iterdir():\n        if not path.name.isdecimal():continue\n        try:\n            args=(path/'cmdline').read_bytes().split(b'\\0')\n            if len(args)>1 and args[1].decode(errors='replace') in [str(app/'experiments/execution-controller/controller.py'),str(app/'experiments/execution-controller/worker.py')]:\n                found.append(int(path.name))\n        except (OSError,ValueError):pass\n    return found\n\ndeadline=time.monotonic()+35\nwhile processes() and time.monotonic()<deadline:time.sleep(0.2)\nremaining=processes()\nassert not remaining,remaining\nprivate=[]\nroot=Path('/var/lib/rea-controller')\nfor state in sorted(root.glob('test-*')):\n    with sqlite3.connect(f'file:{state}/state.db?mode=ro',uri=True) as db:\n        counts={table:db.execute('SELECT count(*) FROM '+table).fetchone()[0] for table in ['requests','decisions','audit']}\n    runs=list((state/'runs').iterdir())\n    private.append({'state':str(state),'rowsAfterExpiry':counts,'rawRunHandles':len(runs)})\n    assert all(v==0 for v in counts.values()),(str(state),counts)\n    assert not runs,(str(state),runs)\ngroups=[str(p) for p in Path('/sys/fs/cgroup').glob('rea-eval-*')]\nassert not groups,groups\nregistry_hash=hashlib.sha256((root/'registry.json').read_bytes()).hexdigest()\ndebug=output/'controller-private-debug.log'\ndebug_existed=debug.exists()\ndebug.unlink(missing_ok=True)\nshutil.rmtree(root)\nPath('/run/rea-controller.sock').unlink(missing_ok=True)\nPath('/run/rea-evaluation-vm').unlink(missing_ok=True)\nassert not root.exists() and not debug.exists()\n\npaths=sorted(p for p in (app/'experiments/execution-controller').iterdir() if p.is_file())\nsource={str(p.relative_to(app)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}\nfor name in ['package.json','package-lock.json','LICENSE']:\n    source[name]=hashlib.sha256((app/name).read_bytes()).hexdigest()\ncore_diff=subprocess.check_output(['git','diff','--name-only','--','src','tests','.github','package.json','package-lock.json','LICENSE'],cwd=app,text=True)\nassert core_diff==''\ntrial_summaries=[]\nfor path in sorted(output.glob('controller-smoke-trial-*.json')):\n    r=json.loads(path.read_text())\n    trial_summaries.append({'name':path.name,'summary':r['summary'],\n        'errors':[{'id':c['id'],'errorType':c.get('errorType'),'diagnostic':c.get('diagnostic')} for c in r['cases'] if c['status']=='FAIL']})\nmetrics={name:Path('/sys/fs/cgroup',name).read_text() for name in ['memory.max','memory.peak','memory.events','pids.max','pids.peak','cpu.stat']}\nrecord={'timestamp':datetime.datetime.now(datetime.timezone.utc).isoformat(),\n    'baseline':accepted['baseline'],'caseResults':accepted,\n    'sourceSha256':source,'registrySha256':registry_hash,\n    'checks':{'buildExit':(output/'build.exit').read_text().strip(),\n              'pythonCompile':'PASS (three Python source files, before acceptance)',\n              'formatLog':(output/'controller-format-check.log').read_text(),\n              'lintLog':(output/'controller-lint.log').read_text(),\n              'acceptanceExit':0,'negativeDriverGate':{'expectedExit':1,'actualExit':1,'launches':0,\n                  'reason':'Operator-provisioned registry with disallowed HOME; FAIL record must produce nonzero exit.'}},\n    'acceptanceLog':(output/'controller-acceptance-final.log').read_text(),\n    'acceptanceTiming':{'realSeconds':81.75,'userSeconds':33.20,'sysSeconds':5.52,\n        'source':'bash time output of final acceptance command; includes its child workload, not an equivalent before/after benchmark'},\n    'parentBuildLog':(output/'build.log').read_text(),\n    'disposal':{'controllerWorkerJanitorProcesses':remaining,'ownedCgroups':groups,\n        'privateStoresBeforeRemoval':private,'privateRootRemoved':not root.exists(),\n        'rawDiagnosticCopyWasPresent':debug_existed,'rawDiagnosticCopyRemoved':not debug.exists(),\n        'socketRemoved':not Path('/run/rea-controller.sock').exists(),\n        'scope':'Controlled logical copies and worker lifetime only. No physical erasure or unknown provider-backup proof.'},\n    'outerCgroupMetrics':metrics,'developmentSmokes':trial_summaries,\n    'verdict':{'prototype':'PARTIAL','REA_1_1':'PARTIAL','productionAndUnrestrictedAgents':'NO_GO',\n        'realCredentials':'NOT_COLLECTED','humanReview':'NOT_ATTESTED','platformIntegration':False,\n        'mainChanged':False,'nativeProviders':'NOT_TESTED','fullSCA':'NOT_TESTED'},\n}\nraw=json.dumps(record,indent=2).encode()\n(output/'controller-export.json').write_bytes(raw)\ncompressed=gzip.compress(raw)\n(output/'controller-export.gz').write_bytes(compressed)\nb64=base64.b64encode(compressed).decode()\n(output/'controller-export.b64').write_text(b64)\nprint(json.dumps({'bytes':len(raw),'gzipSha256':hashlib.sha256(compressed).hexdigest(),'base64Characters':len(b64),'chunks':(len(b64)+1799)//1800,'summary':accepted['summary'],'privateStoresCleared':len(private),'processes':remaining,'cgroups':groups},indent=2))\n"
+    },
+    "exportIntegrity": {
+      "bytes": 40001,
+      "gzipSha256": "7e7e1ba971288caebf959255e040f55017df17e2656ce149d01853657aab4af4",
+      "base64Characters": 9568,
+      "chunks": 6,
+      "summary": {
+        "PASS": 20,
+        "FAIL": 0,
+        "NOT_TESTED": 8
+      },
+      "privateStoresCleared": 9,
+      "processes": [],
+      "cgroups": []
+    },
+    "workerUidScan": {
+      "liveWorkerUid1001": [],
+      "observedBeforePrivateRootRemoval": true
+    }
+  },
+  "verificationScopeNote": "The retained export was hashed before this lifecycle metadata was appended. Its original gzip SHA256 is retained in exportIntegrity.",
+  "sourceDerivedResiduals": [
+    {
+      "id": "CP-R01",
+      "severity": "HIGH before broader use",
+      "observation": "Janitor startup has no readiness acknowledgement before the controller exposes its socket. Death before the janitor opens the parent pidfd was not tested. Live-run SIGKILL was tested successfully.",
+      "status": "NOT_TESTED",
+      "next": "Add startup acknowledgement and early-death/failure acceptance."
+    },
+    {
+      "id": "CP-R02",
+      "severity": "MEDIUM availability",
+      "observation": "Threaded Unix protocol does not implement per-client connection/rate limits or a read deadline. Fixed synthetic tests do not certify hostile-client availability.",
+      "status": "NOT_TESTED"
+    }
+  ],
+  "driverEvidenceKindQualification": "The driver uses a generic evidenceKind label. It is not proof of full execution: EA-23 and EA-28 only record unimplemented/pending status; other NOT_TESTED cases retain partial observations. Use status, remaining and scopeQualification together."
+}

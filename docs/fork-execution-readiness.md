@@ -119,8 +119,13 @@ decision and recognized configuration is not automatically safe.
 
 The [acceptance catalogue](verification/execution-authorization-acceptance-2026-10-15.json)
 contains 28 cases for admission, substitution, replay, cancellation, bypass and
-retention. All external-controller runtime cases remain NOT_TESTED. The
+retention. Its status fields describe the definition stage. The
 [definition verification record](verification/execution-authorization-2026-10-15.md)
 records only the checks actually performed for this documentation revision.
-No controller, IAM service, retention engine or new runtime enforcement is
-implemented here. Production and unrestricted-agent use remain NO-GO.
+No IAM service or production runtime enforcement is introduced. The separate
+[experimental prototype](../experiments/execution-controller/README.md) now
+exercises a fixed Linux fixture profile using Unix peer roles, namespaces,
+cgroups and an independent storage janitor. The [runtime report](verification/controller-prototype-2026-10-15.md)
+separates actual PASS observations from partial/NOT_TESTED cases. It does not
+enable the prototype in published REA or establish human review. Production and
+unrestricted-agent use remain NO-GO.

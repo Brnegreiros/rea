@@ -119,5 +119,8 @@ The [external execution authorization contract](external-execution-authorization
 defines a narrow synthetic-evaluation profile, independent operator decisions,
 exact intent/environment binding and private evidence retention. Its
 [acceptance catalogue](verification/execution-authorization-acceptance-2026-10-15.json)
-is specified but NOT_TESTED against an external controller. This documentation
-does not enforce authorization, enable a provider or change canonical Evidence.
+stores definition-time NOT_TESTED values. The separate
+[controller prototype record](verification/controller-prototype-2026-10-15.md)
+reports later case-specific execution observations. Neither documentation nor
+the experimental fixed-fixture controller enables authorization for direct REA
+CLI/MCP users, enables a native provider or changes canonical Evidence.

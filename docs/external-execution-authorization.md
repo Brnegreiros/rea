@@ -1,9 +1,12 @@
 # External execution authorization for isolated REA evaluation
 
 **Version:** `rea-evaluation-authorization/1`. **Date:** 2026-10-15.
-**State:** specified evaluation contract; external enforcement NOT_IMPLEMENTED,
-runtime acceptance NOT_TESTED. This document does not enable a tool or approve
-production operation. Baseline: `1f4dc6996d452b62c3870ac1d3a7559461e698fd` on
+**State:** specified evaluation contract; isolated experimental enforcement is
+PARTIAL. See the [prototype runtime record](verification/controller-prototype-2026-10-15.md)
+for case-specific results. The public REA CLI/MCP runtime has no independent
+operator authorization added by this prototype. This document does not enable a
+tool or approve production operation. Definition baseline:
+`1f4dc6996d452b62c3870ac1d3a7559461e698fd` on
 `fix/bcode-rea-1-1-containment`.
 
 The [direct-route audit](verification/direct-environment-2026-10-15.md) proved
@@ -274,7 +277,9 @@ Evidence contract is neither necessary nor authorized by this document.
 
 The [machine-readable acceptance catalogue](verification/execution-authorization-acceptance-2026-10-15.json)
 defines positive, denial, concurrency, mutation, containment and retention
-oracles. Every external-controller case currently has status `NOT_TESTED`.
+oracles. Its stored `NOT_TESTED` fields describe the definition revision;
+they are not the result store for subsequent executions. Actual observations
+and incomplete cases are in the [prototype runtime record](verification/controller-prototype-2026-10-15.md).
 The [verification record](verification/execution-authorization-2026-10-15.md)
 separates document checks from runtime enforcement and links the earlier
 synthetic proof; earlier tests are not rerun or counted again in this stage.
@@ -288,5 +293,6 @@ Expiry/cancellation tests must also prove termination of the owned family and
 worker disposal. A structurally valid record is never an ALLOW decision by itself.
 
 REA-1.1 remains partial and production/unrestricted-agent use remains NO-GO.
-Next: a small isolated controller prototype exercising this catalogue, without
-platform integration, main changes, native providers or production credentials.
+Next: close the prototype's remaining acceptance gaps before broadening the
+profile. Preserve no platform integration, main changes, native providers or
+production credentials.
