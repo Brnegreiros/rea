@@ -94,18 +94,22 @@ it.each(["linux", "darwin", "win32"] as const)(
       ],
     });
     await expect(
-      openPlaywrightScenarioBrowser(scenario, {}, {
-        launcher: {
-          connectOverCDP: async () => {
-            throw new Error("Unexpected connection");
-          },
-          launchPersistentContext: async (_profile, options) => {
-            attempts += 1;
-            launchOptions = options;
-            throw new Error("sandbox launch refused");
+      openPlaywrightScenarioBrowser(
+        scenario,
+        {},
+        {
+          launcher: {
+            connectOverCDP: async () => {
+              throw new Error("Unexpected connection");
+            },
+            launchPersistentContext: async (_profile, options) => {
+              attempts += 1;
+              launchOptions = options;
+              throw new Error("sandbox launch refused");
+            },
           },
         },
-      }),
+      ),
     ).rejects.toThrow("sandbox launch refused");
     expect(attempts).toBe(1);
     expect(launchOptions?.chromiumSandbox).toBe(true);

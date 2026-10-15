@@ -25,12 +25,12 @@ SHA change; a tag alone is not a reviewed update.
 
 ## Browser launch boundary
 
-| Operation | Default | Compatibility exception |
-|---|---|---|
-| Launched browser scenario on Linux/macOS/Windows | `chromiumSandbox: true`; failed launch returns failure | None; no automatic unsandboxed retry |
-| Launched browser scenario on Android/Termux | Explicit unsandboxed, single-process mode | Existing platform compatibility; excluded from untrusted B•Code evaluation |
-| Native module resolution | `chromiumSandbox: true`; failed launch returns failure | Only `REA_BROWSER_NO_SANDBOX=true` explicitly disables it |
-| Attached browser scenario | Existing caller-owned browser | Sandbox state is not established by REA |
+| Operation                                        | Default                                                | Compatibility exception                                                    |
+| ------------------------------------------------ | ------------------------------------------------------ | -------------------------------------------------------------------------- |
+| Launched browser scenario on Linux/macOS/Windows | `chromiumSandbox: true`; failed launch returns failure | None; no automatic unsandboxed retry                                       |
+| Launched browser scenario on Android/Termux      | Explicit unsandboxed, single-process mode              | Existing platform compatibility; excluded from untrusted B•Code evaluation |
+| Native module resolution                         | `chromiumSandbox: true`; failed launch returns failure | Only `REA_BROWSER_NO_SANDBOX=true` explicitly disables it                  |
+| Attached browser scenario                        | Existing caller-owned browser                          | Sandbox state is not established by REA                                    |
 
 The module resolver's compatibility opt-out and Android scenario mode must not
 be used for untrusted B•Code investigations without a separately verified
@@ -44,16 +44,16 @@ Use one disposable VM or independently validated equivalent per evaluation.
 Provision dependencies in the disposable environment; do not install REA or its
 providers globally on an operator's host to perform the evaluation.
 
-| Control | Required observation before project execution |
-|---|---|
-| Identity | The runtime user is non-root and cannot elevate privileges |
-| Filesystem | Only the selected source, fixtures, temporary work, and output are exposed; private files, production credentials, host sockets, and personal directories are absent |
-| Network | Egress is denied for offline tests; any later acquisition window has an explicit destination allowlist and is closed before executing targets |
-| Resources | CPU, whole-process-family memory, PIDs, disk and job duration are bounded externally |
-| Process lifetime | Cancellation removes owned descendants; test completion leaves no running target processes |
-| Browser | Supported launchers request the sandbox and fail without downgrade; runtime launch flags and OS behavior are verified |
-| Output | Logs and evidence contain only selected synthetic data; synthetic credentials are checked at each retained/shared sink |
-| Disposal | The environment is destroyed and retained outputs are enumerated |
+| Control          | Required observation before project execution                                                                                                                        |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Identity         | The runtime user is non-root and cannot elevate privileges                                                                                                           |
+| Filesystem       | Only the selected source, fixtures, temporary work, and output are exposed; private files, production credentials, host sockets, and personal directories are absent |
+| Network          | Egress is denied for offline tests; any later acquisition window has an explicit destination allowlist and is closed before executing targets                        |
+| Resources        | CPU, whole-process-family memory, PIDs, disk and job duration are bounded externally                                                                                 |
+| Process lifetime | Cancellation removes owned descendants; test completion leaves no running target processes                                                                           |
+| Browser          | Supported launchers request the sandbox and fail without downgrade; runtime launch flags and OS behavior are verified                                                |
+| Output           | Logs and evidence contain only selected synthetic data; synthetic credentials are checked at each retained/shared sink                                               |
+| Disposal         | The environment is destroyed and retained outputs are enumerated                                                                                                     |
 
 Before running the project, probe these controls using benign fixtures. A
 container label, a temporary directory, `shell:false`, a tool annotation, a PID,
@@ -81,10 +81,13 @@ Relevant existing test files:
 - `tests/boundary/filesystem/releaseRecovery.test.ts`
 - `tests/conformance/releaseConfiguration.test.ts`
 
-Build, typecheck, Vitest, real-browser checks, output-redaction checks and
-process-family cleanup/limit verification remain required. Source preparation
-alone does not satisfy them. No test result is implied by the presence of this
-document or regression cases.
+The [isolated runtime report](verification/fork-runtime-validation-2026-10-15.md)
+records build, typecheck, 206 passed tests and one platform skip for the
+containment revision. It also records a bounded real-browser compatibility
+probe, selected synthetic redaction checks and worker cleanup observations.
+These results cover the stated revision and selected scenarios. The supported
+OS smoke, full suite, MCP end-to-end flow and remaining provider coverage are
+still required; the report distinguishes PASS from NOT_TESTED.
 
 The generic provider environment inheritance, capability authorization,
 classification/retention policy, and external-provider SCA remain open. Frida
