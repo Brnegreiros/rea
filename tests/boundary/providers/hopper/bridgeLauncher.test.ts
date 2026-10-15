@@ -165,7 +165,7 @@ describe("Hopper bridge launcher selection", () => {
   });
 });
 
-it("launches Hopper helpers with the caller-selected environment without restoring ambient values", async () => {
+it("launches Hopper helpers without forwarding unrelated selected or ambient variables", async () => {
   const directory = await createTestTempDirectory("rea-hopper-selected-env-");
   const targetPath = join(directory, "target");
   await writeFile(targetPath, "fixture target");
@@ -193,7 +193,7 @@ it("launches Hopper helpers with the caller-selected environment without restori
   try {
     expect(await supervisor.waitForOutputClose(5_000)).toBe(true);
     expect(JSON.parse(supervisor.snapshot().stdout.text)).toEqual({
-      selected: "caller-value",
+      selected: null,
       home: null,
     });
     expect(await supervisor.stop()).toMatchObject({

@@ -84,12 +84,14 @@ export const parseAdbVersionOutput = (stdout: string): AdbClientIdentity => {
 export const inspectAdbClient = async (
   selection: AdbBinarySelection,
   signal?: AbortSignal,
+  environment: Readonly<NodeJS.ProcessEnv> = process.env,
 ): Promise<AdbClientIdentity> => {
   try {
     const { stdout, stderr } = await execFileOutput(
       selection.binary,
       ["version"],
       {
+        env: environment,
         timeout: VERSION_TIMEOUT_MS,
         stopSignal: "SIGTERM",
         maxBuffer: VERSION_MAX_OUTPUT_BYTES,

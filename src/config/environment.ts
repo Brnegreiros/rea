@@ -77,6 +77,11 @@ const environmentSchema = z.object({
   REA_REFERENCE_SECRET_PATTERNS_JSON: z.string().default("[]"),
 });
 
+/** Exact configuration names owned by this parser, for REA self-diagnostics. */
+export const configurationEnvironmentNames = Object.freeze(
+  Object.keys(environmentSchema.shape),
+);
+
 type Environment = Omit<
   z.infer<typeof environmentSchema>,
   "HOPPER_LOADER_ARGS_JSON" | "REA_REFERENCE_SECRET_PATTERNS_JSON"

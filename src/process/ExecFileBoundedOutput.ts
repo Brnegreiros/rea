@@ -1,3 +1,4 @@
+import { providerHostEnvironment } from "./providerProcessEnvironment.js";
 import { spawn } from "node:child_process";
 
 export interface BoundedCommandOutput {
@@ -18,7 +19,7 @@ export const execFileBoundedOutput = (
 ): Promise<BoundedCommandOutput> =>
   new Promise((resolve) => {
     const child = spawn(executable, [...args], {
-      env: options.env,
+      env: providerHostEnvironment(options.env),
       stdio: ["ignore", "pipe", "pipe"],
     });
     const headLimit = Math.ceil(options.limit / 2);

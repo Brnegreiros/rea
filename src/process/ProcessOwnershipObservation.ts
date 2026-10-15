@@ -249,8 +249,9 @@ export const createSystemProcessOwnershipHost = (
           ...(darwinModuleCachePath === undefined
             ? {}
             : { moduleCachePath: darwinModuleCachePath }),
+          environment: hostEnvironment,
           ...(options.compileTimeoutMs === undefined
-            ? { environment: hostEnvironment }
+            ? {}
             : { compileTimeoutMs: options.compileTimeoutMs }),
         })
       : undefined;

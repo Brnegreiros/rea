@@ -1,3 +1,4 @@
+import { snapshotEnvironment } from "./snapshotEnvironment.js";
 import { mkdir, mkdtemp, rm } from "node:fs/promises";
 import { rmSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -278,7 +279,7 @@ export const createDarwinProcessRunTokenReader = (
     readonly compiler?: DarwinProcessReaderCompiler;
     /** Deadline for helper compilation, independent of provider execution. */
     readonly compileTimeoutMs?: number;
-    /** Environment consulted when `compileTimeoutMs` is omitted. */
+    /** Selected environment for compiler coordinates, helper execution and default timeout. */
     readonly environment?: Readonly<Record<string, string | undefined>>;
     /**
      * Caller-owned directory holding the compiler's module cache. Unset keeps
@@ -292,7 +293,11 @@ export const createDarwinProcessRunTokenReader = (
     kind: "xcrun",
     executable: "/usr/bin/xcrun",
   };
-  const compilerTimeoutMs = resolveSwiftcCompileTimeoutMs(options);
+  const environment = snapshotEnvironment(options.environment ?? process.env);
+  const compilerTimeoutMs = resolveSwiftcCompileTimeoutMs({
+    ...options,
+    environment,
+  });
   const moduleCachePath = options.moduleCachePath ?? "";
   let root: string | undefined;
   let executable: string | undefined;
@@ -335,7 +340,7 @@ export const createDarwinProcessRunTokenReader = (
       const compilerTemporary = join(operationRoot, "tmp");
       await mkdir(compilerTemporary);
       const compilerEnvironment: NodeJS.ProcessEnv = {
-        ...process.env,
+        ...environment,
         TMPDIR: compilerTemporary,
       };
       const compilerArguments =
@@ -358,6 +363,14 @@ export const createDarwinProcessRunTokenReader = (
           signal,
           stopSignal: SWIFTC_INTERRUPT,
           env: compilerEnvironment,
+          // Compiler/SDK and cache coordinates are selected by this internal producer.
+          envOverrides: {
+            SDKROOT: compilerEnvironment.SDKROOT,
+            DEVELOPER_DIR: compilerEnvironment.DEVELOPER_DIR,
+            TOOLCHAINS: compilerEnvironment.TOOLCHAINS,
+            CLANG_MODULE_CACHE_PATH:
+              compilerEnvironment.CLANG_MODULE_CACHE_PATH,
+          },
         });
       } catch (cause: unknown) {
         if (isExpectedAbort(cause, signal)) throw cause;
@@ -441,6 +454,7 @@ export const createDarwinProcessRunTokenReader = (
     const binary = await compile(signal);
     const pids = processes.map(({ pid }) => String(pid));
     const { stdout } = await execFileOutput(binary, pids, {
+      env: environment,
       timeout: 15_000,
       ...(signal === undefined ? {} : { signal }),
     });
@@ -492,6 +506,7 @@ export const createDarwinProcessRunTokenReader = (
     const binary = await compile(signal);
     const pids = processes.map(({ pid }) => String(pid));
     const { stdout } = await execFileOutput(binary, ["--identities", ...pids], {
+      env: environment,
       timeout: 15_000,
       ...(signal === undefined ? {} : { signal }),
     });

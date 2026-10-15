@@ -1,3 +1,4 @@
+import { providerHostEnvironment } from "../process/providerProcessEnvironment.js";
 import { realpath, stat } from "node:fs/promises";
 import { homeDirectoryFromEnvironment } from "../config/homeDirectory.js";
 import { basename, dirname, join, resolve } from "node:path";
@@ -51,7 +52,7 @@ export const runUpdateCommand = (
     const environment = withoutPackageRunnerIdentity(selectedEnvironment);
     const child = spawn(executable, args, {
       stdio: ["ignore", "pipe", "pipe"],
-      env: environment,
+      env: providerHostEnvironment(environment),
       windowsHide: true,
       ...(workingDirectory === undefined ? {} : { cwd: workingDirectory }),
     });

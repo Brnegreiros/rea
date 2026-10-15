@@ -554,7 +554,7 @@ export class AdbProvider {
   ): Promise<ProviderAvailability> {
     try {
       const selection = this.selection();
-      await inspectAdbClient(selection, signal);
+      await inspectAdbClient(selection, signal, this.environment);
       return {
         status: "available",
         code: null,
@@ -696,7 +696,7 @@ export class AdbProvider {
     let identity: AdbClientIdentity;
     try {
       selection = this.selection();
-      identity = await inspectAdbClient(selection, signal);
+      identity = await inspectAdbClient(selection, signal, this.environment);
     } catch (cause) {
       if (cause instanceof AnalysisCancelledError) return err(cause);
       if (cause instanceof AdbConfigurationFailure)

@@ -1,5 +1,5 @@
+import { execFileOutput } from "../process/ExecFileOutput.js";
 import { createHash } from "node:crypto";
-import { execFile } from "node:child_process";
 import {
   access,
   mkdir,
@@ -11,7 +11,6 @@ import {
 } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { promisify } from "node:util";
 
 import { z } from "zod";
 import { homeDirectoryFromEnvironment } from "../config/homeDirectory.js";
@@ -23,7 +22,6 @@ import {
   HOPPER_DOWNLOAD_BYTES,
 } from "./HopperDownload.js";
 
-const execFileAsync = promisify(execFile);
 const RELEASES_URL =
   "https://www.hopperapp.com/include/files-api.php?request=releases&public=true";
 const DOWNLOAD_PREFIX = "https://www.hopperapp.com:443/downloader/public/";
@@ -272,7 +270,10 @@ export const systemMacHopperInstallHost = (
         await mkdir(join(homeDirectory, "Applications"), { recursive: true });
         await rm(stage, { recursive: true, force: true });
         await rm(previous, { recursive: true, force: true });
-        await execFileAsync("ditto", [source, stage], { env: environment });
+        await execFileOutput("ditto", [source, stage], {
+          env: environment,
+          maxBuffer: 1024 * 1024,
+        });
         await access(join(stage, "Contents/MacOS/hopper"));
         if (replaceExisting) await rename(destination, previous);
         await rename(stage, destination);
@@ -305,7 +306,10 @@ export const systemMacHopperInstallHost = (
       }
     },
     async openApplication(path) {
-      await execFileAsync("open", [path], { env: environment });
+      await execFileOutput("open", [path], {
+        env: environment,
+        maxBuffer: 1024 * 1024,
+      });
     },
     cleanup: (path) => rm(path, { recursive: true, force: true }),
     retainCleanup: (cleanup) => pendingCleanup.add(cleanup),
@@ -340,7 +344,10 @@ const commandSucceeds = async (
   environment: Readonly<NodeJS.ProcessEnv>,
 ): Promise<boolean> => {
   try {
-    await execFileAsync(command, args, { env: environment });
+    await execFileOutput(command, args, {
+      env: environment,
+      maxBuffer: 1024 * 1024,
+    });
     return true;
   } catch (cause: unknown) {
     // best-effort cleanup: optional command probing; failure means unavailable.

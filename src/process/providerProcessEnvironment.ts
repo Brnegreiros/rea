@@ -100,14 +100,23 @@ export const providerHostEnvironment = (
   return selected;
 };
 
-/** Explicit adapter overrides are a trust boundary; the owned run ID wins. */
+/** Explicit overrides require authority at their caller; this merge grants none. */
+export const providerCommandEnvironment = (
+  host: Readonly<NodeJS.ProcessEnv>,
+  overrides: Readonly<NodeJS.ProcessEnv> | undefined = undefined,
+  platform: NodeJS.Platform = process.platform,
+): NodeJS.ProcessEnv => ({
+  ...providerHostEnvironment(host, platform),
+  ...snapshotEnvironment(overrides ?? {}, platform),
+});
+
+/** Preserve the owned run ID after explicitly selected adapter overrides. */
 export const providerProcessEnvironment = (
   host: Readonly<NodeJS.ProcessEnv>,
   overrides: Readonly<NodeJS.ProcessEnv> | undefined,
   runId: string,
   platform: NodeJS.Platform = process.platform,
 ): NodeJS.ProcessEnv => ({
-  ...providerHostEnvironment(host, platform),
-  ...snapshotEnvironment(overrides ?? {}, platform),
+  ...providerCommandEnvironment(host, overrides, platform),
   REA_PROCESS_RUN_ID: runId,
 });

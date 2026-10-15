@@ -1,7 +1,5 @@
-import { execFile } from "node:child_process";
 import { chmod, rm, writeFile } from "node:fs/promises";
 import { basename, dirname, extname, join } from "node:path";
-import { promisify } from "node:util";
 
 import {
   HopperCancelledError,
@@ -35,7 +33,6 @@ import type { HopperTargetLease } from "./HopperTargetLease.js";
 import { HOPPER_SHUTDOWN_TIMEOUT_MS } from "./HopperSessionValues.js";
 import { verifyMacHopperNativeHelper } from "./HopperMacPublisher.js";
 
-const execFileAsync = promisify(execFile);
 const HOPPER_BACKGROUND_STARTUP_MS = 5_000;
 
 /** Coordinates for one private bridge session. */
@@ -521,10 +518,10 @@ const prepareHopperApplication = async (
     return signal?.aborted !== true;
   // This reduces activation when Hopper is cold, but the vendor launcher that
   // follows may still activate its window. See HopperApplicationLauncher.
-  await execFileAsync(
+  await execFileOutput(
     "/usr/bin/open",
     ["--hide", "--background", "-a", appBundle],
-    { env: environment },
+    { env: environment, maxBuffer: 1024 * 1024 },
   );
   return (
     (await waitForAbortableDelay(HOPPER_BACKGROUND_STARTUP_MS, signal)) ===
@@ -546,7 +543,7 @@ const processIsRunning = async (
     const processes = await execFileOutput(
       "/bin/ps",
       ["-ax", "-o", "command="],
-      { env: environment },
+      { env: environment, maxBuffer: 1024 * 1024 },
     );
     return processes.stdout
       .split("\n")

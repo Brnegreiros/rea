@@ -1,3 +1,4 @@
+import { providerCommandEnvironment } from "./providerProcessEnvironment.js";
 import {
   execFile,
   type ExecFileOptionsWithBufferEncoding,
@@ -8,6 +9,8 @@ type ExecFileOutputOptions = Omit<
   "encoding" | "maxBuffer"
 > & {
   readonly maxBuffer?: number;
+  /** Additional values selected by a reviewed internal adapter, not by implicit inheritance. */
+  readonly envOverrides?: Readonly<NodeJS.ProcessEnv>;
   /**
    * Signal that stops the process on abort or timeout. The promise then
    * settles only after the process exits, so the caller can remove files it
@@ -119,14 +122,15 @@ export const execFileOutputFailure = (
   };
 };
 
-/** Run a shell-free command while capturing its complete output bytes. */
+/** Run a shell-free command with runtime-only base inheritance and complete output bytes. */
 export const execFileBytes = (
   command: string,
   arguments_: readonly string[],
   options: ExecFileOutputOptions = {},
 ): Promise<{ readonly stdout: Buffer; readonly stderr: Buffer }> =>
   new Promise((resolve, reject) => {
-    const { stopSignal, signal, timeout, ...execOptions } = options;
+    const { stopSignal, signal, timeout, envOverrides, ...execOptions } =
+      options;
     const invalid = timeout === undefined ? undefined : invalidTimeout(timeout);
     if (invalid !== undefined) {
       reject(invalid);
@@ -144,6 +148,10 @@ export const execFileBytes = (
       [...arguments_],
       {
         ...execOptions,
+        env: providerCommandEnvironment(
+          execOptions.env ?? process.env,
+          envOverrides,
+        ),
         // A stoppable command's abort and timeout are handled below, because
         // execFile neither waits for the exit on abort nor kills a process
         // that ignores its timeout signal.

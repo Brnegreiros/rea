@@ -1,5 +1,5 @@
 import { writeFile } from "node:fs/promises";
 
-if (process.env.REA_MCP_DOCTOR_PID_PATH !== undefined)
-  await writeFile(process.env.REA_MCP_DOCTOR_PID_PATH, String(process.pid));
+const pidPath = process.argv[2];
+if (pidPath !== undefined) await writeFile(pidPath, String(process.pid));
 setInterval(() => undefined, 1_000);

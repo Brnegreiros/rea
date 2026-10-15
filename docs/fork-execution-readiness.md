@@ -92,7 +92,9 @@ still required; the report distinguishes PASS from NOT_TESTED.
 The [provider environment policy](provider-process-environment.md) restricts
 implicit inheritance at the owned launcher and selected parallel boundaries.
 Its [isolated verification](verification/provider-environment-2026-10-15.md)
-uses synthetic credentials; direct subprocess routes and real-provider
+uses synthetic credentials. The [direct-route audit](verification/direct-environment-2026-10-15.md)
+extends the policy to shared command executors, updater and MCP self-diagnostics.
+Explicit-variable authorization, native Frida/device spawning and real-provider
 compatibility remain open. Capability authorization, classification/retention
 policy, and external-provider SCA also remain open. The
 [Frida source-admission correction](verification/frida-source-read-2026-10-15.md)

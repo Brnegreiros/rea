@@ -1,5 +1,4 @@
-import { execFile } from "node:child_process";
-import { promisify } from "node:util";
+import { execFileOutput } from "./ExecFileOutput.js";
 
 import {
   errorMessage,
@@ -9,8 +8,6 @@ import { launcherIdentityFailure } from "./ProcessOwnershipIdentity.js";
 import { descendantsOf, liveProcesses } from "./ProcessOwnershipProcessTree.js";
 import { readProcessRunTokens } from "./ProcessRunTokenObservations.js";
 import { compareUnicodeCodePoints } from "../domain/unicodeCodePointOrder.js";
-
-const execFileAsync = promisify(execFile);
 
 /** Identity proof required before REA may signal an owned process group. */
 export interface OwnedProcessGroup {
@@ -201,10 +198,10 @@ export const cleanupWindowsProcessTree = async (
 const systemWindowsProcessTreeHost: WindowsProcessTreeHost = {
   async terminateTree(rootPid) {
     try {
-      await execFileAsync(
+      await execFileOutput(
         "taskkill.exe",
         ["/pid", String(rootPid), "/t", "/f"],
-        { windowsHide: true, timeout: 5_000 },
+        { windowsHide: true, timeout: 5_000, maxBuffer: 1024 * 1024 },
       );
       return "terminated";
     } catch (cause: unknown) {

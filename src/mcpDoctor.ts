@@ -1,5 +1,11 @@
+import { providerHostEnvironment } from "./process/providerProcessEnvironment.js";
+import { snapshotEnvironment } from "./process/snapshotEnvironment.js";
+import { configurationEnvironmentNames } from "./config/environment.js";
 import { Client } from "@modelcontextprotocol/client";
-import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
+import {
+  StdioClientTransport,
+  DEFAULT_INHERITED_ENV_VARS,
+} from "@modelcontextprotocol/client/stdio";
 import { Formatter, Help, z } from "incur";
 import { performance } from "node:perf_hooks";
 import { resolve } from "node:path";
@@ -475,11 +481,16 @@ const requestOptions = (deadline: number, signal: AbortSignal) => ({
 const targetFreeEnvironment = (
   environment: Readonly<Record<string, string | undefined>>,
 ): Record<string, string> => {
-  const result = Object.fromEntries(
-    Object.entries(environment).filter(
-      (entry): entry is [string, string] => entry[1] !== undefined,
-    ),
-  );
+  const selected = snapshotEnvironment(environment);
+  const result: Record<string, string> = {
+    // The SDK reintroduces ambient defaults unless omissions are explicitly blanked.
+    ...Object.fromEntries(DEFAULT_INHERITED_ENV_VARS.map((name) => [name, ""])),
+    ...providerHostEnvironment(selected),
+  };
+  for (const name of configurationEnvironmentNames) {
+    const value = selected[name];
+    if (value !== undefined) result[name] = value;
+  }
   for (const name of [
     "HOPPER_TARGET_PATH",
     "HOPPER_TARGET_KIND",

@@ -6,8 +6,8 @@ selected filesystem state. Use it to compare two direct runs of the same
 scenario, such as an authority build and a reconstruction. It does not replay a
 previous execution or emulate dependencies.
 
-The command runs with the current user's permissions and inherits the host
-environment before applying the scenario's explicit overrides. This is not a
+The command runs with the current user's permissions and inherits only named
+runtime variables before applying the scenario's explicit overrides. This is not a
 sandbox. Filesystem observation paths select what REA snapshots; they do not
 restrict what the process can read or write. The inherited environment is not
 recorded, so its influence may remain unknown.
@@ -216,8 +216,11 @@ resource limits, and normalization settings have defaults; see
 `processScenarioSchema` for the exact contract. Event times are milliseconds
 from launch, must be ordered, and must fall within `timeout_ms`. Inputs marked
 `sensitive` are sent to the process but persisted as a byte-count placeholder.
-Environment overrides are recorded in the scenario commitment; inherited
-values are not copied into Evidence.
+Environment overrides are caller-controlled and recorded verbatim in the
+scenario commitment; inherited values are not copied into Evidence. The schema
+does not establish a separate operator approval. Authorize the complete command
+and its explicit variables before execution, and do not place real credentials
+in scenario input or Evidence. See [the environment boundary](provider-process-environment.md).
 
 Terminal dimensions must satisfy `columns × (rows + scrollback) ≤ 1,000,000`.
 Every scheduled resize uses the same selected scrollback and must fit this

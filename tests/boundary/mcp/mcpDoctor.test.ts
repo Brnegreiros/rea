@@ -243,9 +243,9 @@ describe("production MCP doctor child lifecycle", () => {
     vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout"] });
     const pending = runProductionMcpDoctor({
       command: process.execPath,
-      args: [resolve("tests/fixtures/mcpDoctorHang.mjs")],
+      args: [resolve("tests/fixtures/mcpDoctorHang.mjs"), pidPath],
       cwd: process.cwd(),
-      environment: { ...process.env, REA_MCP_DOCTOR_PID_PATH: pidPath },
+      environment: process.env,
       deadlineMs: 60_000,
     });
     const pid = await vi.waitFor(
