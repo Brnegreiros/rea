@@ -116,6 +116,9 @@ export class NativeModuleResolver implements WebModuleResolutionPort {
       browser = await this.launcher({
         executablePath: executable,
         headless: true,
+        // Preserve the operator's explicit compatibility opt-out, not Playwright's
+        // unsandboxed default. Failed launches do not downgrade this selection.
+        chromiumSandbox: this.environment.REA_BROWSER_NO_SANDBOX !== "true",
         timeout: Math.max(1, deadline.remainingMs()),
         handleSIGINT: false,
         handleSIGTERM: false,
@@ -125,9 +128,6 @@ export class NativeModuleResolver implements WebModuleResolutionPort {
           "--disable-background-networking",
           "--renderer-process-limit=1",
           "--js-flags=--max-old-space-size=128",
-          ...(this.environment.REA_BROWSER_NO_SANDBOX === "true"
-            ? ["--no-sandbox"]
-            : []),
         ],
       });
       this.#pendingBrowser = browser;

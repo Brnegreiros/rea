@@ -79,7 +79,11 @@ and import map have 32 MiB, 16 MiB and 4 MiB input limits. Native resolution has
 one 20-second deadline; cleanup may extend that deadline. One renderer is
 requested, and there is no aggregate host memory-limit claim. Cancellation
 closes only the owned browser; cleanup failure cannot return a successful trace.
-`REA_BROWSER_NO_SANDBOX=true` passes Chromium's corresponding launch option when
-the host requires it; it does not enable an REA security boundary.
+Chromium sandboxing is requested by default. If the host cannot start the browser
+with that setting, resolution fails; REA does not retry without the sandbox.
+`REA_BROWSER_NO_SANDBOX=true` is an explicit compatibility opt-out for hosts that
+require it. That mode is unsuitable for untrusted inputs without independently
+verified external isolation. Browser sandboxing does not establish an REA OS
+sandbox or browser-wide network containment.
 
 See [testing](testing.md) for the native loading oracle and CLI/MCP real lane.

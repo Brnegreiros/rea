@@ -55,6 +55,20 @@ profile for this request; it does not start your fixture server or install a
 browser. A schema-valid scenario does not prove that the executable or target
 is available on the host.
 
+### Browser sandbox and host isolation
+
+On Linux, macOS, and Windows, launched scenarios explicitly request Chromium's
+sandbox. If the browser cannot start with that setting, the operation fails;
+there is no retry with the sandbox disabled. Attached scenarios use an existing
+caller-owned browser, so REA cannot establish its launch-time sandbox settings.
+
+Android/Termux retains its compatibility launch mode with `--no-sandbox` and
+`--single-process`. That exception is unsuitable for untrusted targets without
+independently verified external isolation. A temporary browser profile and the
+Chromium sandbox do not establish an OS sandbox, an egress policy, or limits for
+the complete REA process family. See [fork execution readiness](fork-execution-readiness.md)
+for the B•Code evaluation boundary.
+
 ## Interaction example: capture the visible result
 
 The default final URL answers "where did the page end up?", not "what did the

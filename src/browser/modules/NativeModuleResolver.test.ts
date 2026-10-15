@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import type { LaunchOptions } from "playwright-core";
 import { NativeModuleResolver } from "./NativeModuleResolver.js";
 import { projectAnalysisError } from "../../domain/analysisErrorProjection.js";
 
@@ -7,6 +8,32 @@ const input = {
   importMap: null,
   specifiers: ["./dep.js"],
 };
+
+it.each([undefined, "false", "true"])(
+  "preserves the requested sandbox mode on a launch failure (opt-out: %s)",
+  async (optOut) => {
+    let attempts = 0;
+    let launchOptions: LaunchOptions | undefined;
+    const provider = new NativeModuleResolver(
+      {
+        REA_BROWSER_EXECUTABLE: "/browser",
+        ...(optOut === undefined ? {} : { REA_BROWSER_NO_SANDBOX: optOut }),
+      },
+      async (options) => {
+        attempts += 1;
+        launchOptions = options;
+        throw new Error("sandbox launch refused");
+      },
+    );
+    const result = await provider.resolve(input);
+    expect(result.ok).toBe(false);
+    expect(attempts).toBe(1);
+    expect(launchOptions?.chromiumSandbox).toBe(optOut !== "true");
+    // Playwright owns the sandbox flag; REA must not inject a second override.
+    expect(launchOptions?.args).not.toContain("--no-sandbox");
+  },
+);
+
 describe("native module resolver cleanup ownership", () => {
   it.each([false, true])(
     "awaits owned cleanup when acquisition is cancelled (cleanup fails: %s)",

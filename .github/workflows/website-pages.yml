@@ -21,7 +21,7 @@ concurrency:
 
 jobs:
   prepare:
-    if: github.ref == 'refs/heads/main'
+    if: github.repository == 'morluto/rea' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -82,6 +82,7 @@ jobs:
 
   deploy:
     needs: prepare
+    if: github.repository == 'morluto/rea'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:

@@ -24,6 +24,9 @@ provider-dependent behavior to be reproduced safely.
 
 ## Security boundary
 
+For the B•Code fork's evaluation and distribution restrictions, see
+[fork execution readiness](docs/fork-execution-readiness.md).
+
 REA authenticates its Hopper and Ghidra bridges with per-session random
 capability tokens. POSIX uses current-user Unix sockets; Windows Ghidra uses
 authenticated loopback TCP with a private NTFS runtime whose DACL admits only

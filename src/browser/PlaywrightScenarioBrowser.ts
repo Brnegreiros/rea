@@ -493,6 +493,9 @@ export const openPlaywrightScenarioBrowser = async (
     context = await launcher.launchPersistentContext(profilePath, {
       executablePath: resolve(scenario.browser.executable_path),
       headless: scenario.browser.headless,
+      // A failed sandbox launch must fail the operation, never retry unsandboxed.
+      // Android/Termux retains its explicit compatibility exception below.
+      chromiumSandbox: process.platform !== "android",
       acceptDownloads: false,
       viewport: {
         width: scenario.environment.viewport.width,

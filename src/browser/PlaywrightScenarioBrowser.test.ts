@@ -78,6 +78,41 @@ it("passes the selected environment to the actual browser launch boundary", asyn
   });
 });
 
+it.each(["linux", "darwin", "win32"] as const)(
+  "refuses a sandbox launch failure on %s without retrying unsandboxed",
+  async (platform) => {
+    Object.defineProperty(process, "platform", { value: platform });
+    let attempts = 0;
+    let launchOptions: Parameters<
+      typeof import("playwright-core").chromium.launchPersistentContext
+    >[1];
+    const scenario = browserScenarioSchema.parse({
+      browser: { mode: "launch", executable_path: process.execPath },
+      start_url: { url: "https://example.test" },
+      actions: [
+        { step_id: "settle", action: "wait_for_timeout", duration_ms: 1 },
+      ],
+    });
+    await expect(
+      openPlaywrightScenarioBrowser(scenario, {}, {
+        launcher: {
+          connectOverCDP: async () => {
+            throw new Error("Unexpected connection");
+          },
+          launchPersistentContext: async (_profile, options) => {
+            attempts += 1;
+            launchOptions = options;
+            throw new Error("sandbox launch refused");
+          },
+        },
+      }),
+    ).rejects.toThrow("sandbox launch refused");
+    expect(attempts).toBe(1);
+    expect(launchOptions?.chromiumSandbox).toBe(true);
+    expect(launchOptions?.args).not.toContain("--no-sandbox");
+  },
+);
+
 it("keeps Termux execution support when launching Chromium on Android", async () => {
   Object.defineProperty(process, "platform", { value: "android" });
   vi.stubEnv("PREFIX", "/data/data/com.termux/files/usr");
@@ -107,6 +142,7 @@ it("keeps Termux execution support when launching Chromium on Android", async ()
     }),
   ).rejects.toThrow("launch boundary reached");
 
+  expect(launchOptions?.chromiumSandbox).toBe(false);
   expect(launchOptions?.args).toEqual(["--no-sandbox", "--single-process"]);
   expect(launchOptions?.env).toEqual({
     LANG: "selected-language",
