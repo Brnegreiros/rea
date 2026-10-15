@@ -1,4 +1,5 @@
 import type { ProcessScenario } from "../../domain/process/processScenario.js";
+import { providerHostEnvironment } from "../providerProcessEnvironment.js";
 
 interface ProcessCaptureEnvironmentOptions {
   readonly scenario: ProcessScenario;
@@ -6,15 +7,11 @@ interface ProcessCaptureEnvironmentOptions {
   readonly hostEnvironment: Readonly<Record<string, string | undefined>>;
 }
 
-/** Build the child environment from the host plus caller-selected overrides. */
+/** Inherit runtime coordinates, then preserve explicit scenario overrides. */
 export const makeProcessCaptureEnvironment = (
   options: ProcessCaptureEnvironmentOptions,
 ): Record<string, string> => ({
-  ...Object.fromEntries(
-    Object.entries(options.hostEnvironment).filter(
-      (entry): entry is [string, string] => entry[1] !== undefined,
-    ),
-  ),
+  ...providerHostEnvironment(options.hostEnvironment),
   ...options.scenario.environment,
   TERM:
     options.scenario.environment.TERM ??

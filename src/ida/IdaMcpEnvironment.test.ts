@@ -12,7 +12,7 @@ afterEach(async () => {
     await rm(root, { recursive: true, force: true });
 });
 
-it("launches the upstream SDK transport with the selected snapshot and suppresses ambient SDK defaults", async () => {
+it("launches the SDK with runtime coordinates and explicit registration values, suppressing unknown base variables", async () => {
   const root = await mkdtemp(join(tmpdir(), "rea-ida-environment-"));
   roots.push(root);
   const script = join(root, "producer.mjs");
@@ -69,7 +69,7 @@ input.on('line', (line) => {
     try {
       expect(await connection.connect()).toEqual(["environment"]);
       expect(await connection.call("environment", {})).toEqual({
-        selected: selected === environment ? "selected" : null,
+        selected: null,
         registration: "registration",
         ambient: null,
         home:

@@ -1,0 +1,230 @@
+{
+  "timestamp": "2026-10-15T14:16:44.943Z",
+  "baseline": "10c4c1cdef9d414008300adae754360088a39c16",
+  "logs": {
+    "env-baseline": {
+      "exit": "1",
+      "bytes": 2885,
+      "sha256": "18d6b095ca94f893bd94be439b0e24de3bf3846e565333aa8ff52593668f59f4",
+      "text": "\n RUN  v5.0.3 /vercel/evaluation/rea\n\n ❯  process-boundary  tests/boundary/process/providerEnvironment.test.ts (2 tests | 2 failed) 102ms\n   × blocks synthetic ambient credentials and Node preloading in a real owned child 57ms\n   × preserves explicitly authorized adapter values without accepting a forged run ID 43ms\n\n⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL   process-boundary  tests/boundary/process/providerEnvironment.test.ts > blocks synthetic ambient credentials and Node preloading in a real owned child\nAssertionError: expected { …(4) } to deeply equal { seen: [], nodeOptions: null, …(2) }\n\n- Expected\n+ Received\n\n  {\n-   \"nodeOptions\": null,\n+   \"nodeOptions\": \"--require=/tmp/rea-provider-env-GNsW8r/preload.cjs\",\n    \"path\": \"/vercel/toolchain/npm-pinned/node_modules/.bin:/vercel/toolchain/node-v24.18.0-linux-x64/bin:/usr/bin:/bin\",\n    \"runId\": \"rea-env-57a94034-6d08-46b1-8b6f-9f9db8450fef\",\n-   \"seen\": [],\n+   \"seen\": [\n+     \"OPENAI_API_KEY\",\n+     \"AWS_SECRET_ACCESS_KEY\",\n+     \"DATABASE_URL\",\n+     \"SUPABASE_SERVICE_ROLE_KEY\",\n+     \"GITHUB_TOKEN\",\n+     \"VERCEL_TOKEN\",\n+     \"ORDINARY_SETTING\",\n+   ],\n  }\n\n ❯ tests/boundary/process/providerEnvironment.test.ts:20:20\n\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯\n\n FAIL   process-boundary  tests/boundary/process/providerEnvironment.test.ts > preserves explicitly authorized adapter values without accepting a forged run ID\nAssertionError: expected { hasExplicit: true, …(2) } to deeply equal { hasExplicit: true, …(2) }\n\n- Expected\n+ Received\n\n  {\n-   \"hasAmbient\": false,\n+   \"hasAmbient\": true,\n    \"hasExplicit\": true,\n    \"runId\": \"rea-env-explicit-03965309-cf77-4d32-be26-5ec47e69c72e\",\n  }\n\n ❯ tests/boundary/process/providerEnvironment.test.ts:28:42\n\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯\n\n\n Test Files  1 failed (1)\n      Tests  2 failed (2)\n   Start at  14:00:51\n   Duration  434ms (transform 38%, tests 31%, import 23%, worker 8%)\n\n"
+    },
+    "env-tests": {
+      "exit": "1",
+      "bytes": 4392,
+      "sha256": "3c213d5973ccc41b9b546669d42206e4455d2a3303acc71fe1aab422033cbcc5",
+      "text": "\n RUN  v5.0.3 /vercel/evaluation/rea\n\n ❯  adapters  src/process/providerProcessEnvironment.test.ts (6 tests | 1 failed) 18ms\n   ✓ inherits only named runtime coordinates and never infers sensitivity from values 2ms\n   ✓ normalizes each Windows layer before overriding it 0ms\n   ✓ keeps explicit omission, empty values and unusual caller-selected names 0ms\n   ✓ does not read ambient globals when an empty host is selected 0ms\n   × keeps explicit process-scenario values while suppressing unrelated host credentials 13ms\n   ✓ derives only the existing Termux execution compatibility values on Android 0ms\n ✓  adapters  src/browser/modules/NativeModuleResolver.test.ts (10 tests) 15ms\n ✓  adapters  src/ida/IdaMcpEnvironment.test.ts (1 test) 114ms\n ✓  adapters  src/ghidra/GhidraLauncherEnvironment.test.ts (8 tests) 10ms\n ✓  adapters  src/process/snapshotEnvironment.test.ts (4 tests) 4ms\n ✓  boundary  tests/boundary/android/jadxConfiguration.test.ts (11 tests) 10268ms\n   ✓ reports a killed Java probe as unresolved instead of missing runtime 10012ms\n ✓  process-boundary  tests/boundary/process/providerProcess.test.ts (26 tests | 1 skipped) 595ms\n ✓  process-boundary  tests/boundary/process/providerEnvironment.test.ts (3 tests) 137ms\n\n⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL   adapters  src/process/providerProcessEnvironment.test.ts > keeps explicit process-scenario values while suppressing unrelated host credentials\nZodError: [\n  {\n    \"code\": \"invalid_key\",\n    \"origin\": \"record\",\n    \"issues\": [\n      {\n        \"origin\": \"string\",\n        \"code\": \"invalid_format\",\n        \"format\": \"regex\",\n        \"pattern\": \"/^(?:[^=\\\\x00R][^=\\\\x00]*|R(?:[^=\\\\x00E][^=\\\\x00]*|E(?:[^=\\\\x00A][^=\\\\x00]*|A(?:[^=\\\\x00_][^=\\\\x00]*|_(?:[^=\\\\x00P][^=\\\\x00]*|P(?:[^=\\\\x00R][^=\\\\x00]*|R(?:[^=\\\\x00O][^=\\\\x00]*|O(?:[^=\\\\x00C][^=\\\\x00]*|C(?:[^=\\\\x00E][^=\\\\x00]*|E(?:[^=\\\\x00S][^=\\\\x00]*|S(?:[^=\\\\x00S][^=\\\\x00]*|S(?:[^=\\\\x00_][^=\\\\x00]*|_(?:[^=\\\\x00R][^=\\\\x00]*|R(?:[^=\\\\x00U][^=\\\\x00]*|U(?:[^=\\\\x00N][^=\\\\x00]*|N(?:[^=\\\\x00_][^=\\\\x00]*|_(?:[^=\\\\x00I][^=\\\\x00]*|I(?:[^=\\\\x00D][^=\\\\x00]*|D[^=\\\\x00]+)?)?)?)?)?)?)?)?)?)?)?)?)?)?)?)?)?)$/u\",\n        \"path\": [],\n        \"message\": \"REA_PROCESS_RUN_ID is reserved by the process adapter\"\n      }\n    ],\n    \"path\": [\n      \"environment\",\n      \"REA_PROCESS_RUN_ID\"\n    ],\n    \"message\": \"Invalid key in record\"\n  }\n]\n ❯ parseProcessScenario src/domain/process/processScenario.ts:319:25\n    317| /** Parse untrusted process scenario input and apply safe default budg…\n    318| export const parseProcessScenario = (input: unknown): ProcessScenario …\n    319|   processScenarioSchema.parse(input);\n       |                         ^\n    320|\n ❯ src/process/providerProcessEnvironment.test.ts:86:20\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n\n Test Files  1 failed | 7 passed (8)\n      Tests  1 failed | 67 passed | 1 skipped (69)\n   Start at  14:04:30\n   Duration  12.68s (tests 88%, transform 6%, import 6%, worker 1%)\n\n"
+    },
+    "typecheck": {
+      "exit": "1",
+      "bytes": 1159,
+      "sha256": "d0a8da67f25efed0e3ab69fa2d1478972f9a4a43a70ab6bac5496941d32694ed",
+      "text": "\n> rea-agents@6.5.0 typecheck\n> tsc --noEmit\n\nsrc/process/providerProcessEnvironment.ts(90,27): error TS2677: A type predicate's type must be assignable to its parameter's type.\n  Type 'readonly [string, string]' is not assignable to type 'readonly [\"ALLUSERSPROFILE\" | \"APPDATA\" | \"COLORTERM\" | \"COMSPEC\" | \"DBUS_SESSION_BUS_ADDRESS\" | \"DISPLAY\" | \"DYLD_FALLBACK_LIBRARY_PATH\" | \"DYLD_LIBRARY_PATH\" | \"FORCE_COLOR\" | ... 58 more ... | \"XDG_STATE_HOME\", string | undefined]'.\n    Type at position 0 in source is not compatible with type at position 0 in target.\n      Type 'string' is not assignable to type '\"ALLUSERSPROFILE\" | \"APPDATA\" | \"COLORTERM\" | \"COMSPEC\" | \"DBUS_SESSION_BUS_ADDRESS\" | \"DISPLAY\" | \"DYLD_FALLBACK_LIBRARY_PATH\" | \"DYLD_LIBRARY_PATH\" | \"FORCE_COLOR\" | \"GOMAXPROCS\" | ... 57 more ... | \"XDG_STATE_HOME\"'.\nsrc/process/providerProcessEnvironment.ts(99,3): error TS2322: Type '{ [k: string]: string | undefined; }' is not assignable to type 'Record<string, string>'.\n  'string' index signatures are incompatible.\n    Type 'string | undefined' is not assignable to type 'string'.\n      Type 'undefined' is not assignable to type 'string'.\n"
+    },
+    "env-tests-final": {
+      "exit": "0",
+      "bytes": 2772,
+      "sha256": "5758df315516f182533db7167a2ac501d8188c34eeceba8875c100c32b0248e1",
+      "text": "\n RUN  v5.0.3 /vercel/evaluation/rea\n\n ✓  adapters  src/ghidra/GhidraInstallation.test.ts (65 tests) 98ms\n ✓  adapters  src/ida/IdaMcpEnvironment.test.ts (1 test) 188ms\n ✓  adapters  src/ghidra/GhidraLauncherEnvironment.test.ts (8 tests) 32ms\n ✓  adapters  src/browser/modules/NativeModuleResolver.test.ts (10 tests) 20ms\n ✓  adapters  src/process/providerProcessEnvironment.test.ts (6 tests) 10ms\n ✓  adapters  src/process/snapshotEnvironment.test.ts (4 tests) 8ms\n ✓  boundary  tests/boundary/android/jadxMcpTransport.test.ts (6 tests) 76ms\n ✓  boundary  tests/boundary/native/PwndbgCoreContext.test.ts (2 tests) 9ms\n ✓  mcp-boundary  tests/boundary/mcp/reverseEngineeringProviderEnvironmentMcp.test.ts (1 test) 199ms\n ✓  process-global  tests/process-global/cliSelectedEnvironment.test.ts (2 tests) 1871ms\n   ✓ CLI selected environment (2)\n     ✓ retains the selected binary provider and launcher after caller and ambient environment changes 1713ms\n ✓  boundary  tests/boundary/android/jadxConfiguration.test.ts (11 tests) 10448ms\n   ✓ reports a killed Java probe as unresolved instead of missing runtime 10027ms\n ✓  process-boundary  tests/boundary/process/providerProcess.test.ts (26 tests | 1 skipped) 656ms\n ✓  process-boundary  tests/boundary/process/providerEnvironment.test.ts (3 tests) 149ms\n\n Test Files  13 passed (13)\n      Tests  144 passed | 1 skipped (145)\n   Start at  14:11:35\n   Duration  13.99s (tests 57%, transform 22%, import 21%, worker 1%)\n\n"
+    },
+    "typecheck-final": {
+      "exit": "0",
+      "bytes": 46,
+      "sha256": "d05913a19d183bb454119118ac72aa18d9e483b703357c6634905186ea62b0f4",
+      "text": "\n> rea-agents@6.5.0 typecheck\n> tsc --noEmit\n\n"
+    },
+    "build": {
+      "exit": "0",
+      "bytes": 1468,
+      "sha256": "6ce0ae20c2a96791dee1006137800a0b39ed13266b60892c29b79812828c6c0d",
+      "text": "\n> rea-agents@6.5.0 build:cached\n> node scripts/check-dependency-install.mjs && node scripts/run-exclusive.mjs artifacts turbo run artifacts:skills\n\n\n   • Running artifacts:skills\n   • Remote caching disabled\n\nmetadata:check: cache hit, replaying logs 32f5da12514f2ac6\nmetadata:check: \nmetadata:check: > rea-agents@6.5.0 metadata:check\nmetadata:check: > node scripts/generate-package-metadata.mjs --check\nmetadata:check: \ncompile: cache miss, executing 322d6e199330dc17\ncompile: \ncompile: > rea-agents@6.5.0 compile\ncompile: > node scripts/clean-build-output.mjs && tsc -p tsconfig.build.json && node scripts/bundle-runtime.mjs\ncompile: \ncompile: [INEFFECTIVE_DYNAMIC_IMPORT] dist/composition/binary.js is dynamically imported by dist/composition/directAnalysis.js but also statically imported by dist/main.js, dynamic import will not move module into another chunk.\ncompile: \ncompile: [INEFFECTIVE_DYNAMIC_IMPORT] dist/dotnet/ManagedStaticProvider.js is dynamically imported by dist/composition/auxiliaryAnalysisProviders.js but also statically imported by dist/composition/binary.js, dynamic import will not move module into another chunk.\ncompile: \nartifacts:skills: cache miss, executing 8488225ad2889449\nartifacts:skills: \nartifacts:skills: > rea-agents@6.5.0 artifacts:skills\nartifacts:skills: > node scripts/generate-skill-metadata.mjs\nartifacts:skills: \n\n Tasks:    3 successful, 3 total\nCached:    1 cached, 3 total\n  Time:    55.516s \n\n"
+    },
+    "format": {
+      "exit": "0",
+      "bytes": 112,
+      "sha256": "275b29df3896ec0fe813959b2ee48a5b1c3400f12badc6f0356238793d6e6189",
+      "text": "Checking formatting...\n\nAll matched files use the correct format.\nFinished in 10ms on 13 files using 2 threads.\n"
+    },
+    "lint": {
+      "exit": "1",
+      "bytes": 103,
+      "sha256": "2d650e9fa5854f8dadd208c45fb9d796938845652dd47e9a533c1ad486ac538f",
+      "text": "Failed to find tsgolint executable. You may need to add the `oxlint-tsgolint` package to your project?\n"
+    },
+    "lint-final": {
+      "exit": "0",
+      "bytes": 86824,
+      "sha256": "6874559fe6597ac932756ddd6be04064574747f7382ef940cc51678bf364bca9",
+      "text": "  ⚠ eslint(complexity): private async method `resolve` has a complexity of 22. Maximum allowed is 20.\n     ╭─[src/browser/modules/NativeModuleResolver.ts:73:17]\n  ⚠ eslint(max-lines-per-function): The private async method `resolve` has too many lines (103). Maximum allowed is 100.\n     ╭─[src/browser/modules/NativeModuleResolver.ts:73:17]\n  ⚠ eslint(max-lines-per-function): The async function has too many lines (142). Maximum allowed is 100.\n     ╭─[src/browser/modules/NativeModuleResolver.ts:212:26]\n  ⚠ eslint(max-lines): File has too many lines (902).\n      ╭─[src/ghidra/GhidraInstallation.ts:1040:3]\n  ⚠ eslint(complexity): function has a complexity of 25. Maximum allowed is 20.\n     ╭─[src/ghidra/GhidraInstallation.ts:660:31]\n  ⚠ eslint(max-lines-per-function): The function has too many lines (104). Maximum allowed is 100.\n     ╭─[src/ghidra/GhidraInstallation.ts:865:38]\n  ⚠ eslint(complexity): function `probeJava` has a complexity of 21. Maximum allowed is 20.\n     ╭─[src/ghidra/GhidraInstallation.ts:907:12]\n  ⚠ eslint(max-lines): File has too many lines (589).\n     ╭─[src/process/ProviderProcess.ts:699:3]\n  ⚠ eslint(complexity): async function has a complexity of 21. Maximum allowed is 20.\n     ╭─[src/process/ProviderProcess.ts:186:42]\n  ⚠ eslint(max-lines-per-function): The function has too many lines (144). Maximum allowed is 100.\n     ╭─[src/ida/IdaMcpConnection.ts:333:39]\n  ⚠ eslint(max-lines): File has too many lines (594).\n     ╭─[src/android/JadxConfiguration.ts:638:58]\n  ⚠ eslint(max-params): Function has too many parameters (5). Maximum allowed is 4.\n     ╭─[src/android/JadxConfiguration.ts:142:14]\n  ⚠ eslint(max-lines-per-function): The async function has too many lines (109). Maximum allowed is 100.\n     ╭─[src/android/JadxConfiguration.ts:512:28]\n  ⚠ eslint(max-params): Arrow function has too many parameters (5). Maximum allowed is 4.\n     ╭─[src/android/JadxConfiguration.ts:622:30]\nFound 14 warnings and 0 errors.\nFinished in 138ms on 13 files with 107 rules using 2 threads.",
+      "retained": "warning headings, locations and summary; raw hash above"
+    },
+    "module-boundaries": {
+      "exit": "0",
+      "bytes": 147,
+      "sha256": "6e9d9aa48fc2c63fff76965339888defdcad6eca92740ad43de6ec3383937a8d",
+      "text": "\n> rea-agents@6.5.0 verify:module-boundaries\n> node scripts/verify-module-boundaries.mjs\n\nChecked resolved module boundaries in 1888 source files.\n"
+    },
+    "lint-baseline": {
+      "exit": "0",
+      "bytes": 150962,
+      "sha256": "0f6002d1e5a042c0894844349565040f062d7198985946d8f4b27aad4bfd5743",
+      "text": "  ⚠ eslint(max-lines): File has too many lines (593).\n     ╭─[src/android/JadxConfiguration.ts:637:58]\n  ⚠ eslint(max-params): Function has too many parameters (5). Maximum allowed is 4.\n     ╭─[src/android/JadxConfiguration.ts:141:14]\n  ⚠ eslint(max-lines-per-function): The async function has too many lines (109). Maximum allowed is 100.\n     ╭─[src/android/JadxConfiguration.ts:511:28]\n  ⚠ eslint(max-params): Arrow function has too many parameters (5). Maximum allowed is 4.\n     ╭─[src/android/JadxConfiguration.ts:621:30]\n  ⚠ eslint(max-lines): File has too many lines (587).\n     ╭─[src/process/ProviderProcess.ts:696:3]\n  ⚠ eslint(complexity): async function has a complexity of 21. Maximum allowed is 20.\n     ╭─[src/process/ProviderProcess.ts:184:42]\n  ⚠ eslint(max-lines-per-function): The function has too many lines (140). Maximum allowed is 100.\n     ╭─[src/browser/modules/NativeModuleResolver.test.ts:37:54]\n  ⚠ eslint(complexity): private async method `resolve` has a complexity of 22. Maximum allowed is 20.\n     ╭─[src/browser/modules/NativeModuleResolver.ts:72:17]\n  ⚠ eslint(max-lines-per-function): The private async method `resolve` has too many lines (102). Maximum allowed is 100.\n     ╭─[src/browser/modules/NativeModuleResolver.ts:72:17]\n  ⚠ eslint(max-lines-per-function): The async function has too many lines (142). Maximum allowed is 100.\n     ╭─[src/browser/modules/NativeModuleResolver.ts:210:26]\n  ⚠ eslint(max-lines): File has too many lines (901).\n      ╭─[src/ghidra/GhidraInstallation.ts:1039:3]\n  ⚠ eslint(complexity): function has a complexity of 25. Maximum allowed is 20.\n     ╭─[src/ghidra/GhidraInstallation.ts:659:31]\n  ⚠ eslint(max-lines-per-function): The function has too many lines (104). Maximum allowed is 100.\n     ╭─[src/ghidra/GhidraInstallation.ts:864:38]\n  ⚠ eslint(complexity): function `probeJava` has a complexity of 21. Maximum allowed is 20.\n     ╭─[src/ghidra/GhidraInstallation.ts:906:12]\n  ⚠ eslint(max-lines): File has too many lines (1172).\n      ╭─[src/ghidra/GhidraInstallation.test.ts:1224:4]\n  ⚠ eslint(max-lines-per-function): The function has too many lines (150). Maximum allowed is 100.\n     ╭─[src/ghidra/GhidraInstallation.test.ts:191:44]\n  ⚠ eslint(max-lines-per-function): The function has too many lines (124). Maximum allowed is 100.\n     ╭─[src/ghidra/GhidraInstallation.test.ts:347:55]\n  ⚠ eslint(max-lines-per-function): The function has too many lines (112). Maximum allowed is 100.\n     ╭─[src/ghidra/GhidraInstallation.test.ts:472:48]\n  ⚠ eslint(max-lines-per-function): The function has too many lines (146). Maximum allowed is 100.\n      ╭─[src/ghidra/GhidraInstallation.test.ts:873:48]\n  ⚠ eslint(max-lines-per-function): The function has too many lines (112). Maximum allowed is 100.\n      ╭─[src/ghidra/GhidraInstallation.test.ts:1024:51]\n  ⚠ eslint(max-lines-per-function): The function has too many lines (148). Maximum allowed is 100.\n     ╭─[src/ida/IdaMcpConnection.ts:332:39]\nFound 21 warnings and 0 errors.\nFinished in 20ms on 10 files with 107 rules using 2 threads.",
+      "retained": "warning headings, locations and summary; raw hash above"
+    }
+  },
+  "source_sha256": {
+    "src/android/JadxConfiguration.ts": "99098ccc5072c6e59e3fc71e59dcabbe357daf603424e0c6a4d6e96cf8e3af6e",
+    "src/browser/modules/NativeModuleResolver.test.ts": "0eeeae735e2100d1f86db102bb7ffa29067a4e90a965f6624b020b46882eb30a",
+    "src/browser/modules/NativeModuleResolver.ts": "13bd27f22de47c154b7baee49b73a3693c306930df5228f76f97ba7184a42d57",
+    "src/ghidra/GhidraInstallation.ts": "7234c9b81f727179787085550078a6d51e6a715c77ead5cfca566da38e083a43",
+    "src/ghidra/GhidraLauncherEnvironment.test.ts": "2aa0af38551ee70a162b10275aa49848a1b0a764b1c98a5fdfdb0213af5757d8",
+    "src/ida/IdaMcpConnection.ts": "482c4abdd3d1880ed7e30b5e707f8f1bdc58502a8bd71e1f1e896d53d2a45273",
+    "src/ida/IdaMcpEnvironment.test.ts": "91300817e0dd2b3277be7188af3a08448626d5aebf60e207f35ecca7e60662fa",
+    "src/process/ProviderProcess.ts": "35353e3a009aa9f1db4f934ffdef56659779a543f2a91bf2486d3455d41af7d7",
+    "src/process/capture/ProcessCaptureEnvironment.ts": "925e05cb49ec5efb8767674776604fb27960fcc3017b34bc72238e549d0f9507",
+    "src/process/providerProcessEnvironment.test.ts": "8b6d9528707b44ade28cc62235d9f5a09ba28a7bcf8601d0673b24a2c9ea33e2",
+    "src/process/providerProcessEnvironment.ts": "1bc1da9fca92441110f15348d652a75503ff9f7ad3f3318279a279f01a1aec27",
+    "tests/boundary/process/providerEnvironment.test.ts": "1bc913210c2091bc860bd0c629c2b9d36160fece6b171615dfdd232112856dae",
+    "src/ghidra/GhidraInstallation.test.ts": "a0bc96bc98fc9ed471b90e0a758285b162a5ac47b7bc9329e6546260606b8930",
+    "package.json": "a500302319c1214a8bb6c9a8b4a4a090806e95eef884204a9d9fbb4003050a6c",
+    "package-lock.json": "0482085372c563c99b32519f51339eb280adc2bd83efdba6a8efd7cd4a49e9f0",
+    "LICENSE": "798f9e4d18e49b30bf2f12696c8ced73dc4e1413da375a333d01281543a1ea8b"
+  },
+  "worker_metrics": {
+    "memory.max": "4294967296\n",
+    "memory.peak": "4210216960\n",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 2\noom_group_kill 0\n",
+    "cpu.stat": "usage_usec 544028381\nuser_usec 484896080\nsystem_usec 59132300\nnice_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0\n",
+    "pids.max": "512\n"
+  },
+  "session": {
+    "sandbox": {
+      "name": "rea-env-audit-20261015",
+      "currentSessionId": "sbx_F8TQYYj9PPXjM93ayb1zE0TGbcIq",
+      "status": "stopped",
+      "statusUpdatedAt": 1792073873139,
+      "persistent": false,
+      "region": "iad1",
+      "failoverRegions": [],
+      "vcpus": 2,
+      "memory": 4096,
+      "runtime": "node22",
+      "architecture": "amd64",
+      "image": "vercel/sandbox/node@sha256:6ad1291a9fe7d243ee9f23626e6b08614a596431801c55e14cc5ee9d525f28d1",
+      "timeout": 1800000,
+      "snapshotExpiration": 604800000,
+      "networkPolicy": {
+        "mode": "deny-all"
+      },
+      "totalEgressBytes": 1536920,
+      "totalIngressBytes": 223865419,
+      "totalActiveCpuDurationMs": 630037,
+      "totalDurationMs": 1333199,
+      "cwd": "/vercel",
+      "tags": {
+        "baseline": "10c4c1cd",
+        "purpose": "rea-provider-env"
+      },
+      "createdAt": 1792072539651,
+      "updatedAt": 1792072539651
+    },
+    "session": {
+      "id": "sbx_F8TQYYj9PPXjM93ayb1zE0TGbcIq",
+      "runtime": "node22",
+      "architecture": "amd64",
+      "requestedAt": 1792072539575,
+      "startedAt": 1792072539604,
+      "requestedStopAt": 1792073872530,
+      "stoppedAt": 1792073872803,
+      "status": "stopped",
+      "duration": 1333199,
+      "vcpus": 2,
+      "memory": 4096,
+      "timeout": 1800000,
+      "region": "iad1",
+      "cwd": "/vercel",
+      "createdAt": 1792072539575,
+      "updatedAt": 1792072539616,
+      "interactivePort": 26661,
+      "networkPolicy": {
+        "mode": "deny-all"
+      },
+      "activeCpuDurationMs": 630037,
+      "networkTransfer": {
+        "ingress": 223865419,
+        "egress": 1536920
+      },
+      "sourceSandboxName": "rea-env-audit-20261015",
+      "projectId": "prj_IfkICTa4T38SCOgQXOe2jQpCT6Tl"
+    }
+  },
+  "preflight": {
+    "items": [
+      {
+        "command": {
+          "id": "cmd_39d04485defc41fba53a3376f84b",
+          "name": "bash",
+          "args": [
+            "-euc",
+            "useradd --create-home --shell /bin/bash rea\nchmod 700 /home/ubuntu\nprintf '512\\n' > /sys/fs/cgroup/pids.max\nmkdir -p /vercel/evaluation /vercel/toolchain /vercel/output /vercel/preformat\nchown rea:rea /vercel/evaluation /vercel/toolchain /vercel/output\nchmod 700 /vercel/evaluation /vercel/toolchain /vercel/output\nsetpriv --reuid=rea --regid=rea --clear-groups --no-new-privs env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/rea bash -c 'id; grep -E \"NoNewPrivs|CapEff\" /proc/self/status; test ! -r /home/ubuntu/.bashrc; test ! -w /sys/fs/cgroup/pids.max; if sudo -n true >/dev/null 2>&1; then exit 1; fi; node -e '\\''fetch(\"https://example.com\",{signal:AbortSignal.timeout(4000)}).then(()=>{console.log(\"UNEXPECTED_EGRESS\");process.exitCode=1},e=>console.log(\"OFFLINE_GATE_PASS\",e.name))'\\'''\ncat /sys/fs/cgroup/pids.max /sys/fs/cgroup/memory.max /sys/devices/system/cpu/online"
+          ],
+          "cwd": "/vercel",
+          "sessionId": "sbx_F8TQYYj9PPXjM93ayb1zE0TGbcIq",
+          "startedAt": 1792072607602,
+          "exitCode": null
+        }
+      },
+      {
+        "data": "uid=1001(rea) gid=1001(rea) groups=1001(rea)\n",
+        "stream": "stdout"
+      },
+      {
+        "data": "CapEff:\t0000000000000000\nNoNewPrivs:\t1\n",
+        "stream": "stdout"
+      },
+      {
+        "data": "OFFLINE_GATE_PASS TypeError\n",
+        "stream": "stdout"
+      },
+      {
+        "data": "512\n4294967296\n0-1\n",
+        "stream": "stdout"
+      },
+      {
+        "command": {
+          "id": "cmd_39d04485defc41fba53a3376f84b",
+          "name": "bash",
+          "args": [
+            "-euc",
+            "useradd --create-home --shell /bin/bash rea\nchmod 700 /home/ubuntu\nprintf '512\\n' > /sys/fs/cgroup/pids.max\nmkdir -p /vercel/evaluation /vercel/toolchain /vercel/output /vercel/preformat\nchown rea:rea /vercel/evaluation /vercel/toolchain /vercel/output\nchmod 700 /vercel/evaluation /vercel/toolchain /vercel/output\nsetpriv --reuid=rea --regid=rea --clear-groups --no-new-privs env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/rea bash -c 'id; grep -E \"NoNewPrivs|CapEff\" /proc/self/status; test ! -r /home/ubuntu/.bashrc; test ! -w /sys/fs/cgroup/pids.max; if sudo -n true >/dev/null 2>&1; then exit 1; fi; node -e '\\''fetch(\"https://example.com\",{signal:AbortSignal.timeout(4000)}).then(()=>{console.log(\"UNEXPECTED_EGRESS\");process.exitCode=1},e=>console.log(\"OFFLINE_GATE_PASS\",e.name))'\\'''\ncat /sys/fs/cgroup/pids.max /sys/fs/cgroup/memory.max /sys/devices/system/cpu/online"
+          ],
+          "cwd": "/vercel",
+          "sessionId": "sbx_F8TQYYj9PPXjM93ayb1zE0TGbcIq",
+          "startedAt": 1792072607602,
+          "exitCode": 0,
+          "durationMs": 229
+        }
+      }
+    ],
+    "context": {
+      "totalItems": 6,
+      "returnedItems": 6,
+      "truncated": false
+    }
+  },
+  "commands": {
+    "final": "cd /vercel/evaluation/rea\nnode_modules/.bin/oxfmt src/android/JadxConfiguration.ts src/browser/modules/NativeModuleResolver.test.ts src/browser/modules/NativeModuleResolver.ts src/ghidra/GhidraInstallation.ts src/ghidra/GhidraLauncherEnvironment.test.ts src/ida/IdaMcpConnection.ts src/ida/IdaMcpEnvironment.test.ts src/process/ProviderProcess.ts src/process/capture/ProcessCaptureEnvironment.ts src/process/providerProcessEnvironment.test.ts src/process/providerProcessEnvironment.ts tests/boundary/process/providerEnvironment.test.ts src/ghidra/GhidraInstallation.test.ts || exit 1\nnode node_modules/vitest/vitest.mjs run src/process/providerProcessEnvironment.test.ts src/process/snapshotEnvironment.test.ts src/ghidra/GhidraLauncherEnvironment.test.ts src/ghidra/GhidraInstallation.test.ts src/ida/IdaMcpEnvironment.test.ts src/browser/modules/NativeModuleResolver.test.ts tests/boundary/process/providerEnvironment.test.ts tests/boundary/process/providerProcess.test.ts tests/boundary/android/jadxConfiguration.test.ts tests/boundary/android/jadxMcpTransport.test.ts tests/boundary/native/PwndbgCoreContext.test.ts tests/boundary/mcp/reverseEngineeringProviderEnvironmentMcp.test.ts tests/process-global/cliSelectedEnvironment.test.ts > /vercel/output/env-tests-final.log 2>&1\nprintf '%s\\n' \"$?\" > /vercel/output/env-tests-final.exit\nnpm run typecheck > /vercel/output/typecheck-final.log 2>&1\nprintf '%s\\n' \"$?\" > /vercel/output/typecheck-final.exit\nnpm run build:cached > /vercel/output/build.log 2>&1\nprintf '%s\\n' \"$?\" > /vercel/output/build.exit\nnode_modules/.bin/oxfmt --check src/android/JadxConfiguration.ts src/browser/modules/NativeModuleResolver.test.ts src/browser/modules/NativeModuleResolver.ts src/ghidra/GhidraInstallation.ts src/ghidra/GhidraLauncherEnvironment.test.ts src/ida/IdaMcpConnection.ts src/ida/IdaMcpEnvironment.test.ts src/process/ProviderProcess.ts src/process/capture/ProcessCaptureEnvironment.ts src/process/providerProcessEnvironment.test.ts src/process/providerProcessEnvironment.ts tests/boundary/process/providerEnvironment.test.ts src/ghidra/GhidraInstallation.test.ts > /vercel/output/format.log 2>&1\nprintf '%s\\n' \"$?\" > /vercel/output/format.exit\nnode_modules/.bin/oxlint --type-aware src/android/JadxConfiguration.ts src/browser/modules/NativeModuleResolver.test.ts src/browser/modules/NativeModuleResolver.ts src/ghidra/GhidraInstallation.ts src/ghidra/GhidraLauncherEnvironment.test.ts src/ida/IdaMcpConnection.ts src/ida/IdaMcpEnvironment.test.ts src/process/ProviderProcess.ts src/process/capture/ProcessCaptureEnvironment.ts src/process/providerProcessEnvironment.test.ts src/process/providerProcessEnvironment.ts tests/boundary/process/providerEnvironment.test.ts src/ghidra/GhidraInstallation.test.ts > /vercel/output/lint.log 2>&1\nprintf '%s\\n' \"$?\" > /vercel/output/lint.exit\n",
+    "lint": "cd /vercel/evaluation/rea\nnode_modules/.bin/oxlint src/android/JadxConfiguration.ts src/browser/modules/NativeModuleResolver.test.ts src/browser/modules/NativeModuleResolver.ts src/ghidra/GhidraInstallation.ts src/ghidra/GhidraLauncherEnvironment.test.ts src/ida/IdaMcpConnection.ts src/ida/IdaMcpEnvironment.test.ts src/process/ProviderProcess.ts src/process/capture/ProcessCaptureEnvironment.ts src/process/providerProcessEnvironment.test.ts src/process/providerProcessEnvironment.ts tests/boundary/process/providerEnvironment.test.ts src/ghidra/GhidraInstallation.test.ts > /vercel/output/lint-final.log 2>&1\nprintf '%s\\n' \"$?\" > /vercel/output/lint-final.exit\nnpm run verify:module-boundaries > /vercel/output/module-boundaries.log 2>&1\nprintf '%s\\n' \"$?\" > /vercel/output/module-boundaries.exit\n"
+  },
+  "verdict": {
+    "scope": "Implicit inheritance at owned-process and named parallel boundaries only",
+    "status": "PASS_WITH_WARNINGS_FOR_TESTED_SCOPE",
+    "F03": "PARTIALLY_MITIGATED",
+    "production": "NO_GO",
+    "real_credentials": "NOT_COLLECTED",
+    "type_aware_lint": "NOT_TESTED: missing oxlint-tsgolint; ordinary selected-file lint passed",
+    "worker_resource_health": "Two lifetime oom_kill events; cause not attributed; final checks passed; not a clean resource baseline",
+    "post_check_processes": "pgrep -u rea returned no processes before shutdown",
+    "main": "6060de329de9f3636f63e24a2419847fd9d3f889",
+    "tokens": "NOT_MEASURED"
+  }
+}

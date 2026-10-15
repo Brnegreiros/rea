@@ -8,6 +8,27 @@ import {
 import { ghidraJavaEnvironment } from "./GhidraInstallation.js";
 
 describe("Ghidra headless JVM environment", () => {
+  it("excludes unrelated credentials before creating the explicit Java launch map", () => {
+    const result = ghidraJavaEnvironment(
+      "/jdk",
+      {
+        PATH: "/tools",
+        HOME: "/selected",
+        OPENAI_API_KEY: "synthetic",
+        OPAQUE_SETTING: "synthetic",
+        JDK_JAVA_OPTIONS: "unapproved",
+      },
+      "linux",
+    );
+    expect(result).toMatchObject({
+      PATH: "/jdk/bin:/tools",
+      HOME: "/selected",
+      JAVA_HOME: "/jdk",
+      JDK_JAVA_OPTIONS: "",
+    });
+    expect(result).not.toHaveProperty("OPENAI_API_KEY");
+    expect(result).not.toHaveProperty("OPAQUE_SETTING");
+  });
   it("passes Windows paths with spaces to Java's environment parser", () => {
     expect(
       ghidraHeadlessJavaOptions(

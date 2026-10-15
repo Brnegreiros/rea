@@ -6,6 +6,7 @@ import { IdaDiagnosticResourceError } from "./IdaDiagnosticWriter.js";
 import { ChildProcess } from "node:child_process";
 import { Socket } from "node:net";
 import { snapshotEnvironment } from "../process/snapshotEnvironment.js";
+import { providerHostEnvironment } from "../process/providerProcessEnvironment.js";
 import {
   Client,
   ProtocolError,
@@ -408,11 +409,7 @@ export const createIdaMcpConnection = (
             ...Object.fromEntries(
               DEFAULT_INHERITED_ENV_VARS.map((key) => [key, ""]),
             ),
-            ...Object.fromEntries(
-              Object.entries(snapshotEnvironment(environment)).filter(
-                (entry): entry is [string, string] => entry[1] !== undefined,
-              ),
-            ),
+            ...providerHostEnvironment(environment),
             IDA_MCP_MAX_WORKERS: "1",
             ...snapshotEnvironment(config.env),
           },

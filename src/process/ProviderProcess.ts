@@ -3,6 +3,7 @@ import type { EventEmitter } from "node:events";
 import type { Readable, Writable } from "node:stream";
 
 import { WindowsOwnedProcess } from "../windows/WindowsOwnedProcess.js";
+import { providerProcessEnvironment } from "./providerProcessEnvironment.js";
 
 import type {
   OwnedProcessGroup,
@@ -28,10 +29,11 @@ export interface OwnedProviderProcessSpawnOptions {
   /** Preserve a pre-quoted Windows command-interpreter invocation exactly. */
   readonly windowsVerbatimArguments?: boolean;
   readonly cwd?: string;
+  /** Explicit trusted adapter overrides; values are not automatically redacted. */
   readonly env?: NodeJS.ProcessEnv;
   /** Host platform used to choose detached process-group behavior. */
   readonly platform?: NodeJS.Platform;
-  /** Host environment used as the base for the child environment. */
+  /** Base environment; only approved runtime names are inherited by the child. */
   readonly hostEnvironment?: NodeJS.ProcessEnv;
   /** Opt into a writable protocol stream; other providers retain ignored stdin. */
   readonly stdin?: "pipe";
@@ -199,11 +201,12 @@ export const spawnOwnedProviderProcess = async (
     options.signal?.throwIfAborted();
   }
   const hostEnvironment = options.hostEnvironment ?? process.env;
-  const environment = {
-    ...hostEnvironment,
-    ...options.env,
-    REA_PROCESS_RUN_ID: options.runId,
-  };
+  const environment = providerProcessEnvironment(
+    hostEnvironment,
+    options.env,
+    options.runId,
+    platform,
+  );
   if (platform === "win32" && process.platform === "win32") {
     const child = new WindowsOwnedProcess(
       options.command,

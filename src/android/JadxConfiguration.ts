@@ -1,4 +1,5 @@
 import { constants } from "node:fs";
+import { providerHostEnvironment } from "../process/providerProcessEnvironment.js";
 import { access, realpath, stat } from "node:fs/promises";
 import { delimiter, isAbsolute, join, resolve } from "node:path";
 import { inspectWindowsNativeReadiness } from "../process/WindowsAuthority.js";
@@ -517,7 +518,7 @@ const inspectJavaRuntime = async (
   let stderr: string;
   try {
     ({ stdout, stderr } = await execFileOutput(java, ["--list-modules"], {
-      env: { ...environment },
+      env: providerHostEnvironment(environment),
       timeout: JAVA_MODULE_LISTING_TIMEOUT_MS,
       maxBuffer: JAVA_MODULE_LISTING_MAX_OUTPUT_BYTES,
       ...(signal === undefined ? {} : { signal }),

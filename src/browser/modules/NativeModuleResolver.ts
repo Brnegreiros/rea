@@ -1,6 +1,7 @@
 import { isAbsolute } from "node:path";
 import { z } from "zod";
 import type { Browser, LaunchOptions } from "playwright-core";
+import { providerHostEnvironment } from "../../process/providerProcessEnvironment.js";
 import type { ExecutionOptions } from "../../application/AnalysisProvider.js";
 import type {
   WebModuleResolutionPort,
@@ -119,6 +120,7 @@ export class NativeModuleResolver implements WebModuleResolutionPort {
         // Preserve the operator's explicit compatibility opt-out, not Playwright's
         // unsandboxed default. Failed launches do not downgrade this selection.
         chromiumSandbox: this.environment.REA_BROWSER_NO_SANDBOX !== "true",
+        env: providerHostEnvironment(this.environment),
         timeout: Math.max(1, deadline.remainingMs()),
         handleSIGINT: false,
         handleSIGTERM: false,

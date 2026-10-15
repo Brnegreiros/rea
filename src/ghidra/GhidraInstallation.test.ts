@@ -166,7 +166,7 @@ it("does not fall back to PATH when an explicit Ghidra installation path is malf
   });
 });
 
-it("probes the selected Java environment without reading conflicting ambient settings", () => {
+it("probes the selected runtime environment without forwarding unrelated context", () => {
   vi.stubEnv("REA_GHIDRA_CONTEXT", "ambient");
   vi.stubEnv("REA_GHIDRA_AMBIENT", "ambient-only");
   const inspection = inspectGhidraInstallation(
@@ -178,7 +178,7 @@ it("probes the selected Java environment without reading conflicting ambient set
     },
     host({
       probeJava: (_command, environment) =>
-        environment.REA_GHIDRA_CONTEXT === "selected" &&
+        environment.REA_GHIDRA_CONTEXT === undefined &&
         environment.REA_GHIDRA_AMBIENT === undefined &&
         environment.PATH === "/selected-bin"
           ? JAVA

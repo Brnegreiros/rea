@@ -17,6 +17,8 @@ it.each([undefined, "false", "true"])(
     const provider = new NativeModuleResolver(
       {
         REA_BROWSER_EXECUTABLE: "/browser",
+        PATH: "/selected/runtime",
+        GITHUB_TOKEN: "synthetic-unapproved",
         ...(optOut === undefined ? {} : { REA_BROWSER_NO_SANDBOX: optOut }),
       },
       async (options) => {
@@ -29,6 +31,7 @@ it.each([undefined, "false", "true"])(
     expect(result.ok).toBe(false);
     expect(attempts).toBe(1);
     expect(launchOptions?.chromiumSandbox).toBe(optOut !== "true");
+    expect(launchOptions?.env).toEqual({ PATH: "/selected/runtime" });
     // Playwright owns the sandbox flag; REA must not inject a second override.
     expect(launchOptions?.args).not.toContain("--no-sandbox");
   },

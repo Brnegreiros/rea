@@ -89,8 +89,12 @@ These results cover the stated revision and selected scenarios. The supported
 OS smoke, full suite, MCP end-to-end flow and remaining provider coverage are
 still required; the report distinguishes PASS from NOT_TESTED.
 
-The generic provider environment inheritance, capability authorization,
-classification/retention policy, and external-provider SCA remain open. The
+The [provider environment policy](provider-process-environment.md) restricts
+implicit inheritance at the owned launcher and selected parallel boundaries.
+Its [isolated verification](verification/provider-environment-2026-10-15.md)
+uses synthetic credentials; direct subprocess routes and real-provider
+compatibility remain open. Capability authorization, classification/retention
+policy, and external-provider SCA also remain open. The
 [Frida source-admission correction](verification/frida-source-read-2026-10-15.md)
 records regular-file checks, a 4 MiB file/inline budget, cooperative cancellation
 and retained descriptor cleanup. Its selected 99 tests passed in an isolated

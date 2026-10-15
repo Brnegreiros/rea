@@ -1,4 +1,5 @@
 import { snapshotEnvironment } from "../process/snapshotEnvironment.js";
+import { providerHostEnvironment } from "../process/providerProcessEnvironment.js";
 import { spawnSync } from "node:child_process";
 import { constants } from "node:fs";
 import {
@@ -616,7 +617,7 @@ export const ghidraJavaEnvironment = (
 ): NodeJS.ProcessEnv => {
   const selectedEnvironment = snapshotEnvironment(environment, platform);
   const boundedEnvironment = {
-    ...selectedEnvironment,
+    ...providerHostEnvironment(selectedEnvironment, platform),
     _JAVA_OPTIONS: "",
     JAVA_TOOL_OPTIONS: "",
     JDK_JAVA_OPTIONS: "",
