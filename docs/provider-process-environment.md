@@ -74,4 +74,3 @@ isolated and credential-free, with trusted PATH/library/display values.
 
 See [the isolated verification report](verification/provider-environment-2026-10-15.md)
 for reproduced exposure, exact tested scope and remaining gates.
-
