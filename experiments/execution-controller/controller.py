@@ -6,6 +6,7 @@ Operator methods authenticate SO_PEERCRED UID 0; tests exercise that OS boundary
 not human review, IAM, native providers or arbitrary user-supplied programs.
 """
 import argparse
+from contextlib import contextmanager
 import hashlib
 import fcntl
 import json
@@ -25,7 +26,7 @@ import time
 import uuid
 
 VERSION = 'rea-evaluation-authorization/1'
-BASELINE = '9ddc190e470f503741a70334e5574cb76dece583'
+BASELINE = 'ecea596a7ccb8a822f7b3483737e6c34205d04e4'
 IMAGE = 'sha256:6ad1291a9fe7d243ee9f23626e6b08614a596431801c55e14cc5ee9d525f28d1'
 AGENT_UID = 1002
 
@@ -68,12 +69,19 @@ def result(request_id=None, run_id=None, status='DENIED', reason='POLICY_DENIED'
             'cleanupStatus': cleanup}
 
 
-def connect_db(state):
-    connection = sqlite3.connect(f'file:{state}/state.db?mode=rw', uri=True, timeout=3)
-    connection.row_factory = sqlite3.Row
-    connection.execute('PRAGMA secure_delete=ON')
-    connection.execute('PRAGMA max_page_count=2048')
-    return connection
+@contextmanager
+def connect_db(state, timeout=3):
+    # sqlite3.Connection.__exit__ commits/rolls back; it does not close the FD.
+    # Bound ownership to this transaction, including setup/commit failures.
+    connection = sqlite3.connect(f'file:{state}/state.db?mode=rw', uri=True, timeout=timeout)
+    try:
+        connection.row_factory = sqlite3.Row
+        connection.execute('PRAGMA secure_delete=ON')
+        connection.execute('PRAGMA max_page_count=2048')
+        with connection:
+            yield connection
+    finally:
+        connection.close()
 
 
 def publish_launch_count(state, count):
@@ -83,15 +91,83 @@ def publish_launch_count(state, count):
     temporary.replace(Path(state) / 'launch-counter')
 
 
+class CaptureSink:
+    """The external owner writes at most the approved bytes, through fixed files."""
+    def __init__(self, directory, total_limit, file_limit):
+        self.directory, self.total_limit, self.file_limit = directory, total_limit, file_limit
+        self.files, self.identities, self.written = {}, {}, {'stdout': 0, 'stderr': 0}
+        self.limit_hit = False
+        try:
+            for name, leaf in [('stdout', 'stdout.json'), ('stderr', 'stderr.log')]:
+                stream = open(directory / leaf, 'wb', buffering=0)
+                self.files[name] = stream
+                info = os.fstat(stream.fileno())
+                self.identities[name] = (info.st_dev, info.st_ino)
+        except OSError:
+            self.close()
+            raise
+
+    def check(self):
+        for name, stream in self.files.items():
+            leaf = 'stdout.json' if name == 'stdout' else 'stderr.log'
+            info = (self.directory / leaf).lstat()
+            current = os.fstat(stream.fileno())
+            if not stat.S_ISREG(info.st_mode) or (info.st_dev, info.st_ino) != self.identities[name] or \
+                    current.st_nlink != 1 or current.st_size != self.written[name]:
+                raise Denied('CONTROL_UNVERIFIED')
+
+    def write(self, name, data):
+        self.check()
+        remaining = min(self.total_limit - sum(self.written.values()), self.file_limit - self.written[name])
+        selected = memoryview(data)[:remaining]
+        while selected:
+            count = self.files[name].write(selected)
+            if not count:
+                raise OSError('evidence write made no progress')
+            self.written[name] += count
+            selected = selected[count:]
+        if len(data) > remaining:
+            self.limit_hit = True
+        return not self.limit_hit
+
+    def observations(self):
+        return {'bytes': dict(self.written), 'totalBytes': sum(self.written.values()),
+                'totalLimit': self.total_limit, 'fileLimit': self.file_limit, 'limitHit': self.limit_hit}
+
+    def close(self):
+        for stream in self.files.values():
+            stream.close()
+
+
+def kernel_snapshot(group):
+    result = {}
+    for name in ['memory.peak', 'memory.events', 'memory.max', 'memory.oom.group',
+                 'pids.peak', 'pids.events', 'pids.max', 'cpu.stat', 'cpu.max']:
+        try:
+            result[name] = (group / name).read_text()
+        except FileNotFoundError:
+            pass  # An independent owner may already have removed this family.
+    return result
+
+
+def kernel_limit_hit(snapshot):
+    memory = dict(line.split() for line in snapshot.get('memory.events', '').splitlines())
+    pids = dict(line.split() for line in snapshot.get('pids.events', '').splitlines())
+    return int(memory.get('oom_kill', 0)) > 0 or int(memory.get('oom', 0)) > 0 or int(pids.get('max', 0)) > 0
+
+
 def stop_family(cgroup):
     path = Path(cgroup)
     if not path.exists():
         return True
-    (path / 'cgroup.kill').write_text('1')
-    for _ in range(100):
-        if 'populated 0' in (path / 'cgroup.events').read_text():
-            return True
-        time.sleep(0.01)
+    try:
+        (path / 'cgroup.kill').write_text('1')
+        for _ in range(100):
+            if 'populated 0' in (path / 'cgroup.events').read_text():
+                return True
+            time.sleep(0.01)
+    except FileNotFoundError:
+        return not path.exists()  # Another owned disposer removed the empty cgroup.
     return False
 
 
@@ -104,11 +180,13 @@ def dispose_unlocked(row, state):
         group = Path('/sys/fs/cgroup') / ('rea-eval-' + run)
         if not stop_family(group):
             raise OSError('owned family still populated')
+        # Release the verified empty family even if evidence deletion is busy.
+        # The run/lease still owns failed raw disposal and keeps the profile shut.
+        if group.exists():
+            group.rmdir()
         root = Path(state) / 'runs' / run
         if root.exists():
             shutil.rmtree(root)
-        if group.exists():
-            group.rmdir()
         return not root.exists() and not group.exists()
     except OSError:
         (Path(state) / 'blocked').touch()
@@ -355,7 +433,7 @@ class Controller:
         if self.registry['base'] != expected_base:
             raise Denied('POLICY_DENIED')
         for name, scenario in self.registry['profiles'].items():
-            if name not in ['basic','echo','wait','probe','disk','cpu','error'] or \
+            if name not in ['basic','echo','wait','probe','disk','cpu','error','memory','pids','output','output-budget'] or \
                     scenario['environment'] != expected_explicit or scenario['executable'] != '/runtime/bin/node' or \
                     scenario['arguments'] != ['/app/experiments/execution-controller/fixture.mjs', name] or \
                     scenario['working_directory'] != '/work':
@@ -364,7 +442,7 @@ class Controller:
             mode = path.stat().st_mode
             if path.stat().st_uid != 0 or mode & 0o022:
                 raise Denied('CONTROL_UNVERIFIED')
-        for name in ['cgroup.kill', 'memory.max', 'pids.max', 'cpu.max']:
+        for name in ['cgroup.kill', 'memory.max', 'memory.oom.group', 'pids.max', 'cpu.max']:
             if not (Path('/sys/fs/cgroup') / name).exists():
                 raise Denied('CONTROL_UNVERIFIED')
 
@@ -405,7 +483,7 @@ class Controller:
                     'limits': {'memoryBytes': 536870912, 'pids': 64, 'cpuMax': '100000 100000',
                                'diskBytes': 16777216, 'fileBytes': 2097152, 'wallSeconds': 10, 'network': 'deny-all'},
                     'evidencePolicy': {'rawUntil': now + 20, 'auditUntil': now + 30, 'rawExport': False,
-                                       'readerUid': 0, 'rawMaxBytes': 8388608, 'auditMaxPages': 2048}}
+                                       'readerUid': 0, 'rawMaxBytes': 1048576, 'auditMaxPages': 2048}}
             intent = encoded(plan)
             with connect_db(self.state) as db:
                 if db.execute('SELECT count(*) FROM requests').fetchone()[0] >= 128:
@@ -418,7 +496,9 @@ class Controller:
         request = message['requestId']
         if not isinstance(request, str):
             raise Denied('POLICY_DENIED')
-        if operation == 'approve':
+        if operation in ['approve', 'execute']:
+            # Hash immutable runtime/policy inputs before acquiring the SQLite
+            # writer transaction. Consumption below remains atomic and fresh.
             self.preflight()
         with connect_db(self.state) as db:
             db.execute('BEGIN IMMEDIATE')
@@ -447,7 +527,6 @@ class Controller:
             if operation == 'status':
                 return result(request, row['run'], status='INCOMPLETE' if row['run'] else 'DENIED',
                               reason='NO_APPROVAL' if row['phase'] == 'pending' else 'CONSUMED', cleanup=row['cleanup'])
-            self.preflight()
             if row['boot'] != self.boot:
                 raise Denied('INTENT_CHANGED')
             if row['phase'] == 'revoked':
@@ -469,54 +548,89 @@ class Controller:
         # The SQLite transaction commits consumption and audit before any fork.
         return self.execute(request, run, decode(row['intent']), row['valid'])
 
+    def prepare_evidence(self, directory):
+        # Fixed owned path; privileged tests may provision a bounded filesystem
+        # here. There is no caller-selected destination or fault flag.
+        raw = directory / 'raw'
+        raw.mkdir(mode=0o700)
+        return raw
+
     def execute(self, request, run, plan, valid):
         group = Path('/sys/fs/cgroup') / ('rea-eval-' + run)
         directory = self.state / 'runs' / run
-        directory.mkdir(mode=0o700)
-        (directory / 'root').mkdir()
-        (directory / 'input').mkdir(mode=0o755)
-        os.chmod(directory / 'input', 0o755)
-        (directory / 'input/scenario.json').write_text(encoded(plan['operation']['scenario']))
-        os.chmod(directory / 'input/scenario.json', 0o444)
-        group.mkdir()
-        for name, value in [('memory.max', str(plan['limits']['memoryBytes'])), ('memory.swap.max', '0'),
-                            ('pids.max', str(plan['limits']['pids'])), ('cpu.max', plan['limits']['cpuMax'])]:
-            (group / name).write_text(value)
-        config = {'root': str(directory / 'root'), 'input': str(directory / 'input'),
-                  'app': str(self.app), 'runtime': str(self.runtime), 'cgroup': str(group),
-                  **plan['limits'], 'environment': plan['environment']['base'] | plan['environment']['parentProbe']}
-        (directory / 'config.json').write_text(encoded(config))
-        lease = self.state / 'leases' / f'{self.boot}-{run}.json'
-        pending_lease = lease.with_suffix('.next')
-        pending_lease.write_text(encoded({'run': run}))
-        pending_lease.replace(lease)
-        read_fd, write_fd = os.pipe()
-        os.set_blocking(read_fd, False)
-        reason, exit_code, captured_at = 'NONE', None, None
+        read_fd = write_fd = None
+        sink = worker = None
+        reason, exit_code, captured_at, stage = 'NONE', None, None, 'SETUP'
         probe = None
-        worker = None
+        metrics, observed = {}, {}
+        error_number = None
+        sqlite_error = None
+        clean = False
+        selector = selectors.DefaultSelector()
         try:
+            lease = self.state / 'leases' / f'{self.boot}-{run}.json'
+            pending_lease = lease.with_suffix('.next')
+            pending_lease.write_text(encoded({'run': run}))
+            pending_lease.replace(lease)
+            directory.mkdir(mode=0o700)
+            (directory / 'root').mkdir()
+            (directory / 'input').mkdir(mode=0o755)
+            os.chmod(directory / 'input', 0o755)
+            (directory / 'input/scenario.json').write_text(encoded(plan['operation']['scenario']))
+            os.chmod(directory / 'input/scenario.json', 0o444)
+            group.mkdir()
+            enforcers = [('memory.max', str(plan['limits']['memoryBytes'])), ('memory.swap.max', '0'),
+                         ('memory.oom.group', '1'), ('pids.max', str(plan['limits']['pids'])),
+                         ('cpu.max', plan['limits']['cpuMax'])]
+            for name, value in enforcers:
+                (group / name).write_text(value)
+                if (group / name).read_text().strip() != value:
+                    raise Denied('CONTROL_UNVERIFIED')
+            config = {'root': str(directory / 'root'), 'input': str(directory / 'input'),
+                      'app': str(self.app), 'runtime': str(self.runtime), 'cgroup': str(group),
+                      **plan['limits'], 'environment': plan['environment']['base'] | plan['environment']['parentProbe']}
+            (directory / 'config.json').write_text(encoded(config))
+            stage = 'EVIDENCE'
+            sink = CaptureSink(self.prepare_evidence(directory), plan['evidencePolicy']['rawMaxBytes'],
+                               plan['limits']['fileBytes'])
+            read_fd, write_fd = os.pipe()
+            os.set_blocking(read_fd, False)
             if time.time() >= valid:
                 raise Denied('EXPIRED')
-            with open(directory / 'stdout.json', 'wb') as out, open(directory / 'stderr.log', 'wb') as err:
-                worker = subprocess.Popen(
-                    ['/usr/bin/unshare', '--mount', '--pid', '--fork', '--kill-child=KILL', '--net',
-                     sys.executable, str(Path(__file__).with_name('worker.py')), str(directory / 'config.json'), str(write_fd)],
-                    stdout=out, stderr=err, stdin=subprocess.DEVNULL, pass_fds=(write_fd,),
-                    env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'}, start_new_session=True)
-                os.close(write_fd)
-                write_fd = None
-                pending = b''
-                deadline = time.monotonic() + min(valid - time.time(), plan['limits']['wallSeconds'])
-                while True:
-                    if self.janitor.poll() is not None or self.guardian.poll() is not None:
-                        (self.state / 'blocked').touch()
-                        reason = 'CONTROL_UNVERIFIED'
-                        break
-                    try:
-                        pending += os.read(read_fd, 4096)
-                    except BlockingIOError:
-                        pass
+            worker = subprocess.Popen(
+                ['/usr/bin/unshare', '--mount', '--pid', '--fork', '--kill-child=KILL', '--net',
+                 sys.executable, str(Path(__file__).with_name('worker.py')), str(directory / 'config.json'), str(write_fd)],
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.DEVNULL, pass_fds=(write_fd,),
+                env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'}, start_new_session=True)
+            os.close(write_fd)
+            write_fd = None
+            for name, stream in [('stdout', worker.stdout), ('stderr', worker.stderr)]:
+                os.set_blocking(stream.fileno(), False)
+                selector.register(stream, selectors.EVENT_READ, name)
+            selector.register(read_fd, selectors.EVENT_READ, 'report')
+            pending = b''
+            deadline = time.monotonic() + min(valid - time.time(), plan['limits']['wallSeconds'])
+            while True:
+                if self.janitor.poll() is not None or self.guardian.poll() is not None:
+                    reason = 'CONTROL_UNVERIFIED'
+                    break
+                stage = 'EVIDENCE'
+                sink.check()
+                available = selector.select(timeout=0.02)
+                for key, _ in available:
+                    data = os.read(key.fd, 65536 if key.data != 'report' else 4096)
+                    if not data:
+                        selector.unregister(key.fileobj)
+                        continue
+                    if key.data != 'report':
+                        stage = 'EVIDENCE'
+                        if not sink.write(key.data, data):
+                            reason = 'LIMIT_REACHED'
+                            break
+                        continue
+                    pending += data
+                    if len(pending) > 16384:
+                        raise Denied('CONTROL_UNVERIFIED')
                     while b'\n' in pending:
                         line, pending = pending.split(b'\n', 1)
                         report = decode(line)
@@ -525,41 +639,63 @@ class Controller:
                             (directory / 'probe.json').write_text(encoded(probe))
                             if report.get('failed'):
                                 reason = 'CONTROL_UNVERIFIED'
-                                break
                         if report.get('launched'):
                             with self.lock:
                                 self.launches += 1
                                 publish_launch_count(self.state, self.launches)
-                            with connect_db(self.state) as db:
+                            stage = 'AUDIT'
+                            with connect_db(self.state, timeout=0.2) as db:
                                 self.event(db, request, 'launched', plan['evidencePolicy']['auditUntil'])
                         if 'exitCode' in report:
-                            exit_code, captured_at = report['exitCode'], time.monotonic()
-                            (directory / 'capture.done').write_text(str(exit_code))
-                    with connect_db(self.state) as db:
-                        state = db.execute('SELECT phase FROM requests WHERE id=?', (request,)).fetchone()
-                        self.event(db, request, 'heartbeat', plan['evidencePolicy']['auditUntil'])
-                    if state is None or state['phase'] == 'revoked':
-                        reason = 'REVOKED'
-                    if out.tell() + err.tell() >= plan['evidencePolicy']['rawMaxBytes']:
-                        reason = 'LIMIT_REACHED'
-                    if captured_at is None and time.monotonic() >= deadline:
-                        reason = 'EXPIRED' if time.time() >= valid else 'LIMIT_REACHED'
-                    if captured_at is not None and time.monotonic() - captured_at >= 0.8:
-                        break  # Operator test observer gets a bounded private inspection window.
-                    if reason != 'NONE' or worker.poll() is not None:
-                        break
-                    time.sleep(0.05)
-            # Close every parent raw FD before disposal; the helper/target FDs
-            # are closed by the cgroup kill. No stdout is returned to the agent.
-        except (sqlite3.Error, OSError):
+                            exit_code = report['exitCode']
+                metrics = kernel_snapshot(group)
+                if kernel_limit_hit(metrics):
+                    reason = 'LIMIT_REACHED'
+                stage = 'AUDIT'
+                with connect_db(self.state, timeout=0.2) as db:
+                    row = db.execute('SELECT phase FROM requests WHERE id=?', (request,)).fetchone()
+                    self.event(db, request, 'heartbeat', plan['evidencePolicy']['auditUntil'])
+                if row is None or row['phase'] == 'revoked':
+                    reason = 'REVOKED'
+                # exitCode is sent after the real CLI has exited. Drain its
+                # already-written pipe bytes before exposing capture.done.
+                if exit_code is not None and captured_at is None and not available:
+                    stage = 'EVIDENCE'
+                    captured_at = time.monotonic()
+                    (directory / 'capture.done').write_text(str(exit_code))
+                if captured_at is None and time.monotonic() >= deadline:
+                    reason = 'EXPIRED' if time.time() >= valid else 'LIMIT_REACHED'
+                if captured_at is not None and time.monotonic() - captured_at >= 0.8:
+                    break
+                if reason != 'NONE' or worker.poll() is not None:
+                    break
+        except sqlite3.Error as error:
+            sqlite_error = getattr(error, 'sqlite_errorname', 'SQLITE_ERROR')
             reason = 'AUDIT_UNAVAILABLE'
+            (self.state / 'blocked').touch()
+        except OSError as error:
+            error_number = error.errno
+            reason = 'AUDIT_UNAVAILABLE' if stage == 'AUDIT' else 'CONTROL_UNVERIFIED'
+            (self.state / 'blocked').touch()
         except Denied as error:
             reason = str(error)
+            if reason == 'CONTROL_UNVERIFIED':
+                (self.state / 'blocked').touch()
         finally:
-            os.close(read_fd)
-            if write_fd is not None:
-                os.close(write_fd)
-            metrics = {p: (group / p).read_text() for p in ['memory.peak', 'memory.events', 'cpu.stat', 'pids.events'] if (group / p).exists()}
+            selector.close()
+            for fd in [read_fd, write_fd]:
+                if fd is not None:
+                    os.close(fd)
+            if sink is not None:
+                observed = sink.observations()
+                sink.close()
+            # Reconcile terminal kernel facts even if the worker died between
+            # polling iterations (e.g. whole-family OOM).
+            final_metrics = kernel_snapshot(group)
+            if final_metrics:
+                metrics = final_metrics
+            if kernel_limit_hit(metrics) and reason == 'NONE':
+                reason = 'LIMIT_REACHED'
             clean = dispose({'run': run}, self.state)
             if worker is not None:
                 try:
@@ -568,19 +704,26 @@ class Controller:
                     worker.kill()
                     worker.wait(timeout=2)
                     clean = False
+                for stream in [worker.stdout, worker.stderr]:
+                    stream.close()
             try:
-                with connect_db(self.state) as db:
+                with connect_db(self.state, timeout=0.2) as db:
                     db.execute('UPDATE requests SET intent=NULL,hash=NULL,phase=?,cleanup=? WHERE id=?',
                                ('settled', 'VERIFIED' if clean else 'FAILED', request))
                     db.execute('DELETE FROM decisions WHERE request=?', (request,))
                     self.event(db, request, 'raw_disposed' if clean else 'disposal_failed', plan['evidencePolicy']['auditUntil'])
-            except sqlite3.Error:
+            except (sqlite3.Error, OSError):
                 clean = False
-            # Private metadata: no raw bytes, argv, environment values or diagnostics.
-            (self.state / f'{run}.metrics.json').write_text(encoded({'limits': plan['limits'], 'probe': probe, 'cgroup': metrics,
-                                                                  'exitCode': exit_code, 'cleanup': clean}))
-        # The peer can stop the worker between the loop's liveness check and
-        # worker.poll(). Resolve that observed control loss at settlement too.
+                (self.state / 'blocked').touch()
+            receipt = {'limits': plan['limits'], 'probe': probe, 'cgroup': metrics,
+                       'exitCode': exit_code, 'cleanup': clean, 'reason': reason,
+                       'evidence': observed, 'faultStage': stage if error_number is not None else None,
+                       'osErrno': error_number, 'sqliteError': sqlite_error}
+            try:
+                (self.state / f'{run}.metrics.json').write_text(encoded(receipt))
+            except OSError:
+                clean = False
+                (self.state / 'blocked').touch()
         if self.janitor.poll() is not None or self.guardian.poll() is not None:
             (self.state / 'blocked').touch()
             if reason == 'NONE':
@@ -614,6 +757,7 @@ class Handler(socketserver.StreamRequestHandler):
             except (sqlite3.Error, OSError):
                 response = result(reason='AUDIT_UNAVAILABLE')
         except (sqlite3.Error, OSError):
+            (self.server.controller.state / 'blocked').touch()
             response = result(reason='AUDIT_UNAVAILABLE')
         try:
             self.wfile.write((encoded(response) + '\n').encode())

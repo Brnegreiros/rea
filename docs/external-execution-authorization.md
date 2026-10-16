@@ -299,6 +299,12 @@ from operator decision to intent, execution, raw manifest and disposal outcome.
 Expiry/cancellation tests must also prove termination of the owned family and
 worker disposal. A structurally valid record is never an ALLOW decision by itself.
 
+The [resource/storage evaluation](verification/controller-resource-storage-2026-10-16.md)
+exercises finite synthetic memory, PID and output loads plus selected real
+midrun SQLite/filesystem failures. It adds no execution authority to the
+contract. Its narrow PASS oracles and retained failed-deletion outcomes do not
+promote the complete EA-18/EA-26 criteria or authorize human/production readiness.
+
 REA-1.1 remains partial and production/unrestricted-agent use remains NO-GO.
 Next: close the prototype's remaining acceptance gaps before broadening the
 profile. Preserve no platform integration, main changes, native providers or

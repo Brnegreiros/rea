@@ -5,6 +5,7 @@ JR-05 freezes the real janitor before exec, then kills its exact parent. Other
 cases use the unchanged controller and real Unix peers / Linux cgroups.
 """
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import contextmanager
 import json
 import os
 from pathlib import Path
@@ -83,8 +84,13 @@ s=socket.socket(socket.AF_UNIX);s.settimeout(15);s.connect(sys.argv[1]);s.sendal
     return json.loads(p.stdout)
 
 
+@contextmanager
 def database(state):
-    c=sqlite3.connect(state/'state.db');c.row_factory=sqlite3.Row;return c
+    c=sqlite3.connect(state/'state.db')
+    try:
+        c.row_factory=sqlite3.Row
+        with c:yield c
+    finally:c.close()
 
 
 def alive(pid):

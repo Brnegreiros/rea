@@ -1,0 +1,5103 @@
+{
+  "timestamp": "2026-10-16T12:56:29.095630+00:00",
+  "baseline": "ecea596a7ccb8a822f7b3483737e6c34205d04e4",
+  "catalogue": {
+    "baseline": "ecea596a7ccb8a822f7b3483737e6c34205d04e4",
+    "cases": [
+      {
+        "id": "EA-01",
+        "status": "PASS",
+        "observation": {
+          "rawSha256": "0305b93fee50cd3787d55b3d7f64b2b9cb8393d68b7a44e2700e0e1f2085bd5f",
+          "rawBytes": 7023,
+          "agentRawReadDenied": true,
+          "canonicalEvidence": true,
+          "explicitRetained": true,
+          "ambientAbsent": true,
+          "targetFlags": {
+            "allExpectedBooleans": true,
+            "syntheticExplicitValueMatched": true
+          },
+          "fixtureProbe": null,
+          "markedPlaceholder": false,
+          "markedEchoRetained": false,
+          "privateDiagnostic": false,
+          "probe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "resources": {
+            "cgroup": {
+              "cpu.max": "100000 100000\n",
+              "cpu.stat": "usage_usec 3225541\nuser_usec 2641509\nsystem_usec 584032\nnice_usec 0\nnr_periods 36\nnr_throttled 31\nthrottled_usec 2913802\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.max": "536870912\n",
+              "memory.oom.group": "1\n",
+              "memory.peak": "389971968\n",
+              "pids.events": "max 0\n",
+              "pids.max": "64\n",
+              "pids.peak": "20\n"
+            },
+            "cleanup": true,
+            "evidence": {
+              "bytes": {
+                "stderr": 666,
+                "stdout": 7023
+              },
+              "fileLimit": 2097152,
+              "limitHit": false,
+              "totalBytes": 7689,
+              "totalLimit": 1048576
+            },
+            "exitCode": 0,
+            "faultStage": null,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "osErrno": null,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "reason": "NONE",
+            "sqliteError": null
+          },
+          "rawDisposed": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 5.548
+      },
+      {
+        "id": "EA-02",
+        "status": "PASS",
+        "observation": [
+          {
+            "strictRequestFieldsRejected": [
+              "approved",
+              "approvalId",
+              "approval"
+            ]
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "NO_APPROVAL",
+            "requestId": "2b1a278f2b8946ae912a30a0f5fc3763",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "POLICY_DENIED",
+            "requestId": "e8769adb81334f7f83fb548e7b5997c8",
+            "runId": null,
+            "status": "DENIED"
+          }
+        ],
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.427
+      },
+      {
+        "id": "EA-03",
+        "status": "PASS",
+        "observation": {
+          "strictRequestFieldsRejected": [
+            "requesterId",
+            "operatorUid",
+            "supervisorApproval",
+            "targetInstructions"
+          ]
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.079
+      },
+      {
+        "id": "EA-04",
+        "status": "PASS",
+        "observation": {
+          "mutationsRejected": [
+            "command.executable",
+            "command.argv",
+            "command.cwd",
+            "target.sha256",
+            "operation.scenario.arguments",
+            "operation.scenario.events",
+            "operation.scenario.terminal",
+            "operation.scenario.filesystem_observation_paths",
+            "operation.scenario.timeout_ms",
+            "operation.scenario.normalization"
+          ],
+          "method": "privileged stored-intent fault injection; independent peer isolation tested separately"
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 4.576
+      },
+      {
+        "id": "EA-05",
+        "status": "PASS",
+        "observation": {
+          "mutationsRejected": [
+            "environment.base",
+            "environment.internal",
+            "environment.explicit",
+            "environment.parentProbe"
+          ],
+          "method": "privileged stored-intent fault injection; independent peer isolation tested separately"
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 2.435
+      },
+      {
+        "id": "EA-06",
+        "status": "PASS",
+        "observation": {
+          "mutationsRejected": [
+            "source.reaCommit",
+            "source.image",
+            "source.files",
+            "source.controllerBoot",
+            "worker.id",
+            "worker.platform",
+            "evidencePolicy.rawUntil",
+            "limits.memoryBytes"
+          ],
+          "method": "privileged stored-intent fault injection; independent peer isolation tested separately"
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 3.866
+      },
+      {
+        "id": "EA-07",
+        "status": "PASS",
+        "observation": {
+          "changedFixtureAndSymlinkDenied": true,
+          "immutableNamespace": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "targetWriteImportAndNetworkProbes": {
+            "denied": [
+              true,
+              true,
+              true
+            ],
+            "writeDenied": true,
+            "importWriteDenied": true,
+            "networkDenied": true
+          }
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 6.486
+      },
+      {
+        "id": "EA-08",
+        "status": "PASS",
+        "observation": {
+          "strictRequestFieldsRejected": [
+            "environment",
+            "platform",
+            "envOverrides",
+            "REA_PROCESS_RUN_ID",
+            "",
+            "\u0000",
+            "="
+          ]
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.235
+      },
+      {
+        "id": "EA-09",
+        "status": "PASS",
+        "observation": {
+          "rawSha256": "5ff786f32b3081106f60d3e43615fd3b22b0737e01f994d45a2ee7edaeb3f0a6",
+          "rawBytes": 7023,
+          "agentRawReadDenied": true,
+          "canonicalEvidence": true,
+          "explicitRetained": true,
+          "ambientAbsent": true,
+          "targetFlags": {
+            "allExpectedBooleans": true,
+            "syntheticExplicitValueMatched": true
+          },
+          "fixtureProbe": null,
+          "markedPlaceholder": false,
+          "markedEchoRetained": false,
+          "privateDiagnostic": false,
+          "probe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "resources": {
+            "cgroup": {
+              "cpu.max": "100000 100000\n",
+              "cpu.stat": "usage_usec 3050899\nuser_usec 2616115\nsystem_usec 434783\nnice_usec 0\nnr_periods 33\nnr_throttled 28\nthrottled_usec 2860931\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.max": "536870912\n",
+              "memory.oom.group": "1\n",
+              "memory.peak": "388308992\n",
+              "pids.events": "max 0\n",
+              "pids.max": "64\n",
+              "pids.peak": "20\n"
+            },
+            "cleanup": true,
+            "evidence": {
+              "bytes": {
+                "stderr": 666,
+                "stdout": 7023
+              },
+              "fileLimit": 2097152,
+              "limitHit": false,
+              "totalBytes": 7689,
+              "totalLimit": 1048576
+            },
+            "exitCode": 0,
+            "faultStage": null,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "osErrno": null,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "reason": "NONE",
+            "sqliteError": null
+          },
+          "rawDisposed": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 5.36
+      },
+      {
+        "id": "EA-10",
+        "status": "PASS",
+        "observation": {
+          "strictRequestFieldsRejected": [
+            "envOverrides",
+            "config.env",
+            "SDKROOT",
+            "DEVELOPER_DIR",
+            "TOOLCHAINS",
+            "CLANG_MODULE_CACHE_PATH",
+            "REA_PROCESS_RUN_ID"
+          ]
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.153
+      },
+      {
+        "id": "EA-11",
+        "status": "PASS",
+        "observation": {
+          "strictRequestFieldsRejected": [
+            "NODE_OPTIONS",
+            "LD_PRELOAD",
+            "PYTHONPATH",
+            "JAVA_TOOL_OPTIONS",
+            "PATH",
+            "HOME",
+            "LD_LIBRARY_PATH",
+            "DISPLAY"
+          ]
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.18
+      },
+      {
+        "id": "EA-12",
+        "status": "PASS",
+        "observation": {
+          "strictRequestFieldsRejected": [
+            "environment",
+            "arguments",
+            "stdin",
+            "script",
+            "file",
+            "providerConfig",
+            "url",
+            "classification"
+          ]
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.166
+      },
+      {
+        "id": "EA-13",
+        "status": "PASS",
+        "observation": [
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "bc315c4926a945e8aea5e4f46aa7e539",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "d139808d1c244c25be46d9e821667a52",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "d407f21d01bf479f913d0eac29913cd4",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "91ff4c16950545a6b7c327f640d102cd",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "10a06a9424534fe1bf03e2d838df7d5b",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "1dc2f12ebfd24e5eb4d97774309f25f7",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "b183bffd78c94eccb9df5190812963b0",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "a1584fe87eba4abd8219e3132adb4b7b",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "dcd34df0cf01406898293dfdfce8563b",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "d3f08b6a365e400db92ac6fdd6512810",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "1d0588ca833f4dd192cfc5b6b30c4223",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "683fd30bc1374f5d9b39c1c0622a778e",
+            "runId": null,
+            "status": "DENIED"
+          }
+        ],
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 4.304
+      },
+      {
+        "id": "EA-14",
+        "status": "NOT_TESTED",
+        "observation": {
+          "expiredRevokedFutureDenied": true
+        },
+        "remaining": "Restart/crash evidence is collected by EA-24; ambiguous consumed retry is covered by EA-15. Trusted-clock uncertainty is not injected here.",
+        "evidenceKind": "PARTIAL_REAL_LINUX_OBSERVATIONS",
+        "wallSeconds": 4.283
+      },
+      {
+        "id": "EA-15",
+        "status": "PASS",
+        "observation": {
+          "launches": 1,
+          "responses": [
+            "DENIED",
+            "COMPLETED"
+          ],
+          "retryDenied": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 5.732
+      },
+      {
+        "id": "EA-16",
+        "status": "NOT_TESTED",
+        "observation": {
+          "revoke": "REVOKED",
+          "cancel": "REVOKED",
+          "expiry": "EXPIRED"
+        },
+        "remaining": "Controller death is separately measured by EA-24; forced cleanup-failure retention/ownership branch is not dynamically certified.",
+        "evidenceKind": "PARTIAL_REAL_LINUX_OBSERVATIONS",
+        "wallSeconds": 5.021
+      },
+      {
+        "id": "EA-17",
+        "status": "NOT_TESTED",
+        "observation": {
+          "writableInputRootDenied": true
+        },
+        "remaining": "Actual worker non-root/capability/filesystem/network probes run on positive captures; each missing CPU/memory/PID/disk/network enforcement is not independently fault-injected.",
+        "evidenceKind": "PARTIAL_REAL_LINUX_OBSERVATIONS",
+        "wallSeconds": 1.377
+      },
+      {
+        "id": "EA-18",
+        "status": "NOT_TESTED",
+        "observation": {
+          "disk": {
+            "rawSha256": "f8db596de49042ab9a8f9badf176cbb3a9c29078ee34746a5719c6ce9060bf76",
+            "rawBytes": 6761,
+            "agentRawReadDenied": true,
+            "canonicalEvidence": true,
+            "explicitRetained": true,
+            "ambientAbsent": true,
+            "targetFlags": null,
+            "fixtureProbe": null,
+            "markedPlaceholder": false,
+            "markedEchoRetained": false,
+            "privateDiagnostic": false,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "resources": {
+              "cgroup": {
+                "cpu.max": "100000 100000\n",
+                "cpu.stat": "usage_usec 3162109\nuser_usec 2776189\nsystem_usec 385920\nnice_usec 0\nnr_periods 35\nnr_throttled 29\nthrottled_usec 3117912\nnr_bursts 0\nburst_usec 0\n",
+                "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+                "memory.max": "536870912\n",
+                "memory.oom.group": "1\n",
+                "memory.peak": "394059776\n",
+                "pids.events": "max 0\n",
+                "pids.max": "64\n",
+                "pids.peak": "20\n"
+              },
+              "cleanup": true,
+              "evidence": {
+                "bytes": {
+                  "stderr": 666,
+                  "stdout": 6761
+                },
+                "fileLimit": 2097152,
+                "limitHit": false,
+                "totalBytes": 7427,
+                "totalLimit": 1048576
+              },
+              "exitCode": 0,
+              "faultStage": null,
+              "limits": {
+                "cpuMax": "100000 100000",
+                "diskBytes": 16777216,
+                "fileBytes": 2097152,
+                "memoryBytes": 536870912,
+                "network": "deny-all",
+                "pids": 64,
+                "wallSeconds": 10
+              },
+              "osErrno": null,
+              "probe": {
+                "appWritable": false,
+                "capEffZero": true,
+                "controllerVisible": false,
+                "gid": 1001,
+                "networkDenied": true,
+                "noNewPrivs": true,
+                "rootWritable": false,
+                "scenarioReadable": true,
+                "uid": 1001,
+                "workWritable": true
+              },
+              "reason": "NONE",
+              "sqliteError": null
+            },
+            "rawDisposed": true
+          },
+          "cpu": {
+            "rawSha256": "17a9b3a687d28055692e510f4119740d6017a1e456a542a7bc6db2a8cf1ef2ea",
+            "rawBytes": 6746,
+            "agentRawReadDenied": true,
+            "canonicalEvidence": true,
+            "explicitRetained": true,
+            "ambientAbsent": true,
+            "targetFlags": null,
+            "fixtureProbe": null,
+            "markedPlaceholder": false,
+            "markedEchoRetained": false,
+            "privateDiagnostic": false,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "resources": {
+              "cgroup": {
+                "cpu.max": "100000 100000\n",
+                "cpu.stat": "usage_usec 3708244\nuser_usec 3287372\nsystem_usec 420872\nnice_usec 0\nnr_periods 40\nnr_throttled 35\nthrottled_usec 4048713\nnr_bursts 0\nburst_usec 0\n",
+                "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+                "memory.max": "536870912\n",
+                "memory.oom.group": "1\n",
+                "memory.peak": "420126720\n",
+                "pids.events": "max 0\n",
+                "pids.max": "64\n",
+                "pids.peak": "23\n"
+              },
+              "cleanup": true,
+              "evidence": {
+                "bytes": {
+                  "stderr": 1082,
+                  "stdout": 6746
+                },
+                "fileLimit": 2097152,
+                "limitHit": false,
+                "totalBytes": 7828,
+                "totalLimit": 1048576
+              },
+              "exitCode": 0,
+              "faultStage": null,
+              "limits": {
+                "cpuMax": "100000 100000",
+                "diskBytes": 16777216,
+                "fileBytes": 2097152,
+                "memoryBytes": 536870912,
+                "network": "deny-all",
+                "pids": 64,
+                "wallSeconds": 10
+              },
+              "osErrno": null,
+              "probe": {
+                "appWritable": false,
+                "capEffZero": true,
+                "controllerVisible": false,
+                "gid": 1001,
+                "networkDenied": true,
+                "noNewPrivs": true,
+                "rootWritable": false,
+                "scenarioReadable": true,
+                "uid": 1001,
+                "workWritable": true
+              },
+              "reason": "NONE",
+              "sqliteError": null
+            },
+            "rawDisposed": true
+          }
+        },
+        "remaining": "Finite disk/file and CPU fixtures executed; memory/PID exhaustion and global evidence-quota failure are not stress-tested. Complete resource case remains NOT_TESTED.",
+        "evidenceKind": "PARTIAL_REAL_LINUX_OBSERVATIONS",
+        "wallSeconds": 11.572
+      },
+      {
+        "id": "EA-19",
+        "status": "PASS",
+        "observation": {
+          "unsupportedRoutesDenied": true,
+          "agentCannotReadOrInvokeCheckout": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.16
+      },
+      {
+        "id": "EA-20",
+        "status": "PASS",
+        "observation": {
+          "auditAndAgentResponseExcludeRawCanaries": true,
+          "rawObservedThenDisposed": {
+            "rawSha256": "7e2a329b01b98069e9c251cabcdd556179542ac39b7a4841b2be7e67d10039b3",
+            "rawBytes": 8720,
+            "agentRawReadDenied": true,
+            "canonicalEvidence": true,
+            "explicitRetained": true,
+            "ambientAbsent": true,
+            "targetFlags": null,
+            "fixtureProbe": null,
+            "markedPlaceholder": false,
+            "markedEchoRetained": false,
+            "privateDiagnostic": true,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "resources": {
+              "cgroup": {
+                "cpu.max": "100000 100000\n",
+                "cpu.stat": "usage_usec 3170643\nuser_usec 2734515\nsystem_usec 436128\nnice_usec 0\nnr_periods 35\nnr_throttled 29\nthrottled_usec 2989637\nnr_bursts 0\nburst_usec 0\n",
+                "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+                "memory.max": "536870912\n",
+                "memory.oom.group": "1\n",
+                "memory.peak": "394969088\n",
+                "pids.events": "max 0\n",
+                "pids.max": "64\n",
+                "pids.peak": "20\n"
+              },
+              "cleanup": true,
+              "evidence": {
+                "bytes": {
+                  "stderr": 666,
+                  "stdout": 8720
+                },
+                "fileLimit": 2097152,
+                "limitHit": false,
+                "totalBytes": 9386,
+                "totalLimit": 1048576
+              },
+              "exitCode": 0,
+              "faultStage": null,
+              "limits": {
+                "cpuMax": "100000 100000",
+                "diskBytes": 16777216,
+                "fileBytes": 2097152,
+                "memoryBytes": 536870912,
+                "network": "deny-all",
+                "pids": 64,
+                "wallSeconds": 10
+              },
+              "osErrno": null,
+              "probe": {
+                "appWritable": false,
+                "capEffZero": true,
+                "controllerVisible": false,
+                "gid": 1001,
+                "networkDenied": true,
+                "noNewPrivs": true,
+                "rootWritable": false,
+                "scenarioReadable": true,
+                "uid": 1001,
+                "workWritable": true
+              },
+              "reason": "NONE",
+              "sqliteError": null
+            },
+            "rawDisposed": true
+          }
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 5.476
+      },
+      {
+        "id": "EA-21",
+        "status": "PASS",
+        "observation": {
+          "rawSha256": "d82db532ba36c76e101cd732d5746c844ca330cfebe50f88ddb1e70c23e6875d",
+          "rawBytes": 7880,
+          "agentRawReadDenied": true,
+          "canonicalEvidence": true,
+          "explicitRetained": true,
+          "ambientAbsent": true,
+          "targetFlags": null,
+          "fixtureProbe": null,
+          "markedPlaceholder": true,
+          "markedEchoRetained": true,
+          "privateDiagnostic": false,
+          "probe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "resources": {
+            "cgroup": {
+              "cpu.max": "100000 100000\n",
+              "cpu.stat": "usage_usec 4907591\nuser_usec 4389162\nsystem_usec 518428\nnice_usec 0\nnr_periods 87\nnr_throttled 43\nthrottled_usec 6407924\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.max": "536870912\n",
+              "memory.oom.group": "1\n",
+              "memory.peak": "395018240\n",
+              "pids.events": "max 0\n",
+              "pids.max": "64\n",
+              "pids.peak": "20\n"
+            },
+            "cleanup": true,
+            "evidence": {
+              "bytes": {
+                "stderr": 7242,
+                "stdout": 7880
+              },
+              "fileLimit": 2097152,
+              "limitHit": false,
+              "totalBytes": 15122,
+              "totalLimit": 1048576
+            },
+            "exitCode": 0,
+            "faultStage": null,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "osErrno": null,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "reason": "NONE",
+            "sqliteError": null
+          },
+          "rawDisposed": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 10.692
+      },
+      {
+        "id": "EA-22",
+        "status": "PASS",
+        "observation": {
+          "exportAndReportApiAbsent": true,
+          "noCallerDestinationAccepted": true,
+          "liveRawReadDeniedByUid": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 5.491
+      },
+      {
+        "id": "EA-23",
+        "status": "NOT_TESTED",
+        "observation": {
+          "implemented": false
+        },
+        "remaining": "Separate approved derived-report workflow and transformation ledger are not implemented; raw Evidence is not rewritten.",
+        "evidenceKind": "DECLARATION_ONLY_NO_RUNTIME_CONTROL",
+        "wallSeconds": 0.0
+      },
+      {
+        "id": "EA-24",
+        "status": "PASS",
+        "observation": {
+          "controllerSigkill": true,
+          "independentJanitorStoppedFamily": true,
+          "rawHandleRemoved": true,
+          "auditAndDecisionExpired": true,
+          "restartDidNotRestoreApproval": true,
+          "scope": "controlled logical copies only; no physical erasure claim"
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 31.231
+      },
+      {
+        "id": "EA-25",
+        "status": "NOT_TESTED",
+        "observation": {
+          "operatorInjectedBlockedProfileDenies": true
+        },
+        "remaining": "Blocked-profile denial is real; unknown provider backups, failed deletion receipts and cleanup failures are not fully injected.",
+        "evidenceKind": "PARTIAL_REAL_LINUX_OBSERVATIONS",
+        "wallSeconds": 0.02
+      },
+      {
+        "id": "EA-26",
+        "status": "NOT_TESTED",
+        "observation": {
+          "missingDatabaseDeniedBeforeLaunch": true
+        },
+        "remaining": "Prelaunch audit unavailability exercised. Midrun full/disconnected audit and evidence sinks are not certified; NOT_TESTED for the complete case.",
+        "evidenceKind": "PARTIAL_REAL_LINUX_OBSERVATIONS",
+        "wallSeconds": 1.242
+      },
+      {
+        "id": "EA-27",
+        "status": "PASS",
+        "observation": {
+          "peerCredentialRoleEnforced": true,
+          "privateStateUnreadableToAgentUid": true,
+          "workerProbe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          }
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 5.409
+      },
+      {
+        "id": "EA-28",
+        "status": "NOT_TESTED",
+        "observation": {
+          "productionAndUnrestrictedAgents": "NO_GO",
+          "acceptanceReportIsNotAnApprovalCapability": true
+        },
+        "remaining": "No independent release/human-attestation gate is implemented. Partial catalogue and automated operator tests cannot establish readiness.",
+        "evidenceKind": "DECLARATION_ONLY_NO_RUNTIME_CONTROL",
+        "wallSeconds": 0.0
+      }
+    ],
+    "summary": {
+      "PASS": 20,
+      "FAIL": 0,
+      "NOT_TESTED": 8
+    },
+    "productionAndUnrestrictedAgents": "NO_GO",
+    "operatorReview": "AUTOMATED_UID_0_TEST_ORCHESTRATION_NOT_HUMAN_REVIEW",
+    "statePath": "/var/lib/rea-controller/test-b37f8346592b4b88a7bcad17e7440ff3",
+    "newRealCredentials": false
+  },
+  "janitorRegressions": {
+    "cases": [
+      {
+        "id": "JR-01",
+        "status": "PASS",
+        "evidenceKind": "PRIVILEGED_STARTUP_FAULT_WITH_REAL_CHILD_AND_FDS",
+        "observation": {
+          "noSocket": true,
+          "noRequests": true,
+          "reaLaunches": 0,
+          "blocked": true,
+          "childReaped": true,
+          "boundedFailureSeconds": 0.064
+        },
+        "wallSeconds": 0.449
+      },
+      {
+        "id": "JR-02",
+        "status": "PASS",
+        "evidenceKind": "PRIVILEGED_STARTUP_FAULT_WITH_REAL_CHILD_AND_FDS",
+        "observation": {
+          "noSocket": true,
+          "noRequests": true,
+          "reaLaunches": 0,
+          "blocked": true,
+          "childReaped": true,
+          "boundedFailureSeconds": 2.07
+        },
+        "wallSeconds": 2.454
+      },
+      {
+        "id": "JR-03",
+        "status": "PASS",
+        "evidenceKind": "PRIVILEGED_STARTUP_FAULT_WITH_REAL_CHILD_AND_FDS",
+        "observation": {
+          "noSocket": true,
+          "noRequests": true,
+          "reaLaunches": 0,
+          "blocked": true,
+          "childReaped": true,
+          "boundedFailureSeconds": 0.032
+        },
+        "wallSeconds": 0.416
+      },
+      {
+        "id": "JR-04",
+        "status": "PASS",
+        "evidenceKind": "PRIVILEGED_STARTUP_FAULT_WITH_REAL_CHILD_AND_FDS",
+        "observation": {
+          "noSocket": true,
+          "noRequests": true,
+          "reaLaunches": 0,
+          "blocked": true,
+          "childReaped": true,
+          "boundedFailureSeconds": 2.069
+        },
+        "wallSeconds": 2.454
+      },
+      {
+        "id": "JR-05",
+        "status": "PASS",
+        "evidenceKind": "REAL_JANITOR_DELAYED_EXEC_AND_PARENT_SIGKILL_WITH_INJECTED_PRIVATE_ROW",
+        "observation": {
+          "parentKilledBeforeJanitorExec": true,
+          "survivingOwnerObservedParentDeath": true,
+          "injectedPrivateIntentExpired": true,
+          "rows": {
+            "requests": 0,
+            "decisions": 0,
+            "audit": 0
+          },
+          "reaLaunches": 0,
+          "noSocket": true
+        },
+        "wallSeconds": 2.476
+      },
+      {
+        "id": "JR-06",
+        "status": "PASS",
+        "evidenceKind": "REAL_UNMODIFIED_CONTROLLER_AND_JANITOR",
+        "observation": {
+          "parentKilledAfterReadyBeforeFirstRequest": true,
+          "janitorExited": true,
+          "reaLaunches": 0
+        },
+        "wallSeconds": 0.446
+      },
+      {
+        "id": "JR-07",
+        "status": "PASS",
+        "evidenceKind": "REAL_UNMODIFIED_CONTROLLER_AND_JANITOR",
+        "observation": {
+          "janitorSigkill": true,
+          "profileBlocked": true,
+          "activeFamilyRemoved": false,
+          "reaLaunches": 0,
+          "retentionAfterPrimaryLoss": "Measured separately by JR-09, not certified by this subcase"
+        },
+        "wallSeconds": 1.594
+      },
+      {
+        "id": "JR-08",
+        "status": "PASS",
+        "evidenceKind": "REAL_REA_CLI_WORKER_AND_JANITOR_SIGKILL",
+        "observation": {
+          "janitorSigkill": true,
+          "profileBlocked": true,
+          "activeFamilyRemoved": true,
+          "reaLaunches": 1,
+          "retentionAfterPrimaryLoss": "Measured separately by JR-09, not certified by this subcase"
+        },
+        "wallSeconds": 1.981
+      },
+      {
+        "id": "JR-09",
+        "status": "PASS",
+        "evidenceKind": "REAL_DEADLINES_AFTER_PRIMARY_LOSS_WITH_STANDBY",
+        "observation": [
+          {
+            "state": "/var/lib/rea-controller/janitor-test-bc155e437150488aa2a6b37a159505e4",
+            "blocked": true,
+            "rawIntentsPastDeadline": 0,
+            "requestsPastAuditDeadline": 0,
+            "auditRows": 0
+          },
+          {
+            "state": "/var/lib/rea-controller/janitor-test-9c2e79593d9644bc89292edcb880830c",
+            "blocked": true,
+            "rawIntentsPastDeadline": 0,
+            "requestsPastAuditDeadline": 0,
+            "auditRows": 0
+          }
+        ],
+        "wallSeconds": 30.213
+      },
+      {
+        "id": "JR-10",
+        "status": "PASS",
+        "evidenceKind": "REAL_PRIVATE_METRIC_PRODUCER_WITH_CONCURRENT_READER",
+        "observation": {
+          "atomicPublications": 1000,
+          "concurrentReads": 3339,
+          "wholeMonotonicIntegers": true,
+          "scope": "private metric producer; not approval authority or launch durability"
+        },
+        "wallSeconds": 0.17
+      },
+      {
+        "id": "JR-11",
+        "status": "PASS",
+        "evidenceKind": "PRIVILEGED_STANDBY_STARTUP_FAULT_WITH_REAL_CHILD",
+        "observation": {
+          "noSocket": true,
+          "noRequests": true,
+          "reaLaunches": 0,
+          "blocked": true,
+          "childReaped": true,
+          "boundedFailureSeconds": 2.07
+        },
+        "wallSeconds": 2.474
+      },
+      {
+        "id": "JR-12",
+        "status": "PASS",
+        "evidenceKind": "PRIVILEGED_STANDBY_STARTUP_FAULT_WITH_REAL_CHILD",
+        "observation": {
+          "noSocket": true,
+          "noRequests": true,
+          "reaLaunches": 0,
+          "blocked": true,
+          "childReaped": true,
+          "boundedFailureSeconds": 0.114
+        },
+        "wallSeconds": 0.519
+      }
+    ],
+    "summary": {
+      "PASS": 12,
+      "FAIL": 0,
+      "NOT_TESTED": 0
+    },
+    "scope": "Janitor readiness regressions, separate from the 28 acceptance cases; synthetic VM only.",
+    "retentionAfterPrimaryLoss": "JR-09 checks primary loss followed by controller termination while the independent standby survives."
+  },
+  "retentionRecovery": {
+    "cases": [
+      {
+        "id": "RR-01",
+        "status": "PASS",
+        "observation": {
+          "lost": "primary",
+          "controllerDuringExpiry": "alive",
+          "rawClearedBeforeOriginalDeadline": true,
+          "noTtlRenewal": true,
+          "actualReaLaunches": 0,
+          "expiry": {
+            "rawDeadlineSeconds": 20.0,
+            "auditDeadlineSeconds": 30,
+            "originalAuditDeadline": 1792155146.9763074,
+            "inspectedAt": 1792155147.235273,
+            "requestDecisionAuditAbsent": true
+          }
+        },
+        "evidenceKind": "REAL_LINUX_PEERS_SIGNALS_DEADLINES_AND_OWNED_HANDLES",
+        "wallSeconds": 31.049
+      },
+      {
+        "id": "RR-02",
+        "status": "PASS",
+        "observation": {
+          "lost": "standby",
+          "controllerDuringExpiry": "terminated",
+          "rawClearedBeforeOriginalDeadline": true,
+          "noTtlRenewal": true,
+          "actualReaLaunches": 0,
+          "expiry": {
+            "rawDeadlineSeconds": 20.0,
+            "auditDeadlineSeconds": 30,
+            "originalAuditDeadline": 1792155178.0043812,
+            "inspectedAt": 1792155178.263572,
+            "requestDecisionAuditAbsent": true
+          }
+        },
+        "evidenceKind": "REAL_LINUX_PEERS_SIGNALS_DEADLINES_AND_OWNED_HANDLES",
+        "wallSeconds": 31.027
+      },
+      {
+        "id": "RR-03",
+        "status": "PASS",
+        "observation": {
+          "primaryAndControllerSigkill": true,
+          "standbySurvived": true,
+          "ownedFamilyAndRawHandleRemoved": true,
+          "restartDidNotReapproveOrLaunch": true,
+          "blockedPersisted": true,
+          "noTtlRenewal": true,
+          "expiry": {
+            "rawDeadlineSeconds": 20.0,
+            "auditDeadlineSeconds": 30,
+            "originalAuditDeadline": 1792155209.027373,
+            "inspectedAt": 1792155209.290159,
+            "requestDecisionAuditAbsent": true
+          }
+        },
+        "evidenceKind": "REAL_LINUX_PEERS_SIGNALS_DEADLINES_AND_OWNED_HANDLES",
+        "wallSeconds": 31.03
+      },
+      {
+        "id": "RR-04",
+        "status": "PASS",
+        "observation": {
+          "realFault": "EBUSY from operator-created bind mount",
+          "failure": {
+            "actualDeletion": "FAILED_AT_DEADLINE",
+            "ownershipReceiptRetained": true,
+            "opaqueLeaseRetained": true,
+            "rawIntentCleared": true,
+            "profileBlocked": true,
+            "remainingHandle": "owned run directory containing busy mount"
+          },
+          "recovery": "Operator unmounted fault; surviving owner retried and verified removal.",
+          "retentionDeadlineVerdict": "FAIL_UNDER_FORCED_DELETION_FAILURE_RECOVERED_LATE",
+          "testOracle": "Detect failure, retain ownership, block and recover; not timely-deletion PASS."
+        },
+        "evidenceKind": "REAL_LINUX_PEERS_SIGNALS_DEADLINES_AND_OWNED_HANDLES",
+        "wallSeconds": 31.064
+      }
+    ],
+    "summary": {
+      "PASS": 4,
+      "FAIL": 0,
+      "NOT_TESTED": 0
+    },
+    "scope": "Single guard loss, original deadlines, restart block and failed-disposal ownership.",
+    "productionAndUnrestrictedAgents": "NO_GO"
+  },
+  "resourceStorage": {
+    "cases": [
+      {
+        "id": "RS-01",
+        "status": "PASS",
+        "observation": {
+          "fixture": "memory",
+          "response": {
+            "cleanupStatus": "VERIFIED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "INCOMPLETE",
+            "reasonCode": "LIMIT_REACHED",
+            "requestId": "2e06035460d64c39ae1e53e963f3df5b",
+            "runId": "6512ab7abd8e4db0aceff1b97bdea3e4",
+            "status": "INCOMPLETE"
+          },
+          "metrics": {
+            "cgroup": {
+              "cpu.max": "100000 100000\n",
+              "cpu.stat": "usage_usec 3460918\nuser_usec 2963751\nsystem_usec 497167\nnice_usec 0\nnr_periods 41\nnr_throttled 31\nthrottled_usec 3620272\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 71\noom 2\noom_kill 4\noom_group_kill 1\n",
+              "memory.max": "536870912\n",
+              "memory.oom.group": "1\n",
+              "memory.peak": "536870912\n",
+              "pids.events": "max 0\n",
+              "pids.max": "64\n",
+              "pids.peak": "20\n"
+            },
+            "cleanup": true,
+            "evidence": {
+              "bytes": {
+                "stderr": 1389,
+                "stdout": 0
+              },
+              "fileLimit": 2097152,
+              "limitHit": false,
+              "totalBytes": 1389,
+              "totalLimit": 1048576
+            },
+            "exitCode": null,
+            "faultStage": null,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "osErrno": null,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "reason": "LIMIT_REACHED",
+            "sqliteError": null
+          },
+          "canonicalObservation": null,
+          "elapsedSeconds": 4.416,
+          "actualReaLaunches": 1,
+          "controlledFamilyAndRawRemoved": true
+        },
+        "evidenceKind": "REAL_LINUX_CLI_KERNEL_SQLITE_FILESYSTEM",
+        "wallSeconds": 5.917
+      },
+      {
+        "id": "RS-02",
+        "status": "PASS",
+        "observation": {
+          "fixture": "pids",
+          "response": {
+            "cleanupStatus": "VERIFIED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "INCOMPLETE",
+            "reasonCode": "LIMIT_REACHED",
+            "requestId": "ab64c8719bde49f58f19d723de90b181",
+            "runId": "b903cf14e2cb46798f2f409b351f4e95",
+            "status": "INCOMPLETE"
+          },
+          "metrics": {
+            "cgroup": {
+              "cpu.max": "100000 100000\n",
+              "cpu.stat": "usage_usec 3025136\nuser_usec 2576181\nsystem_usec 448955\nnice_usec 0\nnr_periods 35\nnr_throttled 28\nthrottled_usec 2673785\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.max": "536870912\n",
+              "memory.oom.group": "1\n",
+              "memory.peak": "463892480\n",
+              "pids.events": "max 51\n",
+              "pids.max": "64\n",
+              "pids.peak": "64\n"
+            },
+            "cleanup": true,
+            "evidence": {
+              "bytes": {
+                "stderr": 1111,
+                "stdout": 0
+              },
+              "fileLimit": 2097152,
+              "limitHit": false,
+              "totalBytes": 1111,
+              "totalLimit": 1048576
+            },
+            "exitCode": null,
+            "faultStage": null,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "osErrno": null,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "reason": "LIMIT_REACHED",
+            "sqliteError": null
+          },
+          "canonicalObservation": null,
+          "elapsedSeconds": 3.888,
+          "actualReaLaunches": 1,
+          "controlledFamilyAndRawRemoved": true
+        },
+        "evidenceKind": "REAL_LINUX_CLI_KERNEL_SQLITE_FILESYSTEM",
+        "wallSeconds": 5.353
+      },
+      {
+        "id": "RS-03",
+        "status": "PASS",
+        "observation": {
+          "fixture": "output-budget",
+          "response": {
+            "cleanupStatus": "VERIFIED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "SELECTED_PROFILE_ONLY",
+            "reasonCode": "NONE",
+            "requestId": "aaaec0c212524ce5a2d0be44b297b044",
+            "runId": "e9f0bff1c6234b86bac5aa9271d58874",
+            "status": "COMPLETED"
+          },
+          "metrics": {
+            "cgroup": {
+              "cpu.max": "100000 100000\n",
+              "cpu.stat": "usage_usec 3380403\nuser_usec 2835099\nsystem_usec 545304\nnice_usec 0\nnr_periods 42\nnr_throttled 31\nthrottled_usec 3443834\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.max": "536870912\n",
+              "memory.oom.group": "1\n",
+              "memory.peak": "399278080\n",
+              "pids.events": "max 0\n",
+              "pids.max": "64\n",
+              "pids.peak": "20\n"
+            },
+            "cleanup": true,
+            "evidence": {
+              "bytes": {
+                "stderr": 1361,
+                "stdout": 27068
+              },
+              "fileLimit": 2097152,
+              "limitHit": false,
+              "totalBytes": 28429,
+              "totalLimit": 1048576
+            },
+            "exitCode": 0,
+            "faultStage": null,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "osErrno": null,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "reason": "NONE",
+            "sqliteError": null
+          },
+          "canonicalObservation": {
+            "canonicalTruncated": true,
+            "truncationDetails": {
+              "raw_terminal": {
+                "budget_bytes": 12000,
+                "observed_bytes": 67584,
+                "retained_bytes": 11274,
+                "observed_frames": 16,
+                "retained_frames": 4
+              },
+              "rendered_terminal": {
+                "budget_bytes": 12000,
+                "observed_bytes": 7341,
+                "retained_bytes": 7341,
+                "observed_frames": 4,
+                "retained_frames": 2,
+                "unknown_size_frames": 2
+              },
+              "normalized_terminal": {
+                "budget_bytes": 12000,
+                "retained_bytes": 11274,
+                "omitted_frames": 0
+              },
+              "filesystem_before": {
+                "files_limit": 32,
+                "depth_limit": 4,
+                "enumeration_truncated": false,
+                "enumeration_reasons": [],
+                "enumeration_omissions": [],
+                "hash_budget_bytes": 65536,
+                "hashed_bytes": 0,
+                "hash_omissions": []
+              },
+              "filesystem_after": {
+                "files_limit": 32,
+                "depth_limit": 4,
+                "enumeration_truncated": false,
+                "enumeration_reasons": [],
+                "enumeration_omissions": [],
+                "hash_budget_bytes": 65536,
+                "hashed_bytes": 0,
+                "hash_omissions": []
+              },
+              "process": {
+                "sample_limit": 64,
+                "sampling_partial": false,
+                "retained_samples": 1,
+                "sample_limit_reached": false,
+                "sampling_failures": 0,
+                "first_sampling_failure": null,
+                "coverage": "sampled"
+              }
+            },
+            "rawBytes": 27068,
+            "rawSha256": "d49408b62fb5c92eb4ac66258e04587775962f247da36911e2b3ab6380a7fa99"
+          },
+          "elapsedSeconds": 5.14,
+          "actualReaLaunches": 1,
+          "controlledFamilyAndRawRemoved": true
+        },
+        "evidenceKind": "REAL_LINUX_CLI_KERNEL_SQLITE_FILESYSTEM",
+        "wallSeconds": 6.646
+      },
+      {
+        "id": "RS-04",
+        "status": "PASS",
+        "observation": {
+          "fixture": "output",
+          "response": {
+            "cleanupStatus": "VERIFIED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "INCOMPLETE",
+            "reasonCode": "LIMIT_REACHED",
+            "requestId": "39829c217b4c43a59cac0a9d8c9ffe01",
+            "runId": "b112fa2c1af448bf8db4cb97370d3252",
+            "status": "INCOMPLETE"
+          },
+          "metrics": {
+            "cgroup": {
+              "cpu.max": "100000 100000\n",
+              "cpu.stat": "usage_usec 3743221\nuser_usec 3208345\nsystem_usec 534875\nnice_usec 0\nnr_periods 43\nnr_throttled 33\nthrottled_usec 3767550\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.max": "536870912\n",
+              "memory.oom.group": "1\n",
+              "memory.peak": "404598784\n",
+              "pids.events": "max 0\n",
+              "pids.max": "64\n",
+              "pids.peak": "20\n"
+            },
+            "cleanup": true,
+            "evidence": {
+              "bytes": {
+                "stderr": 1655,
+                "stdout": 1046921
+              },
+              "fileLimit": 2097152,
+              "limitHit": true,
+              "totalBytes": 1048576,
+              "totalLimit": 1048576
+            },
+            "exitCode": null,
+            "faultStage": null,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "osErrno": null,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "reason": "LIMIT_REACHED",
+            "sqliteError": null
+          },
+          "canonicalObservation": null,
+          "elapsedSeconds": 4.709,
+          "actualReaLaunches": 1,
+          "controlledFamilyAndRawRemoved": true
+        },
+        "evidenceKind": "REAL_LINUX_CLI_KERNEL_SQLITE_FILESYSTEM",
+        "wallSeconds": 6.214
+      },
+      {
+        "id": "RS-05",
+        "status": "PASS",
+        "observation": {
+          "fixture": "wait",
+          "response": {
+            "cleanupStatus": "VERIFIED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "INCOMPLETE",
+            "reasonCode": "LIMIT_REACHED",
+            "requestId": "dbb834494f07420d85df2ec20bb4146d",
+            "runId": "28028daf94e640eca2121416597a69c9",
+            "status": "INCOMPLETE"
+          },
+          "metrics": {
+            "cgroup": {
+              "cpu.max": "100000 100000\n",
+              "cpu.stat": "usage_usec 5412812\nuser_usec 4900445\nsystem_usec 512366\nnice_usec 0\nnr_periods 100\nnr_throttled 47\nthrottled_usec 7070243\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.max": "536870912\n",
+              "memory.oom.group": "1\n",
+              "memory.peak": "394678272\n",
+              "pids.events": "max 0\n",
+              "pids.max": "64\n",
+              "pids.peak": "20\n"
+            },
+            "cleanup": true,
+            "evidence": {
+              "bytes": {
+                "stderr": 9368,
+                "stdout": 0
+              },
+              "fileLimit": 2097152,
+              "limitHit": false,
+              "totalBytes": 9368,
+              "totalLimit": 1048576
+            },
+            "exitCode": null,
+            "faultStage": null,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "osErrno": null,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "reason": "LIMIT_REACHED",
+            "sqliteError": null
+          },
+          "canonicalObservation": null,
+          "elapsedSeconds": 10.405,
+          "actualReaLaunches": 1,
+          "controlledFamilyAndRawRemoved": true
+        },
+        "evidenceKind": "REAL_LINUX_CLI_KERNEL_SQLITE_FILESYSTEM",
+        "wallSeconds": 11.903
+      },
+      {
+        "id": "SF-01",
+        "status": "PASS",
+        "observation": {
+          "fault": "prelaunch-audit-missing",
+          "response": {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "AUDIT_UNAVAILABLE",
+            "requestId": "aacede72455a4cd58bedc6ca24fdccda",
+            "runId": null,
+            "status": "DENIED"
+          },
+          "actualReaLaunches": 0,
+          "profileBlocked": true
+        },
+        "evidenceKind": "REAL_LINUX_CLI_KERNEL_SQLITE_FILESYSTEM",
+        "wallSeconds": 1.85
+      },
+      {
+        "id": "SF-02",
+        "status": "PASS",
+        "observation": {
+          "fault": "audit-missing",
+          "injected": "database path disconnected by privileged operator rename",
+          "response": {
+            "cleanupStatus": "FAILED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "INCOMPLETE",
+            "reasonCode": "CLEANUP_UNVERIFIED",
+            "requestId": "73d68ec315f84eda8beb2130d243f09a",
+            "runId": "bd914c3c605b4e3a99452618f792093e",
+            "status": "INCOMPLETE"
+          },
+          "metrics": {
+            "cgroup": {
+              "cpu.max": "100000 100000\n",
+              "cpu.stat": "usage_usec 48660\nuser_usec 31852\nsystem_usec 16808\nnice_usec 0\nnr_periods 1\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.max": "536870912\n",
+              "memory.oom.group": "1\n",
+              "memory.peak": "7905280\n",
+              "pids.events": "max 0\n",
+              "pids.max": "64\n",
+              "pids.peak": "7\n"
+            },
+            "cleanup": false,
+            "evidence": {
+              "bytes": {
+                "stderr": 0,
+                "stdout": 0
+              },
+              "fileLimit": 2097152,
+              "limitHit": false,
+              "totalBytes": 0,
+              "totalLimit": 1048576
+            },
+            "exitCode": null,
+            "faultStage": null,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "osErrno": null,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "reason": "AUDIT_UNAVAILABLE",
+            "sqliteError": "SQLITE_CANTOPEN"
+          },
+          "profileBlocked": true,
+          "actualReaLaunches": 1,
+          "rawRemovedAfterFaultRecovery": true,
+          "operatorOnlyRestoredFault": true,
+          "noDestinationLeak": true
+        },
+        "evidenceKind": "REAL_LINUX_CLI_KERNEL_SQLITE_FILESYSTEM",
+        "wallSeconds": 1.959
+      },
+      {
+        "id": "SF-03",
+        "status": "PASS",
+        "observation": {
+          "fault": "audit-full",
+          "injected": "SQLITE_FULL",
+          "response": {
+            "cleanupStatus": "FAILED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "INCOMPLETE",
+            "reasonCode": "CLEANUP_UNVERIFIED",
+            "requestId": "3737105084d741238a79e600451508d1",
+            "runId": "7488c52572c149adbbc7c5a92efd0b49",
+            "status": "INCOMPLETE"
+          },
+          "metrics": {
+            "cgroup": {
+              "cpu.max": "100000 100000\n",
+              "cpu.stat": "usage_usec 4550472\nuser_usec 4096963\nsystem_usec 453508\nnice_usec 0\nnr_periods 75\nnr_throttled 41\nthrottled_usec 5997474\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.max": "536870912\n",
+              "memory.oom.group": "1\n",
+              "memory.peak": "392101888\n",
+              "pids.events": "max 0\n",
+              "pids.max": "64\n",
+              "pids.peak": "20\n"
+            },
+            "cleanup": false,
+            "evidence": {
+              "bytes": {
+                "stderr": 6008,
+                "stdout": 0
+              },
+              "fileLimit": 2097152,
+              "limitHit": false,
+              "totalBytes": 6008,
+              "totalLimit": 1048576
+            },
+            "exitCode": null,
+            "faultStage": null,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "osErrno": null,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "reason": "AUDIT_UNAVAILABLE",
+            "sqliteError": "SQLITE_FULL"
+          },
+          "profileBlocked": true,
+          "actualReaLaunches": 1,
+          "rawRemovedAfterFaultRecovery": true,
+          "operatorOnlyRestoredFault": true,
+          "noDestinationLeak": true
+        },
+        "evidenceKind": "REAL_LINUX_CLI_KERNEL_SQLITE_FILESYSTEM",
+        "wallSeconds": 9.457
+      },
+      {
+        "id": "SF-04",
+        "status": "PASS",
+        "observation": {
+          "fault": "evidence-disconnected",
+          "injected": "raw output path replaced by symlink; original open inode lost its named handle",
+          "response": {
+            "cleanupStatus": "VERIFIED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "INCOMPLETE",
+            "reasonCode": "CONTROL_UNVERIFIED",
+            "requestId": "07fd83c3ffd34499bc7e926cd9e3479b",
+            "runId": "78c490f5d22c46bead460152f14e4226",
+            "status": "INCOMPLETE"
+          },
+          "metrics": {
+            "cgroup": {
+              "cpu.max": "100000 100000\n",
+              "cpu.stat": "usage_usec 48545\nuser_usec 30727\nsystem_usec 17818\nnice_usec 0\nnr_periods 1\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.max": "536870912\n",
+              "memory.oom.group": "1\n",
+              "memory.peak": "7610368\n",
+              "pids.events": "max 0\n",
+              "pids.max": "64\n",
+              "pids.peak": "7\n"
+            },
+            "cleanup": true,
+            "evidence": {
+              "bytes": {
+                "stderr": 0,
+                "stdout": 0
+              },
+              "fileLimit": 2097152,
+              "limitHit": false,
+              "totalBytes": 0,
+              "totalLimit": 1048576
+            },
+            "exitCode": null,
+            "faultStage": null,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "osErrno": null,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "reason": "CONTROL_UNVERIFIED",
+            "sqliteError": null
+          },
+          "profileBlocked": true,
+          "actualReaLaunches": 1,
+          "rawRemovedAfterFaultRecovery": true,
+          "operatorOnlyRestoredFault": true,
+          "noDestinationLeak": true
+        },
+        "evidenceKind": "REAL_LINUX_CLI_KERNEL_SQLITE_FILESYSTEM",
+        "wallSeconds": 1.96
+      },
+      {
+        "id": "SF-05",
+        "status": "PASS",
+        "observation": {
+          "fault": "evidence-full",
+          "injected": "actual ENOSPC on isolated 256 KiB evidence tmpfs; audit filesystem unaffected",
+          "response": {
+            "cleanupStatus": "FAILED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "INCOMPLETE",
+            "reasonCode": "CLEANUP_UNVERIFIED",
+            "requestId": "82327dcaa3e64a54b3f0acd56a81cc71",
+            "runId": "6e346e9a288e4ed09bd5a440999ee5ce",
+            "status": "INCOMPLETE"
+          },
+          "metrics": {
+            "cgroup": {
+              "cpu.max": "100000 100000\n",
+              "cpu.stat": "usage_usec 3491707\nuser_usec 2907748\nsystem_usec 583959\nnice_usec 0\nnr_periods 40\nnr_throttled 30\nthrottled_usec 3384335\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.max": "536870912\n",
+              "memory.oom.group": "1\n",
+              "memory.peak": "395808768\n",
+              "pids.events": "max 0\n",
+              "pids.max": "64\n",
+              "pids.peak": "20\n"
+            },
+            "cleanup": false,
+            "evidence": {
+              "bytes": {
+                "stderr": 1657,
+                "stdout": 258048
+              },
+              "fileLimit": 2097152,
+              "limitHit": false,
+              "totalBytes": 259705,
+              "totalLimit": 1048576
+            },
+            "exitCode": null,
+            "faultStage": "EVIDENCE",
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "osErrno": 28,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "reason": "CONTROL_UNVERIFIED",
+            "sqliteError": null
+          },
+          "profileBlocked": true,
+          "actualReaLaunches": 1,
+          "rawRemovedAfterFaultRecovery": true,
+          "operatorOnlyRestoredFault": true,
+          "noDestinationLeak": true
+        },
+        "evidenceKind": "REAL_LINUX_CLI_KERNEL_SQLITE_FILESYSTEM",
+        "wallSeconds": 5.916
+      },
+      {
+        "id": "SF-06",
+        "status": "PASS",
+        "observation": {
+          "fault": "audit-readonly",
+          "injected": "actual read-only bind mount on SQLite database",
+          "response": {
+            "cleanupStatus": "FAILED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "INCOMPLETE",
+            "reasonCode": "CLEANUP_UNVERIFIED",
+            "requestId": "0d066309bc7540b9b54e01dabec18b61",
+            "runId": "0cc2f5bc0b084ccbb13ac0cde0684b04",
+            "status": "INCOMPLETE"
+          },
+          "metrics": {
+            "cgroup": {
+              "cpu.max": "100000 100000\n",
+              "cpu.stat": "usage_usec 49261\nuser_usec 32820\nsystem_usec 16440\nnice_usec 0\nnr_periods 1\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.max": "536870912\n",
+              "memory.oom.group": "1\n",
+              "memory.peak": "6418432\n",
+              "pids.events": "max 0\n",
+              "pids.max": "64\n",
+              "pids.peak": "7\n"
+            },
+            "cleanup": false,
+            "evidence": {
+              "bytes": {
+                "stderr": 0,
+                "stdout": 0
+              },
+              "fileLimit": 2097152,
+              "limitHit": false,
+              "totalBytes": 0,
+              "totalLimit": 1048576
+            },
+            "exitCode": null,
+            "faultStage": null,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "osErrno": null,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "reason": "AUDIT_UNAVAILABLE",
+            "sqliteError": "SQLITE_READONLY"
+          },
+          "profileBlocked": true,
+          "actualReaLaunches": 1,
+          "rawRemovedAfterFaultRecovery": true,
+          "operatorOnlyRestoredFault": true,
+          "noDestinationLeak": true
+        },
+        "evidenceKind": "REAL_LINUX_CLI_KERNEL_SQLITE_FILESYSTEM",
+        "wallSeconds": 1.969
+      },
+      {
+        "id": "SF-07",
+        "status": "PASS",
+        "observation": {
+          "originalDeadlineInspections": [
+            {
+              "state": "/var/lib/rea-controller/janitor-test-dec61d84dff44bdb9cf69724ebc3a469",
+              "requestId": "2e06035460d64c39ae1e53e963f3df5b",
+              "originalAuditDeadline": 1792155012.5277488,
+              "inspectedAt": 1792155013.03532,
+              "rowsAndOwnedHandlesAbsent": true,
+              "toleranceSeconds": 0.5
+            },
+            {
+              "state": "/var/lib/rea-controller/janitor-test-98efb1e949274567b83452de049c9085",
+              "requestId": "ab64c8719bde49f58f19d723de90b181",
+              "originalAuditDeadline": 1792155018.4233072,
+              "inspectedAt": 1792155018.933329,
+              "rowsAndOwnedHandlesAbsent": true,
+              "toleranceSeconds": 0.5
+            },
+            {
+              "state": "/var/lib/rea-controller/janitor-test-e57bc00e42df4cd5b0d9042ddbdf2198",
+              "requestId": "aaaec0c212524ce5a2d0be44b297b044",
+              "originalAuditDeadline": 1792155023.8038754,
+              "inspectedAt": 1792155024.319828,
+              "rowsAndOwnedHandlesAbsent": true,
+              "toleranceSeconds": 0.5
+            },
+            {
+              "state": "/var/lib/rea-controller/janitor-test-72346bfece4e4488969f316779dafb81",
+              "requestId": "39829c217b4c43a59cac0a9d8c9ffe01",
+              "originalAuditDeadline": 1792155030.4562583,
+              "inspectedAt": 1792155030.9724185,
+              "rowsAndOwnedHandlesAbsent": true,
+              "toleranceSeconds": 0.5
+            },
+            {
+              "state": "/var/lib/rea-controller/janitor-test-737b01ccf39e4346a5e5a3020bb538fa",
+              "requestId": "dbb834494f07420d85df2ec20bb4146d",
+              "originalAuditDeadline": 1792155036.6593525,
+              "inspectedAt": 1792155037.164312,
+              "rowsAndOwnedHandlesAbsent": true,
+              "toleranceSeconds": 0.5
+            },
+            {
+              "state": "/var/lib/rea-controller/janitor-test-d0d1366e9411493c863267839ae61a21",
+              "requestId": "202c4a2159494dd0a5e7ed87ad6aea54",
+              "originalAuditDeadline": 1792155048.5662675,
+              "inspectedAt": 1792155049.0784962,
+              "rowsAndOwnedHandlesAbsent": true,
+              "toleranceSeconds": 0.5
+            },
+            {
+              "state": "/var/lib/rea-controller/janitor-test-83b747d99e8940c6bc5e89345d5c0b83",
+              "requestId": "73d68ec315f84eda8beb2130d243f09a",
+              "originalAuditDeadline": 1792155050.4167862,
+              "inspectedAt": 1792155050.9275134,
+              "rowsAndOwnedHandlesAbsent": true,
+              "toleranceSeconds": 0.5
+            },
+            {
+              "state": "/var/lib/rea-controller/janitor-test-5a5605a1864c4142a11de20e9a645b5e",
+              "requestId": "3737105084d741238a79e600451508d1",
+              "originalAuditDeadline": 1792155052.372279,
+              "inspectedAt": 1792155052.8770182,
+              "rowsAndOwnedHandlesAbsent": true,
+              "toleranceSeconds": 0.5
+            },
+            {
+              "state": "/var/lib/rea-controller/janitor-test-8383ad0d8eb14a3a97a3eaf60740cafe",
+              "requestId": "07fd83c3ffd34499bc7e926cd9e3479b",
+              "originalAuditDeadline": 1792155061.8331738,
+              "inspectedAt": 1792155062.3477223,
+              "rowsAndOwnedHandlesAbsent": true,
+              "toleranceSeconds": 0.5
+            },
+            {
+              "state": "/var/lib/rea-controller/janitor-test-2efc149be55b49c69f5dfd95d93bc0ac",
+              "requestId": "82327dcaa3e64a54b3f0acd56a81cc71",
+              "originalAuditDeadline": 1792155063.768292,
+              "inspectedAt": 1792155064.2850654,
+              "rowsAndOwnedHandlesAbsent": true,
+              "toleranceSeconds": 0.5
+            },
+            {
+              "state": "/var/lib/rea-controller/janitor-test-ff7f1f67f7f84e398d91c08df526f436",
+              "requestId": "0d066309bc7540b9b54e01dabec18b61",
+              "originalAuditDeadline": 1792155069.7100537,
+              "inspectedAt": 1792155070.2201538,
+              "rowsAndOwnedHandlesAbsent": true,
+              "toleranceSeconds": 0.5
+            }
+          ],
+          "noTtlRenewal": true,
+          "scope": "Original request audit/decision/run handles; independent denials retain their own bounded deadline."
+        },
+        "evidenceKind": "REAL_LINUX_CLI_KERNEL_SQLITE_FILESYSTEM",
+        "wallSeconds": 29.334
+      }
+    ],
+    "summary": {
+      "PASS": 12,
+      "FAIL": 0,
+      "NOT_TESTED": 0
+    },
+    "scope": "Fixed synthetic CLI fixtures; real bounded kernel/storage faults; no production readiness.",
+    "productionAndUnrestrictedAgents": "NO_GO"
+  },
+  "checks": {
+    "finalExits": {
+      "formatExit": 0,
+      "lintExit": 0,
+      "janitorExit": 0,
+      "retentionExit": 0,
+      "catalogueExit": 0
+    },
+    "pythonCompile": "PASS, six Python source files",
+    "format": "Checking formatting...\n\nAll matched files use the correct format.\nFinished in 3ms on 2 files using 4 threads.\n",
+    "lint": "Found 0 warnings and 0 errors.\nFinished in 28ms on 2 files with 107 rules using 4 threads.\n",
+    "parentBuildExit": "0",
+    "resourceExit": 0,
+    "resourceWallSecondsIncludingExpiry": 88.478,
+    "modelTokens": "NOT_MEASURED",
+    "benchmarkComparison": "NOT_A_CONTROLLED_BENCHMARK"
+  },
+  "logs": {
+    "catalogue": "EA-01 PASS\nEA-02 PASS\nEA-03 PASS\nEA-04 PASS\nEA-05 PASS\nEA-06 PASS\nEA-07 PASS\nEA-08 PASS\nEA-09 PASS\nEA-10 PASS\nEA-11 PASS\nEA-12 PASS\nEA-13 PASS\nEA-14 NOT_TESTED\nEA-15 PASS\nEA-16 NOT_TESTED\nEA-17 NOT_TESTED\nEA-18 NOT_TESTED\nEA-19 PASS\nEA-20 PASS\nEA-21 PASS\nEA-22 PASS\nEA-23 NOT_TESTED\nEA-24 PASS\nEA-25 NOT_TESTED\nEA-26 NOT_TESTED\nEA-27 PASS\nEA-28 NOT_TESTED\nreal 122.75\nuser 75.43\nsys 8.58\n",
+    "janitor": "JR-01 PASS\nJR-02 PASS\nJR-03 PASS\nJR-04 PASS\nJR-05 PASS\nJR-06 PASS\nJR-07 PASS\nJR-08 PASS\nJR-09 PASS\nJR-10 PASS\nJR-11 PASS\nJR-12 PASS\nreal 45.73\nuser 6.85\nsys 0.68\n",
+    "retention": "RR-01 PASS\nRR-02 PASS\nRR-03 PASS\nRR-04 PASS\nreal 124.24\nuser 6.90\nsys 0.57\n",
+    "resource": "RS-01 PASS\nRS-02 PASS\nRS-03 PASS\nRS-04 PASS\nRS-05 PASS\nSF-01 PASS\nSF-02 PASS\nSF-03 PASS\nSF-04 PASS\nSF-05 PASS\nSF-06 PASS\nSF-07 PASS\nreal 88.56\nuser 23.34\nsys 2.92\n",
+    "parentBuild": "\n> rea-agents@6.5.0 build:cached\n> node scripts/check-dependency-install.mjs && node scripts/run-exclusive.mjs artifacts turbo run artifacts:skills\n\n\nAttention:\nTurborepo now collects completely anonymous telemetry regarding usage.\nThis information is used to shape the Turborepo roadmap and prioritize features.\nYou can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:\nhttps://turborepo.dev/docs/telemetry\n\n\n   \u2022 turbo 2.11.7\n   \u2022 Running artifacts:skills\n   \u2022 Remote caching disabled\n\nmetadata:check: cache miss, executing 32f5da12514f2ac6\nmetadata:check: \nmetadata:check: > rea-agents@6.5.0 metadata:check\nmetadata:check: > node scripts/generate-package-metadata.mjs --check\nmetadata:check: \ncompile: cache miss, executing 4769f1c0a6e90f21\ncompile: \ncompile: > rea-agents@6.5.0 compile\ncompile: > node scripts/clean-build-output.mjs && tsc -p tsconfig.build.json && node scripts/bundle-runtime.mjs\ncompile: \ncompile: \u001b[33m[INEFFECTIVE_DYNAMIC_IMPORT] \u001b[0mdist/composition/binary.js is dynamically imported by dist/composition/directAnalysis.js but also statically imported by dist/main.js, dynamic import will not move module into another chunk.\ncompile: \ncompile: \u001b[33m[INEFFECTIVE_DYNAMIC_IMPORT] \u001b[0mdist/dotnet/ManagedStaticProvider.js is dynamically imported by dist/composition/auxiliaryAnalysisProviders.js but also statically imported by dist/composition/binary.js, dynamic import will not move module into another chunk.\ncompile: \nartifacts:skills: cache miss, executing f840124e2c7cab41\nartifacts:skills: \nartifacts:skills: > rea-agents@6.5.0 artifacts:skills\nartifacts:skills: > node scripts/generate-skill-metadata.mjs\nartifacts:skills: \n\n Tasks:    3 successful, 3 total\nCached:    0 cached, 3 total\n  Time:    22.412s \n\n"
+  },
+  "developmentTrials": [
+    {
+      "name": "resource-initial",
+      "summary": {
+        "PASS": 10,
+        "FAIL": 2,
+        "NOT_TESTED": 0
+      },
+      "failures": [
+        {
+          "id": "SF-05",
+          "errorType": "AssertionError",
+          "diagnostic": "",
+          "trace": null
+        },
+        {
+          "id": "SF-06",
+          "errorType": "CalledProcessError",
+          "diagnostic": "Command '['/usr/bin/umount', '/var/lib/rea-controller/janitor-test-b161f7bf6a514ca3aeb0c1c5948754d3/state.db']' returned non-zero exit status 32.",
+          "trace": null
+        }
+      ]
+    },
+    {
+      "name": "storage-focused-before-close",
+      "summary": {
+        "PASS": 1,
+        "FAIL": 2,
+        "NOT_TESTED": 0
+      },
+      "failures": [
+        {
+          "id": "SF-05",
+          "errorType": "AssertionError",
+          "diagnostic": "",
+          "trace": "Traceback (most recent call last):\n  File \"/vercel/evaluation/rea/experiments/execution-controller/resource_acceptance.py\", line 49, in check\n    facts=fn()\n  File \"<stdin>\", line 2, in <lambda>\nAssertionError\n"
+        },
+        {
+          "id": "SF-06",
+          "errorType": "OSError",
+          "diagnostic": "operator fault mount remained busy; ownership retained: /var/lib/rea-controller/janitor-test-0b64083d70bd44ffb9f1937038bfdb6c/state.db",
+          "trace": "Traceback (most recent call last):\n  File \"/vercel/evaluation/rea/experiments/execution-controller/resource_acceptance.py\", line 240, in storage\n    unmount(mounted);mounted=None\n    ~~~~~~~^^^^^^^^^\n  File \"/vercel/evaluation/rea/experiments/execution-controller/resource_acceptance.py\", line 171, in unmount\n    raise OSError('operator fault mount remained busy; ownership retained: '+str(path))\nOSError: operator fault mount remained busy; ownership retained: /var/lib/rea-controller/janitor-test-0b64083d70bd44ffb9f1937038bfdb6c/state.db\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/vercel/evaluation/rea/experiments/execution-controller/resource_acceptance.py\", line 49, in check\n    facts=fn()\n  File \"<stdin>\", line 3, in <lambda>\nOSError: operator fault mount remained busy; ownership retained: /var/lib/rea-controller/janitor-test-0b64083d70bd44ffb9f1937038bfdb6c/state.db\n"
+        }
+      ]
+    },
+    {
+      "name": "storage-focused-before-disposal-fix",
+      "summary": {
+        "PASS": 2,
+        "FAIL": 1,
+        "NOT_TESTED": 0
+      },
+      "failures": [
+        {
+          "id": "SF-05",
+          "errorType": "AssertionError",
+          "diagnostic": "",
+          "trace": "Traceback (most recent call last):\n  File \"/vercel/evaluation/rea/experiments/execution-controller/resource_acceptance.py\", line 50, in check\n    facts=fn()\n  File \"<string>\", line 1, in <lambda>\n    import resource_acceptance as r; r.check('SF-05',lambda:r.storage('evidence-full')); r.check('SF-06',lambda:r.storage('audit-readonly')); r.check('SF-07',r.retention_checks)\n                                                            ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/vercel/evaluation/rea/experiments/execution-controller/resource_acceptance.py\", line 228, in storage\n    assert not Path('/sys/fs/cgroup','rea-eval-'+run).exists()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+        }
+      ]
+    },
+    {
+      "name": "catalogue-before-lock-fix",
+      "summary": {
+        "PASS": 15,
+        "FAIL": 8,
+        "NOT_TESTED": 5
+      },
+      "failures": [
+        {
+          "id": "EA-15",
+          "errorType": "AssertionError",
+          "diagnostic": "[{'cleanupStatus': 'VERIFIED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'INCOMPLETE', 'reasonCode': 'AUDIT_UNAVAILABLE', 'requestId': 'c3ea50341b3047a690f281be7b70f837', 'runId': 'caef18260c384fb7ba5597d530fe9798', 'status': 'INCOMPLETE'}, {'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONSUMED', 'requestId': 'c3ea50341b3047a690f281be7b70f837', 'runId': None, 'status': 'DENIED'}]",
+          "trace": null
+        },
+        {
+          "id": "EA-16",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': '4df520eef53b47009e295a990ce1c8a0', 'runId': None, 'status': 'DENIED'}",
+          "trace": null
+        },
+        {
+          "id": "EA-17",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': 'ddd97d2b7eb34740842f10e0954d1474', 'runId': None, 'status': 'DENIED'}",
+          "trace": null
+        },
+        {
+          "id": "EA-18",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': '160b3392078f442bba1fbebbfefa5b6f', 'runId': None, 'status': 'DENIED'}",
+          "trace": null
+        },
+        {
+          "id": "EA-20",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': '62b747a3d5ef4e8e94190c56429f1c4f', 'runId': None, 'status': 'DENIED'}",
+          "trace": null
+        },
+        {
+          "id": "EA-21",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': '7922ecdc4f5a46dbbc170337ee6fa5f3', 'runId': None, 'status': 'DENIED'}",
+          "trace": null
+        },
+        {
+          "id": "EA-22",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': '1a46f03932184ab9a0c5f4b04ce636d9', 'runId': None, 'status': 'DENIED'}",
+          "trace": null
+        },
+        {
+          "id": "EA-24",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': '3075f5f8d60d464fbdd03a5ff7d50a0c', 'runId': None, 'status': 'DENIED'}",
+          "trace": null
+        }
+      ]
+    },
+    {
+      "name": "resource-before-lock-fix",
+      "summary": {
+        "PASS": 12,
+        "FAIL": 0,
+        "NOT_TESTED": 0
+      },
+      "failures": []
+    }
+  ],
+  "concurrencyDiagnosis": [
+    {
+      "iteration": 0,
+      "state": "/var/lib/rea-controller/janitor-test-fd73cb5136c547b5ac42737d7a5084d1",
+      "responses": [
+        {
+          "cleanupStatus": "NOT_STARTED",
+          "contractVersion": "rea-evaluation-authorization/1",
+          "coverage": "NOT_STARTED",
+          "reasonCode": "CONSUMED",
+          "requestId": "6b6bd4766f7c4bcab5ebd99bd82b7fc1",
+          "runId": null,
+          "status": "DENIED"
+        },
+        {
+          "cleanupStatus": "VERIFIED",
+          "contractVersion": "rea-evaluation-authorization/1",
+          "coverage": "INCOMPLETE",
+          "reasonCode": "AUDIT_UNAVAILABLE",
+          "requestId": "6b6bd4766f7c4bcab5ebd99bd82b7fc1",
+          "runId": "e6e4c5b646954fcebc982250d51ba7f8",
+          "status": "INCOMPLETE"
+        }
+      ],
+      "metrics": [
+        {
+          "cgroup": {
+            "cpu.max": "100000 100000\n",
+            "cpu.stat": "usage_usec 359405\nuser_usec 276465\nsystem_usec 82939\nnice_usec 0\nnr_periods 4\nnr_throttled 2\nthrottled_usec 13167\nnr_bursts 0\nburst_usec 0\n",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+            "memory.max": "536870912\n",
+            "memory.oom.group": "1\n",
+            "memory.peak": "47005696\n",
+            "pids.events": "max 0\n",
+            "pids.max": "64\n",
+            "pids.peak": "12\n"
+          },
+          "cleanup": true,
+          "evidence": {
+            "bytes": {
+              "stderr": 0,
+              "stdout": 0
+            },
+            "fileLimit": 2097152,
+            "limitHit": false,
+            "totalBytes": 0,
+            "totalLimit": 1048576
+          },
+          "exitCode": null,
+          "faultStage": null,
+          "limits": {
+            "cpuMax": "100000 100000",
+            "diskBytes": 16777216,
+            "fileBytes": 2097152,
+            "memoryBytes": 536870912,
+            "network": "deny-all",
+            "pids": 64,
+            "wallSeconds": 10
+          },
+          "osErrno": null,
+          "probe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "reason": "AUDIT_UNAVAILABLE",
+          "sqliteError": "SQLITE_BUSY"
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "state": "/var/lib/rea-controller/janitor-test-e833eb8bbd1d4711b9143f4fd4b0d8f2",
+      "responses": [
+        {
+          "cleanupStatus": "NOT_STARTED",
+          "contractVersion": "rea-evaluation-authorization/1",
+          "coverage": "NOT_STARTED",
+          "reasonCode": "CONSUMED",
+          "requestId": "54509b2638dd48999b102f4c27333230",
+          "runId": null,
+          "status": "DENIED"
+        },
+        {
+          "cleanupStatus": "VERIFIED",
+          "contractVersion": "rea-evaluation-authorization/1",
+          "coverage": "INCOMPLETE",
+          "reasonCode": "AUDIT_UNAVAILABLE",
+          "requestId": "54509b2638dd48999b102f4c27333230",
+          "runId": "6a29485205334363a4494af4fb444061",
+          "status": "INCOMPLETE"
+        }
+      ],
+      "metrics": [
+        {
+          "cgroup": {
+            "cpu.max": "100000 100000\n",
+            "cpu.stat": "usage_usec 260466\nuser_usec 215698\nsystem_usec 44767\nnice_usec 0\nnr_periods 3\nnr_throttled 1\nthrottled_usec 1188\nnr_bursts 0\nburst_usec 0\n",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+            "memory.max": "536870912\n",
+            "memory.oom.group": "1\n",
+            "memory.peak": "30478336\n",
+            "pids.events": "max 0\n",
+            "pids.max": "64\n",
+            "pids.peak": "12\n"
+          },
+          "cleanup": true,
+          "evidence": {
+            "bytes": {
+              "stderr": 0,
+              "stdout": 0
+            },
+            "fileLimit": 2097152,
+            "limitHit": false,
+            "totalBytes": 0,
+            "totalLimit": 1048576
+          },
+          "exitCode": null,
+          "faultStage": null,
+          "limits": {
+            "cpuMax": "100000 100000",
+            "diskBytes": 16777216,
+            "fileBytes": 2097152,
+            "memoryBytes": 536870912,
+            "network": "deny-all",
+            "pids": 64,
+            "wallSeconds": 10
+          },
+          "osErrno": null,
+          "probe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "reason": "AUDIT_UNAVAILABLE",
+          "sqliteError": "SQLITE_BUSY"
+        }
+      ]
+    },
+    {
+      "iteration": 2,
+      "state": "/var/lib/rea-controller/janitor-test-e1aaa8f3b59348ef856c11516d0b6af9",
+      "responses": [
+        {
+          "cleanupStatus": "NOT_STARTED",
+          "contractVersion": "rea-evaluation-authorization/1",
+          "coverage": "NOT_STARTED",
+          "reasonCode": "CONSUMED",
+          "requestId": "08d7e568188b405ab450f8d36907c74b",
+          "runId": null,
+          "status": "DENIED"
+        },
+        {
+          "cleanupStatus": "VERIFIED",
+          "contractVersion": "rea-evaluation-authorization/1",
+          "coverage": "INCOMPLETE",
+          "reasonCode": "AUDIT_UNAVAILABLE",
+          "requestId": "08d7e568188b405ab450f8d36907c74b",
+          "runId": "88801a4e6d3c4422b5e76bb287976836",
+          "status": "INCOMPLETE"
+        }
+      ],
+      "metrics": [
+        {
+          "cgroup": {
+            "cpu.max": "100000 100000\n",
+            "cpu.stat": "usage_usec 230320\nuser_usec 166783\nsystem_usec 63536\nnice_usec 0\nnr_periods 3\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0\n",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+            "memory.max": "536870912\n",
+            "memory.oom.group": "1\n",
+            "memory.peak": "23429120\n",
+            "pids.events": "max 0\n",
+            "pids.max": "64\n",
+            "pids.peak": "12\n"
+          },
+          "cleanup": true,
+          "evidence": {
+            "bytes": {
+              "stderr": 0,
+              "stdout": 0
+            },
+            "fileLimit": 2097152,
+            "limitHit": false,
+            "totalBytes": 0,
+            "totalLimit": 1048576
+          },
+          "exitCode": null,
+          "faultStage": null,
+          "limits": {
+            "cpuMax": "100000 100000",
+            "diskBytes": 16777216,
+            "fileBytes": 2097152,
+            "memoryBytes": 536870912,
+            "network": "deny-all",
+            "pids": 64,
+            "wallSeconds": 10
+          },
+          "osErrno": null,
+          "probe": null,
+          "reason": "AUDIT_UNAVAILABLE",
+          "sqliteError": "SQLITE_BUSY"
+        }
+      ]
+    }
+  ],
+  "concurrencyAfterFix": [
+    {
+      "iteration": 0,
+      "state": "/var/lib/rea-controller/janitor-test-2ffeb7172e03407fb111ce2666cbb97a",
+      "responses": [
+        {
+          "cleanupStatus": "NOT_STARTED",
+          "contractVersion": "rea-evaluation-authorization/1",
+          "coverage": "NOT_STARTED",
+          "reasonCode": "CONSUMED",
+          "requestId": "dc9f583599714d3e89f68886b7bea0b9",
+          "runId": null,
+          "status": "DENIED"
+        },
+        {
+          "cleanupStatus": "VERIFIED",
+          "contractVersion": "rea-evaluation-authorization/1",
+          "coverage": "SELECTED_PROFILE_ONLY",
+          "reasonCode": "NONE",
+          "requestId": "dc9f583599714d3e89f68886b7bea0b9",
+          "runId": "d63d37ea85e64044b3894791c0552e99",
+          "status": "COMPLETED"
+        }
+      ],
+      "metrics": [
+        {
+          "cgroup": {
+            "cpu.max": "100000 100000\n",
+            "cpu.stat": "usage_usec 3075647\nuser_usec 2638668\nsystem_usec 436978\nnice_usec 0\nnr_periods 34\nnr_throttled 28\nthrottled_usec 2603606\nnr_bursts 0\nburst_usec 0\n",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+            "memory.max": "536870912\n",
+            "memory.oom.group": "1\n",
+            "memory.peak": "388415488\n",
+            "pids.events": "max 0\n",
+            "pids.max": "64\n",
+            "pids.peak": "20\n"
+          },
+          "cleanup": true,
+          "evidence": {
+            "bytes": {
+              "stderr": 666,
+              "stdout": 7023
+            },
+            "fileLimit": 2097152,
+            "limitHit": false,
+            "totalBytes": 7689,
+            "totalLimit": 1048576
+          },
+          "exitCode": 0,
+          "faultStage": null,
+          "limits": {
+            "cpuMax": "100000 100000",
+            "diskBytes": 16777216,
+            "fileBytes": 2097152,
+            "memoryBytes": 536870912,
+            "network": "deny-all",
+            "pids": 64,
+            "wallSeconds": 10
+          },
+          "osErrno": null,
+          "probe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "reason": "NONE",
+          "sqliteError": null
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "state": "/var/lib/rea-controller/janitor-test-22226646801a429f81778d0b715ea1bb",
+      "responses": [
+        {
+          "cleanupStatus": "NOT_STARTED",
+          "contractVersion": "rea-evaluation-authorization/1",
+          "coverage": "NOT_STARTED",
+          "reasonCode": "CONSUMED",
+          "requestId": "6b43f7be8f584090a1d9f9bb6f58e6b3",
+          "runId": null,
+          "status": "DENIED"
+        },
+        {
+          "cleanupStatus": "VERIFIED",
+          "contractVersion": "rea-evaluation-authorization/1",
+          "coverage": "SELECTED_PROFILE_ONLY",
+          "reasonCode": "NONE",
+          "requestId": "6b43f7be8f584090a1d9f9bb6f58e6b3",
+          "runId": "edffb9fa64dd4b29bbf2734dbee68038",
+          "status": "COMPLETED"
+        }
+      ],
+      "metrics": [
+        {
+          "cgroup": {
+            "cpu.max": "100000 100000\n",
+            "cpu.stat": "usage_usec 3019123\nuser_usec 2664830\nsystem_usec 354293\nnice_usec 0\nnr_periods 33\nnr_throttled 28\nthrottled_usec 2766598\nnr_bursts 0\nburst_usec 0\n",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+            "memory.max": "536870912\n",
+            "memory.oom.group": "1\n",
+            "memory.peak": "395706368\n",
+            "pids.events": "max 0\n",
+            "pids.max": "64\n",
+            "pids.peak": "20\n"
+          },
+          "cleanup": true,
+          "evidence": {
+            "bytes": {
+              "stderr": 666,
+              "stdout": 7023
+            },
+            "fileLimit": 2097152,
+            "limitHit": false,
+            "totalBytes": 7689,
+            "totalLimit": 1048576
+          },
+          "exitCode": 0,
+          "faultStage": null,
+          "limits": {
+            "cpuMax": "100000 100000",
+            "diskBytes": 16777216,
+            "fileBytes": 2097152,
+            "memoryBytes": 536870912,
+            "network": "deny-all",
+            "pids": 64,
+            "wallSeconds": 10
+          },
+          "osErrno": null,
+          "probe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "reason": "NONE",
+          "sqliteError": null
+        }
+      ]
+    },
+    {
+      "iteration": 2,
+      "state": "/var/lib/rea-controller/janitor-test-ab6789f40f244bdbbbef8422d26fc9b5",
+      "responses": [
+        {
+          "cleanupStatus": "VERIFIED",
+          "contractVersion": "rea-evaluation-authorization/1",
+          "coverage": "SELECTED_PROFILE_ONLY",
+          "reasonCode": "NONE",
+          "requestId": "606aeb50e53a430085dd6b51c6f94333",
+          "runId": "9e523ba33ff640c68effb7a4509b6102",
+          "status": "COMPLETED"
+        },
+        {
+          "cleanupStatus": "NOT_STARTED",
+          "contractVersion": "rea-evaluation-authorization/1",
+          "coverage": "NOT_STARTED",
+          "reasonCode": "CONSUMED",
+          "requestId": "606aeb50e53a430085dd6b51c6f94333",
+          "runId": null,
+          "status": "DENIED"
+        }
+      ],
+      "metrics": [
+        {
+          "cgroup": {
+            "cpu.max": "100000 100000\n",
+            "cpu.stat": "usage_usec 2983176\nuser_usec 2611263\nsystem_usec 371913\nnice_usec 0\nnr_periods 33\nnr_throttled 28\nthrottled_usec 2978730\nnr_bursts 0\nburst_usec 0\n",
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+            "memory.max": "536870912\n",
+            "memory.oom.group": "1\n",
+            "memory.peak": "387428352\n",
+            "pids.events": "max 0\n",
+            "pids.max": "64\n",
+            "pids.peak": "20\n"
+          },
+          "cleanup": true,
+          "evidence": {
+            "bytes": {
+              "stderr": 666,
+              "stdout": 7023
+            },
+            "fileLimit": 2097152,
+            "limitHit": false,
+            "totalBytes": 7689,
+            "totalLimit": 1048576
+          },
+          "exitCode": 0,
+          "faultStage": null,
+          "limits": {
+            "cpuMax": "100000 100000",
+            "diskBytes": 16777216,
+            "fileBytes": 2097152,
+            "memoryBytes": 536870912,
+            "network": "deny-all",
+            "pids": 64,
+            "wallSeconds": 10
+          },
+          "osErrno": null,
+          "probe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "reason": "NONE",
+          "sqliteError": null
+        }
+      ]
+    }
+  ],
+  "developmentFaultRecovery": [
+    {
+      "state": "/var/lib/rea-controller/janitor-test-b161f7bf6a514ca3aeb0c1c5948754d3",
+      "restoredWritable": true,
+      "exactControllerStopped": [
+        2045
+      ],
+      "mountRemoved": true
+    },
+    {
+      "state": "/var/lib/rea-controller/janitor-test-0b64083d70bd44ffb9f1937038bfdb6c",
+      "restoredWritable": true,
+      "exactControllerStopped": [
+        2192
+      ],
+      "mountRemoved": true
+    }
+  ],
+  "sourceSha256": {
+    "experiments/execution-controller/README.md": "1b5e477d0492ffc862d58d4b3c46efe693b2d97f67470ac6b634e0083c6f5abb",
+    "experiments/execution-controller/acceptance.py": "1e7c6a1b73e8158d1b9de82cfc15d157551366e0392ff7c705d41a2372db649c",
+    "experiments/execution-controller/controller.py": "00be1d2a7f988f67d393f477d83234a707f332823186d1cac8102d9c781f1179",
+    "experiments/execution-controller/fixture.mjs": "89a55d73c45e661e332353a0190450b60371acfaface7a96e01db41d554bddf7",
+    "experiments/execution-controller/janitor_acceptance.py": "9ce00fb6c8d02de05b84455ad6fdcadcc19fa87486b540e38c753bb0e18e5d31",
+    "experiments/execution-controller/prepare.mjs": "4b47d313129c3129a6ac1c1784f48967c316663aac7f5dc751446ea6d8e49778",
+    "experiments/execution-controller/resource_acceptance.py": "6e314bc2302f18da9422671b3f1c3e5adef11f57522adaaf1d8c4ba2eecb1def",
+    "experiments/execution-controller/retention_acceptance.py": "14465288d3b62dfcaa8e25de790664b2595b45250b9a00e46fe51b53f24ec7bf",
+    "experiments/execution-controller/worker.py": "78f8466f6073fb2119efc8c6755c3d9ec0abd89105742534dbee9470c07ac0ab",
+    "package.json": "a500302319c1214a8bb6c9a8b4a4a090806e95eef884204a9d9fbb4003050a6c",
+    "package-lock.json": "0482085372c563c99b32519f51339eb280adc2bd83efdba6a8efd7cd4a49e9f0",
+    "LICENSE": "798f9e4d18e49b30bf2f12696c8ced73dc4e1413da375a333d01281543a1ea8b"
+  },
+  "registrySha256": "31e49bf537f4d863a68d8c38f674f190c31feb887ef41ae00e2719da4a28e33c",
+  "outerCgroupMetrics": {
+    "memory.max": "8589934592\n",
+    "memory.peak": "4528816128\n",
+    "memory.events": "low 0\nhigh 0\nmax 117\noom 4\noom_kill 10\noom_group_kill 3\n",
+    "pids.max": "512\n",
+    "pids.peak": "91\n",
+    "cpu.stat": "usage_usec 493966903\nuser_usec 429584637\nsystem_usec 64382265\nnice_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0\n"
+  },
+  "disposal": {
+    "processes": [],
+    "uid1001Processes": [],
+    "ownedCgroups": [],
+    "ownedMounts": [],
+    "storesAfterAutomaticExpiryBeforeOperatorRemoval": [
+      {
+        "state": "/var/lib/rea-controller/janitor-test-016cd601334042da99721e8734dd496a",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-0b64083d70bd44ffb9f1937038bfdb6c",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 130203,
+            "sha256": "a91b796f4df8a3861df8911cbab91b28b96f5895f26ad28de50518f5a6246f41"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-22226646801a429f81778d0b715ea1bb",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-2310e11739df4a1e9aef774c9321d1bb",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-28bec5b2177741ce95cb580ba9be5e86",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 1225,
+            "sha256": "b52cce41af0b0aa72f61082ac0f5a825203e473bb4cf525e68ab136df6fa27e2"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-2981a94bb12341148c1e15e9fc374f5a",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-2c01ad703f074f28be1d458f6db75a31",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 51,
+            "sha256": "6142ba6eaeca40f9f81c26f35033e12f9fb3bcff1a5f78abeded17f2034a5ca9"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-2d6c8b08d0fc41f983d7a6b961f3ae80",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-2d970280f4244e86a4d2ec56dbb82d5f",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 1227,
+            "sha256": "ff976e6e730393a7f4629dc2158cc4e747fed539e661a92af18c4b55a691bf2c"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-2dd9ac983b054418b2139bd61a2f2844",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-2efc149be55b49c69f5dfd95d93bc0ac",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-2ffeb7172e03407fb111ce2666cbb97a",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-30aa211cc97c40cfa3de84048d4f1191",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 1225,
+            "sha256": "b52cce41af0b0aa72f61082ac0f5a825203e473bb4cf525e68ab136df6fa27e2"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-3142e0abc8ac4ea99da78c8ddbea5b94",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-33e8146e0b524f61892026a2537004df",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-3abb6474df3e456a9c876b8fee77b6bd",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-404042454748438ea206105c17813a73",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "restart.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-43daeedab3af450bbe5c156f20284499",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-4462fa9db51b4f138d41ad6f5b141382",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-472ee4e10df547ceafce24b5b73051ae",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-4cb2ad0ca7c241c2909e4daadb605c44",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-51786a85ac6d4950a62f8f43e27ac285",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-52e14def0cf7416db941e12b92a37046",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 51,
+            "sha256": "6142ba6eaeca40f9f81c26f35033e12f9fb3bcff1a5f78abeded17f2034a5ca9"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-5a5605a1864c4142a11de20e9a645b5e",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-5e805039e6094e7596971cb3aed25951",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 51,
+            "sha256": "6142ba6eaeca40f9f81c26f35033e12f9fb3bcff1a5f78abeded17f2034a5ca9"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-647422af28694f749cdc80a45194feb5",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 51,
+            "sha256": "6142ba6eaeca40f9f81c26f35033e12f9fb3bcff1a5f78abeded17f2034a5ca9"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-6cbca96128f94eca98967b38ebc7e64d",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-6dd8ba703df9438298225a783e5f5be6",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 1227,
+            "sha256": "3f4ca724f36b98adb9531138176257bc92c8ebbaf885b7c2055280ce13ad9513"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-716814ef0c244dbf9489b30689b53644",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-72346bfece4e4488969f316779dafb81",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-737b01ccf39e4346a5e5a3020bb538fa",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-76695cee2c2e40a59a36777fb99763a4",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 1225,
+            "sha256": "b52cce41af0b0aa72f61082ac0f5a825203e473bb4cf525e68ab136df6fa27e2"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-82a55bcbad324259a0568d59b073753c",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-8383ad0d8eb14a3a97a3eaf60740cafe",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-83b747d99e8940c6bc5e89345d5c0b83",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 51,
+            "sha256": "6142ba6eaeca40f9f81c26f35033e12f9fb3bcff1a5f78abeded17f2034a5ca9"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-8b796062bddb445a90e929a05da6dcf9",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-8c6a466cf8d4451aab211f47b0444daf",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 1227,
+            "sha256": "3f4ca724f36b98adb9531138176257bc92c8ebbaf885b7c2055280ce13ad9513"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-8fe365d707ba4115bd5d735ab21dcb1b",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-98efb1e949274567b83452de049c9085",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-9b6b6876861e40138c5a13bc679565e2",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-9c2e79593d9644bc89292edcb880830c",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-a16002deb2074a448fa714f56e1c516b",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-a4f6970d1e5045c283cc15229756b145",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-a501629f5d5f49159174fc5a7193ef11",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 1225,
+            "sha256": "013419265adbace4494918e78ba434ae93e187803f88dec97ddc742fa6d067a5"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-a5a46a29ee01403b909a30b3e9ba5378",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-ab6789f40f244bdbbbef8422d26fc9b5",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-af0badd0f90c4dc886fb319bb6f07b45",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 1225,
+            "sha256": "013419265adbace4494918e78ba434ae93e187803f88dec97ddc742fa6d067a5"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-b161f7bf6a514ca3aeb0c1c5948754d3",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 396270,
+            "sha256": "5f7781075a83d48628a9230897c6dd6e9a591cad802026dea97ceec05112eea1"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-b779f9dd29a5486286dd39d9bfdca3b2",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-b937515a4ae344218fd92b91728f03ca",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-bc155e437150488aa2a6b37a159505e4",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-c21d3d11f3c0461282170adcd7a67051",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-d0d1366e9411493c863267839ae61a21",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 357,
+            "sha256": "6de0acf2acc79cabebe75f88ab28d90156ac6fa25fd51b12d7135d9a71fa94e6"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-d3ee9183b4104fc3825ba18517a9acc7",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 1225,
+            "sha256": "013419265adbace4494918e78ba434ae93e187803f88dec97ddc742fa6d067a5"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-d7f33b4eece246adb1851e1b1fee95ba",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-dce7013444ee405db9a9beb16d17a5ce",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "restart.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-dec61d84dff44bdb9cf69724ebc3a469",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-df273395c6e14103a866c0dc8905c3bc",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 1225,
+            "sha256": "013419265adbace4494918e78ba434ae93e187803f88dec97ddc742fa6d067a5"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-e1aaa8f3b59348ef856c11516d0b6af9",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-e2ea576844f7473f99a78dbd85d4630e",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-e3d378ce2a754f549e6fcd4ba572269c",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-e3dc91959b2a4979a2ce0f9d811c9d02",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 1227,
+            "sha256": "ff976e6e730393a7f4629dc2158cc4e747fed539e661a92af18c4b55a691bf2c"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-e57bc00e42df4cd5b0d9042ddbdf2198",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-e7d3a9471a3348529eeb44127b9482bb",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-e833eb8bbd1d4711b9143f4fd4b0d8f2",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-e95b9bd31f8b4aea9f596cde8372ecd3",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 1225,
+            "sha256": "b52cce41af0b0aa72f61082ac0f5a825203e473bb4cf525e68ab136df6fa27e2"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-ec0592152f6f46b4ac95607533fc24b4",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-ed8ee5fe3e224db1ae54ca8c2e22abba",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 51,
+            "sha256": "88342af7a1ed1d4803feceb26100058569f92f84b55ec91eed8897e4de55bba1"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-f2b33cd6cbb6474e809212faec63bf88",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-fd73cb5136c547b5ac42737d7a5084d1",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-ff7f1f67f7f84e398d91c08df526f436",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 51,
+            "sha256": "88342af7a1ed1d4803feceb26100058569f92f84b55ec91eed8897e4de55bba1"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/test-b37f8346592b4b88a7bcad17e7440ff3",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 51,
+            "sha256": "6142ba6eaeca40f9f81c26f35033e12f9fb3bcff1a5f78abeded17f2034a5ca9"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "state": "/var/lib/rea-controller/test-f87de67fc3804e1db9997c58bc9c1738",
+        "rowsAfterAutomaticExpiry": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawRunHandles": 0,
+        "leases": 0,
+        "metrics": 0,
+        "privateDiagnosticHandles": [
+          {
+            "name": "server.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "janitor.log",
+            "bytes": 51,
+            "sha256": "6142ba6eaeca40f9f81c26f35033e12f9fb3bcff1a5f78abeded17f2034a5ca9"
+          },
+          {
+            "name": "guardian.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    ],
+    "privateRootRemoved": true,
+    "socketHandlesRemoved": 58,
+    "diagnosticCopyWasPresent": false,
+    "diagnosticCopyRemoved": true,
+    "scope": "Rows/raw run handles/leases/metrics expired automatically after recovery. Operator then removed empty control containers, private diagnostics and sockets. No physical erasure/unknown-backup claim."
+  },
+  "verdict": {
+    "JR_09": "PASS_FOR_TESTED_PRIMARY_LOSS_SEQUENCE",
+    "singleGuardLoss": "PASS_FOR_RR_01_03",
+    "forcedDeletionFault": "FAILED_AT_DEADLINE_BLOCKED_OWNERSHIP_RETAINED_RECOVERED_LATE",
+    "resourceStorage": "PASS_FOR_TWELVE_LISTED_ORACLES",
+    "completeEA18": "NOT_TESTED",
+    "completeEA26": "NOT_TESTED",
+    "wholeControlFilesystemFull": "NOT_TESTED",
+    "durabilityPowerLoss": "NOT_TESTED",
+    "REA_1_1": "PARTIAL",
+    "productionAndUnrestrictedAgents": "NO_GO",
+    "bothGuardLoss": "NOT_TESTED",
+    "hungGuard": "NOT_TESTED",
+    "clockUncertainty": "NOT_TESTED",
+    "fullSCA": "NOT_TESTED",
+    "nativeProviders": "NOT_TESTED",
+    "humanReview": "NOT_ATTESTED",
+    "realCredentials": "NOT_COLLECTED",
+    "mainChanged": false,
+    "platformIntegration": false
+  },
+  "environmentLifecycle": {
+    "created": {
+      "sandbox": {
+        "name": "rea-resource-storage-20261016",
+        "currentSessionId": "sbx_MsaojsGxBbM6YWociRY44GuRLlH1",
+        "status": "running",
+        "statusUpdatedAt": 1792153693390,
+        "persistent": false,
+        "region": "iad1",
+        "failoverRegions": [],
+        "vcpus": 4,
+        "memory": 8192,
+        "runtime": "node22",
+        "architecture": "amd64",
+        "image": "vercel/sandbox/node@sha256:6ad1291a9fe7d243ee9f23626e6b08614a596431801c55e14cc5ee9d525f28d1",
+        "timeout": 2700000,
+        "snapshotExpiration": 604800000,
+        "networkPolicy": {
+          "mode": "deny-all"
+        },
+        "cwd": "/vercel",
+        "tags": {
+          "purpose": "rea-resource-storage",
+          "baseline": "ecea596a7ccb"
+        },
+        "createdAt": 1792153693390,
+        "updatedAt": 1792153693390
+      },
+      "session": {
+        "id": "sbx_MsaojsGxBbM6YWociRY44GuRLlH1",
+        "runtime": "node22",
+        "architecture": "amd64",
+        "requestedAt": 1792153693325,
+        "startedAt": 1792153693353,
+        "status": "running",
+        "vcpus": 4,
+        "memory": 8192,
+        "timeout": 2700000,
+        "region": "iad1",
+        "cwd": "/vercel",
+        "createdAt": 1792153693325,
+        "updatedAt": 1792153693361,
+        "interactivePort": 26661,
+        "networkPolicy": {
+          "mode": "deny-all"
+        },
+        "sourceSandboxName": "rea-resource-storage-20261016",
+        "projectId": "prj_IfkICTa4T38SCOgQXOe2jQpCT6Tl"
+      },
+      "routes": []
+    },
+    "stopped": {
+      "sandbox": {
+        "name": "rea-resource-storage-20261016",
+        "currentSessionId": "sbx_MsaojsGxBbM6YWociRY44GuRLlH1",
+        "status": "stopped",
+        "statusUpdatedAt": 1792155547928,
+        "persistent": false,
+        "region": "iad1",
+        "failoverRegions": [],
+        "vcpus": 4,
+        "memory": 8192,
+        "runtime": "node22",
+        "architecture": "amd64",
+        "image": "vercel/sandbox/node@sha256:6ad1291a9fe7d243ee9f23626e6b08614a596431801c55e14cc5ee9d525f28d1",
+        "timeout": 2700000,
+        "snapshotExpiration": 604800000,
+        "networkPolicy": {
+          "mode": "deny-all"
+        },
+        "totalEgressBytes": 1071687,
+        "totalIngressBytes": 258236424,
+        "totalActiveCpuDurationMs": 575509,
+        "totalDurationMs": 1854196,
+        "cwd": "/vercel",
+        "tags": {
+          "baseline": "ecea596a7ccb",
+          "purpose": "rea-resource-storage"
+        },
+        "createdAt": 1792153693390,
+        "updatedAt": 1792153693390
+      },
+      "session": {
+        "id": "sbx_MsaojsGxBbM6YWociRY44GuRLlH1",
+        "runtime": "node22",
+        "architecture": "amd64",
+        "requestedAt": 1792153693325,
+        "startedAt": 1792153693353,
+        "requestedStopAt": 1792155547076,
+        "stoppedAt": 1792155547549,
+        "status": "stopped",
+        "duration": 1854196,
+        "vcpus": 4,
+        "memory": 8192,
+        "timeout": 2700000,
+        "region": "iad1",
+        "cwd": "/vercel",
+        "createdAt": 1792153693325,
+        "updatedAt": 1792153693361,
+        "interactivePort": 26661,
+        "networkPolicy": {
+          "mode": "deny-all"
+        },
+        "activeCpuDurationMs": 575509,
+        "networkTransfer": {
+          "ingress": 258236424,
+          "egress": 1071687
+        },
+        "sourceSandboxName": "rea-resource-storage-20261016",
+        "projectId": "prj_IfkICTa4T38SCOgQXOe2jQpCT6Tl"
+      }
+    },
+    "status": {
+      "session": {
+        "id": "sbx_MsaojsGxBbM6YWociRY44GuRLlH1",
+        "runtime": "node22",
+        "architecture": "amd64",
+        "requestedAt": 1792153693325,
+        "startedAt": 1792153693353,
+        "requestedStopAt": 1792155547076,
+        "stoppedAt": 1792155547549,
+        "status": "stopped",
+        "duration": 1854196,
+        "vcpus": 4,
+        "memory": 8192,
+        "timeout": 2700000,
+        "region": "iad1",
+        "cwd": "/vercel",
+        "createdAt": 1792153693325,
+        "updatedAt": 1792153693361,
+        "interactivePort": 26661,
+        "networkPolicy": {
+          "mode": "deny-all"
+        },
+        "activeCpuDurationMs": 575509,
+        "networkTransfer": {
+          "ingress": 258236424,
+          "egress": 1071687
+        },
+        "sourceSandboxName": "rea-resource-storage-20261016",
+        "projectId": "prj_IfkICTa4T38SCOgQXOe2jQpCT6Tl"
+      },
+      "routes": []
+    },
+    "commands": {
+      "bootstrap": "set -eu\nbash /vercel/rs-provision.sh > /vercel/provision.log 2>&1\nchown rea:rea /vercel/rs-bootstrap.sh\nsetpriv --reuid=1001 --regid=1001 --clear-groups --no-new-privs env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/rea GOMAXPROCS=2 UV_THREADPOOL_SIZE=2 bash /vercel/rs-bootstrap.sh > /vercel/output/bootstrap.log 2>&1\nprintf '0\\n' > /vercel/output/rs-bootstrap.exit\n",
+      "initialSetupAndResource": "set -eu\ntest -f /vercel/output/rs-bootstrap.exit\nmkdir -p /sys/fs/cgroup/control-plane\nfor iteration in 1 2 3; do while read -r process_id; do test -d /proc/$process_id && printf '%s\\n' \"$process_id\" > /sys/fs/cgroup/control-plane/cgroup.procs || true; done < /sys/fs/cgroup/cgroup.procs; done\nprintf '+cpu +memory +pids\\n' > /sys/fs/cgroup/cgroup.subtree_control\nchown -R root:root /vercel/evaluation/rea /vercel/toolchain\nchmod -R a-w /vercel/evaluation/rea /vercel/toolchain\nchmod 700 /vercel/evaluation /vercel/toolchain\nmkdir -p /var/lib/rea-controller\nchmod 700 /var/lib/rea-controller\nprintf 'isolated-synthetic-only\\n' > /run/rea-evaluation-vm\nchmod 400 /run/rea-evaluation-vm\ncd /vercel/evaluation/rea\nexport PATH=/vercel/toolchain/node-v24.18.0-linux-x64/bin:/usr/bin:/bin\nnode_modules/.bin/oxfmt --write experiments/execution-controller/fixture.mjs experiments/execution-controller/prepare.mjs > /vercel/output/format-write.log\nnode_modules/.bin/oxlint experiments/execution-controller/fixture.mjs experiments/execution-controller/prepare.mjs > /vercel/output/controller-lint.log 2>&1\n/vercel/toolchain/node-v24.18.0-linux-x64/bin/node experiments/execution-controller/prepare.mjs /var/lib/rea-controller/registry.json\nchmod 400 /var/lib/rea-controller/registry.json\npython3 -m py_compile experiments/execution-controller/*.py\nset +e\n{ time -p python3 experiments/execution-controller/resource_acceptance.py; } > /vercel/output/resource-acceptance.log 2>&1\ntrial_exit=$?\nprintf '%s\\n' \"$trial_exit\" > /vercel/output/resource-acceptance.exit\nprintf 'RESOURCE_EXIT=%s\\n' \"$trial_exit\"\n",
+      "concurrencyDiagnosis": "cd /vercel/evaluation/rea/experiments/execution-controller\npython3 - <<'PY' > /vercel/output/concurrency-diagnosis.log 2>&1\nfrom concurrent.futures import ThreadPoolExecutor\nfrom pathlib import Path\nimport json,time\nimport janitor_acceptance as h,retention_acceptance as r\nfacts=[]\nfor iteration in range(3):\n p,state,sock,primary=h.launch('normal');h.wait_for(lambda:Path(sock).exists(),5)\n try:\n  rid,original=r.approve(sock,state,'basic')\n  with ThreadPoolExecutor(max_workers=2) as pool:\n   tasks=[pool.submit(h.query,sock,{'op':'execute','requestId':rid}) for _ in range(2)]\n   replies=[f.result(timeout=18) for f in tasks]\n  receipts=[]\n  for reply in replies:\n   if reply['runId']:\n    path=state/(reply['runId']+'.metrics.json')\n    if path.exists():receipts.append(json.loads(path.read_text()))\n  facts.append({'iteration':iteration,'state':str(state),'responses':replies,'metrics':receipts})\n finally:h.terminate(p)\nPath('/vercel/output/concurrency-diagnosis.json').write_text(json.dumps(facts,indent=2))\nprint(json.dumps([{'statuses':[r['status'] for r in f['responses']],'sqliteErrors':[m['sqliteError'] for m in f['metrics']]} for f in facts]))\nPY\n",
+      "finalAll": "set -u\ncp /vercel/output/controller-acceptance.json /vercel/output/catalogue-before-lock-fix.json\ncp /vercel/output/resource-acceptance.json /vercel/output/resource-before-lock-fix.json\ncd /vercel/evaluation/rea/experiments/execution-controller\npython3 - <<'PY' > /vercel/output/concurrency-after-fix.log 2>&1\nfrom concurrent.futures import ThreadPoolExecutor\nfrom pathlib import Path\nimport json,time\nimport janitor_acceptance as h,retention_acceptance as r\nfacts=[]\nfor iteration in range(3):\n p,state,sock,primary=h.launch('normal');h.wait_for(lambda:Path(sock).exists(),5)\n try:\n  rid,original=r.approve(sock,state,'basic')\n  with ThreadPoolExecutor(max_workers=2) as pool:\n   tasks=[pool.submit(h.query,sock,{'op':'execute','requestId':rid}) for _ in range(2)]\n   replies=[f.result(timeout=18) for f in tasks]\n  receipts=[]\n  for reply in replies:\n   if reply['runId']:\n    path=state/(reply['runId']+'.metrics.json')\n    if path.exists():receipts.append(json.loads(path.read_text()))\n  facts.append({'iteration':iteration,'state':str(state),'responses':replies,'metrics':receipts})\n finally:h.terminate(p)\nassert all(sorted(r['status'] for r in f['responses'])==['COMPLETED','DENIED'] for f in facts),facts\nPath('/vercel/output/concurrency-after-fix.json').write_text(json.dumps(facts,indent=2))\nprint(json.dumps([{'statuses':[r['status'] for r in f['responses']],'sqliteErrors':[m['sqliteError'] for m in f['metrics']]} for f in facts]))\nPY\n\ndiag_exit=$?\ntest \"$diag_exit\" = 0 || exit \"$diag_exit\"\ncd /vercel/evaluation/rea\nrm -f /vercel/output/resource-acceptance.exit /vercel/output/rs-final-validation.done.json\npython3 -m py_compile experiments/execution-controller/*.py\n{ time -p python3 experiments/execution-controller/resource_acceptance.py; } > /vercel/output/resource-acceptance.log 2>&1\nrs_exit=$?\nprintf '%s\\n' \"$rs_exit\" > /vercel/output/resource-acceptance.exit\nset -u\ncd /vercel/evaluation/rea\nexport PATH=/vercel/toolchain/node-v24.18.0-linux-x64/bin:/usr/bin:/bin\npython3 - <<'PY'\nimport json,time\nfrom pathlib import Path\nuntil=time.monotonic()+50\nwhile time.monotonic()<until:\n d=json.loads(Path('/vercel/output/resource-acceptance.json').read_text())\n if len(d['cases'])==12:break\n time.sleep(.2)\nassert d['summary']=={'PASS':12,'FAIL':0,'NOT_TESTED':0},d['summary']\nassert Path('/vercel/output/resource-acceptance.exit').read_text().strip()=='0'\nPY\npreflight=$?\ntest \"$preflight\" = 0 || exit \"$preflight\"\nnode_modules/.bin/oxfmt --check experiments/execution-controller/*.mjs > /vercel/output/controller-format-check.log 2>&1\nformat_exit=$?\nnode_modules/.bin/oxlint experiments/execution-controller/*.mjs > /vercel/output/controller-lint.log 2>&1\nlint_exit=$?\n{ time -p python3 experiments/execution-controller/janitor_acceptance.py; } > /vercel/output/janitor-acceptance.log 2>&1\njr_exit=$?\n{ time -p python3 experiments/execution-controller/retention_acceptance.py; } > /vercel/output/retention-acceptance.log 2>&1\nrr_exit=$?\n{ time -p python3 experiments/execution-controller/acceptance.py; } > /vercel/output/controller-acceptance-final.log 2>&1\ncatalogue_exit=$?\npython3 - \"$format_exit\" \"$lint_exit\" \"$jr_exit\" \"$rr_exit\" \"$catalogue_exit\" <<'PY'\nimport json,sys\nfrom pathlib import Path\nnames=['formatExit','lintExit','janitorExit','retentionExit','catalogueExit']\nPath('/vercel/output/rs-final-validation.done.json').write_text(json.dumps(dict(zip(names,map(int,sys.argv[1:])))))\nPY\n",
+      "collectionLauncher": "python3 - <<'PY'\nfrom pathlib import Path\nimport time\nuntil=time.monotonic()+110\nwhile not Path('/vercel/output/rs-final-validation.done.json').exists() and time.monotonic()<until:time.sleep(.2)\nassert Path('/vercel/output/rs-final-validation.done.json').exists(),'final suite marker missing'\nPY\ntest \"$?\" = 0 || exit 1\npython3 /vercel/rs-collect.py > /vercel/output/rs-collect.log 2>&1\nprintf '%s\\n' \"$?\" > /vercel/output/rs-collect.exit\n",
+      "provisionScript": "set -eu\nuseradd --create-home --shell /bin/bash rea\nuseradd --create-home --shell /bin/bash agent\nchmod 700 /home/ubuntu\nprintf '512\\n' > /sys/fs/cgroup/pids.max\nmkdir -p /vercel/evaluation /vercel/toolchain /vercel/output\nchown rea:rea /vercel/evaluation /vercel/toolchain /vercel/output\nchmod 700 /vercel/evaluation /vercel/toolchain /vercel/output\nsed -i 's|http://archive.ubuntu.com|https://archive.ubuntu.com|g; s|http://security.ubuntu.com|https://security.ubuntu.com|g' /etc/apt/sources.list.d/ubuntu.sources\napt-get update -qq\nDEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends python3\npython3 -c 'import ctypes,select,socket,sqlite3;print(\"PYTHON_STDLIB_PASS\")'\n",
+      "bootstrapScript": "set -e\ncd /vercel/toolchain\nnode -e 'const fs=require('\\''fs'\\''),c=require('\\''crypto'\\''),z=require('\\''zlib'\\'');(async()=>{const base='\\''https://nodejs.org/dist/v24.18.0/'\\'',name='\\''node-v24.18.0-linux-x64.tar.gz'\\'';const sums=await fetch(base+'\\''SHASUMS256.txt'\\'').then(r=>{if(!r.ok)throw Error('\\''checksum HTTP '\\''+r.status);return r.text()});const expected=sums.split('\\''\\n'\\'').find(l=>l.endsWith('\\''  '\\''+name))?.split('\\'' '\\'')[0];if(!expected)throw Error('\\''missing checksum'\\'');const r=await fetch(base+name);if(!r.ok)throw Error('\\''archive HTTP '\\''+r.status);const b=Buffer.from(await r.arrayBuffer());if(c.createHash('\\''sha256'\\'').update(b).digest('\\''hex'\\'')!==expected)throw Error('\\''checksum mismatch'\\'');fs.writeFileSync(name.slice(0,-3),z.gunzipSync(b));console.log('\\''NODE_ARCHIVE_CHECKSUM_PASS'\\'',expected)})().catch(e=>{console.error(e);process.exitCode=1});'\ntar -xf node-v24.18.0-linux-x64.tar\nexport PATH=/vercel/toolchain/node-v24.18.0-linux-x64/bin:/usr/local/bin:/usr/bin:/bin\nnpm install --prefix /vercel/toolchain/npm-pinned --ignore-scripts --no-audit --no-fund npm@11.16.0\nexport PATH=/vercel/toolchain/npm-pinned/node_modules/.bin:$PATH\nexport GOMAXPROCS=2 UV_THREADPOOL_SIZE=2\ncd /vercel/evaluation\ngit clone --depth=1 --branch fix/bcode-rea-1-1-containment https://github.com/Brnegreiros/rea.git rea\ncd rea\ntest \"$(git rev-parse HEAD)\" = \"ecea596a7ccb8a822f7b3483737e6c34205d04e4\"\nnode --version\nnpm --version\nsha256sum package-lock.json\nnpm ci --ignore-scripts --no-audit --no-fund\nprintf '0\\n' > /vercel/output/bootstrap.exit\n\ncd /vercel/evaluation/rea\nnpm run build:cached > /vercel/output/build.log 2>&1\nprintf \"0\\n\" > /vercel/output/build.exit\n\n",
+      "collectionScript": "\"\"\"Operator-only collection in the disposable evaluation VM.\"\"\"\nimport base64\nfrom contextlib import closing\nimport datetime\nimport gzip\nimport hashlib\nimport json\nfrom pathlib import Path\nimport shutil\nimport sqlite3\nimport subprocess\nimport time\n\nAPP = Path('/vercel/evaluation/rea')\nOUT = Path('/vercel/output')\nROOT = Path('/var/lib/rea-controller')\ndone = json.loads((OUT/'rs-final-validation.done.json').read_text())\nassert done == {'formatExit':0,'lintExit':0,'janitorExit':0,'retentionExit':0,'catalogueExit':0}, done\ncatalogue = json.loads((OUT/'controller-acceptance.json').read_text())\njr = json.loads((OUT/'janitor-acceptance.json').read_text())\nrr = json.loads((OUT/'retention-acceptance.json').read_text())\nrs = json.loads((OUT/'resource-acceptance.json').read_text())\nassert rs['summary']=={'PASS':12,'FAIL':0,'NOT_TESTED':0}\nrs_cases={c['id']:c['observation'] for c in rs['cases']}\nfor case,name in [('SF-02','SQLITE_CANTOPEN'),('SF-03','SQLITE_FULL'),('SF-06','SQLITE_READONLY')]:\n    assert rs_cases[case]['metrics']['sqliteError']==name,(case,rs_cases[case]['metrics'])\nassert (OUT/'resource-acceptance.exit').read_text().strip()=='0'\nassert catalogue['summary'] == {'PASS':20,'FAIL':0,'NOT_TESTED':8}\nassert jr['summary'] == {'PASS':12,'FAIL':0,'NOT_TESTED':0}\nassert rr['summary'] == {'PASS':4,'FAIL':0,'NOT_TESTED':0}\nassert [c['status'] for c in jr['cases'] if c['id']=='JR-09'] == ['PASS']\n\ndef processes():\n    found=[]\n    names=[str(APP/'experiments/execution-controller'/n).encode() for n in ['controller.py','worker.py']]\n    for p in Path('/proc').iterdir():\n        if not p.name.isdecimal():continue\n        try:\n            args=(p/'cmdline').read_bytes().split(b'\\0')\n            if any(n in args for n in names):found.append(int(p.name))\n        except OSError:pass\n    return found\n\nuntil=time.monotonic()+35\nwhile processes() and time.monotonic()<until:time.sleep(0.2)\nremaining=processes()\nassert not remaining,remaining\ngroups=[str(p) for p in Path('/sys/fs/cgroup').glob('rea-eval-*')]\nassert not groups,groups\nmounts=[s.split()[4] for s in Path('/proc/self/mountinfo').read_text().splitlines() if s.split()[4].startswith(str(ROOT))]\nassert not mounts,mounts\nuid_workers=[]\nfor p in Path('/proc').iterdir():\n    if not p.name.isdecimal():continue\n    try:\n        if (p/'status').stat().st_uid==1001:uid_workers.append(int(p.name))\n    except OSError:pass\nassert not uid_workers,uid_workers\nstores=[]\nfor state in sorted(ROOT.iterdir()):\n    if not state.is_dir() or not (state/'state.db').exists():continue\n    with closing(sqlite3.connect(f'file:{state}/state.db?mode=ro',uri=True)) as db:\n        rows={t:db.execute('SELECT count(*) FROM '+t).fetchone()[0] for t in ['requests','decisions','audit']}\n    runs=list((state/'runs').iterdir())\n    leases=list((state/'leases').iterdir())\n    metrics=list(state.glob('*.metrics.json'))\n    assert not any(rows.values()),(str(state),rows)\n    assert not runs and not leases and not metrics,str(state)\n    diagnostics=[]\n    for name in ['server.log','restart.log','janitor.log','guardian.log']:\n        p=state/name\n        if p.exists():diagnostics.append({'name':name,'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})\n    stores.append({'state':str(state),'rowsAfterAutomaticExpiry':rows,\n                   'rawRunHandles':0,'leases':0,'metrics':0,\n                   'privateDiagnosticHandles':diagnostics})\nsource={str(p.relative_to(APP)):hashlib.sha256(p.read_bytes()).hexdigest()\n        for p in sorted((APP/'experiments/execution-controller').iterdir()) if p.is_file()}\nfor name in ['package.json','package-lock.json','LICENSE']:\n    source[name]=hashlib.sha256((APP/name).read_bytes()).hexdigest()\nassert subprocess.check_output(['git','diff','--name-only','--','src','tests','.github','package.json','package-lock.json','LICENSE'],cwd=APP,text=True)==''\ndebug=OUT/'controller-private-debug.log'\ndebug_existed=debug.exists();debug.unlink(missing_ok=True)\nregistry_hash=hashlib.sha256((ROOT/'registry.json').read_bytes()).hexdigest()\nshutil.rmtree(ROOT)\nsockets=[Path('/run/rea-controller.sock'),*Path('/run').glob('rea-jr-*.sock')]\nfor p in sockets:p.unlink(missing_ok=True)\nPath('/run/rea-evaluation-vm').unlink(missing_ok=True)\nassert not ROOT.exists() and not any(p.exists() for p in sockets) and not debug.exists()\ntrials=[]\nfor name in ['resource-initial','storage-focused-before-close','storage-focused-before-disposal-fix','catalogue-before-lock-fix','resource-before-lock-fix']:\n    p=OUT/(name+'.json')\n    if p.exists():\n        d=json.loads(p.read_text())\n        trials.append({'name':name,'summary':d['summary'],'failures':[\n            {'id':c['id'],'errorType':c.get('errorType'),'diagnostic':c.get('diagnostic'),'trace':c.get('trace')} for c in d['cases'] if c['status']=='FAIL']})\nrecord={\n    'timestamp':datetime.datetime.now(datetime.timezone.utc).isoformat(),\n    'baseline':catalogue['baseline'],'catalogue':catalogue,'janitorRegressions':jr,'retentionRecovery':rr,'resourceStorage':rs,\n    'checks':{'finalExits':done,'pythonCompile':'PASS, six Python source files',\n        'format':(OUT/'controller-format-check.log').read_text(),'lint':(OUT/'controller-lint.log').read_text(),\n        'parentBuildExit':(OUT/'build.exit').read_text().strip(),\n        'resourceExit':int((OUT/'resource-acceptance.exit').read_text()),\n        'resourceWallSecondsIncludingExpiry':sum(c['wallSeconds'] for c in rs['cases']),\n        'modelTokens':'NOT_MEASURED','benchmarkComparison':'NOT_A_CONTROLLED_BENCHMARK'},\n    'logs':{'catalogue':(OUT/'controller-acceptance-final.log').read_text(),\n            'janitor':(OUT/'janitor-acceptance.log').read_text(),\n            'retention':(OUT/'retention-acceptance.log').read_text(),\n            'resource':(OUT/'resource-acceptance.log').read_text(),\n            'parentBuild':(OUT/'build.log').read_text()},\n    'developmentTrials':trials,\n    'concurrencyDiagnosis':json.loads((OUT/'concurrency-diagnosis.json').read_text()),\n    'concurrencyAfterFix':json.loads((OUT/'concurrency-after-fix.json').read_text()),'developmentFaultRecovery':json.loads((OUT/'development-fault-recovery.json').read_text()),'sourceSha256':source,'registrySha256':registry_hash,\n    'outerCgroupMetrics':{n:Path('/sys/fs/cgroup',n).read_text() for n in ['memory.max','memory.peak','memory.events','pids.max','pids.peak','cpu.stat']},\n    'disposal':{'processes':remaining,'uid1001Processes':uid_workers,'ownedCgroups':groups,'ownedMounts':mounts,\n        'storesAfterAutomaticExpiryBeforeOperatorRemoval':stores,'privateRootRemoved':not ROOT.exists(),\n        'socketHandlesRemoved':len(sockets),'diagnosticCopyWasPresent':debug_existed,'diagnosticCopyRemoved':not debug.exists(),\n        'scope':'Rows/raw run handles/leases/metrics expired automatically after recovery. Operator then removed empty control containers, private diagnostics and sockets. No physical erasure/unknown-backup claim.'},\n    'verdict':{'JR_09':'PASS_FOR_TESTED_PRIMARY_LOSS_SEQUENCE','singleGuardLoss':'PASS_FOR_RR_01_03',\n        'forcedDeletionFault':'FAILED_AT_DEADLINE_BLOCKED_OWNERSHIP_RETAINED_RECOVERED_LATE',\n        'resourceStorage':'PASS_FOR_TWELVE_LISTED_ORACLES','completeEA18':'NOT_TESTED','completeEA26':'NOT_TESTED',\n        'wholeControlFilesystemFull':'NOT_TESTED','durabilityPowerLoss':'NOT_TESTED','REA_1_1':'PARTIAL','productionAndUnrestrictedAgents':'NO_GO','bothGuardLoss':'NOT_TESTED',\n        'hungGuard':'NOT_TESTED','clockUncertainty':'NOT_TESTED','fullSCA':'NOT_TESTED','nativeProviders':'NOT_TESTED',\n        'humanReview':'NOT_ATTESTED','realCredentials':'NOT_COLLECTED','mainChanged':False,'platformIntegration':False}}\nraw=json.dumps(record,indent=2).encode()\n(OUT/'resource-storage-export.json').write_bytes(raw)\ncompressed=gzip.compress(raw)\n(OUT/'resource-storage-export.gz').write_bytes(compressed)\nb64=base64.b64encode(compressed).decode()\n(OUT/'resource-storage-export.b64').write_text(b64)\nprint(json.dumps({'bytes':len(raw),'gzipSha256':hashlib.sha256(compressed).hexdigest(),\n    'base64Characters':len(b64),'chunks':(len(b64)+1799)//1800,'catalogue':catalogue['summary'],\n    'janitor':jr['summary'],'retention':rr['summary'],'resourceStorage':rs['summary'],'stores':len(stores),'sourceHashes':len(source)},indent=2))\n"
+    },
+    "networkAcquisition": {
+      "allow": [
+        "github.com",
+        "registry.npmjs.org",
+        "nodejs.org",
+        "archive.ubuntu.com",
+        "security.ubuntu.com"
+      ],
+      "denySubnets": [
+        "10.0.0.0/8",
+        "172.16.0.0/12",
+        "192.168.0.0/16",
+        "169.254.0.0/16",
+        "127.0.0.0/8"
+      ],
+      "executionMode": "deny-all",
+      "credentialsInjected": false
+    },
+    "transfer": {
+      "gzipSha256": "857a07c090cfd5fa7741c612ebac6b827a54e9925f7a03e68e91e7633b3a78a2",
+      "bytes": 169147,
+      "base64Characters": 22988,
+      "chunks": 13,
+      "sourceHashesMatched": 12
+    },
+    "note": "Selected synthetic observations only; gzip hash covers the collected body before this lifecycle append. Tested source hashes were verified before VM shutdown; no physical erasure or backup guarantee."
+  }
+}

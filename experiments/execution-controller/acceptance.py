@@ -5,6 +5,7 @@ as UID 0. This is not evidence of a human review or production authorization.
 No raw capture is returned to the agent client or included in the output report.
 """
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import contextmanager
 import hashlib
 import json
 import os
@@ -48,10 +49,15 @@ def call(message=None, role='agent', raw=None):
     return json.loads(process.stdout)
 
 
+@contextmanager
 def db():
     connection = sqlite3.connect(STATE / 'state.db', timeout=3)
-    connection.row_factory = sqlite3.Row
-    return connection
+    try:
+        connection.row_factory = sqlite3.Row
+        with connection:
+            yield connection
+    finally:
+        connection.close()
 
 
 def start():
@@ -118,15 +124,15 @@ def capture(fixture='basic'):
         if row and row['run']:
             directory = STATE / 'runs' / row['run']
             if (directory / 'capture.done').exists():
-                raw = (directory / 'stdout.json').read_bytes()
+                raw = (directory / 'raw/stdout.json').read_bytes()
                 try:
                     document = json.loads(raw)
                 except json.JSONDecodeError:
-                    Path('/vercel/output/controller-private-debug.log').write_bytes((directory / 'stderr.log').read_bytes())
+                    Path('/vercel/output/controller-private-debug.log').write_bytes((directory / 'raw/stderr.log').read_bytes())
                     raise AssertionError('CLI did not produce JSON; private stderr saved for operator diagnosis')
                 text = raw.decode()
                 if 'normalized_result' not in document:
-                    Path('/vercel/output/controller-private-debug.log').write_bytes(raw + b'\nSTDERR\n' + (directory / 'stderr.log').read_bytes())
+                    Path('/vercel/output/controller-private-debug.log').write_bytes(raw + b'\nSTDERR\n' + (directory / 'raw/stderr.log').read_bytes())
                 terminal = ''.join(frame.get('data', '') for frame in document.get('normalized_result', {}).get('frames', []))
                 flags = None
                 fixture_probe = None
@@ -139,7 +145,7 @@ def capture(fixture='basic'):
                 reader = subprocess.run(['/usr/bin/setpriv', '--reuid=1002', '--regid=1002', '--clear-groups', '--no-new-privs',
                                          '/usr/bin/python3', '-c',
                                          'import sys\ntry: open(sys.argv[1],"rb").read(); print("UNEXPECTED_READ")\nexcept OSError as error: print(error.errno)',
-                                         str(directory / 'stdout.json')], stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=2)
+                                         str(directory / 'raw/stdout.json')], stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=2)
                 assert reader.returncode == 0 and reader.stdout == b'13\n', 'agent could access private raw capture'
                 observed = {'rawSha256': hashlib.sha256(raw).hexdigest(), 'rawBytes': len(raw),
                             'agentRawReadDenied': True,
@@ -196,7 +202,7 @@ def check(case_id, function, pending=None):
 
 def save():
     Path('/vercel/output/controller-acceptance.json').write_text(json.dumps({
-        'baseline': '9ddc190e470f503741a70334e5574cb76dece583',
+        'baseline': 'ecea596a7ccb8a822f7b3483737e6c34205d04e4',
         'cases': records, 'summary': {status: sum(r['status'] == status for r in records) for status in ['PASS','FAIL','NOT_TESTED']},
         'productionAndUnrestrictedAgents': 'NO_GO',
         'operatorReview': 'AUTOMATED_UID_0_TEST_ORCHESTRATION_NOT_HUMAN_REVIEW',

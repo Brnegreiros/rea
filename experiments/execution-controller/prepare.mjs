@@ -12,7 +12,19 @@ const base = providerHostEnvironment({
   TERM: "xterm",
 });
 const profiles = {};
-for (const name of ["basic", "echo", "wait", "probe", "disk", "cpu", "error"]) {
+for (const name of [
+  "basic",
+  "echo",
+  "wait",
+  "probe",
+  "disk",
+  "cpu",
+  "error",
+  "memory",
+  "pids",
+  "output",
+  "output-budget",
+]) {
   profiles[name] = processScenarioSchema.parse({
     executable: "/runtime/bin/node",
     arguments: ["/app/experiments/execution-controller/fixture.mjs", name],
@@ -31,8 +43,10 @@ for (const name of ["basic", "echo", "wait", "probe", "disk", "cpu", "error"]) {
         : [],
     timeout_ms: name === "wait" ? 15000 : 5000,
     idle_timeout_ms: 15000,
+    terminal:
+      name === "output" ? { columns: 80, rows: 24, scrollback: 0 } : undefined,
     limits: {
-      output_bytes: 12000,
+      output_bytes: name === "output" ? 2 * 1024 * 1024 : 12000,
       processes: 64,
       files: 32,
       file_bytes: 65536,

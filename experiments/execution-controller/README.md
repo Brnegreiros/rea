@@ -21,7 +21,7 @@ protocol. `SO_PEERCRED`, not a message field, determines its role. Operator-only
 be given operator tools or a host shell. The prototype does not implement an AI
 agent, human account login, SSO, a network API or a privileged service installer.
 
-The executable is always the existing REA `capture-process` CLI. Only the seven
+The executable is always the existing REA `capture-process` CLI. Only the eleven
 curated modes produced by `prepare.mjs` qualify. There is no arbitrary command,
 env dictionary, local-config file or raw MCP route in the request protocol.
 Environment provenance and exact selected scenario bytes are retained privately
@@ -96,8 +96,8 @@ or fixture tests binding; it is not proof that an agent can modify that state.
 ## Limits, retention and disposal
 
 Each capture has one CPU of quota, 512 MiB whole-family memory, 64 PIDs,
-16 MiB writable work tmpfs, 2 MiB per-file write limit, a 10-second external run
-timeout and no network interface providing external access. The parent VM has
+16 MiB writable work tmpfs, 2 MiB per-file write limit, a 1 MiB aggregate
+private stdout/stderr limit and a 10-second external run timeout and no network interface providing external access. The parent VM has
 its separately recorded aggregate limits. These values are an evaluation
 profile, not sizing or compatibility guarantees.
 
@@ -130,8 +130,9 @@ owner disposal, and run leases are published atomically.
 Failed disposal keeps an opaque ownership receipt and run lease, blocks the
 profile and retries. It is never reported as timely deletion. Operator recovery
 of a busy mount is a separate action and receipt. Primary plus standby loss,
-hung guards, storage exhaustion, clock uncertainty and host/VM failures remain
-outside the tested single-guard-loss scope. The profile remains NO-GO. Private
+hung guards, clock uncertainty and host/VM failures remain outside the tested
+single-guard-loss scope. Selected resource/storage faults are covered separately
+in the resource/storage follow-up; this does not generalize every failure mode. The profile remains NO-GO. Private
 control diagnostics and lock handles remain operator-only evaluation artifacts;
 enumerate and remove them before VM disposal. No physical erasure or unknown
 backup guarantee follows from logical cleanup or shutdown.
@@ -142,6 +143,45 @@ requested audit and can save private diagnostics on a failed smoke. Those test
 artifacts are outside the agent API; enumerate and remove their raw diagnostic
 copies before disposing the outer VM. Source, summary and this report can remain
 in Git; raw intent/capture databases and provider artifacts must not be committed.
+
+## Resource and storage fault follow-up
+
+The fixed `memory`, `pids`, `output` and `output-budget` profiles are finite
+synthetic fixtures, not arbitrary stress commands. The external owner captures
+stdout/stderr through pipes and caps bytes before writing, checks regular-file
+identity/link count/size on every iteration, and records kernel memory/PID
+counters before disposal. Whole-family OOM uses `memory.oom.group=1` and becomes
+`LIMIT_REACHED`, even if the worker exits between polls. A complete workflow
+with canonical `truncated=true` retains that limitation; it is not full evidence
+coverage. Raw output crossing the external cap produces incomplete coverage.
+
+Setup and active execution share failure cleanup. Loss, exhaustion or read-only
+failure of required audit/evidence storage blocks the profile. SQLite connections
+close explicitly at transaction exit, including failed setup/commit. Integrity
+hashing runs before acquiring the DB writer transaction; fresh approval checking
+and consume-before-launch remain inside the atomic transaction. Empty
+owned cgroups are released before deleting raw handles, so a busy evidence mount
+does not obstruct family disposal. Failed raw deletion still retains the run
+lease, reports cleanup failure and requires verified recovery; TTL is not renewed.
+
+Run these inside the same provisioned VM, sequentially (the catalogue includes
+privileged fixture mutation):
+
+```sh
+python3 experiments/execution-controller/resource_acceptance.py
+python3 experiments/execution-controller/janitor_acceptance.py
+python3 experiments/execution-controller/retention_acceptance.py
+python3 experiments/execution-controller/acceptance.py
+```
+
+The resource driver uses real cgroup faults, SQLite FULL, a read-only bind mount,
+path disconnection and a small evidence tmpfs. Its privileged provisioning hook
+only mounts the fixed owned evidence directory in the test process; no request
+can choose a mount, fault, command or destination. Operator recovery restores
+only the injected fault, never unblocks the profile or renews its deadlines.
+See the [resource/storage record](../../docs/verification/controller-resource-storage-2026-10-16.md)
+for actual results, failed development trials and residual gaps. These extra
+oracles do not automatically complete the original broad EA-18/EA-26 cases.
 
 ## Acceptance limits
 

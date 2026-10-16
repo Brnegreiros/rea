@@ -136,6 +136,14 @@ that killing the storage janitor leaves intent/audit past their deadlines.
 The later [retention recovery](verification/controller-retention-2026-10-16.md)
 addresses that observed sequence with an independent standby and tests both
 single-guard-loss variants, restart blocking and real failed-disposal ownership.
-REA-1.1 remains partial; resource stress, midrun sink faults, both-guard loss,
-hung guards, clock uncertainty and unresolved contention diagnostics remain
-pending. Forced deletion failure is not reported as timely expiry.
+The [resource/storage follow-up](verification/controller-resource-storage-2026-10-16.md)
+adds bounded real memory/PID/output pressure and selected midrun audit/evidence
+faults. The external owner caps private stream bytes before writing, reconciles
+kernel limit events and closes SQLite transactions/FDs explicitly. Failed raw
+deletion retains ownership and blocks admission; an empty stopped cgroup can be
+released independently of a busy evidence mount. Original retention regressions
+are rerun with this change; the linked runtime record owns their actual results.
+REA-1.1 remains partial. Both-guard loss, hung guards, clock uncertainty, complete
+EA-18/EA-26 coverage, whole-control-volume failure, durability and unresolved
+contention diagnostics remain pending. Forced deletion failure is not reported
+as timely expiry. No production integration or general readiness is established.

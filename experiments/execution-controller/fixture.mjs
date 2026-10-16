@@ -2,6 +2,7 @@
 import fs from "node:fs";
 import net from "node:net";
 import { Worker } from "node:worker_threads";
+import { spawn } from "node:child_process";
 
 const mode = process.argv[2];
 if (mode === "basic") {
@@ -89,6 +90,32 @@ if (mode === "basic") {
   setTimeout(async () => {
     await Promise.all(workers.map((worker) => worker.terminate()));
     console.log("bounded-cpu-done");
+  }, 500);
+} else if (mode === "memory") {
+  const held = [];
+  setTimeout(() => {
+    const timer = setInterval(() => {
+      held.push(Buffer.alloc(16 * 1024 * 1024, 0x5a));
+      if (held.length >= 40) clearInterval(timer);
+    }, 30);
+  }, 500);
+} else if (mode === "pids") {
+  setTimeout(() => {
+    // Finite, nonrecursive attempts; kernel pids.max bounds the whole family.
+    for (let index = 0; index < 96; index++) {
+      const child = spawn("/usr/bin/sleep", ["8"], {
+        stdio: "ignore",
+        env: { PATH: "/usr/bin:/bin" },
+      });
+      child.on("error", () => {});
+    }
+  }, 500);
+} else if (mode === "output" || mode === "output-budget") {
+  setTimeout(() => {
+    const block = Buffer.from("SYNTHETIC_OUTPUT_" + "x".repeat(47) + "\n");
+    const count = mode === "output" ? 24576 : 1024;
+    // Less than 1.6 MiB, finite writes; no arbitrary file or command input.
+    for (let index = 0; index < count; index++) fs.writeSync(1, block);
   }, 500);
 } else {
   throw new Error("unsupported synthetic fixture");
