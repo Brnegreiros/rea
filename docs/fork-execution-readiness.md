@@ -147,3 +147,14 @@ REA-1.1 remains partial. Both-guard loss, hung guards, clock uncertainty, comple
 EA-18/EA-26 coverage, whole-control-volume failure, durability and unresolved
 contention diagnostics remain pending. Forced deletion failure is not reported
 as timely expiry. No production integration or general readiness is established.
+
+## Bounded REA-1.1 audit closeout
+
+The [ten-objective closeout matrix](verification/rea-1-1-closeout-matrix-2026-10-16.md)
+reconciles historical evidence and the remaining static/supply-chain review.
+The prototype is frozen for this closeout plan, superseding older next-step
+suggestions for additional prototype fault tests in this sequence. Those gaps
+remain blockers rather than automatic implementation work. A final NO-GO opinion can retain
+explicit FAIL/NOT_TESTED controls; it does not require a broader implementation.
+The final consolidated readiness opinion remains pending. Main still lacks the
+evaluation branch safeguards, and no merge or production authority is implied.

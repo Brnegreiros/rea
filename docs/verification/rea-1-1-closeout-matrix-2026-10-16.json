@@ -1,0 +1,509 @@
+{
+  "schemaVersion": "rea-1.1-closeout-matrix/1",
+  "date": "2026-10-16",
+  "timezone": "America/Manaus",
+  "repository": "Brnegreiros/rea",
+  "baseline": "5bc49548175ddba31a6593c62eed20d6339a00cb",
+  "main": "6060de329de9f3636f63e24a2419847fd9d3f889",
+  "branch": "fix/bcode-rea-1-1-containment",
+  "deliverableStatus": "MATRIX_CONSOLIDATED_NOT_FINAL_READINESS",
+  "phaseStatus": "PARTIAL",
+  "currentOperationalVerdict": "NO_GO_PRODUCTION_UNRESTRICTED_AGENTS_AND_PLATFORM_INTEGRATION",
+  "prototypeStatus": "FROZEN_NO_NEW_IMPLEMENTATION_OR_FAULT_TESTS_IN_CLOSEOUT_PLAN",
+  "objectiveStatusLegend": {
+    "PARCIAL": "Há controles PASS ou fonte revisada, mas o objetivo original não está integralmente homologado.",
+    "NOT_TESTED": "Não há evidência de execução da auditoria requerida; não equivale a PASS nem a achado zero.",
+    "PASS_NO_RECORTE": "Objetivo de executar testes seguros satisfeito para os cenários registrados; não significa suíte integral.",
+    "PENDENTE": "Entrega final ainda precisa ser emitida."
+  },
+  "objectives": [
+    {
+      "id": "O01",
+      "originalObjective": "Revisar os workflows de CI, release e publicação.",
+      "coverageStatus": "PARCIAL",
+      "evidence": [
+        "E01"
+      ],
+      "verifiedOrRecorded": "Guardas de identidade em release.yml, release-recovery.yml e website-pages.yml na branch; testes estruturais e nenhum diff em .github após o baseline 93064357.",
+      "blockingGap": "Falta revisão de cobertura de todos os 29 workflows e ações locais: triggers, permissões, segredos, OIDC, refs e sinks. Main ainda não contém as guardas.",
+      "minimumTask": "EC1",
+      "closeoutCriterion": "Registrar cada workflow/ação local, efeitos, entradas não confiáveis, publicações e decisão; nenhuma execução de workflow necessária."
+    },
+    {
+      "id": "O02",
+      "originalObjective": "Inspecionar scripts de instalação, preparação e build.",
+      "coverageStatus": "PARCIAL",
+      "evidence": [
+        "E01",
+        "E04",
+        "E07"
+      ],
+      "verifiedOrRecorded": "npm ci com lifecycle desativado e builds isolados registrados; prepare e prepublishOnly estão declarados no package.json.",
+      "blockingGap": "Build aprovado não equivale a revisão dos instaladores/setup/updaters/native hooks e de suas cadeias de download, escrita e elevação.",
+      "minimumTask": "EC1",
+      "closeoutCriterion": "Mapa dos entrypoints alcançáveis e seus efeitos; scripts desnecessários ficam explicitamente não executados/excluídos, sem instalação no host."
+    },
+    {
+      "id": "O03",
+      "originalObjective": "Auditar dependências e vulnerabilidades conhecidas.",
+      "coverageStatus": "NOT_TESTED",
+      "evidence": [
+        "E01",
+        "E04",
+        "E07",
+        "E09"
+      ],
+      "verifiedOrRecorded": "Lockfile e aquisição controlada preservados; isso identifica versões/integridade, mas não prova ausência de vulnerabilidades.",
+      "blockingGap": "Não foi localizada evidência de SCA completa e atual do grafo aplicável. Há 722 entradas em packages, incluindo a raiz: 721 caminhos de dependência, não 721 pacotes únicos.",
+      "minimumTask": "EC2",
+      "closeoutCriterion": "Relatório datado com componente/versão/escopo, fonte/consulta, achados e limitações. Falha de consulta vira NOT_TESTED e bloqueio, nunca zero vulnerabilidades."
+    },
+    {
+      "id": "O04",
+      "originalObjective": "Validar licenças e integridade de componentes externos.",
+      "coverageStatus": "PARCIAL",
+      "evidence": [
+        "E04",
+        "E09",
+        "E10"
+      ],
+      "verifiedOrRecorded": "MIT principal, lock/hash, inventário npm e textos de licença já existentes; docs:check histórico incluiu consistência de metadados/licenças; cinco gitlinks fixados.",
+      "blockingGap": "Falta revisão independente do fork para origem/revisão/avisos dos componentes efetivamente obtidos ou considerados. Inventário herdado declara lacunas clean-git-ref, minimisted e Frida; não foi revalidado cada arquivo upstream.",
+      "minimumTask": "EC2",
+      "closeoutCriterion": "Reconciliar inventário existente com lock/gitlinks/uso; registrar lacunas e separar bibliotecas empacotadas de motores externos/proprietários não habilitados, sem redistribuir engines."
+    },
+    {
+      "id": "O05",
+      "originalObjective": "Auditar as permissões das ferramentas MCP.",
+      "coverageStatus": "PARCIAL",
+      "evidence": [
+        "E04",
+        "E05",
+        "E07"
+      ],
+      "verifiedOrRecorded": "Seams CLI/MCP e um protocolo externo restrito foram testados; UID kernel separa operador e cliente do protótipo.",
+      "blockingGap": "Falta mapa completo ferramenta→capacidade→efeito→autoridade→rota equivalente. 36 arquivos register*Tools.ts são localizadores, não contagem de ferramentas. Anotações/schema não são autorização. O protótipo não protege automaticamente o MCP/CLI direto.",
+      "minimumTask": "EC1",
+      "closeoutCriterion": "Cobertura de todas as ferramentas do catálogo/registradores e rotas sensíveis; execução, attach, modificação, export/update ficam negados fora do recorte já autorizado, sem criar gateway."
+    },
+    {
+      "id": "O06",
+      "originalObjective": "Investigar riscos de execução arbitrária, instrumentação e manipulação de processos.",
+      "coverageStatus": "PARCIAL",
+      "evidence": [
+        "E02",
+        "E04",
+        "E05",
+        "E07"
+      ],
+      "verifiedOrRecorded": "Frida source-read corrigido; herança base reduzida; preload explícito benigno e persistência literal comprovados em PTY; fixtures restritas usam autorização externa.",
+      "blockingGap": "REA direto ainda aceita entradas explícitas sem a decisão externa do protótipo; instrumentação Frida/device/LLDB e provedores reais não homologados.",
+      "minimumTask": "EC1",
+      "closeoutCriterion": "Consolidar achados por entrada/processo e identificar caminhos fora do launcher; registrar capacidades não habilitadas e correções propostas, sem executar provedores ou ampliar o controlador."
+    },
+    {
+      "id": "O07",
+      "originalObjective": "Verificar controles de proteção de dados e credenciais.",
+      "coverageStatus": "PARCIAL",
+      "evidence": [
+        "E01",
+        "E04",
+        "E05",
+        "E07",
+        "E11"
+      ],
+      "verifiedOrRecorded": "Canários sintéticos, proteção de cabeçalhos/valores marcados, respostas privadas, TTL e posse de descarte ensaiados; nenhuma credencial real transferida.",
+      "blockingGap": "Cobertura completa de sinks não demonstrada; valores explícitos/eco podem persistir na Evidence; DLP/dados reais e cópias externas não certificados. Exclusão no prazo falha sob EBUSY forçado.",
+      "minimumTask": "EC1",
+      "closeoutCriterion": "Mapa mínimo entrada→Evidence/log/export/backup conhecido→leitor→prazo→descarte; manter dados reais/export bruto excluídos e registrar falha de exclusão sem renovação de prazo."
+    },
+    {
+      "id": "O08",
+      "originalObjective": "Avaliar isolamento e limitação de recursos.",
+      "coverageStatus": "PARCIAL",
+      "evidence": [
+        "E01",
+        "E07",
+        "E08",
+        "E11"
+      ],
+      "verifiedOrRecorded": "VM descartável, UID/caps/no_new_privs, namespaces, rede negada, 512 MiB, 64 tarefas, 1 MiB de streams e encerramento foram observados em fixtures Linux.",
+      "blockingGap": "Perda de ambos os guardiões, guardião vivo travado, armazenamento de controle totalmente indisponível, relógio e parte dos enforcers não ensaiados; browser suportado/OS/provedores seguem limitados.",
+      "minimumTask": "EC3",
+      "closeoutCriterion": "Transportar PASS estreitos e NOT_TESTED completos ao parecer. Esses riscos bloqueiam GO; para NO-GO não exigem novos testes nem implementação nesta sequência."
+    },
+    {
+      "id": "O09",
+      "originalObjective": "Executar testes determinísticos seguros em ambiente isolado.",
+      "coverageStatus": "PASS_NO_RECORTE",
+      "evidence": [
+        "E01",
+        "E02",
+        "E04",
+        "E07",
+        "E08"
+      ],
+      "verifiedOrRecorded": "Suítes históricas selecionadas e última rodada real com hashes, logs, falhas, métricas e descarte. A última rodada tem 48 PASS/8 NOT_TESTED em quatro suítes, não 56 aprovações de segurança.",
+      "blockingGap": "Suíte integral, todos os sistemas/provedores, gate humano e critérios amplos restantes não executados; não somar rodadas sobrepostas como cobertura inédita.",
+      "minimumTask": "EC3",
+      "closeoutCriterion": "Reutilizar evidência rastreável; comparar hashes/ancestralidade e descrever limites. Repetir somente se futura alteração material invalidar um resultado, não por ser uma consolidação documental."
+    },
+    {
+      "id": "O10",
+      "originalObjective": "Emitir parecer de prontidão, com riscos residuais.",
+      "coverageStatus": "PENDENTE",
+      "evidence": [
+        "E01",
+        "E04",
+        "E05",
+        "E07",
+        "E11"
+      ],
+      "verifiedOrRecorded": "Decisões parciais consistentes: continuidade de avaliação sintética isolada; NO-GO para produção, agentes irrestritos e integração.",
+      "blockingGap": "Ainda não há encerramento único dos dez objetivos com cobertura, riscos, prioridades e decisão. Esta matriz não se declara parecer final nem autoriza operação.",
+      "minimumTask": "EC3",
+      "closeoutCriterion": "Emitir parecer técnico final após classificar a cobertura restante. Pode ser NO-GO com pendências; não exigir que todos os testes passem para documentar a negativa. Aprovação humana de PR/merge é outra decisão."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E01",
+      "path": "docs/verification/fork-runtime-validation-2026-10-15.md",
+      "sha256": "dc47068339662dbc54e84967eff23a639ed2655f5bced7491acc46bf7564eff5",
+      "scope": "Contenção/distribuição e browser: 206 PASS, 1 skip; build/typecheck e probe Linux limitados; não é auditoria dos 29 workflows.",
+      "origin": "existing_record_not_reexecuted"
+    },
+    {
+      "id": "E02",
+      "path": "docs/verification/frida-source-read-2026-10-15.md",
+      "sha256": "9c417aad6daffedf30cf8693f6c673d99f49248c8821cc6a100e7b58413b8efe",
+      "scope": "Leitura Frida: 99 PASS; arquivo regular, 4 MiB, cancelamento/cleanup; não houve instrumentação nativa.",
+      "origin": "existing_record_not_reexecuted"
+    },
+    {
+      "id": "E03",
+      "path": "docs/verification/provider-environment-2026-10-15.md",
+      "sha256": "0a274b8b3195533d3cf85befba62b88e4ad3f3bed4c1e777b027f7e7792aa26d",
+      "scope": "Herança base: 144 PASS, 1 skip históricos; produtor foi alterado depois e está coberto no registro E04; 2 oom_kill antigos sem atribuição.",
+      "origin": "existing_record_not_reexecuted"
+    },
+    {
+      "id": "E04",
+      "path": "docs/verification/direct-environment-2026-10-15.md",
+      "sha256": "e7d4f2dd5c1cc13ce8a72cd36aefa038c87aa37190e62f1310b1690d2dd6f6fe",
+      "scope": "Rotas diretas: 440 testes + 5 de documentação = 445 PASS, 8 skips; prova real de variável explícita/preload/evidência; SCA completa não executada.",
+      "origin": "existing_record_not_reexecuted"
+    },
+    {
+      "id": "E05",
+      "path": "docs/external-execution-authorization.md",
+      "sha256": "9c3e5858dec506bf33e6480d1bd4b44a743c95e8cfff581b730cf94af1b326f6",
+      "scope": "Contrato mínimo externo; definição de requisitos e retenção, sem integrar autorização ao runtime publicado.",
+      "origin": "existing_record_not_reexecuted"
+    },
+    {
+      "id": "E06",
+      "path": "docs/verification/execution-authorization-acceptance-2026-10-15.json",
+      "sha256": "64b0e454aa7391fa5078b01a13c9613c43bb8b079c4816c15587a65de530c036",
+      "scope": "Catálogo original de 28 critérios; estados da revisão de definição são históricos, não resultados atuais.",
+      "origin": "existing_record_not_reexecuted"
+    },
+    {
+      "id": "E07",
+      "path": "docs/verification/controller-resource-storage-2026-10-16.md",
+      "sha256": "1ad5fb4424f7a5d328a1fde427bdaf10fe98a79e53fb7ed28c41392d4a007132",
+      "scope": "Última rodada: catálogo 20 PASS/0 FAIL/8 NOT_TESTED; JR 12 PASS; RR 4 PASS; RS/SF 12 PASS; 73 áreas vazias após expiração/recuperação e VM parada.",
+      "origin": "existing_record_not_reexecuted"
+    },
+    {
+      "id": "E08",
+      "path": "docs/verification/controller-resource-storage-2026-10-16.json",
+      "sha256": "e86db52386d0f2484e083abe7a96dff7aaaff1cd31eb8bf5b9eb87b7107aeb48",
+      "scope": "Logs, hashes, métricas, falhas de desenvolvimento, recuperação do operador e recibos de descarte da última rodada.",
+      "origin": "existing_record_not_reexecuted"
+    },
+    {
+      "id": "E09",
+      "path": "THIRD_PARTY_NOTICES.md",
+      "sha256": "43e579cc53ead3b9ebe1ca78b594bf8acabd341eab8065194e4226bc11d0ac12",
+      "scope": "Avisos herdados: inventário npm/avisos runtime, componentes externos e lacunas de autoria documentadas; não é SCA nova nem homologação jurídica.",
+      "origin": "existing_record_not_reexecuted"
+    },
+    {
+      "id": "E10",
+      "path": "licenses/README.md",
+      "sha256": "a67f05a3b445b3a824647ace7efacb936315c91257b28297ad664b26a17d6b6c",
+      "scope": "Proveniência/metodologia dos avisos e limites da verificação de licenças; inventário existente pode ser reaproveitado.",
+      "origin": "existing_record_not_reexecuted"
+    },
+    {
+      "id": "E11",
+      "path": "docs/verification/controller-retention-2026-10-16.md",
+      "sha256": "e20d1088b9eecb9154523587f8be28267b60242b109561a1f8c1849dc4a5683a",
+      "scope": "Posse de descarte, perda de um guardião, RR-04 EBUSY e recuperação tardia; CP-R02 e CP-R05 ainda qualificados.",
+      "origin": "existing_record_not_reexecuted"
+    },
+    {
+      "id": "E12",
+      "path": "docs/provider-process-environment.md",
+      "sha256": "29e156649dda82b0feaabe6a8270f35df5bc3c067c9bc74af6753a217f718aa0",
+      "scope": "Contrato de compatibilidade/proveniência; allowlist da base não autoriza valores explícitos nem constitui sandbox.",
+      "origin": "existing_record_not_reexecuted"
+    }
+  ],
+  "sourceHashReview": [
+    {
+      "id": "frida-source-read-2026-10-15",
+      "total": 5,
+      "matching": 5,
+      "changedSinceEvidence": [],
+      "missing": []
+    },
+    {
+      "id": "provider-environment-2026-10-15",
+      "total": 16,
+      "matching": 15,
+      "changedSinceEvidence": [
+        "src/process/providerProcessEnvironment.ts"
+      ],
+      "missing": []
+    },
+    {
+      "id": "direct-environment-2026-10-15",
+      "total": 26,
+      "matching": 24,
+      "changedSinceEvidence": [
+        "docs/fork-execution-readiness.md",
+        "docs/provider-process-environment.md"
+      ],
+      "missing": []
+    },
+    {
+      "id": "controller-resource-storage-2026-10-16",
+      "total": 12,
+      "matching": 12,
+      "changedSinceEvidence": [],
+      "missing": []
+    }
+  ],
+  "staticInventory": {
+    "workflows": 29,
+    "npmLockPackageEntriesIncludingRoot": 722,
+    "npmDependencyPathEntriesExcludingRoot": 721,
+    "mcpRegistrarFilesNotTools": 36,
+    "gitlinks": 5,
+    "gitlinksLocallyInitialized": false,
+    "declaredMainLicense": "MIT",
+    "existingNpmInventory": "licenses/npm-dependencies.txt",
+    "existingRuntimeNotices": "licenses/npm-runtime-notices.txt"
+  },
+  "minimumRemaining": [
+    {
+      "id": "EC1",
+      "title": "Fechar revisão estática e mapa de autoridade/dados",
+      "objectives": [
+        "O01",
+        "O02",
+        "O05",
+        "O06",
+        "O07"
+      ],
+      "output": "Um registro por workflow/ação local, entrypoint de instalação/build e ferramenta/rota sensível; efeitos, entradas, autoridade, sinks e disposição. Reutilizar catálogos existentes.",
+      "doneWhen": "Nenhum item inventariado sem classificação; itens não inspecionáveis têm NOT_TESTED + impacto + bloqueio/escopo. Nenhuma ferramenta perigosa se torna habilitada.",
+      "requiresPrototypeExpansion": false,
+      "requiresTargetExecution": false,
+      "requiresCodeFixes": false
+    },
+    {
+      "id": "EC2",
+      "title": "Fechar baseline de cadeia de suprimentos",
+      "objectives": [
+        "O03",
+        "O04"
+      ],
+      "output": "Relatório de dependências/SCA datado com grafo npm do lock, opcionais/plataformas/site/dev e catálogo separado de engines/componentes externos; integridade/origem/licença, achados e limites por componente.",
+      "doneWhen": "Inventário/avisos existentes reconciliados; fontes/consultas e resultados preservados. Componentes sem grafo/consulta permanecem NOT_TESTED e não habilitados. Sem alegação de SCA completa quando houver exclusões.",
+      "requiresPrototypeExpansion": false,
+      "requiresTargetExecution": false,
+      "requiresCodeFixes": false,
+      "executionBoundary": "Se usar ferramenta de SCA, somente ambiente descartável com lifecycle desligado; consultas de metadados por API autorizada também são possíveis. Sem rodar instaladores/provedores."
+    },
+    {
+      "id": "EC3",
+      "title": "Emitir parecer técnico final e registrar backlog",
+      "objectives": [
+        "O08",
+        "O09",
+        "O10"
+      ],
+      "output": "Matriz de riscos por severidade/impacto/evidência, PASS/FAIL/NOT_TESTED por controle, cobertura dos dez objetivos, correções propostas, testes reais e decisão final por escopo.",
+      "doneWhen": "Parecer identificado por revisão/hash e evidências, com NO-GO onde houver bloqueios e critérios para reabertura. Não atestar revisão humana nem permissões de merge.",
+      "requiresPrototypeExpansion": false,
+      "requiresTargetExecution": false,
+      "requiresCodeFixes": false
+    }
+  ],
+  "goBlockers": [
+    {
+      "id": "G01",
+      "severity": "ALTA",
+      "factStatus": "OBSERVED_SOURCE",
+      "risk": "Guardas de distribuição existem apenas na branch; main preservada não as contém. A cobertura dos demais workflows está incompleta.",
+      "evidence": [
+        "E01"
+      ],
+      "closeoutTask": "EC1",
+      "blocksGO": true
+    },
+    {
+      "id": "G02",
+      "severity": "ALTA_POR_INCERTEZA_OPERACIONAL",
+      "factStatus": "NOT_TESTED",
+      "risk": "SCA completa/atual não demonstrada; nenhuma ausência de CVE deve ser inferida.",
+      "evidence": [
+        "E04",
+        "E07"
+      ],
+      "closeoutTask": "EC2",
+      "blocksGO": true
+    },
+    {
+      "id": "G03",
+      "severity": "MEDIA_ALTA_SE_REDISTRIBUIDO",
+      "factStatus": "DECLARED_UPSTREAM_GAPS",
+      "risk": "Inventário/avisos existem, mas lacunas e termos de componentes externos precisam de disposição; MIT principal não cobre tudo. Não é conclusão jurídica.",
+      "evidence": [
+        "E09",
+        "E10"
+      ],
+      "closeoutTask": "EC2",
+      "blocksGO": true
+    },
+    {
+      "id": "G04",
+      "severity": "ALTA",
+      "factStatus": "FAIL_FOR_UNRESTRICTED_AUTHORITY",
+      "risk": "Entradas explícitas no REA direto não têm a aprovação externa ensaiada no protótipo; canário/preload demonstram efeitos e retenção de valores.",
+      "evidence": [
+        "E04",
+        "E05",
+        "E07"
+      ],
+      "closeoutTask": "EC1",
+      "blocksGO": true
+    },
+    {
+      "id": "G05",
+      "severity": "ALTA",
+      "factStatus": "FAIL_AT_DEADLINE_AND_UNTESTED_VARIANTS",
+      "risk": "EBUSY forçado impede exclusão no prazo; posse/bloqueio/recuperação posterior foram comprovados. Perda/travamento simultâneo dos guardiões e falha total do armazenamento não ensaiados.",
+      "evidence": [
+        "E07",
+        "E11"
+      ],
+      "closeoutTask": "EC3",
+      "blocksGO": true
+    },
+    {
+      "id": "G06",
+      "severity": "ALTA_COM_DADOS_REAIS",
+      "factStatus": "PARTIAL",
+      "risk": "Echo/variáveis explícitas podem permanecer na Evidence; todos os sinks/exports/backups e dados reais não foram certificados.",
+      "evidence": [
+        "E01",
+        "E04",
+        "E05",
+        "E07"
+      ],
+      "closeoutTask": "EC1",
+      "blocksGO": true
+    },
+    {
+      "id": "G07",
+      "severity": "ALTA_ANTES_DE_HABILITAR",
+      "factStatus": "NOT_TESTED",
+      "risk": "Native Frida/device/LLDB, provedores/OS reais e runtime browser em OS oficialmente suportado não homologados neste recorte.",
+      "evidence": [
+        "E01",
+        "E02",
+        "E04"
+      ],
+      "closeoutTask": "EC3",
+      "blocksGO": true
+    },
+    {
+      "id": "G08",
+      "severity": "MEDIA_ALTA_OPERACIONAL",
+      "factStatus": "NOT_TESTED",
+      "risk": "CP-R02 socket/rate/concurrency budgets não certificados; origem exata do CP-R05 antigo permanece desconhecida. O SQLITE_BUSY novo foi reproduzido/corrigido, sem provar retroativamente a causa antiga.",
+      "evidence": [
+        "E07",
+        "E11"
+      ],
+      "closeoutTask": "EC3",
+      "blocksGO": true
+    }
+  ],
+  "acceptanceStillNotTested": [
+    "EA-14",
+    "EA-16",
+    "EA-17",
+    "EA-18",
+    "EA-23",
+    "EA-25",
+    "EA-26",
+    "EA-28"
+  ],
+  "closurePolicy": {
+    "auditClosure": "EC1+EC2+EC3, com cobertura e limites explícitos; não é obrigação tornar todos os controles PASS. Se etapa material não puder ser investigada, emitir NO-GO com pendência explícita, sem alegar auditoria completa.",
+    "productionGO": "Não autorizado nem demonstrado; depende de trabalho/decisão futura e específica.",
+    "prototypeGaps": "Conservar NOT_TESTED/FAIL como bloqueios de GO e backlog; nenhuma ampliação necessária para emitir uma negativa fundamentada.",
+    "nativeProviders": "Não habilitar, instalar ou executar nesta sequência; registrar revisão/identidade/limitações e excluir da autorização.",
+    "main": "Não modificar. Guardas/correções da branch não protegem automaticamente main.",
+    "notRequiredForNegativeOpinion": [
+      "todos os 28 critérios PASS",
+      "novo gateway/IAM",
+      "API genérica de autorização",
+      "exportador de relatórios",
+      "compatibilidade com todos os provedores/OS",
+      "novo ciclo de implementação do protótipo",
+      "merge, deploy ou publicação"
+    ],
+    "historicalNextPrompts": "Este plano de encerramento substitui, nesta sequência, sugestões históricas de novas iterações do protótipo. As lacunas continuam registradas; qualquer ensaio/implementação futura depende de missão específica."
+  },
+  "thisRound": {
+    "projectCodeExecution": false,
+    "newVMStarted": false,
+    "newRuntimeTests": false,
+    "dependencyOrConfigChanges": false,
+    "mainChanged": false,
+    "method": "Leitura de código/documentos, metadados GitHub de branches, hashes SHA-256, contagem estática e validação documental com stdlib; nenhum código REA importado/executado no host."
+  },
+  "roadmap": {
+    "REA-0": "COMPLETE",
+    "REA-1": "COMPLETE",
+    "REA-1.1": "PARTIAL_CLOSEOUT_MATRIX_READY",
+    "REA-2": "NOT_STARTED",
+    "REA-3": "NOT_STARTED",
+    "REA-4": "NOT_STARTED"
+  },
+  "nextAction": "EC1: revisão estática delimitada de workflows, scripts, ferramentas MCP/rotas e sinks; produzir disposições sem implementar protótipo ou executar alvos.",
+  "nextPrompt": "Execute o EC1 da matriz de encerramento da REA-1.1: revise os 29 workflows e ações locais, entrypoints de instalação/preparação/build, ferramentas MCP e rotas sensíveis, registrando efeitos, autoridade, entradas e sinks. Reaproveite as evidências, classifique lacunas sem ampliar o protótipo ou executar provedores. Preserve a main, sem integração, merge, publicação ou deploy.",
+  "verification": {
+    "checkedAtUTC": "2026-10-16T15:55:39.251493+00:00",
+    "objectiveIdsAndEvidenceLinks": "PASS",
+    "originalObjectiveCount": 10,
+    "historicalEvidenceHashesMatched": 12,
+    "latestTestedFileHashesMatched": 12,
+    "localRelativeLinksResolved": 27,
+    "prototypeAndRuntimeWorkflowDependencyChanges": false,
+    "providerProducerMatchedLaterDirectEvidence": true,
+    "workflowDiffSinceContainmentBaseline": "NONE",
+    "originalEightNotTestedPreserved": true,
+    "newRuntimeTests": "NOT_EXECUTED_DOCUMENT_ONLY",
+    "newSCA": "NOT_EXECUTED_MATRIX_ONLY",
+    "finalReadinessOpinion": "NOT_ISSUED",
+    "main": "UNCHANGED",
+    "method": "Standard-library JSON/path/hash/Git checks; no project code imported/executed."
+  }
+}
