@@ -9,6 +9,11 @@ tool or approve production operation. Definition baseline:
 `1f4dc6996d452b62c3870ac1d3a7559461e698fd` on
 `fix/bcode-rea-1-1-containment`.
 
+The [2026-10-16 janitor follow-up](verification/controller-janitor-2026-10-16.md)
+adds a readiness prerequisite but reproduces a **failed retention control** after
+the storage janitor itself is killed. Earlier successful controller-death tests
+do not certify survival of storage-owner loss. The profile remains NO-GO.
+
 The [direct-route audit](verification/direct-environment-2026-10-15.md) proved
 that filtering inherited environment values does not authorize explicit values.
 A public-schema process scenario can select a benign Node preload, and its

@@ -109,6 +109,23 @@ pidfd, disposes outstanding runs and applies expiry. Per-run metric/lease files
 expire with audit metadata. SQLite uses secure deletion, but no physical erasure
 or provider-backup guarantee is made. Failed cleanup blocks the profile.
 
+Startup now requires a private janitor acknowledgement within two seconds,
+after private storage and schema checks. The controller opens its own pidfd
+before spawning the janitor and passes that stable reference to the child;
+no request socket is exposed before readiness. Missing, malformed or absent
+acknowledgement fails closed and reaps the child. Janitor loss denies proposal,
+approval and execution; an active capture detects that loss and disposes its
+owned family. The private observer counter is published by atomic replacement.
+
+**Known failed control:** killing the janitor itself leaves pending raw intent
+and audit records past their deadlines. Blocking admission does not replace the
+storage owner. Do not certify retention or enable this profile. The separate
+[readiness follow-up](../../docs/verification/controller-janitor-2026-10-16.md)
+records real startup/death tests and this failed expiry assertion. Its
+`janitor_acceptance.py` intentionally exits nonzero while JR-09 fails. Private
+janitor diagnostics remain operator-only and must be enumerated and removed
+with the other evaluation copies before VM disposal.
+
 The privileged test observer gets a bounded private capture window before
 disposal, retains only selected synthetic facts/integrity observations for the
 requested audit and can save private diagnostics on a failed smoke. Those test

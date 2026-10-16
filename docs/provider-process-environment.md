@@ -124,3 +124,8 @@ stores definition-time NOT_TESTED values. The separate
 reports later case-specific execution observations. Neither documentation nor
 the experimental fixed-fixture controller enables authorization for direct REA
 CLI/MCP users, enables a native provider or changes canonical Evidence.
+
+The [janitor follow-up](verification/controller-janitor-2026-10-16.md) separates
+verified startup/interruption behavior from failed raw/audit expiry after the
+storage owner is killed. Synthetic explicit values remaining in pending intent
+are still controlled evidence; an admission block is not a deletion receipt.

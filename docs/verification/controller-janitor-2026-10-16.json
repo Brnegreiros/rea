@@ -1,0 +1,1969 @@
+{
+  "timestamp": "2026-10-16T01:36:17.223610+00:00",
+  "baseline": "0140bc2882db8a86639a366faa10dd969ce1a4ef",
+  "catalogue": {
+    "baseline": "0140bc2882db8a86639a366faa10dd969ce1a4ef",
+    "cases": [
+      {
+        "id": "EA-01",
+        "status": "PASS",
+        "observation": {
+          "rawSha256": "05c239ddcbfe1535daa9e6fc97973c211842c5661d3603321e3ce6c9426490cd",
+          "rawBytes": 7023,
+          "agentRawReadDenied": true,
+          "canonicalEvidence": true,
+          "explicitRetained": true,
+          "ambientAbsent": true,
+          "targetFlags": {
+            "allExpectedBooleans": true,
+            "syntheticExplicitValueMatched": true
+          },
+          "fixtureProbe": null,
+          "markedPlaceholder": false,
+          "markedEchoRetained": false,
+          "privateDiagnostic": false,
+          "probe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "resources": {
+            "cgroup": {
+              "cpu.stat": "usage_usec 3404880\nuser_usec 2811289\nsystem_usec 593591\nnice_usec 0\nnr_periods 39\nnr_throttled 33\nthrottled_usec 3398606\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.peak": "389783552\n",
+              "pids.events": "max 0\n"
+            },
+            "cleanup": true,
+            "exitCode": 0,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            }
+          },
+          "rawDisposed": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 5.833
+      },
+      {
+        "id": "EA-02",
+        "status": "PASS",
+        "observation": [
+          {
+            "strictRequestFieldsRejected": [
+              "approved",
+              "approvalId",
+              "approval"
+            ]
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "NO_APPROVAL",
+            "requestId": "407d55aa35fa417da78afce40b0235fb",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "POLICY_DENIED",
+            "requestId": "47b6e97547c04e7095a1048209500941",
+            "runId": null,
+            "status": "DENIED"
+          }
+        ],
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.134
+      },
+      {
+        "id": "EA-03",
+        "status": "PASS",
+        "observation": {
+          "strictRequestFieldsRejected": [
+            "requesterId",
+            "operatorUid",
+            "supervisorApproval",
+            "targetInstructions"
+          ]
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.122
+      },
+      {
+        "id": "EA-04",
+        "status": "PASS",
+        "observation": {
+          "mutationsRejected": [
+            "command.executable",
+            "command.argv",
+            "command.cwd",
+            "target.sha256",
+            "operation.scenario.arguments",
+            "operation.scenario.events",
+            "operation.scenario.terminal",
+            "operation.scenario.filesystem_observation_paths",
+            "operation.scenario.timeout_ms",
+            "operation.scenario.normalization"
+          ],
+          "method": "privileged stored-intent fault injection; independent peer isolation tested separately"
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 5.096
+      },
+      {
+        "id": "EA-05",
+        "status": "PASS",
+        "observation": {
+          "mutationsRejected": [
+            "environment.base",
+            "environment.internal",
+            "environment.explicit",
+            "environment.parentProbe"
+          ],
+          "method": "privileged stored-intent fault injection; independent peer isolation tested separately"
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 2.553
+      },
+      {
+        "id": "EA-06",
+        "status": "PASS",
+        "observation": {
+          "mutationsRejected": [
+            "source.reaCommit",
+            "source.image",
+            "source.files",
+            "source.controllerBoot",
+            "worker.id",
+            "worker.platform",
+            "evidencePolicy.rawUntil",
+            "limits.memoryBytes"
+          ],
+          "method": "privileged stored-intent fault injection; independent peer isolation tested separately"
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 4.119
+      },
+      {
+        "id": "EA-07",
+        "status": "PASS",
+        "observation": {
+          "changedFixtureAndSymlinkDenied": true,
+          "immutableNamespace": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "targetWriteImportAndNetworkProbes": {
+            "denied": [
+              true,
+              true,
+              true
+            ],
+            "writeDenied": true,
+            "importWriteDenied": true,
+            "networkDenied": true
+          }
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 7.25
+      },
+      {
+        "id": "EA-08",
+        "status": "PASS",
+        "observation": {
+          "strictRequestFieldsRejected": [
+            "environment",
+            "platform",
+            "envOverrides",
+            "REA_PROCESS_RUN_ID",
+            "",
+            "\u0000",
+            "="
+          ]
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.26
+      },
+      {
+        "id": "EA-09",
+        "status": "PASS",
+        "observation": {
+          "rawSha256": "30ecd2b67abce2f243e07d600d03a10dd71b0e2a96ac581dd1d8e1123e45496d",
+          "rawBytes": 7023,
+          "agentRawReadDenied": true,
+          "canonicalEvidence": true,
+          "explicitRetained": true,
+          "ambientAbsent": true,
+          "targetFlags": {
+            "allExpectedBooleans": true,
+            "syntheticExplicitValueMatched": true
+          },
+          "fixtureProbe": null,
+          "markedPlaceholder": false,
+          "markedEchoRetained": false,
+          "privateDiagnostic": false,
+          "probe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "resources": {
+            "cgroup": {
+              "cpu.stat": "usage_usec 3532444\nuser_usec 3045653\nsystem_usec 486791\nnice_usec 0\nnr_periods 40\nnr_throttled 33\nthrottled_usec 3557809\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.peak": "388694016\n",
+              "pids.events": "max 0\n"
+            },
+            "cleanup": true,
+            "exitCode": 0,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            }
+          },
+          "rawDisposed": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 5.946
+      },
+      {
+        "id": "EA-10",
+        "status": "PASS",
+        "observation": {
+          "strictRequestFieldsRejected": [
+            "envOverrides",
+            "config.env",
+            "SDKROOT",
+            "DEVELOPER_DIR",
+            "TOOLCHAINS",
+            "CLANG_MODULE_CACHE_PATH",
+            "REA_PROCESS_RUN_ID"
+          ]
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.149
+      },
+      {
+        "id": "EA-11",
+        "status": "PASS",
+        "observation": {
+          "strictRequestFieldsRejected": [
+            "NODE_OPTIONS",
+            "LD_PRELOAD",
+            "PYTHONPATH",
+            "JAVA_TOOL_OPTIONS",
+            "PATH",
+            "HOME",
+            "LD_LIBRARY_PATH",
+            "DISPLAY"
+          ]
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.167
+      },
+      {
+        "id": "EA-12",
+        "status": "PASS",
+        "observation": {
+          "strictRequestFieldsRejected": [
+            "environment",
+            "arguments",
+            "stdin",
+            "script",
+            "file",
+            "providerConfig",
+            "url",
+            "classification"
+          ]
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.179
+      },
+      {
+        "id": "EA-13",
+        "status": "PASS",
+        "observation": [
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "6bf920c38f9b4829ac24f60fc2d1ff17",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "5b5ba607d9a74edaa043efe84fa139a3",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "981f1241d5ef42b48e21e299ce4ab147",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "ae44ceb5c0b24b359f385f0aaa0570a6",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "11eabbb38748494cb0da362d476825d1",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "9e6dede7098f4a3aa800bc53a3915fcf",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "8b27d8c27611489594afc0786494fed7",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "78e0865b43fd4e718655b16fa83b5223",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "60fa65dd472340db8e84bc4b0f198938",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "410ac17d4ec5499e884202adfb86c59f",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "2801fffb75cf4d42beeca55a84f9e640",
+            "runId": null,
+            "status": "DENIED"
+          },
+          {
+            "cleanupStatus": "NOT_STARTED",
+            "contractVersion": "rea-evaluation-authorization/1",
+            "coverage": "NOT_STARTED",
+            "reasonCode": "OUT_OF_SCOPE",
+            "requestId": "50fd467ec640428084fd5736ecf399f4",
+            "runId": null,
+            "status": "DENIED"
+          }
+        ],
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 4.55
+      },
+      {
+        "id": "EA-14",
+        "status": "NOT_TESTED",
+        "observation": {
+          "expiredRevokedFutureDenied": true
+        },
+        "remaining": "Restart/crash evidence is collected by EA-24; ambiguous consumed retry is covered by EA-15. Trusted-clock uncertainty is not injected here.",
+        "evidenceKind": "PARTIAL_REAL_LINUX_OBSERVATIONS",
+        "wallSeconds": 4.65
+      },
+      {
+        "id": "EA-15",
+        "status": "PASS",
+        "observation": {
+          "launches": 1,
+          "responses": [
+            "DENIED",
+            "COMPLETED"
+          ],
+          "retryDenied": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 7.318
+      },
+      {
+        "id": "EA-16",
+        "status": "NOT_TESTED",
+        "observation": {
+          "revoke": "REVOKED",
+          "cancel": "REVOKED",
+          "expiry": "EXPIRED"
+        },
+        "remaining": "Controller death is separately measured by EA-24; forced cleanup-failure retention/ownership branch is not dynamically certified.",
+        "evidenceKind": "PARTIAL_REAL_LINUX_OBSERVATIONS",
+        "wallSeconds": 5.901
+      },
+      {
+        "id": "EA-17",
+        "status": "NOT_TESTED",
+        "observation": {
+          "writableInputRootDenied": true
+        },
+        "remaining": "Actual worker non-root/capability/filesystem/network probes run on positive captures; each missing CPU/memory/PID/disk/network enforcement is not independently fault-injected.",
+        "evidenceKind": "PARTIAL_REAL_LINUX_OBSERVATIONS",
+        "wallSeconds": 1.477
+      },
+      {
+        "id": "EA-18",
+        "status": "NOT_TESTED",
+        "observation": {
+          "disk": {
+            "rawSha256": "0575fda9908ecf63afc36b4d0e2001ca5e0a559c674db72e6ac8b22e1a6e4518",
+            "rawBytes": 6761,
+            "agentRawReadDenied": true,
+            "canonicalEvidence": true,
+            "explicitRetained": true,
+            "ambientAbsent": true,
+            "targetFlags": null,
+            "fixtureProbe": null,
+            "markedPlaceholder": false,
+            "markedEchoRetained": false,
+            "privateDiagnostic": false,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "resources": {
+              "cgroup": {
+                "cpu.stat": "usage_usec 4295386\nuser_usec 3475270\nsystem_usec 820116\nnice_usec 0\nnr_periods 46\nnr_throttled 39\nthrottled_usec 4539492\nnr_bursts 0\nburst_usec 0\n",
+                "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+                "memory.peak": "386621440\n",
+                "pids.events": "max 0\n"
+              },
+              "cleanup": true,
+              "exitCode": 0,
+              "limits": {
+                "cpuMax": "100000 100000",
+                "diskBytes": 16777216,
+                "fileBytes": 2097152,
+                "memoryBytes": 536870912,
+                "network": "deny-all",
+                "pids": 64,
+                "wallSeconds": 10
+              },
+              "probe": {
+                "appWritable": false,
+                "capEffZero": true,
+                "controllerVisible": false,
+                "gid": 1001,
+                "networkDenied": true,
+                "noNewPrivs": true,
+                "rootWritable": false,
+                "scenarioReadable": true,
+                "uid": 1001,
+                "workWritable": true
+              }
+            },
+            "rawDisposed": true
+          },
+          "cpu": {
+            "rawSha256": "728cdd7035ea53f89f1f2adaa453e9410c61371e11b4209ef0ba1d22757b04c5",
+            "rawBytes": 6746,
+            "agentRawReadDenied": true,
+            "canonicalEvidence": true,
+            "explicitRetained": true,
+            "ambientAbsent": true,
+            "targetFlags": null,
+            "fixtureProbe": null,
+            "markedPlaceholder": false,
+            "markedEchoRetained": false,
+            "privateDiagnostic": false,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "resources": {
+              "cgroup": {
+                "cpu.stat": "usage_usec 4115281\nuser_usec 3529095\nsystem_usec 586186\nnice_usec 0\nnr_periods 44\nnr_throttled 39\nthrottled_usec 5386736\nnr_bursts 0\nburst_usec 0\n",
+                "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+                "memory.peak": "431689728\n",
+                "pids.events": "max 0\n"
+              },
+              "cleanup": true,
+              "exitCode": 0,
+              "limits": {
+                "cpuMax": "100000 100000",
+                "diskBytes": 16777216,
+                "fileBytes": 2097152,
+                "memoryBytes": 536870912,
+                "network": "deny-all",
+                "pids": 64,
+                "wallSeconds": 10
+              },
+              "probe": {
+                "appWritable": false,
+                "capEffZero": true,
+                "controllerVisible": false,
+                "gid": 1001,
+                "networkDenied": true,
+                "noNewPrivs": true,
+                "rootWritable": false,
+                "scenarioReadable": true,
+                "uid": 1001,
+                "workWritable": true
+              }
+            },
+            "rawDisposed": true
+          }
+        },
+        "remaining": "Finite disk/file and CPU fixtures executed; memory/PID exhaustion and global evidence-quota failure are not stress-tested. Complete resource case remains NOT_TESTED.",
+        "evidenceKind": "PARTIAL_REAL_LINUX_OBSERVATIONS",
+        "wallSeconds": 13.275
+      },
+      {
+        "id": "EA-19",
+        "status": "PASS",
+        "observation": {
+          "unsupportedRoutesDenied": true,
+          "agentCannotReadOrInvokeCheckout": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 0.177
+      },
+      {
+        "id": "EA-20",
+        "status": "PASS",
+        "observation": {
+          "auditAndAgentResponseExcludeRawCanaries": true,
+          "rawObservedThenDisposed": {
+            "rawSha256": "efc7b1686e0a29dbf5cd95759c9be375d03674e343e5916f3635830c3082c260",
+            "rawBytes": 8720,
+            "agentRawReadDenied": true,
+            "canonicalEvidence": true,
+            "explicitRetained": true,
+            "ambientAbsent": true,
+            "targetFlags": null,
+            "fixtureProbe": null,
+            "markedPlaceholder": false,
+            "markedEchoRetained": false,
+            "privateDiagnostic": true,
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            },
+            "resources": {
+              "cgroup": {
+                "cpu.stat": "usage_usec 4043012\nuser_usec 3439172\nsystem_usec 603840\nnice_usec 0\nnr_periods 43\nnr_throttled 38\nthrottled_usec 4326458\nnr_bursts 0\nburst_usec 0\n",
+                "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+                "memory.peak": "385830912\n",
+                "pids.events": "max 0\n"
+              },
+              "cleanup": true,
+              "exitCode": 0,
+              "limits": {
+                "cpuMax": "100000 100000",
+                "diskBytes": 16777216,
+                "fileBytes": 2097152,
+                "memoryBytes": 536870912,
+                "network": "deny-all",
+                "pids": 64,
+                "wallSeconds": 10
+              },
+              "probe": {
+                "appWritable": false,
+                "capEffZero": true,
+                "controllerVisible": false,
+                "gid": 1001,
+                "networkDenied": true,
+                "noNewPrivs": true,
+                "rootWritable": false,
+                "scenarioReadable": true,
+                "uid": 1001,
+                "workWritable": true
+              }
+            },
+            "rawDisposed": true
+          }
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 6.435
+      },
+      {
+        "id": "EA-21",
+        "status": "PASS",
+        "observation": {
+          "rawSha256": "0c347a07b9ab2199b2bf48acfd36244ee32351f9a92abb4016ad3b46197e96af",
+          "rawBytes": 7880,
+          "agentRawReadDenied": true,
+          "canonicalEvidence": true,
+          "explicitRetained": true,
+          "ambientAbsent": true,
+          "targetFlags": null,
+          "fixtureProbe": null,
+          "markedPlaceholder": true,
+          "markedEchoRetained": true,
+          "privateDiagnostic": false,
+          "probe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          },
+          "resources": {
+            "cgroup": {
+              "cpu.stat": "usage_usec 5924708\nuser_usec 5184550\nsystem_usec 740158\nnice_usec 0\nnr_periods 93\nnr_throttled 54\nthrottled_usec 8255852\nnr_bursts 0\nburst_usec 0\n",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+              "memory.peak": "389910528\n",
+              "pids.events": "max 0\n"
+            },
+            "cleanup": true,
+            "exitCode": 0,
+            "limits": {
+              "cpuMax": "100000 100000",
+              "diskBytes": 16777216,
+              "fileBytes": 2097152,
+              "memoryBytes": 536870912,
+              "network": "deny-all",
+              "pids": 64,
+              "wallSeconds": 10
+            },
+            "probe": {
+              "appWritable": false,
+              "capEffZero": true,
+              "controllerVisible": false,
+              "gid": 1001,
+              "networkDenied": true,
+              "noNewPrivs": true,
+              "rootWritable": false,
+              "scenarioReadable": true,
+              "uid": 1001,
+              "workWritable": true
+            }
+          },
+          "rawDisposed": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 11.39
+      },
+      {
+        "id": "EA-22",
+        "status": "PASS",
+        "observation": {
+          "exportAndReportApiAbsent": true,
+          "noCallerDestinationAccepted": true,
+          "liveRawReadDeniedByUid": true
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 7.378
+      },
+      {
+        "id": "EA-23",
+        "status": "NOT_TESTED",
+        "observation": {
+          "implemented": false
+        },
+        "remaining": "Separate approved derived-report workflow and transformation ledger are not implemented; raw Evidence is not rewritten.",
+        "evidenceKind": "DECLARATION_ONLY_NO_RUNTIME_CONTROL",
+        "wallSeconds": 0.0
+      },
+      {
+        "id": "EA-24",
+        "status": "PASS",
+        "observation": {
+          "controllerSigkill": true,
+          "independentJanitorStoppedFamily": true,
+          "rawHandleRemoved": true,
+          "auditAndDecisionExpired": true,
+          "restartDidNotRestoreApproval": true,
+          "scope": "controlled logical copies only; no physical erasure claim"
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 33.141
+      },
+      {
+        "id": "EA-25",
+        "status": "NOT_TESTED",
+        "observation": {
+          "operatorInjectedBlockedProfileDenies": true
+        },
+        "remaining": "Blocked-profile denial is real; unknown provider backups, failed deletion receipts and cleanup failures are not fully injected.",
+        "evidenceKind": "PARTIAL_REAL_LINUX_OBSERVATIONS",
+        "wallSeconds": 0.035
+      },
+      {
+        "id": "EA-26",
+        "status": "NOT_TESTED",
+        "observation": {
+          "missingDatabaseDeniedBeforeLaunch": true
+        },
+        "remaining": "Prelaunch audit unavailability exercised. Midrun full/disconnected audit and evidence sinks are not certified; NOT_TESTED for the complete case.",
+        "evidenceKind": "PARTIAL_REAL_LINUX_OBSERVATIONS",
+        "wallSeconds": 2.004
+      },
+      {
+        "id": "EA-27",
+        "status": "PASS",
+        "observation": {
+          "peerCredentialRoleEnforced": true,
+          "privateStateUnreadableToAgentUid": true,
+          "workerProbe": {
+            "appWritable": false,
+            "capEffZero": true,
+            "controllerVisible": false,
+            "gid": 1001,
+            "networkDenied": true,
+            "noNewPrivs": true,
+            "rootWritable": false,
+            "scenarioReadable": true,
+            "uid": 1001,
+            "workWritable": true
+          }
+        },
+        "remaining": null,
+        "evidenceKind": "REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES",
+        "wallSeconds": 8.242
+      },
+      {
+        "id": "EA-28",
+        "status": "NOT_TESTED",
+        "observation": {
+          "productionAndUnrestrictedAgents": "NO_GO",
+          "acceptanceReportIsNotAnApprovalCapability": true
+        },
+        "remaining": "No independent release/human-attestation gate is implemented. Partial catalogue and automated operator tests cannot establish readiness.",
+        "evidenceKind": "DECLARATION_ONLY_NO_RUNTIME_CONTROL",
+        "wallSeconds": 0.0
+      }
+    ],
+    "summary": {
+      "PASS": 20,
+      "FAIL": 0,
+      "NOT_TESTED": 8
+    },
+    "productionAndUnrestrictedAgents": "NO_GO",
+    "operatorReview": "AUTOMATED_UID_0_TEST_ORCHESTRATION_NOT_HUMAN_REVIEW",
+    "statePath": "/var/lib/rea-controller/test-b390c1cfd5d6427da67dc4c3660982d2",
+    "newRealCredentials": false
+  },
+  "janitorRegressions": {
+    "cases": [
+      {
+        "id": "JR-01",
+        "status": "PASS",
+        "evidenceKind": "PRIVILEGED_STARTUP_FAULT_WITH_REAL_CHILD_AND_FDS",
+        "observation": {
+          "noSocket": true,
+          "noRequests": true,
+          "reaLaunches": 0,
+          "blocked": true,
+          "childReaped": true,
+          "boundedFailureSeconds": 0.065
+        },
+        "wallSeconds": 0.875
+      },
+      {
+        "id": "JR-02",
+        "status": "PASS",
+        "evidenceKind": "PRIVILEGED_STARTUP_FAULT_WITH_REAL_CHILD_AND_FDS",
+        "observation": {
+          "noSocket": true,
+          "noRequests": true,
+          "reaLaunches": 0,
+          "blocked": true,
+          "childReaped": true,
+          "boundedFailureSeconds": 2.07
+        },
+        "wallSeconds": 2.861
+      },
+      {
+        "id": "JR-03",
+        "status": "PASS",
+        "evidenceKind": "PRIVILEGED_STARTUP_FAULT_WITH_REAL_CHILD_AND_FDS",
+        "observation": {
+          "noSocket": true,
+          "noRequests": true,
+          "reaLaunches": 0,
+          "blocked": true,
+          "childReaped": true,
+          "boundedFailureSeconds": 0.065
+        },
+        "wallSeconds": 0.653
+      },
+      {
+        "id": "JR-04",
+        "status": "PASS",
+        "evidenceKind": "PRIVILEGED_STARTUP_FAULT_WITH_REAL_CHILD_AND_FDS",
+        "observation": {
+          "noSocket": true,
+          "noRequests": true,
+          "reaLaunches": 0,
+          "blocked": true,
+          "childReaped": true,
+          "boundedFailureSeconds": 2.07
+        },
+        "wallSeconds": 2.86
+      },
+      {
+        "id": "JR-05",
+        "status": "PASS",
+        "evidenceKind": "REAL_JANITOR_DELAYED_EXEC_AND_PARENT_SIGKILL_WITH_INJECTED_PRIVATE_ROW",
+        "observation": {
+          "parentKilledBeforeJanitorExec": true,
+          "inheritedPidfdObservedExactDeath": true,
+          "injectedPrivateIntentExpired": true,
+          "rows": {
+            "requests": 0,
+            "decisions": 0,
+            "audit": 0
+          },
+          "reaLaunches": 0,
+          "noSocket": true
+        },
+        "wallSeconds": 2.463
+      },
+      {
+        "id": "JR-06",
+        "status": "PASS",
+        "evidenceKind": "REAL_UNMODIFIED_CONTROLLER_AND_JANITOR",
+        "observation": {
+          "parentKilledAfterReadyBeforeFirstRequest": true,
+          "janitorExited": true,
+          "reaLaunches": 0
+        },
+        "wallSeconds": 0.895
+      },
+      {
+        "id": "JR-07",
+        "status": "PASS",
+        "evidenceKind": "REAL_UNMODIFIED_CONTROLLER_AND_JANITOR",
+        "observation": {
+          "janitorSigkill": true,
+          "profileBlocked": true,
+          "activeFamilyRemoved": false,
+          "reaLaunches": 0,
+          "retentionAfterStorageOwnerLoss": "Measured separately by JR-09, not certified by this subcase"
+        },
+        "wallSeconds": 2.694
+      },
+      {
+        "id": "JR-08",
+        "status": "PASS",
+        "evidenceKind": "REAL_REA_CLI_WORKER_AND_JANITOR_SIGKILL",
+        "observation": {
+          "janitorSigkill": true,
+          "profileBlocked": true,
+          "activeFamilyRemoved": true,
+          "reaLaunches": 1,
+          "retentionAfterStorageOwnerLoss": "Measured separately by JR-09, not certified by this subcase"
+        },
+        "wallSeconds": 3.678
+      },
+      {
+        "id": "JR-09",
+        "status": "FAIL",
+        "errorType": "AssertionError",
+        "diagnostic": "Storage-owner loss left raw intent / audit past deadline; profile is blocked but expiry failed.",
+        "wallSeconds": 28.13
+      },
+      {
+        "id": "JR-10",
+        "status": "PASS",
+        "evidenceKind": "REAL_PRIVATE_METRIC_PRODUCER_WITH_CONCURRENT_READER",
+        "observation": {
+          "atomicPublications": 1000,
+          "concurrentReads": 3865,
+          "wholeMonotonicIntegers": true,
+          "scope": "private metric producer; not approval authority or launch durability"
+        },
+        "wallSeconds": 0.209
+      }
+    ],
+    "summary": {
+      "PASS": 9,
+      "FAIL": 1,
+      "NOT_TESTED": 0
+    },
+    "scope": "Janitor readiness regressions, separate from the 28 acceptance cases; synthetic VM only.",
+    "retentionAfterJanitorLoss": "See JR-09; admission and run cleanup do not establish expiry after storage-owner loss."
+  },
+  "retentionAfterStorageOwnerLoss": {
+    "status": "FAIL",
+    "observations": [
+      {
+        "state": "/var/lib/rea-controller/janitor-test-29faa328d09f496185c2ad35e9864226",
+        "blocked": true,
+        "rawIntentsPastDeadline": 1,
+        "requestsPastAuditDeadline": 1,
+        "auditRows": 5
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-e8edb98ff0dd4f54a58a30194a7d7534",
+        "blocked": true,
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 1,
+        "auditRows": 10
+      }
+    ],
+    "cause": "No surviving expiry owner when janitor dies; a blocked admission profile does not delete pending intent/audit.",
+    "remediation": "Define independent storage ownership and deadline enforcement; revalidate loss, restart and cleanup-failure paths before enabling the profile.",
+    "faultSequence": [
+      "Propose and approve a fixed synthetic fixture with actual Unix peer roles.",
+      "SIGKILL the real janitor, before execute in JR-07 and during capture in JR-08.",
+      "Verify denied new operations / owned active-family cleanup.",
+      "Test operator terminates each controller after those observations.",
+      "JR-09 waits past the original raw/audit deadlines and checks retained rows."
+    ],
+    "controllerStatusDuringExpiry": "TERMINATED_BY_TEST_OPERATOR_AFTER_LOSS_CHECK; simultaneous/continued-controller variants remain untested."
+  },
+  "checks": {
+    "finalExits": {
+      "catalogueExit": 0,
+      "janitorExit": 1,
+      "negativeGateExit": 1
+    },
+    "pythonCompile": "PASS, four Python source files",
+    "mjsFormat": "Checking formatting...\n\nAll matched files use the correct format.\nFinished in 5ms on 2 files using 4 threads.\n",
+    "mjsLint": "Found 0 warnings and 0 errors.\nFinished in 43ms on 2 files with 107 rules using 4 threads.\n",
+    "parentBuildExit": "0",
+    "negativeGate": {
+      "expectedExit": 1,
+      "actualExit": 1,
+      "actualLaunches": 0,
+      "scope": "Deliberately disallowed operator registry; does not count as an acceptance failure."
+    }
+  },
+  "logs": {
+    "catalogue": "EA-01 PASS\nEA-02 PASS\nEA-03 PASS\nEA-04 PASS\nEA-05 PASS\nEA-06 PASS\nEA-07 PASS\nEA-08 PASS\nEA-09 PASS\nEA-10 PASS\nEA-11 PASS\nEA-12 PASS\nEA-13 PASS\nEA-14 NOT_TESTED\nEA-15 PASS\nEA-16 NOT_TESTED\nEA-17 NOT_TESTED\nEA-18 NOT_TESTED\nEA-19 PASS\nEA-20 PASS\nEA-21 PASS\nEA-22 PASS\nEA-23 NOT_TESTED\nEA-24 PASS\nEA-25 NOT_TESTED\nEA-26 NOT_TESTED\nEA-27 PASS\nEA-28 NOT_TESTED\nreal 139.19\nuser 88.26\nsys 12.38\n",
+    "janitor": "JR-01 PASS\nJR-02 PASS\nJR-03 PASS\nJR-04 PASS\nJR-05 PASS\nJR-06 PASS\nJR-07 PASS\nJR-08 PASS\nJR-09 FAIL\nJR-10 PASS\nreal 45.42\nuser 10.21\nsys 0.99\n",
+    "parentBuild": "\n> rea-agents@6.5.0 build:cached\n> node scripts/check-dependency-install.mjs && node scripts/run-exclusive.mjs artifacts turbo run artifacts:skills\n\n\nAttention:\nTurborepo now collects completely anonymous telemetry regarding usage.\nThis information is used to shape the Turborepo roadmap and prioritize features.\nYou can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:\nhttps://turborepo.dev/docs/telemetry\n\n\n   \u2022 turbo 2.11.7\n   \u2022 Running artifacts:skills\n   \u2022 Remote caching disabled\n\nmetadata:check: cache miss, executing 32f5da12514f2ac6\nmetadata:check: \nmetadata:check: > rea-agents@6.5.0 metadata:check\nmetadata:check: > node scripts/generate-package-metadata.mjs --check\nmetadata:check: \ncompile: cache miss, executing 4769f1c0a6e90f21\ncompile: \ncompile: > rea-agents@6.5.0 compile\ncompile: > node scripts/clean-build-output.mjs && tsc -p tsconfig.build.json && node scripts/bundle-runtime.mjs\ncompile: \ncompile: \u001b[33m[INEFFECTIVE_DYNAMIC_IMPORT] \u001b[0mdist/composition/binary.js is dynamically imported by dist/composition/directAnalysis.js but also statically imported by dist/main.js, dynamic import will not move module into another chunk.\ncompile: \ncompile: \u001b[33m[INEFFECTIVE_DYNAMIC_IMPORT] \u001b[0mdist/dotnet/ManagedStaticProvider.js is dynamically imported by dist/composition/auxiliaryAnalysisProviders.js but also statically imported by dist/composition/binary.js, dynamic import will not move module into another chunk.\ncompile: \nartifacts:skills: cache miss, executing f840124e2c7cab41\nartifacts:skills: \nartifacts:skills: > rea-agents@6.5.0 artifacts:skills\nartifacts:skills: > node scripts/generate-skill-metadata.mjs\nartifacts:skills: \n\n Tasks:    3 successful, 3 total\nCached:    0 cached, 3 total\n  Time:    18.658s \n\n"
+  },
+  "developmentTrials": [
+    {
+      "name": "controller-catalogue-before-atomic-fix",
+      "summary": {
+        "PASS": 20,
+        "FAIL": 1,
+        "NOT_TESTED": 7
+      },
+      "failures": [
+        {
+          "id": "EA-16",
+          "errorType": "ValueError",
+          "diagnostic": "invalid literal for int() with base 10: ''"
+        }
+      ]
+    },
+    {
+      "name": "controller-catalogue-blocked-trial",
+      "summary": {
+        "PASS": 10,
+        "FAIL": 14,
+        "NOT_TESTED": 4
+      },
+      "failures": [
+        {
+          "id": "EA-04",
+          "errorType": "AssertionError",
+          "diagnostic": ""
+        },
+        {
+          "id": "EA-05",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': '93855ed2ce184ac7a45265eace6658ca', 'runId': None, 'status': 'DENIED'}"
+        },
+        {
+          "id": "EA-06",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': '037a807b225c459fb5f16c9c5647d6f2', 'runId': None, 'status': 'DENIED'}"
+        },
+        {
+          "id": "EA-07",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': 'aa501c3f65c346b38abef30054eebba1', 'runId': None, 'status': 'DENIED'}"
+        },
+        {
+          "id": "EA-09",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': '06df7b5b3f7641578df8bc8969e6657e', 'runId': None, 'status': 'DENIED'}"
+        },
+        {
+          "id": "EA-14",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': 'af7e1f9a20a247409ca45cb1e0bc408a', 'runId': None, 'status': 'DENIED'}"
+        },
+        {
+          "id": "EA-15",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': '1420a73911f541998452cdfeac472078', 'runId': None, 'status': 'DENIED'}"
+        },
+        {
+          "id": "EA-16",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': '71dad5f56e9940b2b09479aee27bfca4', 'runId': None, 'status': 'DENIED'}"
+        },
+        {
+          "id": "EA-17",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': '1fd46493c4924fafac72885b45eb1d09', 'runId': None, 'status': 'DENIED'}"
+        },
+        {
+          "id": "EA-18",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': '2dc30638024e401ab95c6e00d60c3b3b', 'runId': None, 'status': 'DENIED'}"
+        },
+        {
+          "id": "EA-20",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': 'bafdf9525ce74450862f30ad10e23ec5', 'runId': None, 'status': 'DENIED'}"
+        },
+        {
+          "id": "EA-21",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': 'f730b574d8174e98b319e272cb933029', 'runId': None, 'status': 'DENIED'}"
+        },
+        {
+          "id": "EA-22",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': '7dce2718f62447df902387974d6cce25', 'runId': None, 'status': 'DENIED'}"
+        },
+        {
+          "id": "EA-24",
+          "errorType": "AssertionError",
+          "diagnostic": "{'cleanupStatus': 'NOT_STARTED', 'contractVersion': 'rea-evaluation-authorization/1', 'coverage': 'NOT_STARTED', 'reasonCode': 'CONTROL_UNVERIFIED', 'requestId': 'e9142f13aa0546f19fc855091bfc4ef8', 'runId': None, 'status': 'DENIED'}"
+        }
+      ]
+    },
+    {
+      "name": "controller-catalogue-diagnostic-trial",
+      "summary": {
+        "PASS": 20,
+        "FAIL": 0,
+        "NOT_TESTED": 8
+      },
+      "failures": []
+    },
+    {
+      "name": "janitor-before-atomic-fix",
+      "summary": {
+        "PASS": 8,
+        "FAIL": 1,
+        "NOT_TESTED": 0
+      },
+      "failures": [
+        {
+          "id": "JR-09",
+          "errorType": "AssertionError",
+          "diagnostic": "Storage-owner loss left raw intent / audit past deadline; profile is blocked but expiry failed."
+        }
+      ]
+    },
+    {
+      "name": "janitor-pre-transaction-change",
+      "summary": {
+        "PASS": 9,
+        "FAIL": 1,
+        "NOT_TESTED": 0
+      },
+      "failures": [
+        {
+          "id": "JR-09",
+          "errorType": "AssertionError",
+          "diagnostic": "Storage-owner loss left raw intent / audit past deadline; profile is blocked but expiry failed."
+        }
+      ]
+    }
+  ],
+  "sourceSha256": {
+    "experiments/execution-controller/README.md": "5178c622792dba0c8f4a14ddaad09baa8378c86ae6206b8dc7bea0a289cb4cf6",
+    "experiments/execution-controller/acceptance.py": "a5086ce1e2f71d77c036fc51e5d9c14df7cfeb4c355b973c78b3212032f3fecf",
+    "experiments/execution-controller/controller.py": "f0e0f8afec0d3dcc3e2bcbe1f3b821778e1bd8864c7df2d366ba454d267b03d2",
+    "experiments/execution-controller/fixture.mjs": "55f8bca182ec7494a3a38a995901863fdc557a7014077344cbd5c8cae0db36a0",
+    "experiments/execution-controller/janitor_acceptance.py": "4f16c331f63c2605314be9e83c023981ed72d6dd6ac72ddc1e3f10e57b6497d0",
+    "experiments/execution-controller/prepare.mjs": "10d54992511b365a5df84591abfd6ab3c4b81bc7f7bde810e17b608a4dbf6204",
+    "experiments/execution-controller/worker.py": "78f8466f6073fb2119efc8c6755c3d9ec0abd89105742534dbee9470c07ac0ab",
+    "package.json": "a500302319c1214a8bb6c9a8b4a4a090806e95eef884204a9d9fbb4003050a6c",
+    "package-lock.json": "0482085372c563c99b32519f51339eb280adc2bd83efdba6a8efd7cd4a49e9f0",
+    "LICENSE": "798f9e4d18e49b30bf2f12696c8ced73dc4e1413da375a333d01281543a1ea8b"
+  },
+  "registrySha256": "a39d41ec4e290e8f3cdafbf625be4c5cabad17642785b52c9721c67d87ee37d2",
+  "outerCgroupMetrics": {
+    "memory.max": "8589934592\n",
+    "memory.peak": "4488134656\n",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+    "pids.max": "512\n",
+    "pids.peak": "84\n",
+    "cpu.stat": "usage_usec 646995901\nuser_usec 559134431\nsystem_usec 87861470\nnice_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0\n"
+  },
+  "disposal": {
+    "processes": [],
+    "uid1001Processes": [],
+    "ownedCgroups": [],
+    "privateStoresBeforeOperatorRemoval": [
+      {
+        "state": "/var/lib/rea-controller/janitor-test-058ddeb6a720405290334b6be3ff57ec",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": false,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-0a37dda1d23a4809a65f2b32b7714350",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-10a1986ff0b14b4e9ffc8ca2801869f5",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-11085f78fa6d461e8e5ae8be9fc2eb87",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-19ee2ddba5c04578a2dacf7e5bef173a",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": false,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-2654cc4c066a4ba89c18a6f64d495de0",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": false,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-2952e5fd7efd40f394f8176dc5b087cd",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-29faa328d09f496185c2ad35e9864226",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 1,
+          "decisions": 1,
+          "audit": 5
+        },
+        "rawIntentsPastDeadline": 1,
+        "requestsPastAuditDeadline": 1,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "FAILED_OPERATOR_DISPOSAL_REQUIRED"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-2cf07e4884f943abaf4b2a7e39d38b0b",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 1,
+          "decisions": 0,
+          "audit": 9
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 1,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "FAILED_OPERATOR_DISPOSAL_REQUIRED"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-2f784cee1bcf410ca585178bf7fd3626",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-3523bb0e45c0475ca08c1426c8bcea33",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 1,
+          "decisions": 1,
+          "audit": 5
+        },
+        "rawIntentsPastDeadline": 1,
+        "requestsPastAuditDeadline": 1,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "FAILED_OPERATOR_DISPOSAL_REQUIRED"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-46712e21563744c484acc6687f608144",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 1,
+          "decisions": 1,
+          "audit": 5
+        },
+        "rawIntentsPastDeadline": 1,
+        "requestsPastAuditDeadline": 1,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "FAILED_OPERATOR_DISPOSAL_REQUIRED"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-485289138f8149e6b0c42d0e7c29449d",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-4f8f14f328f2400c8eb2cbafc2434807",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-5838ee8bdfb64a4f96a4e79550cb8870",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": false,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-773ec6592f92438f8abf598e34c681d9",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": false,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-7e960d59a8e74bddab65825f61817bea",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-84d252e51d324f2f9f87cb1955928027",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 1,
+          "decisions": 1,
+          "audit": 5
+        },
+        "rawIntentsPastDeadline": 1,
+        "requestsPastAuditDeadline": 1,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "FAILED_OPERATOR_DISPOSAL_REQUIRED"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-851759ae5fa144bfae9338ecd2caa9fd",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-8d04ef07ddd147d5826859e43d7751b3",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 1,
+          "decisions": 0,
+          "audit": 9
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 1,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "FAILED_OPERATOR_DISPOSAL_REQUIRED"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-8f2457154b934047b0ab7c0bcc39967e",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 1,
+          "decisions": 0,
+          "audit": 9
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 1,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "FAILED_OPERATOR_DISPOSAL_REQUIRED"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-9a3607fbc21a49aa83b889bf3f5e1908",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": false,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-9b2994608c2a4b41b551a6f628a8cc46",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-a1c65f97043d41119c877de1cad56d12",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-a74d16a4cb944bce9a1dfe7490afd657",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-a80042f1b33b4a7881a1a322b4d9f2f2",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": false,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-bdb8860d9d00414b8a4ab8241fe67a0b",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-c7158954ade549218f196b8c020f5799",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": false,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-d16d01cdfbf94d9d98db0b1486243702",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-db82da1cd97f4c6f96b889c9fb9720b6",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-e395e9b7348b47e69dcadccbb4d05be2",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/janitor-test-e8edb98ff0dd4f54a58a30194a7d7534",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 1,
+          "decisions": 0,
+          "audit": 10
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 1,
+        "rawRunHandles": 0,
+        "blocked": true,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "FAILED_OPERATOR_DISPOSAL_REQUIRED"
+      },
+      {
+        "state": "/var/lib/rea-controller/test-0c0b47776e41410cb5523f8008dc9746",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": false,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/test-19f3c9e6d9de4cf1ba151497a8c81e61",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": false,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/test-34fcab0017fe42e48595847e62a059d3",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": false,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/test-b390c1cfd5d6427da67dc4c3660982d2",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": false,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      },
+      {
+        "state": "/var/lib/rea-controller/test-cf8eb84ee90546adb14c9bf8d81ec585",
+        "rowsBeforeOperatorDisposal": {
+          "requests": 0,
+          "decisions": 0,
+          "audit": 0
+        },
+        "rawIntentsPastDeadline": 0,
+        "requestsPastAuditDeadline": 0,
+        "rawRunHandles": 0,
+        "blocked": false,
+        "privateJanitorDiagnosticBytes": 0,
+        "janitorFailureCodes": [],
+        "expiryOutcome": "EMPTY_AT_INSPECTION"
+      }
+    ],
+    "privateRootRemoved": true,
+    "socketHandlesRemoved": 13,
+    "rawDiagnosticCopyWasPresent": false,
+    "rawDiagnosticCopyRemoved": true,
+    "method": "Privileged evaluation operator removed all inventoried stores after inspection, including failed automatic expiry copies. Not an automatic retention PASS.",
+    "scope": "Controlled logical copies only; no physical erasure or unobserved backup guarantee."
+  },
+  "verdict": {
+    "REA_1_1": "PARTIAL",
+    "productionAndUnrestrictedAgents": "NO_GO",
+    "retentionAfterJanitorLoss": "FAIL",
+    "mainChanged": false,
+    "platformIntegration": false,
+    "nativeProviders": "NOT_TESTED",
+    "fullSCA": "NOT_TESTED",
+    "humanReview": "NOT_ATTESTED",
+    "realCredentials": "NOT_COLLECTED"
+  },
+  "environmentLifecycle": {
+    "created": {
+      "sandbox": {
+        "name": "rea-janitor-readiness-20261016",
+        "currentSessionId": "sbx_pNcTTf5e9ZVrpPmgFGvr4od59SP1",
+        "status": "running",
+        "statusUpdatedAt": 1792113487749,
+        "persistent": false,
+        "region": "iad1",
+        "failoverRegions": [],
+        "vcpus": 4,
+        "memory": 8192,
+        "runtime": "node22",
+        "architecture": "amd64",
+        "image": "vercel/sandbox/node@sha256:6ad1291a9fe7d243ee9f23626e6b08614a596431801c55e14cc5ee9d525f28d1",
+        "timeout": 2700000,
+        "snapshotExpiration": 604800000,
+        "networkPolicy": {
+          "mode": "deny-all"
+        },
+        "cwd": "/vercel",
+        "tags": {
+          "purpose": "rea-janitor-synthetic",
+          "baseline": "0140bc2882db"
+        },
+        "createdAt": 1792113487749,
+        "updatedAt": 1792113487749
+      },
+      "session": {
+        "id": "sbx_pNcTTf5e9ZVrpPmgFGvr4od59SP1",
+        "runtime": "node22",
+        "architecture": "amd64",
+        "requestedAt": 1792113487681,
+        "startedAt": 1792113487713,
+        "status": "running",
+        "vcpus": 4,
+        "memory": 8192,
+        "timeout": 2700000,
+        "region": "iad1",
+        "cwd": "/vercel",
+        "createdAt": 1792113487681,
+        "updatedAt": 1792113487722,
+        "interactivePort": 26661,
+        "networkPolicy": {
+          "mode": "deny-all"
+        },
+        "sourceSandboxName": "rea-janitor-readiness-20261016",
+        "projectId": "prj_IfkICTa4T38SCOgQXOe2jQpCT6Tl"
+      },
+      "routes": []
+    },
+    "stopped": {
+      "sandbox": {
+        "name": "rea-janitor-readiness-20261016",
+        "currentSessionId": "sbx_pNcTTf5e9ZVrpPmgFGvr4od59SP1",
+        "status": "stopped",
+        "statusUpdatedAt": 1792114664879,
+        "persistent": false,
+        "region": "iad1",
+        "failoverRegions": [],
+        "vcpus": 4,
+        "memory": 8192,
+        "runtime": "node22",
+        "architecture": "amd64",
+        "image": "vercel/sandbox/node@sha256:6ad1291a9fe7d243ee9f23626e6b08614a596431801c55e14cc5ee9d525f28d1",
+        "timeout": 2700000,
+        "snapshotExpiration": 604800000,
+        "networkPolicy": {
+          "mode": "deny-all"
+        },
+        "totalEgressBytes": 1492562,
+        "totalIngressBytes": 258615037,
+        "totalActiveCpuDurationMs": 697907,
+        "totalDurationMs": 1176800,
+        "cwd": "/vercel",
+        "tags": {
+          "baseline": "0140bc2882db",
+          "purpose": "rea-janitor-synthetic"
+        },
+        "createdAt": 1792113487749,
+        "updatedAt": 1792113487749
+      },
+      "session": {
+        "id": "sbx_pNcTTf5e9ZVrpPmgFGvr4od59SP1",
+        "runtime": "node22",
+        "architecture": "amd64",
+        "requestedAt": 1792113487681,
+        "startedAt": 1792113487713,
+        "requestedStopAt": 1792114664098,
+        "stoppedAt": 1792114664513,
+        "status": "stopped",
+        "duration": 1176800,
+        "vcpus": 4,
+        "memory": 8192,
+        "timeout": 2700000,
+        "region": "iad1",
+        "cwd": "/vercel",
+        "createdAt": 1792113487681,
+        "updatedAt": 1792113487722,
+        "interactivePort": 26661,
+        "networkPolicy": {
+          "mode": "deny-all"
+        },
+        "activeCpuDurationMs": 697907,
+        "networkTransfer": {
+          "ingress": 258615037,
+          "egress": 1492562
+        },
+        "sourceSandboxName": "rea-janitor-readiness-20261016",
+        "projectId": "prj_IfkICTa4T38SCOgQXOe2jQpCT6Tl"
+      }
+    },
+    "networkAcquisition": {
+      "allowedDomains": [
+        "github.com",
+        "registry.npmjs.org",
+        "nodejs.org",
+        "archive.ubuntu.com",
+        "security.ubuntu.com"
+      ],
+      "deniedCIDRs": [
+        "10.0.0.0/8",
+        "172.16.0.0/12",
+        "192.168.0.0/16",
+        "169.254.0.0/16",
+        "127.0.0.0/8"
+      ],
+      "execution": "deny-all"
+    },
+    "commands": {
+      "preflight": "set -eu\nmkdir -p /sys/fs/cgroup/control-plane\nfor iteration in 1 2 3; do while read -r process_id; do test -d /proc/$process_id && printf '%s\\n' \"$process_id\" > /sys/fs/cgroup/control-plane/cgroup.procs || true; done < /sys/fs/cgroup/cgroup.procs; done\nprintf '+cpu +memory +pids\\n' > /sys/fs/cgroup/cgroup.subtree_control\nchown -R root:root /vercel/evaluation/rea /vercel/toolchain\nchmod -R a-w /vercel/evaluation/rea /vercel/toolchain\nchmod 700 /vercel/evaluation /vercel/toolchain\nmkdir -p /var/lib/rea-controller\nchmod 700 /var/lib/rea-controller\nprintf 'isolated-synthetic-only\\n' > /run/rea-evaluation-vm\nchmod 400 /run/rea-evaluation-vm\ncd /vercel/evaluation/rea\n/vercel/toolchain/node-v24.18.0-linux-x64/bin/node experiments/execution-controller/prepare.mjs /var/lib/rea-controller/registry.json\nchmod 400 /var/lib/rea-controller/registry.json\npython3 -m py_compile experiments/execution-controller/*.py\nprintf '0\\n' > /vercel/output/controller-preflight.exit\nset +e\ntime -p python3 experiments/execution-controller/janitor_acceptance.py > /vercel/output/janitor-acceptance.log 2>&1\ntrial_exit=$?\nprintf '%s\\n' \"$trial_exit\" > /vercel/output/janitor-acceptance.exit\nexit \"$trial_exit\"\n",
+      "finalValidation": "set -eu\ncd /vercel/evaluation/rea\ncp /vercel/output/controller-accepted-final.json /vercel/output/controller-catalogue-diagnostic-trial.json\ncp /vercel/output/controller-acceptance-final.log /vercel/output/controller-catalogue-diagnostic-trial.log\ncp /vercel/output/janitor-acceptance.json /vercel/output/janitor-pre-transaction-change.json\nchown -R root:root experiments/execution-controller\nchmod -R a-w experiments/execution-controller\npython3 -m py_compile experiments/execution-controller/*.py\nexport PATH=/vercel/toolchain/node-v24.18.0-linux-x64/bin:/usr/bin:/bin\nnode_modules/.bin/oxfmt --check experiments/execution-controller/fixture.mjs experiments/execution-controller/prepare.mjs > /vercel/output/controller-format-check.log\nnode_modules/.bin/oxlint experiments/execution-controller/fixture.mjs experiments/execution-controller/prepare.mjs > /vercel/output/controller-lint.log 2>&1\nset +e\n{ time -p python3 experiments/execution-controller/acceptance.py; } > /vercel/output/controller-acceptance-final.log 2>&1\ncatalogue_exit=$?\nprintf '%s\\n' \"$catalogue_exit\" > /vercel/output/controller-acceptance.exit\ncp /vercel/output/controller-acceptance.json /vercel/output/controller-accepted-final.json\n{ time -p python3 experiments/execution-controller/janitor_acceptance.py; } > /vercel/output/janitor-acceptance.log 2>&1\njanitor_exit=$?\nprintf '%s\\n' \"$janitor_exit\" > /vercel/output/janitor-acceptance.exit\nset -e\npython3 - <<'PY'\nfrom pathlib import Path\nimport json\np=Path('/var/lib/rea-controller/registry.json')\nraw=p.read_bytes();Path('/vercel/output/registry-before-negative.json').write_bytes(raw)\nr=json.loads(raw);r['base']['HOME']='/not-admitted';p.write_text(json.dumps(r))\nPY\ntrap 'cp /vercel/output/registry-before-negative.json /var/lib/rea-controller/registry.json' EXIT\nset +e\npython3 experiments/execution-controller/acceptance.py --smoke > /vercel/output/controller-negative-gate.log 2>&1\nnegative_exit=$?\nprintf '%s\\n' \"$negative_exit\" > /vercel/output/controller-negative-gate.exit\ncp /vercel/output/controller-acceptance.json /vercel/output/controller-negative-gate.json\nset -e\ncp /vercel/output/registry-before-negative.json /var/lib/rea-controller/registry.json\nrm /vercel/output/registry-before-negative.json\ntrap - EXIT\nprintf '{\"catalogueExit\":%s,\"janitorExit\":%s,\"negativeGateExit\":%s}\\n' \"$catalogue_exit\" \"$janitor_exit\" \"$negative_exit\" > /vercel/output/janitor-final-validation.done.json\ncat /vercel/output/janitor-final-validation.done.json\n",
+      "provision": "set -eu\nuseradd --create-home --shell /bin/bash rea\nuseradd --create-home --shell /bin/bash agent\nchmod 700 /home/ubuntu\nprintf '512\\n' > /sys/fs/cgroup/pids.max\nmkdir -p /vercel/evaluation /vercel/toolchain /vercel/output\nchown rea:rea /vercel/evaluation /vercel/toolchain /vercel/output\nchmod 700 /vercel/evaluation /vercel/toolchain /vercel/output\nsed -i 's|http://archive.ubuntu.com|https://archive.ubuntu.com|g; s|http://security.ubuntu.com|https://security.ubuntu.com|g' /etc/apt/sources.list.d/ubuntu.sources\napt-get update -qq\nDEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends python3\npython3 -c 'import ctypes,select,socket,sqlite3;print(\"PYTHON_STDLIB_PASS\")'\n",
+      "bootstrap": "set -e\ncd /vercel/toolchain\nnode -e 'const fs=require('\\''fs'\\''),c=require('\\''crypto'\\''),z=require('\\''zlib'\\'');(async()=>{const base='\\''https://nodejs.org/dist/v24.18.0/'\\'',name='\\''node-v24.18.0-linux-x64.tar.gz'\\'';const sums=await fetch(base+'\\''SHASUMS256.txt'\\'').then(r=>{if(!r.ok)throw Error('\\''checksum HTTP '\\''+r.status);return r.text()});const expected=sums.split('\\''\\n'\\'').find(l=>l.endsWith('\\''  '\\''+name))?.split('\\'' '\\'')[0];if(!expected)throw Error('\\''missing checksum'\\'');const r=await fetch(base+name);if(!r.ok)throw Error('\\''archive HTTP '\\''+r.status);const b=Buffer.from(await r.arrayBuffer());if(c.createHash('\\''sha256'\\'').update(b).digest('\\''hex'\\'')!==expected)throw Error('\\''checksum mismatch'\\'');fs.writeFileSync(name.slice(0,-3),z.gunzipSync(b));console.log('\\''NODE_ARCHIVE_CHECKSUM_PASS'\\'',expected)})().catch(e=>{console.error(e);process.exitCode=1});'\ntar -xf node-v24.18.0-linux-x64.tar\nexport PATH=/vercel/toolchain/node-v24.18.0-linux-x64/bin:/usr/local/bin:/usr/bin:/bin\nnpm install --prefix /vercel/toolchain/npm-pinned --ignore-scripts --no-audit --no-fund npm@11.16.0\nexport PATH=/vercel/toolchain/npm-pinned/node_modules/.bin:$PATH\nexport GOMAXPROCS=2 UV_THREADPOOL_SIZE=2\ncd /vercel/evaluation\ngit clone --depth=1 --branch fix/bcode-rea-1-1-containment https://github.com/Brnegreiros/rea.git rea\ncd rea\ntest \"$(git rev-parse HEAD)\" = \"0140bc2882db8a86639a366faa10dd969ce1a4ef\"\nnode --version\nnpm --version\nsha256sum package-lock.json\nnpm ci --ignore-scripts --no-audit --no-fund\nprintf '0\\n' > /vercel/output/bootstrap.exit\n\ncd /vercel/evaluation/rea\nnpm run build:cached > /vercel/output/build.log 2>&1\nprintf \"0\\n\" > /vercel/output/build.exit\n\n",
+      "collection": "\"\"\"Trusted operator collector; execute only inside the disposable VM.\"\"\"\nfrom pathlib import Path\nimport base64\nimport datetime\nimport gzip\nimport hashlib\nimport json\nimport os\nimport shutil\nimport sqlite3\nimport subprocess\nimport time\n\nAPP = Path('/vercel/evaluation/rea')\nOUT = Path('/vercel/output')\nROOT = Path('/var/lib/rea-controller')\ndone = json.loads((OUT/'janitor-final-validation.done.json').read_text())\nassert done == {'catalogueExit':0,'janitorExit':1,'negativeGateExit':1}, done\ncatalogue = json.loads((OUT/'controller-accepted-final.json').read_text())\nregressions = json.loads((OUT/'janitor-acceptance.json').read_text())\nnegative = json.loads((OUT/'controller-negative-gate.json').read_text())\nassert catalogue['summary'] == {'PASS':20,'FAIL':0,'NOT_TESTED':8}\nassert len(catalogue['cases']) == 28\nassert regressions['summary'] == {'PASS':9,'FAIL':1,'NOT_TESTED':0}, regressions['summary']\nassert [c['id'] for c in regressions['cases'] if c['status']=='FAIL'] == ['JR-09']\nassert (Path(negative['statePath'])/'launch-counter').read_text() == '0'\nretention = json.loads((OUT/'janitor-loss-retention-observation.json').read_text())\nassert any(c['rawIntentsPastDeadline'] for c in retention)\nassert all(c['blocked'] for c in retention)\n\ndef processes():\n    found = []\n    names = [str(APP/'experiments/execution-controller'/name) for name in ['controller.py','worker.py']]\n    for path in Path('/proc').iterdir():\n        if not path.name.isdecimal():\n            continue\n        try:\n            args = (path/'cmdline').read_bytes().split(b'\\0')\n            if any(name.encode() in args for name in names):\n                found.append(int(path.name))\n        except OSError:\n            pass\n    return found\n\nuntil = time.monotonic()+35\nwhile processes() and time.monotonic()<until:\n    time.sleep(0.2)\nremaining = processes()\nassert not remaining, remaining\ngroups = [str(p) for p in Path('/sys/fs/cgroup').glob('rea-eval-*')]\nassert not groups, groups\nuid_workers = []\nfor path in Path('/proc').iterdir():\n    if not path.name.isdecimal():\n        continue\n    try:\n        if (path/'status').stat().st_uid == 1001:\n            uid_workers.append(int(path.name))\n    except OSError:\n        pass\nassert not uid_workers, uid_workers\n\nstores = []\nfinal_state = Path(catalogue['statePath'])\nfor state in sorted(ROOT.iterdir()):\n    if not state.is_dir() or not (state/'state.db').exists():\n        continue\n    with sqlite3.connect(f'file:{state}/state.db?mode=ro',uri=True) as db:\n        rows = {t:db.execute('SELECT count(*) FROM '+t).fetchone()[0] for t in ['requests','decisions','audit']}\n        raw = db.execute('SELECT count(*) FROM requests WHERE intent IS NOT NULL AND raw_until<?',(time.time(),)).fetchone()[0]\n        expired = db.execute('SELECT count(*) FROM requests WHERE audit_until<?',(time.time(),)).fetchone()[0]\n    handles = list((state/'runs').iterdir())\n    assert not handles, str(state)\n    if state == final_state or state == Path(negative['statePath']):\n        assert all(v==0 for v in rows.values()), (str(state),rows)\n    log = state/'janitor.log'\n    stores.append({'state':str(state),'rowsBeforeOperatorDisposal':rows,\n                   'rawIntentsPastDeadline':raw,'requestsPastAuditDeadline':expired,\n                   'rawRunHandles':0,'blocked':(state/'blocked').exists(),\n                   'privateJanitorDiagnosticBytes':log.stat().st_size if log.exists() else 0,\n                   'janitorFailureCodes':[s for s in log.read_text().splitlines() if s.startswith('RETENTION_FAILURE ')] if log.exists() else [],\n                   'expiryOutcome':'FAILED_OPERATOR_DISPOSAL_REQUIRED' if any(rows.values()) else 'EMPTY_AT_INSPECTION'})\n\nsource = {}\nfor p in sorted((APP/'experiments/execution-controller').iterdir()):\n    if p.is_file():\n        source[str(p.relative_to(APP))] = hashlib.sha256(p.read_bytes()).hexdigest()\nfor name in ['package.json','package-lock.json','LICENSE']:\n    source[name] = hashlib.sha256((APP/name).read_bytes()).hexdigest()\nassert subprocess.check_output(['git','diff','--name-only','--','src','tests','.github','package.json','package-lock.json','LICENSE'],cwd=APP,text=True)==''\nregistry_hash = hashlib.sha256((ROOT/'registry.json').read_bytes()).hexdigest()\ndebug = OUT/'controller-private-debug.log'\ndebug_existed = debug.exists()\ndebug.unlink(missing_ok=True)\nshutil.rmtree(ROOT)\nsockets = [Path('/run/rea-controller.sock'),*Path('/run').glob('rea-jr-*.sock')]\nfor p in sockets:\n    p.unlink(missing_ok=True)\nPath('/run/rea-evaluation-vm').unlink(missing_ok=True)\nassert not ROOT.exists() and not debug.exists()\nassert not any(p.exists() for p in sockets)\n\ntrials=[]\nfor name in ['controller-catalogue-before-atomic-fix','controller-catalogue-blocked-trial','controller-catalogue-diagnostic-trial','janitor-before-atomic-fix','janitor-pre-transaction-change']:\n    p=OUT/(name+'.json')\n    if p.exists():\n        d=json.loads(p.read_text())\n        trials.append({'name':name,'summary':d['summary'],\n                       'failures':[{'id':c['id'],'errorType':c.get('errorType'),'diagnostic':c.get('diagnostic')} for c in d['cases'] if c['status']=='FAIL']})\n\nrecord = {\n    'timestamp':datetime.datetime.now(datetime.timezone.utc).isoformat(),\n    'baseline':catalogue['baseline'],\n    'catalogue':catalogue,'janitorRegressions':regressions,\n    'retentionAfterStorageOwnerLoss':{'status':'FAIL','observations':retention,\n        'cause':'No surviving expiry owner when janitor dies; a blocked admission profile does not delete pending intent/audit.',\n        'remediation':'Define independent storage ownership and deadline enforcement; revalidate loss, restart and cleanup-failure paths before enabling the profile.'},\n    'checks':{'finalExits':done,'pythonCompile':'PASS, four Python source files',\n        'mjsFormat':(OUT/'controller-format-check.log').read_text(),\n        'mjsLint':(OUT/'controller-lint.log').read_text(),\n        'parentBuildExit':(OUT/'build.exit').read_text().strip(),\n        'negativeGate':{'expectedExit':1,'actualExit':1,'actualLaunches':0,'scope':'Deliberately disallowed operator registry; does not count as an acceptance failure.'}},\n    'logs':{'catalogue':(OUT/'controller-acceptance-final.log').read_text(),\n            'janitor':(OUT/'janitor-acceptance.log').read_text(),\n            'parentBuild':(OUT/'build.log').read_text()},\n    'developmentTrials':trials,\n    'sourceSha256':source,'registrySha256':registry_hash,\n    'outerCgroupMetrics':{n:Path('/sys/fs/cgroup',n).read_text() for n in ['memory.max','memory.peak','memory.events','pids.max','pids.peak','cpu.stat']},\n    'disposal':{'processes':remaining,'uid1001Processes':uid_workers,'ownedCgroups':groups,\n        'privateStoresBeforeOperatorRemoval':stores,'privateRootRemoved':not ROOT.exists(),\n        'socketHandlesRemoved':len(sockets),'rawDiagnosticCopyWasPresent':debug_existed,\n        'rawDiagnosticCopyRemoved':not debug.exists(),\n        'method':'Privileged evaluation operator removed all inventoried stores after inspection, including failed automatic expiry copies. Not an automatic retention PASS.',\n        'scope':'Controlled logical copies only; no physical erasure or unobserved backup guarantee.'},\n    'verdict':{'REA_1_1':'PARTIAL','productionAndUnrestrictedAgents':'NO_GO','retentionAfterJanitorLoss':'FAIL',\n        'mainChanged':False,'platformIntegration':False,'nativeProviders':'NOT_TESTED','fullSCA':'NOT_TESTED',\n        'humanReview':'NOT_ATTESTED','realCredentials':'NOT_COLLECTED'}\n}\nraw=json.dumps(record,indent=2).encode()\n(OUT/'janitor-export.json').write_bytes(raw)\ncompressed=gzip.compress(raw)\n(OUT/'janitor-export.gz').write_bytes(compressed)\nb64=base64.b64encode(compressed).decode()\n(OUT/'janitor-export.b64').write_text(b64)\nprint(json.dumps({'bytes':len(raw),'gzipSha256':hashlib.sha256(compressed).hexdigest(),\n    'base64Characters':len(b64),'chunks':(len(b64)+1799)//1800,\n    'catalogue':catalogue['summary'],'regressions':regressions['summary'],\n    'storesRemoved':len(stores),'storesWithFailedExpiry':sum(any(x['rowsBeforeOperatorDisposal'].values()) for x in stores)},indent=2))\n"
+    },
+    "transfer": {
+      "bytes": 65478,
+      "gzipSha256": "4baf7439a6946d5f6872b9172408bae3917cf6434a14c0c9ec5b501ddb5fb008",
+      "base64Characters": 12788,
+      "chunks": 8,
+      "catalogue": {
+        "PASS": 20,
+        "FAIL": 0,
+        "NOT_TESTED": 8
+      },
+      "regressions": {
+        "PASS": 9,
+        "FAIL": 1,
+        "NOT_TESTED": 0
+      },
+      "storesRemoved": 37,
+      "storesWithFailedExpiry": 8
+    },
+    "documentationNote": "Lifecycle/command metadata appended after verifying the collected gzip and all ten local source hashes. No raw intent/capture exported."
+  }
+}

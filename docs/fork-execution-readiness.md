@@ -129,3 +129,10 @@ cgroups and an independent storage janitor. The [runtime report](verification/co
 separates actual PASS observations from partial/NOT_TESTED cases. It does not
 enable the prototype in published REA or establish human review. Production and
 unrestricted-agent use remain NO-GO.
+
+The [janitor follow-up](verification/controller-janitor-2026-10-16.md) requires
+readiness before admission and tests earlier controller death. It also proves
+that killing the storage janitor leaves intent/audit past their deadlines.
+Admission blocking and active-run cleanup do not close that retention failure.
+REA-1.1 remains partial; independent expiry after storage-owner loss is the next
+blocking correction, before resource-stress and midrun sink-failure closure.

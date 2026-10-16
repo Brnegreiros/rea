@@ -181,7 +181,9 @@ def check(case_id, function, pending=None):
         observation = function()
         record = {'id': case_id, 'status': 'NOT_TESTED' if pending else 'PASS',
                   'observation': observation, 'remaining': pending,
-                  'evidenceKind': 'REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES'}
+                  'evidenceKind': ('DECLARATION_ONLY_NO_RUNTIME_CONTROL' if case_id in ['EA-23', 'EA-28'] else
+                                   'PARTIAL_REAL_LINUX_OBSERVATIONS' if pending else
+                                   'REAL_LINUX_CONTROLLER_SOCKET_AND_KERNEL_BOUNDARIES')}
     except Exception as error:
         record = {'id': case_id, 'status': 'FAIL', 'errorType': type(error).__name__,
                   'diagnostic': str(error)[:700], 'traceback': traceback.format_exc(limit=4),
@@ -194,7 +196,7 @@ def check(case_id, function, pending=None):
 
 def save():
     Path('/vercel/output/controller-acceptance.json').write_text(json.dumps({
-        'baseline': 'fd886f8c9e16f50385dbbab57edf1f147f913d05',
+        'baseline': '0140bc2882db8a86639a366faa10dd969ce1a4ef',
         'cases': records, 'summary': {status: sum(r['status'] == status for r in records) for status in ['PASS','FAIL','NOT_TESTED']},
         'productionAndUnrestrictedAgents': 'NO_GO',
         'operatorReview': 'AUTOMATED_UID_0_TEST_ORCHESTRATION_NOT_HUMAN_REVIEW',

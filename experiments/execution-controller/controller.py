@@ -24,7 +24,7 @@ import time
 import uuid
 
 VERSION = 'rea-evaluation-authorization/1'
-BASELINE = 'fd886f8c9e16f50385dbbab57edf1f147f913d05'
+BASELINE = '0140bc2882db8a86639a366faa10dd969ce1a4ef'
 IMAGE = 'sha256:6ad1291a9fe7d243ee9f23626e6b08614a596431801c55e14cc5ee9d525f28d1'
 AGENT_UID = 1002
 
@@ -75,6 +75,13 @@ def connect_db(state):
     return connection
 
 
+def publish_launch_count(state, count):
+    """Private observer metric: readers see an old or new whole integer."""
+    temporary = Path(state) / 'launch-counter.next'
+    temporary.write_text(str(count))
+    temporary.replace(Path(state) / 'launch-counter')
+
+
 def stop_family(cgroup):
     path = Path(cgroup)
     if not path.exists():
@@ -107,17 +114,43 @@ def dispose(row, state):
         return False
 
 
-def janitor(state, owner, parent):
+def await_janitor(process, ready_fd, timeout=2):
+    """A live child and its private byte are both required before admission."""
+    with selectors.DefaultSelector() as ready:
+        ready.register(ready_fd, selectors.EVENT_READ)
+        if not ready.select(timeout) or os.read(ready_fd, 2) != b'R' or process.poll() is not None:
+            raise Denied('CONTROL_UNVERIFIED')
+
+
+def janitor(state, owner, pidfd, ready_fd):
     """Separate storage owner; survives controller termination, bounded by TTL."""
-    pidfd = os.pidfd_open(parent)
     poll = selectors.DefaultSelector()
     poll.register(pidfd, selectors.EVENT_READ)
-    dead = False
+    # The parent opens its own pidfd BEFORE fork. Even an early death or PID
+    # reuse cannot redirect this janitor to an unrelated process.
+    try:
+        for name in ['state.db', 'leases', 'runs']:
+            info = (state / name).lstat()
+            expected = stat.S_ISREG if name == 'state.db' else stat.S_ISDIR
+            if not expected(info.st_mode) or info.st_uid != 0 or info.st_mode & 0o077:
+                raise OSError('private storage ownership unverified')
+        with connect_db(state) as db:
+            for table in ['requests', 'decisions', 'audit']:
+                db.execute('SELECT * FROM ' + table + ' LIMIT 0')
+        dead = bool(poll.select(timeout=0))
+        if not dead:
+            try:
+                os.write(ready_fd, b'R')
+            except BrokenPipeError:
+                dead = True
+    finally:
+        os.close(ready_fd)
     deadlines = {}
     while True:
         dead = dead or bool(poll.select(timeout=0.05))
         try:
             with connect_db(state) as db:
+                db.execute('BEGIN IMMEDIATE')
                 rows = db.execute('SELECT * FROM requests WHERE boot=?', (owner,)).fetchall()
                 for row in rows:
                     raw_deadline, audit_deadline = deadlines.setdefault(row['id'], (
@@ -143,7 +176,9 @@ def janitor(state, owner, parent):
                 audits = db.execute('SELECT count(*) FROM audit WHERE owner=?', (owner,)).fetchone()[0]
             if dead and remaining == 0 and audits == 0:
                 break
-        except (sqlite3.Error, OSError):
+        except (sqlite3.Error, OSError) as error:
+            print('RETENTION_FAILURE', type(error).__name__,
+                  getattr(error, 'sqlite_errorname', 'IO_ERROR'), file=sys.stderr, flush=True)
             # Fail closed independently of a broken DB: remove live workers
             # owned by this boot from the small immutable run-lease files.
             for lease in (Path(state) / 'leases').glob(owner + '-*.json'):
@@ -152,6 +187,7 @@ def janitor(state, owner, parent):
             (Path(state) / 'blocked').touch()
             if dead:
                 break  # UNKNOWN retention; never claim deletion or keep retrying forever.
+    poll.close()
     os.close(pidfd)
 
 
@@ -189,9 +225,31 @@ class Controller:
         ''')
         db.close()
         os.chmod(self.state / 'state.db', 0o600)
-        (self.state / 'launch-counter').write_text('0')
-        self.janitor = subprocess.Popen([sys.executable, __file__, 'janitor', str(self.state), self.boot, str(os.getpid())],
-                                        stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        publish_launch_count(self.state, 0)
+        ready_fd, notify_fd = os.pipe()
+        pidfd = os.pidfd_open(os.getpid())
+        self.janitor = None
+        try:
+            with (self.state / 'janitor.log').open('ab') as log:
+                self.janitor = subprocess.Popen(
+                    [sys.executable, __file__, 'janitor', str(self.state), self.boot, str(pidfd), str(notify_fd)],
+                    pass_fds=(pidfd, notify_fd), stdin=subprocess.DEVNULL,
+                    stdout=subprocess.DEVNULL, stderr=log,
+                    env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
+            os.close(notify_fd)
+            notify_fd = None
+            await_janitor(self.janitor, ready_fd)
+        except (Denied, OSError):
+            (self.state / 'blocked').touch()
+            if self.janitor is not None:
+                self.janitor.kill()
+                self.janitor.wait(timeout=2)
+            raise Denied('CONTROL_UNVERIFIED')
+        finally:
+            os.close(ready_fd)
+            os.close(pidfd)
+            if notify_fd is not None:
+                os.close(notify_fd)
 
     def event(self, db, request, event, expiry):
         db.execute('INSERT INTO audit VALUES (?,?,?,?,?)', (request, event, time.time(), expiry, self.boot))
@@ -209,6 +267,8 @@ class Controller:
         return result(request, reason=reason)
 
     def preflight(self):
+        if self.janitor.poll() is not None:
+            (self.state / 'blocked').touch()
         if (self.state / 'blocked').exists() or os.getuid() != 0:
             raise Denied('CONTROL_UNVERIFIED')
         if abs((time.time() - self.wall) - (time.monotonic() - self.mono)) > 1:
@@ -291,6 +351,8 @@ class Controller:
         request = message['requestId']
         if not isinstance(request, str):
             raise Denied('POLICY_DENIED')
+        if operation == 'approve':
+            self.preflight()
         with connect_db(self.state) as db:
             db.execute('BEGIN IMMEDIATE')
             row = db.execute('SELECT * FROM requests WHERE id=?', (request,)).fetchone()
@@ -377,6 +439,10 @@ class Controller:
                 pending = b''
                 deadline = time.monotonic() + min(valid - time.time(), plan['limits']['wallSeconds'])
                 while True:
+                    if self.janitor.poll() is not None:
+                        (self.state / 'blocked').touch()
+                        reason = 'CONTROL_UNVERIFIED'
+                        break
                     try:
                         pending += os.read(read_fd, 4096)
                     except BlockingIOError:
@@ -393,7 +459,7 @@ class Controller:
                         if report.get('launched'):
                             with self.lock:
                                 self.launches += 1
-                                (self.state / 'launch-counter').write_text(str(self.launches))
+                                publish_launch_count(self.state, self.launches)
                             with connect_db(self.state) as db:
                                 self.event(db, request, 'launched', plan['evidencePolicy']['auditUntil'])
                         if 'exitCode' in report:
@@ -499,7 +565,7 @@ def serve(args):
 
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == 'janitor':
-        janitor(Path(sys.argv[2]), sys.argv[3], int(sys.argv[4]))
+        janitor(Path(sys.argv[2]), sys.argv[3], int(sys.argv[4]), int(sys.argv[5]))
     else:
         parser = argparse.ArgumentParser(description=__doc__)
         parser.add_argument('--state', required=True)
