@@ -10,9 +10,11 @@ tool or approve production operation. Definition baseline:
 `fix/bcode-rea-1-1-containment`.
 
 The [2026-10-16 janitor follow-up](verification/controller-janitor-2026-10-16.md)
-adds a readiness prerequisite but reproduces a **failed retention control** after
-the storage janitor itself is killed. Earlier successful controller-death tests
-do not certify survival of storage-owner loss. The profile remains NO-GO.
+records the original failed retention control after janitor loss. The later
+[retention recovery](verification/controller-retention-2026-10-16.md) adds an
+independent standby, original-deadline expiry and failed-disposal ownership.
+These narrow synthetic tests do not certify all storage faults. The profile
+remains NO-GO.
 
 The [direct-route audit](verification/direct-environment-2026-10-15.md) proved
 that filtering inherited environment values does not authorize explicit values.

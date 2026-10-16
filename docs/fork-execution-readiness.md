@@ -133,6 +133,9 @@ unrestricted-agent use remain NO-GO.
 The [janitor follow-up](verification/controller-janitor-2026-10-16.md) requires
 readiness before admission and tests earlier controller death. It also proves
 that killing the storage janitor leaves intent/audit past their deadlines.
-Admission blocking and active-run cleanup do not close that retention failure.
-REA-1.1 remains partial; independent expiry after storage-owner loss is the next
-blocking correction, before resource-stress and midrun sink-failure closure.
+The later [retention recovery](verification/controller-retention-2026-10-16.md)
+addresses that observed sequence with an independent standby and tests both
+single-guard-loss variants, restart blocking and real failed-disposal ownership.
+REA-1.1 remains partial; resource stress, midrun sink faults, both-guard loss,
+hung guards, clock uncertainty and unresolved contention diagnostics remain
+pending. Forced deletion failure is not reported as timely expiry.

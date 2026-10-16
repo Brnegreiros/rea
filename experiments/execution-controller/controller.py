@@ -7,6 +7,7 @@ not human review, IAM, native providers or arbitrary user-supplied programs.
 """
 import argparse
 import hashlib
+import fcntl
 import json
 import os
 from pathlib import Path
@@ -24,7 +25,7 @@ import time
 import uuid
 
 VERSION = 'rea-evaluation-authorization/1'
-BASELINE = '0140bc2882db8a86639a366faa10dd969ce1a4ef'
+BASELINE = '9ddc190e470f503741a70334e5574cb76dece583'
 IMAGE = 'sha256:6ad1291a9fe7d243ee9f23626e6b08614a596431801c55e14cc5ee9d525f28d1'
 AGENT_UID = 1002
 
@@ -94,7 +95,7 @@ def stop_family(cgroup):
     return False
 
 
-def dispose(row, state):
+def dispose_unlocked(row, state):
     """Fixed controller-owned paths only; never accept a caller deletion path."""
     run = row['run']
     if not run:
@@ -122,32 +123,80 @@ def await_janitor(process, ready_fd, timeout=2):
             raise Denied('CONTROL_UNVERIFIED')
 
 
-def janitor(state, owner, pidfd, ready_fd):
-    """Separate storage owner; survives controller termination, bounded by TTL."""
+def dispose(row, state):
+    # Controller settlement and expiry owner serialize the same fixed handles.
+    lock = os.open(Path(state) / 'dispose.lock', os.O_CREAT | os.O_RDWR | os.O_NOFOLLOW, 0o600)
+    try:
+        deadline = time.monotonic() + 2
+        while True:
+            try:
+                fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                break
+            except BlockingIOError:
+                if time.monotonic() >= deadline:
+                    (Path(state) / 'blocked').touch()
+                    return False
+                time.sleep(0.01)
+        return dispose_unlocked(row, state)
+    finally:
+        os.close(lock)
+
+
+def janitor(state, owner, pidfd, peer_fd, keepalive_fd, role, ready_fd):
+    """One expiry owner plus one independent standby; no renewed deadlines.
+
+    Lifetime flock owns cleanup, while private pipe EOF identifies loss of the
+    exact peer. Parent copies are closed before admission. Neither process
+    accepts a model-provided lease, PID, deadline or deletion path.
+    """
+    leader = os.open(state / (owner + '.retention.lock'), os.O_CREAT | os.O_RDWR | os.O_NOFOLLOW, 0o600)
+    active = False
     poll = selectors.DefaultSelector()
-    poll.register(pidfd, selectors.EVENT_READ)
-    # The parent opens its own pidfd BEFORE fork. Even an early death or PID
-    # reuse cannot redirect this janitor to an unrelated process.
+    poll.register(pidfd, selectors.EVENT_READ, 'controller')
+    poll.register(peer_fd, selectors.EVENT_READ, 'peer')
     try:
         for name in ['state.db', 'leases', 'runs']:
             info = (state / name).lstat()
             expected = stat.S_ISREG if name == 'state.db' else stat.S_ISDIR
             if not expected(info.st_mode) or info.st_uid != 0 or info.st_mode & 0o077:
                 raise OSError('private storage ownership unverified')
+        info = os.fstat(leader)
+        if not stat.S_ISREG(info.st_mode) or info.st_uid != 0 or info.st_mode & 0o077:
+            raise OSError('retention lease ownership unverified')
+        if role == 'primary':
+            try:
+                fcntl.flock(leader, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                active = True
+            except BlockingIOError:
+                if not any(key.data == 'controller' for key, _ in poll.select(timeout=0)):
+                    raise
+                # Parent died before primary startup; standby already owns expiry.
+        elif role != 'standby':
+            raise OSError('unknown retention role')
         with connect_db(state) as db:
             for table in ['requests', 'decisions', 'audit']:
                 db.execute('SELECT * FROM ' + table + ' LIMIT 0')
-        dead = bool(poll.select(timeout=0))
-        if not dead:
-            try:
-                os.write(ready_fd, b'R')
-            except BrokenPipeError:
-                dead = True
+        try:
+            os.write(ready_fd, b'R')
+        except BrokenPipeError:
+            pass  # Still owns this boot's controlled copies if the parent died.
     finally:
         os.close(ready_fd)
+    retired = False
     deadlines = {}
     while True:
-        dead = dead or bool(poll.select(timeout=0.05))
+        for key, _ in poll.select(timeout=0.05):
+            retired = True
+            (state / 'blocked').touch()
+            poll.unregister(key.fileobj)
+        if not active:
+            if not retired:
+                continue
+            try:
+                fcntl.flock(leader, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                active = True
+            except BlockingIOError:
+                continue
         try:
             with connect_db(state) as db:
                 db.execute('BEGIN IMMEDIATE')
@@ -156,39 +205,43 @@ def janitor(state, owner, pidfd, ready_fd):
                     raw_deadline, audit_deadline = deadlines.setdefault(row['id'], (
                         time.monotonic() + max(0, row['raw_until'] - time.time()),
                         time.monotonic() + max(0, row['audit_until'] - time.time())))
-                    if row['intent'] is not None and (dead or time.monotonic() >= raw_deadline):
+                    if (row['intent'] is not None and (retired or time.monotonic() >= raw_deadline)) or row['cleanup'] == 'FAILED':
                         clean = dispose(row, state)
                         db.execute('UPDATE requests SET intent=NULL, hash=NULL, phase=?, cleanup=? WHERE id=?',
                                    ('expired', 'VERIFIED' if clean else 'FAILED', row['id']))
-                        db.execute('INSERT INTO audit VALUES (?,?,?,?,?)',
-                                   (row['id'], 'raw_disposed' if clean else 'disposal_failed', time.time(), row['audit_until'], owner))
+                        if time.monotonic() < audit_deadline:
+                            db.execute('INSERT INTO audit VALUES (?,?,?,?,?)',
+                                       (row['id'], 'raw_disposed' if clean else 'disposal_failed', time.time(), row['audit_until'], owner))
                         db.execute('DELETE FROM decisions WHERE request=?', (row['id'],))
+                    # A failed disposal receipt never relinquishes ownership.
+                    current = db.execute('SELECT cleanup FROM requests WHERE id=?', (row['id'],)).fetchone()
                     if time.monotonic() >= audit_deadline:
-                        if row['run']:
-                            for path in [Path(state) / f"{row['run']}.metrics.json",
-                                         Path(state) / 'leases' / f"{owner}-{row['run']}.json"]:
-                                path.unlink(missing_ok=True)
                         db.execute('DELETE FROM audit WHERE request=?', (row['id'],))
+                        if current['cleanup'] == 'FAILED':
+                            (state / 'blocked').touch()
+                            continue  # Retain opaque run/owner receipt and lease; retry.
+                        if row['run']:
+                            for path in [state / f"{row['run']}.metrics.json",
+                                         state / 'leases' / f"{owner}-{row['run']}.json"]:
+                                path.unlink(missing_ok=True)
                         db.execute('DELETE FROM decisions WHERE request=?', (row['id'],))
                         db.execute('DELETE FROM requests WHERE id=?', (row['id'],))
                 remaining = db.execute('SELECT count(*) FROM requests WHERE boot=?', (owner,)).fetchone()[0]
                 db.execute('DELETE FROM audit WHERE owner=? AND expires<=?', (owner, time.time()))
                 audits = db.execute('SELECT count(*) FROM audit WHERE owner=?', (owner,)).fetchone()[0]
-            if dead and remaining == 0 and audits == 0:
+            if retired and remaining == 0 and audits == 0:
                 break
         except (sqlite3.Error, OSError) as error:
             print('RETENTION_FAILURE', type(error).__name__,
                   getattr(error, 'sqlite_errorname', 'IO_ERROR'), file=sys.stderr, flush=True)
-            # Fail closed independently of a broken DB: remove live workers
-            # owned by this boot from the small immutable run-lease files.
-            for lease in (Path(state) / 'leases').glob(owner + '-*.json'):
+            for lease in (state / 'leases').glob(owner + '-*.json'):
                 info = decode(lease.read_text())
                 stop_family('/sys/fs/cgroup/rea-eval-' + info['run'])
-            (Path(state) / 'blocked').touch()
-            if dead:
-                break  # UNKNOWN retention; never claim deletion or keep retrying forever.
+            (state / 'blocked').touch()
+            # Keep the owner alive to retry; unknown deletion is never success.
     poll.close()
-    os.close(pidfd)
+    for fd in [pidfd, peer_fd, keepalive_fd, leader]:
+        os.close(fd)
 
 
 class Controller:
@@ -226,48 +279,62 @@ class Controller:
         db.close()
         os.chmod(self.state / 'state.db', 0o600)
         publish_launch_count(self.state, 0)
-        ready_fd, notify_fd = os.pipe()
         pidfd = os.pidfd_open(os.getpid())
-        self.janitor = None
+        first_read, first_write = os.pipe()
+        second_read, second_write = os.pipe()
+        ready_a, notify_a = os.pipe()
+        ready_b, notify_b = os.pipe()
+        owned_fds = {pidfd, first_read, first_write, second_read, second_write,
+                     ready_a, notify_a, ready_b, notify_b}
+        self.janitor = self.guardian = None
         try:
-            with (self.state / 'janitor.log').open('ab') as log:
-                self.janitor = subprocess.Popen(
-                    [sys.executable, __file__, 'janitor', str(self.state), self.boot, str(pidfd), str(notify_fd)],
-                    pass_fds=(pidfd, notify_fd), stdin=subprocess.DEVNULL,
-                    stdout=subprocess.DEVNULL, stderr=log,
-                    env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
-            os.close(notify_fd)
-            notify_fd = None
-            await_janitor(self.janitor, ready_fd)
+            for role, peer, keepalive, notify, attribute in [
+                    ('primary', second_read, first_write, notify_a, 'janitor'),
+                    ('standby', first_read, second_write, notify_b, 'guardian')]:
+                with (self.state / (attribute + '.log')).open('ab') as log:
+                    process = subprocess.Popen(
+                        [sys.executable, __file__, 'janitor', str(self.state), self.boot,
+                         str(pidfd), str(peer), str(keepalive), role, str(notify)],
+                        pass_fds=(pidfd, peer, keepalive, notify), stdin=subprocess.DEVNULL,
+                        stdout=subprocess.DEVNULL, stderr=log,
+                        env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
+                    setattr(self, attribute, process)
+            for fd in [first_read, first_write, second_read, second_write, notify_a, notify_b]:
+                os.close(fd)
+                owned_fds.remove(fd)
+            deadline = time.monotonic() + 2
+            await_janitor(self.janitor, ready_a, max(0, deadline - time.monotonic()))
+            await_janitor(self.guardian, ready_b, max(0, deadline - time.monotonic()))
         except (Denied, OSError):
             (self.state / 'blocked').touch()
-            if self.janitor is not None:
-                self.janitor.kill()
-                self.janitor.wait(timeout=2)
+            for process in [self.janitor, self.guardian]:
+                if process is not None:
+                    process.kill()
+                    process.wait(timeout=2)
             raise Denied('CONTROL_UNVERIFIED')
         finally:
-            os.close(ready_fd)
-            os.close(pidfd)
-            if notify_fd is not None:
-                os.close(notify_fd)
+            for fd in owned_fds:
+                os.close(fd)
 
     def event(self, db, request, event, expiry):
         db.execute('INSERT INTO audit VALUES (?,?,?,?,?)', (request, event, time.time(), expiry, self.boot))
 
     def denial(self, uid, message, reason):
         request = None
+        expiry = time.time() + 30
         with connect_db(self.state) as db:
             candidate = message.get('requestId') if isinstance(message, dict) else None
             if isinstance(candidate, str):
-                row = db.execute('SELECT id,requester FROM requests WHERE id=?', (candidate,)).fetchone()
+                row = db.execute('SELECT id,requester,audit_until FROM requests WHERE id=?', (candidate,)).fetchone()
                 if row is not None and (uid == 0 or uid == row['requester']):
                     request = row['id']
+                    expiry = row['audit_until']
             request = request or uuid.uuid4().hex
-            self.event(db, request, 'denied_' + reason, time.time() + 30)
+            self.event(db, request, 'denied_' + reason, expiry)
         return result(request, reason=reason)
 
     def preflight(self):
-        if self.janitor.poll() is not None:
+        if self.janitor.poll() is not None or self.guardian.poll() is not None:
             (self.state / 'blocked').touch()
         if (self.state / 'blocked').exists() or os.getuid() != 0:
             raise Denied('CONTROL_UNVERIFIED')
@@ -419,7 +486,10 @@ class Controller:
                   'app': str(self.app), 'runtime': str(self.runtime), 'cgroup': str(group),
                   **plan['limits'], 'environment': plan['environment']['base'] | plan['environment']['parentProbe']}
         (directory / 'config.json').write_text(encoded(config))
-        (self.state / 'leases' / f'{self.boot}-{run}.json').write_text(encoded({'run': run}))
+        lease = self.state / 'leases' / f'{self.boot}-{run}.json'
+        pending_lease = lease.with_suffix('.next')
+        pending_lease.write_text(encoded({'run': run}))
+        pending_lease.replace(lease)
         read_fd, write_fd = os.pipe()
         os.set_blocking(read_fd, False)
         reason, exit_code, captured_at = 'NONE', None, None
@@ -439,7 +509,7 @@ class Controller:
                 pending = b''
                 deadline = time.monotonic() + min(valid - time.time(), plan['limits']['wallSeconds'])
                 while True:
-                    if self.janitor.poll() is not None:
+                    if self.janitor.poll() is not None or self.guardian.poll() is not None:
                         (self.state / 'blocked').touch()
                         reason = 'CONTROL_UNVERIFIED'
                         break
@@ -509,6 +579,12 @@ class Controller:
             # Private metadata: no raw bytes, argv, environment values or diagnostics.
             (self.state / f'{run}.metrics.json').write_text(encoded({'limits': plan['limits'], 'probe': probe, 'cgroup': metrics,
                                                                   'exitCode': exit_code, 'cleanup': clean}))
+        # The peer can stop the worker between the loop's liveness check and
+        # worker.poll(). Resolve that observed control loss at settlement too.
+        if self.janitor.poll() is not None or self.guardian.poll() is not None:
+            (self.state / 'blocked').touch()
+            if reason == 'NONE':
+                reason = 'CONTROL_UNVERIFIED'
         if not clean:
             (self.state / 'blocked').touch()
             return result(request, run, 'INCOMPLETE', 'CLEANUP_UNVERIFIED', 'FAILED')
@@ -565,7 +641,8 @@ def serve(args):
 
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == 'janitor':
-        janitor(Path(sys.argv[2]), sys.argv[3], int(sys.argv[4]), int(sys.argv[5]))
+        janitor(Path(sys.argv[2]), sys.argv[3], int(sys.argv[4]), int(sys.argv[5]),
+                int(sys.argv[6]), sys.argv[7], int(sys.argv[8]))
     else:
         parser = argparse.ArgumentParser(description=__doc__)
         parser.add_argument('--state', required=True)

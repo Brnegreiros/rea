@@ -37,6 +37,11 @@ state=Path(sys.argv[2]);mode=sys.argv[3];real=m.subprocess.Popen
 
 def spawn(argv,**kwargs):
     if len(argv)>2 and argv[2]=='janitor':
+        role=argv[-2]
+        if role=='standby':
+            if mode=='standby-silent': argv=[sys.executable,'-c','import time;time.sleep(10)']
+            elif mode=='standby-wrong': argv=[sys.executable,'-c',f'import os,time;os.write({argv[-1]},b"X");time.sleep(10)']
+            p=real(argv,**kwargs);(state/'guardian.pid').write_text(str(p.pid));return p
         if mode=='eof': argv=[sys.executable,'-c','pass']
         elif mode=='silent': argv=[sys.executable,'-c','import time;time.sleep(10)']
         elif mode=='wrong': argv=[sys.executable,'-c',f'import os,time;os.write({argv[-1]},b"X");time.sleep(10)']
@@ -103,7 +108,7 @@ def check(name,kind,fn):
     r['wallSeconds']=round(time.monotonic()-start,3);CASES.append(r)
     OUTPUT.write_text(json.dumps({'cases':CASES,'summary':{s:sum(c['status']==s for c in CASES) for s in ['PASS','FAIL','NOT_TESTED']},
       'scope':'Janitor readiness regressions, separate from the 28 acceptance cases; synthetic VM only.',
-      'retentionAfterJanitorLoss':'See JR-09; admission and run cleanup do not establish expiry after storage-owner loss.'},indent=2)+'\n')
+      'retentionAfterPrimaryLoss':'JR-09 checks primary loss followed by controller termination while the independent standby survives.'},indent=2)+'\n')
     print(name,r['status'],flush=True)
 
 
@@ -114,6 +119,8 @@ def startup_failure(mode):
         assert p.returncode!=0 and (state/'blocked').exists()
         assert not Path(sock).exists() and (state/'launch-counter').read_text()=='0'
         assert not alive(jpid)
+        if (state/'guardian.pid').exists():
+            assert not alive(int((state/'guardian.pid').read_text()))
         with database(state) as db:assert db.execute('SELECT count(*) FROM requests').fetchone()[0]==0
         return {'noSocket':True,'noRequests':True,'reaLaunches':0,'blocked':True,'childReaped':True,
                 'boundedFailureSeconds':round(time.monotonic()-started,3)}
@@ -142,7 +149,7 @@ def early_death():
             counts={t:db.execute('SELECT count(*) FROM '+t).fetchone()[0] for t in ['requests','decisions','audit']}
         assert all(v==0 for v in counts.values()),counts
         assert not Path(sock).exists() and (state/'launch-counter').read_text()=='0'
-        return {'parentKilledBeforeJanitorExec':True,'inheritedPidfdObservedExactDeath':True,
+        return {'parentKilledBeforeJanitorExec':True,'survivingOwnerObservedParentDeath':True,
                 'injectedPrivateIntentExpired':True,'rows':counts,'reaLaunches':0,'noSocket':True}
     finally:
         terminate(p)
@@ -167,6 +174,7 @@ def loss(active):
         review=query(sock,{'op':'review','requestId':rid},True)
         approval=query(sock,{'op':'approve','requestId':rid,'digest':review['digest'],'ttl':12},True)
         assert approval['decision']=='ALLOW'
+        LOST_STORES.append(state)
         if active:
             with ThreadPoolExecutor(max_workers=1) as pool:
                 future=pool.submit(query,sock,{'op':'execute','requestId':rid})
@@ -190,20 +198,20 @@ def loss(active):
         response=query(sock,{'op':'propose','fixture':'basic'})
         assert response['status']=='DENIED' and response['reasonCode']=='CONTROL_UNVERIFIED'
         assert (state/'blocked').exists()
-        LOST_STORES.append(state)
         return {'janitorSigkill':True,'profileBlocked':True,'activeFamilyRemoved':active,
                 'reaLaunches':int((state/'launch-counter').read_text()),
-                'retentionAfterStorageOwnerLoss':'Measured separately by JR-09, not certified by this subcase'}
+                'retentionAfterPrimaryLoss':'Measured separately by JR-09, not certified by this subcase'}
     finally:terminate(p)
 
 
-def retention_after_owner_loss():
-    """Required expiry assertion; a known failed control must exit nonzero."""
+def retention_after_primary_loss():
+    """Original-deadline assertion; a failed control must exit nonzero."""
     assert len(LOST_STORES)==2
     deadlines=[]
     for state in LOST_STORES:
         with database(state) as db:
             deadlines.extend(r[0] for r in db.execute('SELECT audit_until FROM requests'))
+            deadlines.extend(r[0] for r in db.execute('SELECT expires FROM audit'))
     wait_for(lambda:time.time()>max(deadlines)+0.2,32)
     facts=[]
     for state in LOST_STORES:
@@ -251,8 +259,10 @@ def main():
     check('JR-06','REAL_UNMODIFIED_CONTROLLER_AND_JANITOR',normal_death)
     check('JR-07','REAL_UNMODIFIED_CONTROLLER_AND_JANITOR',lambda:loss(False))
     check('JR-08','REAL_REA_CLI_WORKER_AND_JANITOR_SIGKILL',lambda:loss(True))
-    check('JR-09','REAL_DEADLINES_AFTER_STORAGE_OWNER_SIGKILL',retention_after_owner_loss)
+    check('JR-09','REAL_DEADLINES_AFTER_PRIMARY_LOSS_WITH_STANDBY',retention_after_primary_loss)
     check('JR-10','REAL_PRIVATE_METRIC_PRODUCER_WITH_CONCURRENT_READER',atomic_counter)
+    check('JR-11','PRIVILEGED_STANDBY_STARTUP_FAULT_WITH_REAL_CHILD',lambda:startup_failure('standby-silent'))
+    check('JR-12','PRIVILEGED_STANDBY_STARTUP_FAULT_WITH_REAL_CHILD',lambda:startup_failure('standby-wrong'))
     if any(c['status']=='FAIL' for c in CASES):raise SystemExit(1)
 
 

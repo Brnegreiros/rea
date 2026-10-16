@@ -117,14 +117,24 @@ acknowledgement fails closed and reaps the child. Janitor loss denies proposal,
 approval and execution; an active capture detects that loss and disposes its
 owned family. The private observer counter is published by atomic replacement.
 
-**Known failed control:** killing the janitor itself leaves pending raw intent
-and audit records past their deadlines. Blocking admission does not replace the
-storage owner. Do not certify retention or enable this profile. The separate
-[readiness follow-up](../../docs/verification/controller-janitor-2026-10-16.md)
-records real startup/death tests and this failed expiry assertion. Its
-`janitor_acceptance.py` intentionally exits nonzero while JR-09 fails. Private
-janitor diagnostics remain operator-only and must be enumerated and removed
-with the other evaluation copies before VM disposal.
+The [retention recovery follow-up](../../docs/verification/controller-retention-2026-10-16.md)
+addresses the previously failed JR-09. Two independent guard processes monitor
+the exact controller through its inherited pidfd and each other through private
+pipe lifetimes. A per-boot lifetime flock gives one guard cleanup ownership;
+the standby takes over on loss. Both must acknowledge readiness before admission.
+Guard loss blocks the profile, revokes pending work and clears controlled raw
+copies; audit expiry keeps its original deadline. Known-request denial events
+cannot renew that deadline. A separate bounded lock serializes controller and
+owner disposal, and run leases are published atomically.
+
+Failed disposal keeps an opaque ownership receipt and run lease, blocks the
+profile and retries. It is never reported as timely deletion. Operator recovery
+of a busy mount is a separate action and receipt. Primary plus standby loss,
+hung guards, storage exhaustion, clock uncertainty and host/VM failures remain
+outside the tested single-guard-loss scope. The profile remains NO-GO. Private
+control diagnostics and lock handles remain operator-only evaluation artifacts;
+enumerate and remove them before VM disposal. No physical erasure or unknown
+backup guarantee follows from logical cleanup or shutdown.
 
 The privileged test observer gets a bounded private capture window before
 disposal, retains only selected synthetic facts/integrity observations for the

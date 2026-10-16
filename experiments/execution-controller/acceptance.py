@@ -196,7 +196,7 @@ def check(case_id, function, pending=None):
 
 def save():
     Path('/vercel/output/controller-acceptance.json').write_text(json.dumps({
-        'baseline': '0140bc2882db8a86639a366faa10dd969ce1a4ef',
+        'baseline': '9ddc190e470f503741a70334e5574cb76dece583',
         'cases': records, 'summary': {status: sum(r['status'] == status for r in records) for status in ['PASS','FAIL','NOT_TESTED']},
         'productionAndUnrestrictedAgents': 'NO_GO',
         'operatorReview': 'AUTOMATED_UID_0_TEST_ORCHESTRATION_NOT_HUMAN_REVIEW',
